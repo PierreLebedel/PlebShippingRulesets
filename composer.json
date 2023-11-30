@@ -1,0 +1,30 @@
+{
+    "name": "pleb/woocommerce-shipping-rules",
+    "description": "",
+    "keywords": ["wordpress", "plugin", "woocommerce", "shipping"],
+    "license": "GPL-3.0+",
+    "authors": [{
+        "name": "Pierre Lebedel",
+        "homepage": "https://www.pierrelebedel.fr"
+    }],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=8.0.0",
+        "symfony/var-dumper": "^6.4"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.40"
+    },
+    "autoload": {
+        "psr-4": {
+            "PlebWooCommerceShippingRules\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}
