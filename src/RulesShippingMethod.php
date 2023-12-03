@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRules;
+namespace PlebWooCommerceShippingRulesets;
 
-use PlebWooCommerceShippingRules\Rule;
+use PlebWooCommerceShippingRulesets\Rule;
 
 class RulesShippingMethod extends \WC_Shipping_Method
 {

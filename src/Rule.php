@@ -1,6 +1,6 @@
 <?php
 
-namespace PlebWooCommerceShippingRules;
+namespace PlebWooCommerceShippingRulesets;
 
 class Rule
 {

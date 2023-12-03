@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-01 14:12+0000\n"
+"POT-Creation-Date: 2023-12-03 12:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,21 +16,33 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: src/WordPressPlugin.php:79
+#: src/WordPressPlugin.php:80
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
-#: src/RulesShippingMethod.php:72
+#: src/Ruleset.php:108
+msgid "Add new rule"
+msgstr ""
+
+#: src/RulesShippingMethod.php:311
+msgid "Add new ruleset"
+msgstr ""
+
+#: src/RulesShippingMethod.php:76
 msgid "Base price"
 msgstr ""
 
-#: src/RulesShippingMethod.php:37
+#: src/RulesShippingMethod.php:41
 msgid "Debug mode"
 msgstr ""
 
-#: src/RulesShippingMethod.php:39
+#: src/WordPressPlugin.php:127
+msgid "Docs"
+msgstr ""
+
+#: src/RulesShippingMethod.php:43
 msgid "Enable Debug Mode"
 msgstr ""
 
@@ -38,22 +50,42 @@ msgstr ""
 msgid "https://www.pierrelebedel.fr"
 msgstr ""
 
+#: src/RulesShippingMethod.php:321
+msgid "Invalid data format"
+msgstr ""
+
 #. Description of the plugin
-msgid "Make your own shipping rules"
+msgid "Make your own rulesets to calculate shipping rates"
+msgstr ""
+
+#: src/Ruleset.php:100
+msgid "No rule in this ruleset yet."
+msgstr ""
+
+#: src/RulesShippingMethod.php:300
+msgid "No ruleset yet."
 msgstr ""
 
 #. Author of the plugin
 msgid "Pierre Lebedel"
 msgstr ""
 
-#: src/RulesShippingMethod.php:25 src/RulesShippingMethod.php:48
+#: src/RulesShippingMethod.php:29 src/RulesShippingMethod.php:52
 msgid "Rules based shipping price"
 msgstr ""
 
-#: src/RulesShippingMethod.php:26
+#: src/Ruleset.php:91
+msgid "Ruleset"
+msgstr ""
+
+#: src/RulesShippingMethod.php:85
+msgid "Rulesets"
+msgstr ""
+
+#: src/RulesShippingMethod.php:30
 msgid "Set your own rulesets to calculate the shipping price"
 msgstr ""
 
 #. Name of the plugin
-msgid "WooCommerce Shipping Rules"
+msgid "WooCommerce Shipping Rulesets"
 msgstr ""

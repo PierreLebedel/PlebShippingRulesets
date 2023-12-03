@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: WooCommerce Shipping Rules
+ * Plugin Name: WooCommerce Shipping Rulesets
  * Plugin URI:
- * Description: Make your own shipping rules
+ * Description: Make your own rulesets to calculate shipping rates
  * Version: 0.1.0
  * Author: Pierre Lebedel
  * Author URI: https://www.pierrelebedel.fr
@@ -22,12 +22,12 @@
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-use PlebWooCommerceShippingRules\WordPressPlugin;
+use PlebWooCommerceShippingRulesets\WordPressPlugin;
 
 defined('ABSPATH') || exit;
 
 spl_autoload_register(function ($class) {
-    $prefix = 'PlebWooCommerceShippingRules\\';
+    $prefix = 'PlebWooCommerceShippingRulesets\\';
     $base_dir = __DIR__.'/src/';
     $len = strlen($prefix);
     if (strncmp($prefix, $class, $len) !== 0) {
@@ -57,8 +57,8 @@ if (!function_exists('dd')) {
     }
 }
 
-if (!class_exists('Pleb_WooCommerce_Shipping_Rules')) {
-    class Pleb_WooCommerce_Shipping_Rules
+if (!class_exists('Pleb_WooCommerce_Shipping_Rulessets')) {
+    class Pleb_WooCommerce_Shipping_Rulessets
     {
         public static function wordPressPluginInstance(): WordPressPlugin
         {
@@ -75,7 +75,7 @@ if (!class_exists('Pleb_WooCommerce_Shipping_Rules')) {
     }
 }
 
-register_activation_hook(__FILE__, [Pleb_WooCommerce_Shipping_Rules::class, 'activate']);
-register_deactivation_hook(__FILE__, [Pleb_WooCommerce_Shipping_Rules::class, 'deactivate']);
+register_activation_hook(__FILE__, [Pleb_WooCommerce_Shipping_Rulessets::class, 'activate']);
+register_deactivation_hook(__FILE__, [Pleb_WooCommerce_Shipping_Rulessets::class, 'deactivate']);
 
-add_action('plugins_loaded', [Pleb_WooCommerce_Shipping_Rules::class, 'wordPressPluginInstance'], 1);
+add_action('plugins_loaded', [Pleb_WooCommerce_Shipping_Rulessets::class, 'wordPressPluginInstance'], 1);

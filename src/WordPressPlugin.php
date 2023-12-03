@@ -1,9 +1,9 @@
 <?php
 
-namespace PlebWooCommerceShippingRules;
+namespace PlebWooCommerceShippingRulesets;
 
-use PlebWooCommerceShippingRules\AdminNotice;
-use PlebWooCommerceShippingRules\RulesShippingMethod;
+use PlebWooCommerceShippingRulesets\AdminNotice;
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 
 class WordPressPlugin
 {
@@ -90,7 +90,7 @@ class WordPressPlugin
 
     public function loadAdminAssets()
     {
-        $admin_script_handle = 'pleb_woocommerce_shipping_rules';
+        $admin_script_handle = 'Pleb_WooCommerce_Shipping_Rulessets';
 
         wp_enqueue_script(
             $admin_script_handle,

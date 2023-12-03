@@ -1,5 +1,5 @@
 {
-    "name": "pleb/woocommerce-shipping-rules",
+    "name": "pleb/woocommerce-shipping-rulesets",
     "description": "",
     "keywords": ["wordpress", "plugin", "woocommerce", "shipping"],
     "license": "GPL-3.0+",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PlebWooCommerceShippingRules\\": "src/"
+            "PlebWooCommerceShippingRulesets\\": "src/"
         }
     },
     "config": {
