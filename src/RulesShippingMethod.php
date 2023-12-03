@@ -6,7 +6,7 @@ use PlebWooCommerceShippingRulesets\Rule;
 
 class RulesShippingMethod extends \WC_Shipping_Method
 {
-    public const METHOD_ID = 'pleb_rules_method';
+    public const METHOD_ID = 'pleb_rulesets_method';
 
     private $debug_mode = false;
     private $debug_infos = '';
@@ -26,14 +26,14 @@ class RulesShippingMethod extends \WC_Shipping_Method
     {
         $this->id                    = self::METHOD_ID;
         $this->instance_id           = absint($instance_id);
-        $this->method_title          = __('Rules based shipping price', 'pleb');
+        $this->method_title          = __('Rulesets based shipping price', 'pleb');
         $this->method_description    = __('Set your own rulesets to calculate the shipping price', 'pleb');
 
         $this->supports              = [
             'settings',
             'shipping-zones',
             'instance-settings',
-            'instance-settings-modal',
+            //'instance-settings-modal',
         ];
 
         $this->form_fields = [
@@ -297,7 +297,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 <?php //dump($rulesets);?>
 
                 <?php if(empty($rulesets)): ?>
-                    <div class="notice"><p><?php _e("No ruleset yet.", 'pleb'); ?></p></div>
+                    <div class="notice inline" style="margin-top:0;"><p><?php _e("No ruleset yet.", 'pleb'); ?></p></div>
                 <?php else: ?>
                     <div class="metabox-holder">
                         <div id="pleb_rulesets" class="meta-box-sortables ui-sortable">

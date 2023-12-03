@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-03 12:54+0000\n"
+"PO-Revision-Date: 2023-12-03 14:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: src/WordPressPlugin.php:80
+#: src/WordPressPlugin.php:85
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
@@ -39,13 +39,17 @@ msgstr "Tarif de base"
 msgid "Debug mode"
 msgstr "Mode débogage"
 
-#: src/WordPressPlugin.php:127
+#: src/WordPressPlugin.php:139
 msgid "Docs"
 msgstr "Documentation"
 
 #: src/RulesShippingMethod.php:43
 msgid "Enable Debug Mode"
 msgstr "Activer le mode de débogage"
+
+#. URI of the plugin
+msgid "https://github.com/PierreLebedel/WooCommerceShippingRulesets/"
+msgstr ""
 
 #. Author URI of the plugin
 msgid "https://www.pierrelebedel.fr"
@@ -61,17 +65,17 @@ msgstr "Créez vos propres règles de calcul de frais d'expédition"
 
 #: src/Ruleset.php:100
 msgid "No rule in this ruleset yet."
-msgstr "Pas de règle dans ce groupe pour le moment."
+msgstr "Aucune règle dans ce groupe pour le moment."
 
 #: src/RulesShippingMethod.php:300
 msgid "No ruleset yet."
-msgstr "Pas de groupe de règles pour le moment."
+msgstr "Aucun groupe de règles pour le moment."
 
 #. Author of the plugin
 msgid "Pierre Lebedel"
 msgstr ""
 
-#: src/RulesShippingMethod.php:29 src/RulesShippingMethod.php:52
+#: src/RulesShippingMethod.php:52
 msgid "Rules based shipping price"
 msgstr "Tarif d'expédition basé sur des règles"
 
@@ -82,6 +86,10 @@ msgstr "Groupe de règles"
 #: src/RulesShippingMethod.php:85
 msgid "Rulesets"
 msgstr "Groupes de règles"
+
+#: src/RulesShippingMethod.php:29
+msgid "Rulesets based shipping price"
+msgstr "Tarif d'expédition basé sur des règles"
 
 #: src/RulesShippingMethod.php:30
 #, fuzzy

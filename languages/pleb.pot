@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-03 12:52+0000\n"
+"POT-Creation-Date: 2023-12-03 14:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: src/WordPressPlugin.php:80
+#: src/WordPressPlugin.php:85
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
@@ -38,12 +38,16 @@ msgstr ""
 msgid "Debug mode"
 msgstr ""
 
-#: src/WordPressPlugin.php:127
+#: src/WordPressPlugin.php:139
 msgid "Docs"
 msgstr ""
 
 #: src/RulesShippingMethod.php:43
 msgid "Enable Debug Mode"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/PierreLebedel/WooCommerceShippingRulesets/"
 msgstr ""
 
 #. Author URI of the plugin
@@ -70,7 +74,7 @@ msgstr ""
 msgid "Pierre Lebedel"
 msgstr ""
 
-#: src/RulesShippingMethod.php:29 src/RulesShippingMethod.php:52
+#: src/RulesShippingMethod.php:52
 msgid "Rules based shipping price"
 msgstr ""
 
@@ -80,6 +84,10 @@ msgstr ""
 
 #: src/RulesShippingMethod.php:85
 msgid "Rulesets"
+msgstr ""
+
+#: src/RulesShippingMethod.php:29
+msgid "Rulesets based shipping price"
 msgstr ""
 
 #: src/RulesShippingMethod.php:30

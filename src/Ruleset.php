@@ -97,7 +97,7 @@ class Ruleset
 
                     <?php $rules = $this->getRules();
         if(empty($rules)): ?>
-                        <div class="notice"><p><?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
+                        <div class="notice inline" style="margin-top:0;"><p><?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
                     <?php else: ?>
                         <ul>
                             <?php foreach($rules as $rule): ?>
