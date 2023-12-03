@@ -96,7 +96,7 @@ class Ruleset
                     <input type="number" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="<?php echo esc_attr($this->getOrder()); ?>" reradonly>
 
                     <?php $rules = $this->getRules();
-                    if(empty($rules)): ?>
+        if(empty($rules)): ?>
                         <div class="notice"><p><?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
                     <?php else: ?>
                         <ul>

@@ -3,6 +3,7 @@
 namespace PlebWooCommerceShippingRulesets;
 
 use PlebWooCommerceShippingRulesets\AdminNotice;
+use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 
 class WordPressPlugin
@@ -65,6 +66,7 @@ class WordPressPlugin
         add_action('plugin_action_links_'.$this->baseName, [$this, 'pluginActionLinks']);
         add_filter('woocommerce_shipping_methods', [RulesShippingMethod::class, 'autoRegister']);
         add_action('admin_enqueue_scripts', [$this, 'loadAdminAssets']);
+        add_action('before_woocommerce_init', [$this, 'setWooCommerceHposCompatibility']);
     }
 
     private function loadPluginTextDomain()
@@ -89,6 +91,13 @@ class WordPressPlugin
             ->setStrong(false);
 
         add_action('admin_notices', $notice);
+    }
+
+    public function setWooCommerceHposCompatibility()
+    {
+        if (class_exists(FeaturesUtil::class)) {
+            FeaturesUtil::declare_compatibility('custom_order_tables', $this->mainFile, true);
+        }
     }
 
     public function loadAdminAssets()
