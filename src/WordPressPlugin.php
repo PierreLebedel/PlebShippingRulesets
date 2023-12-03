@@ -2,6 +2,7 @@
 
 namespace PlebWooCommerceShippingRulesets;
 
+use PlebWooCommerceShippingRulesets\AjaxAction;
 use PlebWooCommerceShippingRulesets\AdminNotice;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
 use PlebWooCommerceShippingRulesets\RulesShippingMethod;
@@ -67,11 +68,19 @@ class WordPressPlugin
         add_filter('woocommerce_shipping_methods', [RulesShippingMethod::class, 'autoRegister']);
         add_action('admin_enqueue_scripts', [$this, 'loadAdminAssets']);
         add_action('before_woocommerce_init', [$this, 'setWooCommerceHposCompatibility']);
+
+        $this->registerAjaxActions();
     }
 
     private function loadPluginTextDomain()
     {
         load_plugin_textdomain($this->textDomain, false, $this->slug.$this->domainPath);
+    }
+
+    private function registerAjaxActions()
+    {
+        AjaxAction::register('pleb_ruleset_template');
+        AjaxAction::register('pleb_ruleset_rule_template');
     }
 
     private function missingWooCommerceAdminNotice()
@@ -116,6 +125,7 @@ class WordPressPlugin
             'pleb',
             [
                 'plugin_version' => $this->version,
+                'ajax_url' => admin_url('admin-ajax.php'),
             ]
         );
     }

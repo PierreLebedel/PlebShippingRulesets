@@ -47,10 +47,10 @@ class Rule
     {
         ob_start();
 
-        ?><li style="padding:5px 10px;margin:0;border:1px solid blue;">
+        ?><div class="pleb_rule" style="padding:5px 10px;margin:0;border:1px solid blue;">
             <h4>Ici ma règle #<?php echo $this->getId(); ?></h4>
-            <input type="number" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>" reradonly>
-        </li><?php
+            <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>" reradonly>
+        </div><?php
 
         return ob_get_clean();
     }

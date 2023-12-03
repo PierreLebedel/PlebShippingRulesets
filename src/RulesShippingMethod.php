@@ -297,18 +297,20 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 <?php //dump($rulesets);?>
 
                 <?php if(empty($rulesets)): ?>
-                    <div class="notice inline" style="margin-top:0;"><p><?php _e("No ruleset yet.", 'pleb'); ?></p></div>
-                <?php else: ?>
-                    <div class="metabox-holder">
-                        <div id="pleb_rulesets" class="meta-box-sortables ui-sortable">
+                    <div id="pleb_no_ruleset_notice" class="notice inline" style="margin-top:0;"><p><?php _e("No ruleset yet.", 'pleb'); ?></p></div>
+                <?php endif; ?>
+
+                <div class="metabox-holder">
+                    <div id="pleb_rulesets" class="meta-box-sortables">
+                        <?php if(!empty($rulesets)): ?>
                             <?php foreach($rulesets as $ruleset): ?>
                                 <?php echo $ruleset->htmlRender($field_key); ?>
                             <?php endforeach; ?>
-                        </div>
+                        <?php endif; ?>
                     </div>
-                <?php endif; ?>
+                </div>
 
-                <button type="button" class="button button-primary"><?php _e("Add new ruleset", 'pleb'); ?></button>
+                <button id="pleb_ruleset_add_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button button-primary"><?php _e("Add new ruleset", 'pleb'); ?></button>
 			</td>
 		</tr>
 		<?php
