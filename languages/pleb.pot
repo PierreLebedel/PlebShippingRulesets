@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-30 17:47+0000\n"
+"POT-Creation-Date: 2023-12-01 14:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,8 +16,22 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: pleb-woocommerce-shipping-rules.php:55
-msgid "Cloning is forbidden."
+#: src/WordPressPlugin.php:79
+#, php-format
+msgid ""
+"%s requires WooCommerce to be installed and active. You can download %s here."
+msgstr ""
+
+#: src/RulesShippingMethod.php:72
+msgid "Base price"
+msgstr ""
+
+#: src/RulesShippingMethod.php:37
+msgid "Debug mode"
+msgstr ""
+
+#: src/RulesShippingMethod.php:39
+msgid "Enable Debug Mode"
 msgstr ""
 
 #. Author URI of the plugin
@@ -32,25 +46,14 @@ msgstr ""
 msgid "Pierre Lebedel"
 msgstr ""
 
-#: src/RulesShippingMethod.php:19 src/RulesShippingMethod.php:34
-msgid "Rules based shipping method"
+#: src/RulesShippingMethod.php:25 src/RulesShippingMethod.php:48
+msgid "Rules based shipping price"
 msgstr ""
 
-#: src/RulesShippingMethod.php:20
-msgid "Set your own rules to calculate the shipping price"
-msgstr ""
-
-#: pleb-woocommerce-shipping-rules.php:60
-msgid "Unserializing instances of this class is forbidden."
+#: src/RulesShippingMethod.php:26
+msgid "Set your own rulesets to calculate the shipping price"
 msgstr ""
 
 #. Name of the plugin
 msgid "WooCommerce Shipping Rules"
-msgstr ""
-
-#: pleb-woocommerce-shipping-rules.php:84
-#, php-format
-msgid ""
-"WooCommerce Shipping Rules requires WooCommerce to be installed and active. "
-"You can download %s here."
 msgstr ""

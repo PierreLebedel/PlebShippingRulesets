@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-11-30 17:48+0000\n"
+"PO-Revision-Date: 2023-12-01 14:12+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -15,9 +15,25 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: pleb-woocommerce-shipping-rules.php:55
-msgid "Cloning is forbidden."
-msgstr "Clonage interdit."
+#: src/WordPressPlugin.php:79
+#, php-format
+msgid ""
+"%s requires WooCommerce to be installed and active. You can download %s here."
+msgstr ""
+"%s requiert l'installation et l'activation de WooCommerce. Vous pouvez "
+"télécharger %s ici."
+
+#: src/RulesShippingMethod.php:72
+msgid "Base price"
+msgstr "Tarif de base"
+
+#: src/RulesShippingMethod.php:37
+msgid "Debug mode"
+msgstr ""
+
+#: src/RulesShippingMethod.php:39
+msgid "Enable Debug Mode"
+msgstr ""
 
 #. Author URI of the plugin
 msgid "https://www.pierrelebedel.fr"
@@ -31,30 +47,16 @@ msgstr ""
 msgid "Pierre Lebedel"
 msgstr ""
 
-#: src/RulesShippingMethod.php:19 src/RulesShippingMethod.php:34
-msgid "Rules based shipping method"
-msgstr ""
+#: src/RulesShippingMethod.php:25 src/RulesShippingMethod.php:48
+msgid "Rules based shipping price"
+msgstr "Tarif d'expédition basé sur des règles"
 
-#: src/RulesShippingMethod.php:20
-msgid "Set your own rules to calculate the shipping price"
+#: src/RulesShippingMethod.php:26
+#, fuzzy
+#| msgid "Set your own rules to calculate the shipping price"
+msgid "Set your own rulesets to calculate the shipping price"
 msgstr "Configurez vos propres règles de calcul de prix d'expédition"
-
-#: pleb-woocommerce-shipping-rules.php:60
-msgid "Unserializing instances of this class is forbidden."
-msgstr "La désérialisation de cette class est interdite."
 
 #. Name of the plugin
 msgid "WooCommerce Shipping Rules"
 msgstr ""
-
-#: pleb-woocommerce-shipping-rules.php:84
-#, php-format
-#| msgid ""
-#| "Woocommerce Shipping Rules requires WooCommerce to be installed and "
-#| "active. You can download %s here."
-msgid ""
-"WooCommerce Shipping Rules requires WooCommerce to be installed and active. "
-"You can download %s here."
-msgstr ""
-"WooCommerce Shipping Rules requirert l'installation et l'activation de "
-"l'extension WooCommerce. Vous pouvez télécharger %s ici."

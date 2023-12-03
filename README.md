@@ -1,5 +1,5 @@
 # WooCommerce Shipping Rules
 
 ```
-./vendorr/php-cs-fixer fix .
+./dev/php-cs-fixer/vendor/bin/php-cs-fixer fix .
 ```
