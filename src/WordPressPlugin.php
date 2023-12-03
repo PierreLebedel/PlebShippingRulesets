@@ -17,6 +17,7 @@ class WordPressPlugin
     public $version;
     public $textDomain;
     public $domainPath;
+    public $pluginUri;
 
     public static function instance(?string $pluginMainFile = null): self
     {
@@ -50,18 +51,20 @@ class WordPressPlugin
         $this->version = $pluginData['Version'];
         $this->textDomain = $pluginData['TextDomain'];
         $this->domainPath = trailingslashit($pluginData['DomainPath']);
+        $this->pluginUri = $pluginData['PluginURI'];
 
         $this->loadPluginTextDomain();
+
+        add_filter('plugin_row_meta', [$this, 'pluginRowMeta'], 10, 2);
 
         if(!class_exists('WooCommerce')) {
             $this->missingWooCommerceAdminNotice();
             return;
         }
 
+        add_action('plugin_action_links_'.$this->baseName, [$this, 'pluginActionLinks']);
         add_filter('woocommerce_shipping_methods', [RulesShippingMethod::class, 'autoRegister']);
         add_action('admin_enqueue_scripts', [$this, 'loadAdminAssets']);
-        add_action('plugin_action_links_'.$this->baseName, [$this, 'pluginActionLinks']);
-        add_filter('plugin_row_meta', [$this, 'pluginRowMeta'], 10, 2);
     }
 
     private function loadPluginTextDomain()
@@ -124,7 +127,7 @@ class WordPressPlugin
         }
 
         $row_meta = [
-            'docs' => '<a href="#doc">'.esc_html__('Docs', 'pleb').'</a>',
+            'docs' => '<a href="'.esc_url($this->pluginUri).'" target="_blank">'.esc_html__('Docs', 'pleb').'</a>',
         ];
 
         return array_merge($links, $row_meta);

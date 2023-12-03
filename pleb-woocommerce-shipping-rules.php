@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WooCommerce Shipping Rulesets
- * Plugin URI:
+ * Plugin URI: https://github.com/PierreLebedel/WooCommerceShippingRulesets/
  * Description: Make your own rulesets to calculate shipping rates
  * Version: 0.1.0
  * Author: Pierre Lebedel
