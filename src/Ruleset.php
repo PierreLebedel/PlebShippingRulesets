@@ -97,10 +97,10 @@ class Ruleset
 
                     <?php $rules = $this->getRules();
 
-                    dump($rules, 'lol');
-                    dump('lol2');
+        dump($rules, 'lol');
+        dump('lol2');
 
-                    if(empty($rules)): ?>
+        if(empty($rules)): ?>
                         <div class="notice"><p><?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
                     <?php else: ?>
                         <ul>
