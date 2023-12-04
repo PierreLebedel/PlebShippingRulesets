@@ -2,6 +2,9 @@
 
 namespace PlebWooCommerceShippingRulesets;
 
+use PlebWooCommerceShippingRulesets\Models\Rule;
+use PlebWooCommerceShippingRulesets\Models\Ruleset;
+
 class AjaxAction
 {
     public function __construct()
@@ -72,5 +75,7 @@ class AjaxAction
             die();
         }
     }
+
+
 
 }

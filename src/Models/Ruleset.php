@@ -1,11 +1,12 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets;
+namespace PlebWooCommerceShippingRulesets\Models;
 
 class Ruleset
 {
     private $id;
     private $name;
+    private $cost = '';
     private $order = null;
     private $rules = [];
 
@@ -26,6 +27,7 @@ class Ruleset
         $instance = new self();
         $instance->setId($rulesetArray['id']);
         $instance->setName($rulesetArray['name']);
+        $instance->setCost($rulesetArray['cost']??'');
         $instance->setOrder(!is_null($rulesetArray['order']) ? intval($rulesetArray['order']) : null);
 
         if (isset($rulesetArray['rules']) && is_array($rulesetArray['rules'])) {
@@ -64,6 +66,17 @@ class Ruleset
             return __("Ruleset", 'pleb').' #'.$this->getId();
         }
         return $this->name;
+    }
+
+    public function setCost(string $cost): self
+    {
+        $this->cost = $cost;
+        return $this;
+    }
+
+    public function getCost(): string
+    {
+        return $this->cost;
     }
 
     public function setOrder(?int $order): self
@@ -117,25 +130,25 @@ class Ruleset
             </div>
 
             <div class="inside" style="margin-bottom:0;">
-                <div class="main">
-                    <div class="ruleset_rules">
-                    <?php $rules = $this->getRules();
-                    if(empty($rules)): ?>
-                        <div class="notice inline pleb_no_ruleset_rule_notice" style="margin-top:0;"><p><?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
-                    <?php else: ?>
-                        <?php foreach($rules as $rule): ?>
-                            <?php echo $rule->htmlRender($fieldKey.'['.$this->getId().'][rules]');?>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                    </div>
+
+                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="" class="regular-text" /><br>
+
+                <?php $rules = $this->getRules(); ?>
+
+                <div class="pleb_no_ruleset_rule_notice notice notice-info inline text-center notice-alt" style="margin:10px 0;<?php if(!empty($rules)){ echo 'display:none;'; } ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
+
+                <table class="widefat plugins ruleset_rules" style="margin:10px 0;<?php if(empty($rules)){ echo 'display:none;'; } ?>">
+                    <?php foreach($rules as $rule): ?>
+                        <?php echo $rule->htmlRender($fieldKey.'['.$this->getId().'][rules]');?>
+                    <?php endforeach; ?>
+                </table>
+                
+                <div class="plugins">
+
+                    <button type="button" class="button pleb_ruleset_add_rule_button" data-field_key="<?php echo $fieldKey.'['.$this->getId().'][rules]'; ?>"><?php _e("Add new rule", 'pleb'); ?></button>
+
+                    <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure?", 'pleb'); ?>" style="float:right;margin-top:6px;"><?php _e("Delete ruleset", 'pleb'); ?></a>
                     
-                    <div class="plugins">
-
-                        <button type="button" class="button button-primary pleb_ruleset_add_rule_button" data-field_key="<?php echo $fieldKey.'['.$this->getId().'][rules]'; ?>"><?php _e("Add new rule", 'pleb'); ?></button>
-
-                        <a href="#" class="delete" style="float:right;margin-top:6px;"><?php _e("Delete ruleset", 'pleb'); ?></a>
-                        
-                    </div>
                 </div>
             </div>
         </div><?php

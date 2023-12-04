@@ -2,7 +2,8 @@
 
 namespace PlebWooCommerceShippingRulesets;
 
-use PlebWooCommerceShippingRulesets\Rule;
+use PlebWooCommerceShippingRulesets\Models\Rule;
+use PlebWooCommerceShippingRulesets\Models\Ruleset;
 
 class RulesShippingMethod extends \WC_Shipping_Method
 {
@@ -296,11 +297,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				<?php //dump($data);?>
                 <?php //dump($rulesets);?>
 
-                <?php if(empty($rulesets)): ?>
-                    <div id="pleb_no_ruleset_notice" class="notice inline" style="margin-top:0;"><p><?php _e("No ruleset yet.", 'pleb'); ?></p></div>
-                <?php endif; ?>
+                <div id="pleb_no_ruleset_notice" class="notice notice-info inline text-center notice-alt" style="margin-top:0;<?php if(!empty($rulesets)){ echo 'display:none;'; } ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No ruleset yet.", 'pleb'); ?></p></div>
 
-                <div class="metabox-holder">
+                <div class="metabox-holder" style="padding-top:0;">
                     <div id="pleb_rulesets" class="meta-box-sortables">
                         <?php if(!empty($rulesets)): ?>
                             <?php foreach($rulesets as $ruleset): ?>
@@ -310,7 +309,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
                     </div>
                 </div>
 
-                <button id="pleb_ruleset_add_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button button-primary"><?php _e("Add new ruleset", 'pleb'); ?></button>
+                <button id="pleb_ruleset_add_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button"><?php _e("Add new ruleset", 'pleb'); ?></button>
 			</td>
 		</tr>
 		<?php
