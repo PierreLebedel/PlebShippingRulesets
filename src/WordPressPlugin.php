@@ -111,7 +111,7 @@ class WordPressPlugin
 
     public function loadAdminAssets()
     {
-        $admin_script_handle = 'Pleb_WooCommerce_Shipping_Rulessets';
+        $admin_script_handle = 'pleb_wcsr';
 
         wp_enqueue_script(
             $admin_script_handle,
@@ -133,7 +133,7 @@ class WordPressPlugin
     public function pluginActionLinks($links)
     {
         $action_links = [
-            'settings' => '<a href="'.admin_url('admin.php?page=wc-settings&tab=shipping&section=pleb_rules_method').'">'.esc_html__('Settings', 'woocommerce').'</a>',
+            'settings' => '<a href="'.admin_url('admin.php?page=wc-settings&tab=shipping&section='.RulesShippingMethod::METHOD_ID).'">'.esc_html__('Settings', 'woocommerce').'</a>',
         ];
 
         return array_merge($action_links, $links);
