@@ -6,7 +6,6 @@ use PlebWooCommerceShippingRulesets\Models\RuleCondition;
 
 class RuleConditionCartItemCount extends RuleCondition
 {
-    
     public function getId(): string
     {
         return 'cart_item_count';
@@ -24,7 +23,7 @@ class RuleConditionCartItemCount extends RuleCondition
             '<=',
             '=',
             '>=',
-            '>'
+            '>',
         ];
     }
 

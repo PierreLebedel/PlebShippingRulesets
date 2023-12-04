@@ -6,7 +6,6 @@ use PlebWooCommerceShippingRulesets\Models\RuleCondition;
 
 class RuleConditionCartPrice extends RuleCondition
 {
-
     public function getId(): string
     {
         return 'cart_price';
@@ -29,10 +28,10 @@ class RuleConditionCartPrice extends RuleCondition
     {
         return [
             '<',
-            // '<=',
-            // '=',
-            // '>=',
-            //'>'
+            '<=',
+            '=',
+            '>=',
+            '>',
         ];
     }
 
@@ -40,5 +39,5 @@ class RuleConditionCartPrice extends RuleCondition
     {
         return 'number';
     }
-    
+
 }

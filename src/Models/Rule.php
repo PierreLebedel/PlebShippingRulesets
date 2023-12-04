@@ -66,12 +66,12 @@ class Rule
     {
         $condition = $this->getCondition();
 
-        if($condition){
-            if( in_array($conditionComparator, $condition->getComparators()) ){
+        if($condition) {
+            if(in_array($conditionComparator, $condition->getComparators(), true)) {
                 $this->condition_comparator = $conditionComparator;
             }
         }
-        
+
         return $this;
     }
 
@@ -107,10 +107,10 @@ class Rule
 
                 <select name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_id]" required class="rule_condition_id">
                     <option value="" selected disabled><?php _e("Choose an option", 'pleb'); ?></option>
-                    <?php foreach(RuleCondition::all() as $rc_id=>$rc): ?>
+                    <?php foreach(RuleCondition::all() as $rc_id => $rc): ?>
                         <?php if(!empty($rc->getVariants())): ?>
                         <optgroup label="<?php esc_attr_e($rc->getName()); ?>">
-                            <?php foreach($rc->getVariants() as $k=>$v): ?>
+                            <?php foreach($rc->getVariants() as $k => $v): ?>
                             <option value="<?php echo $rc_id.':'.$k; ?>" <?php selected($this->getConditionId() == $rc_id.':'.$k); ?>><?php _e($v, 'pleb'); ?></option>
                             <?php endforeach; ?>
                         </optgroup>
@@ -123,7 +123,7 @@ class Rule
 
             <?php if($condition = $this->getCondition()): ?>
             <td>
-                <?php if( !empty($condition->getComparators()) ): ?>
+                <?php if(!empty($condition->getComparators())): ?>
                 <select name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_comparator]" required>
                     <option value="" <?php selected(is_null($this->getConditionComparator())); ?> disabled><?php _e("...", 'pleb'); ?></option>
                     <?php foreach($condition->getComparators() as $display): ?>
@@ -136,9 +136,9 @@ class Rule
             </td>
             <td class="w-100">
                 <?php $valueType = $condition->getType();
-                if($valueType=='none'): ?>
+        if($valueType == 'none'): ?>
                 <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="">
-                <?php elseif($valueType=='number'): ?>
+                <?php elseif($valueType == 'number'): ?>
                 <input type="number" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
                 <?php else: ?>
                 <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
@@ -158,5 +158,5 @@ class Rule
     }
 
 
-    
+
 }

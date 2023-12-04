@@ -8,7 +8,6 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartPrice
 
 abstract class RuleCondition implements RuleConditionInterface
 {
-
     public static function all(): array
     {
         $classes = [
@@ -17,7 +16,7 @@ abstract class RuleCondition implements RuleConditionInterface
         ];
 
         $conditions = [];
-        foreach($classes as $class){
+        foreach($classes as $class) {
             $instance = new $class();
             $conditions[ $instance->getId() ] = $instance;
         }
@@ -27,18 +26,20 @@ abstract class RuleCondition implements RuleConditionInterface
 
     public static function find(?string $id = null): ?self
     {
-        if(is_null($id)) return null;
+        if(is_null($id)) {
+            return null;
+        }
 
         $all = self::all();
 
-        if( str_contains($id, ':') ){
+        if(str_contains($id, ':')) {
             $idParts = explode(':', $id);
-            if( count($idParts)>=2 ){
+            if(count($idParts) >= 2) {
                 $id = $idParts[0];
                 $variant = $idParts[1];
             }
         }
-        
+
         return $all[$id] ?? null;
     }
 

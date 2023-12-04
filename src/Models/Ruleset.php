@@ -138,9 +138,13 @@ class Ruleset
 
                 <?php $rules = $this->getRules(); ?>
 
-                <div class="pleb_no_ruleset_rule_notice notice notice-info inline text-center notice-alt" style="margin:10px 0;<?php if(!empty($rules)){ echo 'display:none;'; } ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
+                <div class="pleb_no_ruleset_rule_notice notice notice-info inline text-center notice-alt" style="margin:10px 0;<?php if(!empty($rules)) {
+                    echo 'display:none;';
+                } ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No rule in this ruleset yet.", 'pleb'); ?></p></div>
 
-                <table class="widefat plugins ruleset_rules" style="margin:10px 0;<?php if(empty($rules)){ echo 'display:none;'; } ?>">
+                <table class="widefat plugins ruleset_rules" style="margin:10px 0;<?php if(empty($rules)) {
+                    echo 'display:none;';
+                } ?>">
                     <?php foreach($rules as $rule): ?>
                         <?php echo $rule->htmlRender($fieldKey.'['.$this->getId().'][rules]');?>
                     <?php endforeach; ?>
