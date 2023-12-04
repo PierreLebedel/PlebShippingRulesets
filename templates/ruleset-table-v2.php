@@ -12,10 +12,10 @@
                         <th class="row-title">
                             <span><?php echo $this->getName(); ?></span>
                                 
-                            <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Nom du groupe de règles", "pleb"); ?>" required style="display:none;">
+                            <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Ruleset name", "pleb"); ?>" required style="display:none;">
                         </th>
                         <th style="text-align:right;">
-                            <button class="button button-small pleb_edit_ruleset_button"><?php _e("Modifier", 'pleb'); ?></button>
+                            <button class="button button-small pleb_edit_ruleset_button"><?php _e("Edit", 'pleb'); ?></button>
                         </th>
                     </tr>
                 </thead>

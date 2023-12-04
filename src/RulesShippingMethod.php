@@ -300,7 +300,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 <div id="pleb_no_ruleset_notice" class="notice notice-info inline text-center notice-alt" style="margin-top:0;<?php if(!empty($rulesets)){ echo 'display:none;'; } ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No ruleset yet.", 'pleb'); ?></p></div>
 
                 <div class="metabox-holder" style="padding-top:0;">
-                    <div id="pleb_rulesets" class="meta-box-sortables">
+                    <div id="pleb_rulesets" data-instance_id="<?php echo $this->instance_id; ?>" class="meta-box-sortables">
                         <?php if(!empty($rulesets)): ?>
                             <?php foreach($rulesets as $ruleset): ?>
                                 <?php echo $ruleset->htmlRender($field_key); ?>

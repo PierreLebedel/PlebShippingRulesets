@@ -76,6 +76,27 @@ class AjaxAction
         }
     }
 
+    public function pleb_rule_template()
+    {
+        $this->checkParameters(['rule_id', 'field_key', 'condition_id', 'condition_comparator', 'condition_value']);
+
+        //dump($_REQUEST['rule_id'], $_REQUEST['condition_id'], $_REQUEST['condition_comparator'], $_REQUEST['condition_value']);
+
+        //$wooShippingMethod = new RulesShippingMethod($_REQUEST['instance_id']);
+
+        $ruleObject = Rule::createFromArray([
+            'id' => $_REQUEST['rule_id'],
+            'condition_id' => $_REQUEST['condition_id'],
+            'condition_comparator' => $_REQUEST['condition_comparator'],
+            'condition_value' => $_REQUEST['condition_value'],
+        ]);
+
+        echo $ruleObject->htmlRender($_REQUEST['field_key']);
+
+        if(defined('DOING_AJAX') && DOING_AJAX) {
+            die();
+        }
+    }
 
 
 }

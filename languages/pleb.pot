@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-03 14:32+0000\n"
+"POT-Creation-Date: 2023-12-04 16:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,33 +16,76 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: src/WordPressPlugin.php:85
+#: src/WordPressPlugin.php:96
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
-#: src/Ruleset.php:108
+#: src/Models/Rule.php:120
+msgid "..."
+msgstr ""
+
+#: templates/ruleset-metabox.php:27 templates/ruleset-table-v2.php:49
+#: templates/ruleset-table.php:21 src/Models/Ruleset.php:151
 msgid "Add new rule"
 msgstr ""
 
-#: src/RulesShippingMethod.php:311
+#: src/RulesShippingMethod.php:312
 msgid "Add new ruleset"
 msgstr ""
 
-#: src/RulesShippingMethod.php:76
+#: src/AjaxAction.php:40
+#, php-format
+msgid "Ajax action missing params: %s"
+msgstr ""
+
+#: src/Models/Rule.php:145
+msgid "Are you sure to delete this rule?"
+msgstr ""
+
+#: src/Models/Ruleset.php:153
+msgid "Are you sure to delete this ruleset and all of its rules?"
+msgstr ""
+
+#: src/RulesShippingMethod.php:77
 msgid "Base price"
 msgstr ""
 
-#: src/RulesShippingMethod.php:41
+#: src/Models/RuleConditions/RuleConditionCartItemCount.php:17
+msgid "Cart item quantity"
+msgstr ""
+
+#: src/Models/RuleConditions/RuleConditionCartPrice.php:17
+msgid "Cart price"
+msgstr ""
+
+#: src/Models/Rule.php:109
+msgid "Choose an option"
+msgstr ""
+
+#: src/RulesShippingMethod.php:42
 msgid "Debug mode"
 msgstr ""
 
-#: src/WordPressPlugin.php:139
+#: src/Models/Rule.php:145
+msgid "Delete"
+msgstr ""
+
+#: templates/ruleset-metabox.php:29 templates/ruleset-table-v2.php:51
+#: templates/ruleset-table.php:22 src/Models/Ruleset.php:153
+msgid "Delete ruleset"
+msgstr ""
+
+#: src/WordPressPlugin.php:151
 msgid "Docs"
 msgstr ""
 
-#: src/RulesShippingMethod.php:43
+#: templates/ruleset-table-v2.php:18 src/Models/Ruleset.php:128
+msgid "Edit"
+msgstr ""
+
+#: src/RulesShippingMethod.php:44
 msgid "Enable Debug Mode"
 msgstr ""
 
@@ -54,7 +97,7 @@ msgstr ""
 msgid "https://www.pierrelebedel.fr"
 msgstr ""
 
-#: src/RulesShippingMethod.php:321
+#: src/RulesShippingMethod.php:322
 msgid "Invalid data format"
 msgstr ""
 
@@ -62,7 +105,12 @@ msgstr ""
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr ""
 
-#: src/Ruleset.php:100
+#: src/Models/Ruleset.php:115
+msgid "Move up/down to change ruleset priority"
+msgstr ""
+
+#: templates/ruleset-metabox.php:15 templates/ruleset-table-v2.php:28
+#: templates/ruleset-table.php:32 src/Models/Ruleset.php:141
 msgid "No rule in this ruleset yet."
 msgstr ""
 
@@ -74,24 +122,47 @@ msgstr ""
 msgid "Pierre Lebedel"
 msgstr ""
 
-#: src/RulesShippingMethod.php:52
+#: src/Models/Rule.php:141
+msgid "Please choose the condition"
+msgstr ""
+
+#: src/Models/Rule.php:105
+msgid "Rule"
+msgstr ""
+
+#: src/RulesShippingMethod.php:53
 msgid "Rules based shipping price"
 msgstr ""
 
-#: src/Ruleset.php:91
+#: templates/ruleset-metabox.php:7 templates/ruleset-table.php:13
+#: src/Models/Ruleset.php:21 src/Models/Ruleset.php:66
 msgid "Ruleset"
 msgstr ""
 
-#: src/RulesShippingMethod.php:85
+#: templates/ruleset-metabox.php:8 templates/ruleset-table-v2.php:15
+#: templates/ruleset-table.php:3 src/Models/Ruleset.php:123
+msgid "Ruleset name"
+msgstr ""
+
+#: src/RulesShippingMethod.php:86
 msgid "Rulesets"
 msgstr ""
 
-#: src/RulesShippingMethod.php:29
+#: src/RulesShippingMethod.php:30
 msgid "Rulesets based shipping price"
 msgstr ""
 
-#: src/RulesShippingMethod.php:30
+#: src/RulesShippingMethod.php:31
 msgid "Set your own rulesets to calculate the shipping price"
+msgstr ""
+
+#: src/Models/Ruleset.php:129
+msgid "Stop editing"
+msgstr ""
+
+#: src/AjaxAction.php:20
+#, php-format
+msgid "Unknown ajax action: %s"
 msgstr ""
 
 #. Name of the plugin

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-03 14:33+0000\n"
+"PO-Revision-Date: 2023-12-04 16:57+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: src/WordPressPlugin.php:85
+#: src/WordPressPlugin.php:96
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
@@ -23,39 +23,82 @@ msgstr ""
 "%s requiert l'installation et l'activation de WooCommerce. Vous pouvez "
 "télécharger %s ici."
 
-#: src/Ruleset.php:108
+#: src/Models/Rule.php:120
+msgid "..."
+msgstr "..."
+
+#: templates/ruleset-metabox.php:27 templates/ruleset-table-v2.php:49
+#: templates/ruleset-table.php:21 src/Models/Ruleset.php:151
 msgid "Add new rule"
 msgstr "Ajouter une règle"
 
-#: src/RulesShippingMethod.php:311
+#: src/RulesShippingMethod.php:312
 msgid "Add new ruleset"
 msgstr "Ajouter un groupe de règles"
 
-#: src/RulesShippingMethod.php:76
+#: src/AjaxAction.php:40
+#, php-format
+msgid "Ajax action missing params: %s"
+msgstr "Paramètre manquant dans la requête ajax : %s"
+
+#: src/Models/Rule.php:145
+msgid "Are you sure to delete this rule?"
+msgstr "Êtes-vous sûr de supprimer cette règle ?"
+
+#: src/Models/Ruleset.php:153
+msgid "Are you sure to delete this ruleset and all of its rules?"
+msgstr "Êtes-vous sûr de supprimer ce groupe de règles ?"
+
+#: src/RulesShippingMethod.php:77
 msgid "Base price"
 msgstr "Tarif de base"
 
-#: src/RulesShippingMethod.php:41
+#: src/Models/RuleConditions/RuleConditionCartItemCount.php:17
+msgid "Cart item quantity"
+msgstr "Quantité d'articles dans le panier"
+
+#: src/Models/RuleConditions/RuleConditionCartPrice.php:17
+msgid "Cart price"
+msgstr "Prix du panier"
+
+#: src/Models/Rule.php:109
+msgid "Choose an option"
+msgstr "Choisissez"
+
+#: src/RulesShippingMethod.php:42
 msgid "Debug mode"
 msgstr "Mode débogage"
 
-#: src/WordPressPlugin.php:139
+#: src/Models/Rule.php:145
+msgid "Delete"
+msgstr "Supprimer"
+
+#: templates/ruleset-metabox.php:29 templates/ruleset-table-v2.php:51
+#: templates/ruleset-table.php:22 src/Models/Ruleset.php:153
+msgid "Delete ruleset"
+msgstr "Supprimer le groupe"
+
+#: src/WordPressPlugin.php:151
 msgid "Docs"
 msgstr "Documentation"
 
-#: src/RulesShippingMethod.php:43
+#: templates/ruleset-table-v2.php:18 src/Models/Ruleset.php:128
+msgid "Edit"
+msgstr "Modifier"
+
+#: src/RulesShippingMethod.php:44
 msgid "Enable Debug Mode"
 msgstr "Activer le mode de débogage"
 
 #. URI of the plugin
 msgid "https://github.com/PierreLebedel/WooCommerceShippingRulesets/"
-msgstr ""
+msgstr "https://github.com/PierreLebedel/WooCommerceShippingRulesets/"
 
 #. Author URI of the plugin
 msgid "https://www.pierrelebedel.fr"
-msgstr ""
+msgstr "https://www.pierrelebedel.fr"
 
-#: src/RulesShippingMethod.php:321
+#: src/RulesShippingMethod.php:322
 msgid "Invalid data format"
 msgstr "Format de données invalide"
 
@@ -63,7 +106,13 @@ msgstr "Format de données invalide"
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr "Créez vos propres règles de calcul de frais d'expédition"
 
-#: src/Ruleset.php:100
+#: src/Models/Ruleset.php:115
+msgid "Move up/down to change ruleset priority"
+msgstr ""
+"Déplacer vers le haut ou le bas pour modifier la priorité du groupe de règles"
+
+#: templates/ruleset-metabox.php:15 templates/ruleset-table-v2.php:28
+#: templates/ruleset-table.php:32 src/Models/Ruleset.php:141
 msgid "No rule in this ruleset yet."
 msgstr "Aucune règle dans ce groupe pour le moment."
 
@@ -73,29 +122,52 @@ msgstr "Aucun groupe de règles pour le moment."
 
 #. Author of the plugin
 msgid "Pierre Lebedel"
-msgstr ""
+msgstr "Pierre Lebedel"
 
-#: src/RulesShippingMethod.php:52
+#: src/Models/Rule.php:141
+msgid "Please choose the condition"
+msgstr "Veuillez sélectionner la condition"
+
+#: src/Models/Rule.php:105
+msgid "Rule"
+msgstr "Règle"
+
+#: src/RulesShippingMethod.php:53
 msgid "Rules based shipping price"
 msgstr "Tarif d'expédition basé sur des règles"
 
-#: src/Ruleset.php:91
+#: templates/ruleset-metabox.php:7 templates/ruleset-table.php:13
+#: src/Models/Ruleset.php:21 src/Models/Ruleset.php:66
 msgid "Ruleset"
 msgstr "Groupe de règles"
 
-#: src/RulesShippingMethod.php:85
+#: templates/ruleset-metabox.php:8 templates/ruleset-table-v2.php:15
+#: templates/ruleset-table.php:3 src/Models/Ruleset.php:123
+msgid "Ruleset name"
+msgstr "Nom du groupe de règles"
+
+#: src/RulesShippingMethod.php:86
 msgid "Rulesets"
 msgstr "Groupes de règles"
 
-#: src/RulesShippingMethod.php:29
+#: src/RulesShippingMethod.php:30
 msgid "Rulesets based shipping price"
 msgstr "Tarif d'expédition basé sur des règles"
 
-#: src/RulesShippingMethod.php:30
+#: src/RulesShippingMethod.php:31
 #, fuzzy
 #| msgid "Set your own rules to calculate the shipping price"
 msgid "Set your own rulesets to calculate the shipping price"
 msgstr "Configurez vos propres règles de calcul de prix d'expédition"
+
+#: src/Models/Ruleset.php:129
+msgid "Stop editing"
+msgstr "Quitter l'édition"
+
+#: src/AjaxAction.php:20
+#, php-format
+msgid "Unknown ajax action: %s"
+msgstr "Action inconnue dans la requête ajax : %s"
 
 #. Name of the plugin
 msgid "WooCommerce Shipping Rulesets"

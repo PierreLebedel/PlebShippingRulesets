@@ -30,7 +30,21 @@ abstract class RuleCondition implements RuleConditionInterface
         if(is_null($id)) return null;
 
         $all = self::all();
+
+        if( str_contains($id, ':') ){
+            $idParts = explode(':', $id);
+            if( count($idParts)>=2 ){
+                $id = $idParts[0];
+                $variant = $idParts[1];
+            }
+        }
+        
         return $all[$id] ?? null;
+    }
+
+    public function getVariants(): array
+    {
+        return [];
     }
 
     public function getComparators(): array

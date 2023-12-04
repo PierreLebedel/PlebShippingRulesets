@@ -17,6 +17,14 @@ class RuleConditionCartPrice extends RuleCondition
         return __("Cart price", 'pleb');
     }
 
+    public function getVariants(): array
+    {
+        return [
+            'tax_exclude' => __("Tax exclusive", 'pleb'),
+            'tax_include' => __("Tax inclusive", 'pleb'),
+        ];
+    }
+
     public function getComparators(): array
     {
         return [

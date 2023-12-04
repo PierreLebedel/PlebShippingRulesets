@@ -5,7 +5,7 @@
 
             <h2 class="hndle ui-sortable-handle">
                 <span><?php _e("Ruleset", 'pleb'); ?> #<?php echo $this->getId(); ?></span>
-                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Nom du groupe de règles", "pleb"); ?>" required>
+                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Ruleset name", "pleb"); ?>" required>
             </h2>
             <div class="inside">
 				<div class="main">

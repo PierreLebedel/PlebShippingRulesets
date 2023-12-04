@@ -83,6 +83,7 @@ class WordPressPlugin
         AjaxAction::register('pleb_ruleset_rule_template');
         //AjaxAction::register('pleb_ruleset_delete');
         //AjaxAction::register('pleb_rule_delete');
+        AjaxAction::register('pleb_rule_template');
     }
 
     private function missingWooCommerceAdminNotice()

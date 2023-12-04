@@ -91,6 +91,7 @@ jQuery( function( $ ) {
 
         $wrapper.find('h2').toggle();
         $wrapper.find('.pleb_input_wrapper').toggle();
+        $button.find('.button_dynamic_action').toggle();
     });
 
     $(document.body).on('click', '.pleb_ruleset_delete[data-ruleset_id][data-confirm]', function(e){
@@ -128,6 +129,43 @@ jQuery( function( $ ) {
                 }
             });
         }
+
+    });
+
+    $(document.body).on('change', 'select.rule_condition_id', function(e){
+        const $select = $(this);
+        const $rule = $select.parents('.pleb_rule');
+        const rule_id = $rule.attr('data-rule_id');
+        const field_key = $rule.attr('data-field_key');
+        const condition_comparator = $rule.find('[name$="][condition_comparator]"]').val();
+        const condition_value = $rule.find('[name$="][condition_value]"]').val();
+        $rules = $rule.parents('.ruleset_rules');
+
+        $rule.addClass('loading');
+        $rules.css('opacity', 0.5);
+
+        $.ajax({
+            url: pleb.ajax_url,
+            method: 'post',
+            data: {
+                action: 'pleb_rule_template',
+                rule_id: rule_id,
+                field_key: field_key,
+                condition_id: $select.val(),
+                condition_comparator: condition_comparator,
+                condition_value: condition_value
+            },
+            success: function(response){
+
+                $rule.replaceWith(response);
+
+                // class dejà absente 
+                //$rule.removeClass('loading');
+                $rules.css('opacity', 1);
+            }
+        });
+
+
 
     });
 

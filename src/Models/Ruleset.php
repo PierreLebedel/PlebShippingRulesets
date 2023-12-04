@@ -27,7 +27,7 @@ class Ruleset
         $instance = new self();
         $instance->setId($rulesetArray['id']);
         $instance->setName($rulesetArray['name']);
-        $instance->setCost($rulesetArray['cost']??'');
+        $instance->setCost($rulesetArray['cost']);
         $instance->setOrder(!is_null($rulesetArray['order']) ? intval($rulesetArray['order']) : null);
 
         if (isset($rulesetArray['rules']) && is_array($rulesetArray['rules'])) {
@@ -111,8 +111,8 @@ class Ruleset
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="<?php echo esc_attr($this->getOrder()); ?>" reradonly>
 
             <div class="pleb_title_input_wrapper">
-                <div class="postbox-header">
-                    <h2 class="hndle" title="<?php esc_attr_e("Move to change ruleset priority", 'pleb'); ?>">
+                <div class="postbox-header" style="padding:4px 0;">
+                    <h2 class="hndle" title="<?php esc_attr_e("Move up/down to change ruleset priority", 'pleb'); ?>">
                         <span>
                             <span class="dashicons dashicons-move"></span>
                             <?php echo $this->getName(); ?>
@@ -120,18 +120,21 @@ class Ruleset
                     </h2>
                     
                     <div class="pleb_input_wrapper" style="display:none;height:30px;padding:3px 12px;">
-                        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Nom du groupe de règles", "pleb"); ?>" required>
+                        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Ruleset name", "pleb"); ?>" required>
                     </div>
                     
                     <div class="handle-actions" style="padding-right:12px;">
-                        <button class="button button-small pleb_edit_ruleset_button"><?php _e("Edit", 'pleb'); ?></button>
+                        <button class="button button-small pleb_edit_ruleset_button">
+                            <span class="button_dynamic_action"><?php _e("Edit", 'pleb'); ?></span>
+                            <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div class="inside" style="margin-bottom:0;">
 
-                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="" class="regular-text" /><br>
+                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="regular-text" /><br>
 
                 <?php $rules = $this->getRules(); ?>
 
@@ -147,7 +150,7 @@ class Ruleset
 
                     <button type="button" class="button pleb_ruleset_add_rule_button" data-field_key="<?php echo $fieldKey.'['.$this->getId().'][rules]'; ?>"><?php _e("Add new rule", 'pleb'); ?></button>
 
-                    <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure?", 'pleb'); ?>" style="float:right;margin-top:6px;"><?php _e("Delete ruleset", 'pleb'); ?></a>
+                    <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>" style="float:right;margin-top:6px;text-decoration:none;"><?php _e("Delete ruleset", 'pleb'); ?></a>
                     
                 </div>
             </div>
