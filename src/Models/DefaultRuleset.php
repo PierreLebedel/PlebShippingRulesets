@@ -2,8 +2,6 @@
 
 namespace PlebWooCommerceShippingRulesets\Models;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
-
 class DefaultRuleset extends Ruleset
 {
 
@@ -13,7 +11,7 @@ class DefaultRuleset extends Ruleset
     {
         ob_start();
 
-        ?><div class="postbox pleb_ruleset">
+        ?><div class="postbox pleb_ruleset" style="margin-bottom:15px;">
 
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="default">
@@ -63,7 +61,7 @@ class DefaultRuleset extends Ruleset
         return ob_get_clean();
     }
 
-    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool
+    public function matchToWooCommercePackageArray(array $package = [], int $methodInstanceId = 0): bool
     {
         return true;
     }

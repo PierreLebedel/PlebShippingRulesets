@@ -23,6 +23,6 @@ interface RulesetInterface
 
     public function htmlRender(string $fieldKey): string;
 
-    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool;
+    public function matchToWooCommercePackageArray(array $package = [], int $methodInstanceId = 0): bool;
 
 }

@@ -6,10 +6,12 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumeric;
 
 abstract class RuleConditionNumericInteger extends RuleConditionNumeric
 {
-    
-    public function getType(): string
+
+    public function getInputHtml(string $fieldName, mixed $value): string
     {
-        return 'numeric:integer';
+        ob_start();
+		?><input type="number" step="1" name="<?php echo esc_attr($fieldName); ?>" value="<?php esc_attr_e($value); ?>" class="w-100" required /><?php
+		return ob_get_clean();
     }
 
 }

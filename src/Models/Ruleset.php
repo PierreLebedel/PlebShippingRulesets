@@ -3,7 +3,6 @@
 namespace PlebWooCommerceShippingRulesets\Models;
 
 use PlebWooCommerceShippingRulesets\Models\Rule;
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 use PlebWooCommerceShippingRulesets\Contracts\RulesetInterface;
 
 class Ruleset implements RulesetInterface
@@ -22,7 +21,7 @@ class Ruleset implements RulesetInterface
     {
         $rulesetArray = array_merge([
             'id'      => $id = uniqid(),
-            'name'    => __("Ruleset", 'pleb').' #'.$id,
+            'name'    => __("Ruleset", 'pleb'),
             'cost'    => '',
             'order'   => null,
             'rules'   => [],
@@ -118,7 +117,7 @@ class Ruleset implements RulesetInterface
     {
         ob_start();
 
-        ?><div class="postbox pleb_ruleset">
+        ?><div class="postbox pleb_ruleset" style="margin-bottom:15px;">
 
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="<?php echo esc_attr($this->getOrder()); ?>">
@@ -189,17 +188,19 @@ class Ruleset implements RulesetInterface
         return ob_get_clean();
     }
 
-    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool
+    public function matchToWooCommercePackageArray(array $package = [], int $methodInstanceId = 0): bool
     {
-        $allRulesSuccess = true;
-        
         $rules = $this->getRules();
-        if( !empty($rules) ){
-            foreach($rules as $rule){
-                $ruleSuccess = $rule->matchToWooCommercePackageArray($package, $method);
-                if(!$ruleSuccess){
-                    $allRulesSuccess = false;
-                }
+
+        if( empty($rules) ){
+            return false;
+        }
+
+        $allRulesSuccess = true;
+        foreach($rules as $rule){
+            $ruleSuccess = $rule->matchToWooCommercePackageArray($package, $methodInstanceId);
+            if(!$ruleSuccess){
+                $allRulesSuccess = false;
             }
         }
 

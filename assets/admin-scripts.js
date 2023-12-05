@@ -132,6 +132,13 @@ jQuery( function( $ ) {
         }else{
             $('#pleb_no_ruleset_notice').hide();
         }
+
+        console.log($('#pleb_ruleset_default_wrapper .pleb_ruleset').length);
+        if( $('#pleb_ruleset_default_wrapper .pleb_ruleset').length==0 ){
+            $('#pleb_no_ruleset_default_notice').show();
+        }else{
+            $('#pleb_no_ruleset_default_notice').hide();
+        }
     }
 
     $(document.body).on('click', '.pleb_ruleset_delete[data-ruleset_id][data-confirm]', function(e){

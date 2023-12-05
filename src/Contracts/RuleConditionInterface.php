@@ -14,8 +14,8 @@ interface RuleConditionInterface
 
     public function getComparators(): array;
 
-    public function getType(): string;
+    public function getInputHtml(string $fieldName, mixed $value): string;
 
-    public function matchToWooCommercePackageArray(RuleInterface $rule, array $package = [], ?RulesShippingMethod $method = null): bool;
+    public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool;
 
 }

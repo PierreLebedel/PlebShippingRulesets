@@ -125,7 +125,7 @@ class Rule implements RuleInterface
                 <select name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_comparator]" required>
                     <option value="" <?php selected(is_null($this->getConditionComparator())); ?> disabled><?php _e("...", 'pleb'); ?></option>
                     <?php foreach($condition->getComparators() as $display): ?>
-                    <option value="<?php echo $display; ?>" <?php selected($this->getConditionComparator() == $display); ?>><?php echo $display; ?></option>
+                    <option value="<?php echo $display; ?>" <?php selected($this->getConditionComparator()==$display || count($condition->getComparators())==1); ?>><?php echo $display; ?></option>
                     <?php endforeach; ?>
                 </select>
                 <?php else: ?>
@@ -133,23 +133,10 @@ class Rule implements RuleInterface
                 <?php endif; ?>
             </td>
             <td class="w-100">
-                <?php $valueType = $condition->getType();
-                if($valueType == 'none'): ?>
-                <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="">
-
-                <?php elseif($valueType == 'numeric:float'): ?>
-                <input type="number" step="0.01" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
-                
-                <?php elseif($valueType == 'numeric:integer'): ?>
-                <input type="number" step="1" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
-                
-                <?php elseif($valueType == 'numeric'): ?>
-                <input type="number" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
-                
-                <?php else: ?>
-                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
-                
-                <?php endif; ?>
+                <?php echo $condition->getInputHtml(
+                    $fieldKey.'['.$this->getId().'][condition_value]', 
+                    $this->getConditionValue()
+                ); ?>
             </td>
             <?php else: ?>
             <td colspan="2">
@@ -164,12 +151,12 @@ class Rule implements RuleInterface
         return ob_get_clean();
     }
 
-    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool
+    public function matchToWooCommercePackageArray(array $package = [], int $methodInstanceId = 0): bool
     {
         $condition = $this->getCondition();
 
         if($condition){
-            return $condition->matchToWooCommercePackageArray($this, $package, $method);
+            return $condition->matchToWooCommercePackageArray($package, $this, $methodInstanceId);
         }
 
         return false;

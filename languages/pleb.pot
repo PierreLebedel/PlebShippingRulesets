@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 13:14+0000\n"
+"POT-Creation-Date: 2023-12-05 17:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,86 +16,82 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: src/WordPressPlugin.php:97
+#: src/WordPressPlugin.php:98
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
-#: src/RulesShippingMethod.php:84
+#: src/RulesShippingMethod.php:91
 #, php-format
 msgid "%s: Number of items in cart"
 msgstr ""
 
-#: src/RulesShippingMethod.php:86
+#: src/RulesShippingMethod.php:93
 #, php-format
 msgid "%s: Percentage based fees"
 msgstr ""
 
-#: src/RulesShippingMethod.php:85
+#: src/RulesShippingMethod.php:92
 #, php-format
 msgid "%s: Shopping cart price"
 msgstr ""
 
-#: src/Models/Rule.php:135
+#: src/Models/Rule.php:126
 msgid "..."
 msgstr ""
 
-#: src/RulesShippingMethod.php:354
+#: src/RulesShippingMethod.php:452
 msgid "Add default ruleset"
 msgstr ""
 
-#: src/Models/Ruleset.php:188
+#: src/Models/Ruleset.php:184
 msgid "Add new rule"
 msgstr ""
 
-#: src/RulesShippingMethod.php:353
+#: src/RulesShippingMethod.php:451
 msgid "Add new ruleset"
 msgstr ""
 
-#: src/AjaxAction.php:40
+#: src/AjaxAction.php:41
 #, php-format
 msgid "Ajax action missing params: %s"
-msgstr ""
-
-#: src/RulesShippingMethod.php:93
-msgid "Always enabled?"
 msgstr ""
 
 #: src/Models/Rule.php:160
 msgid "Are you sure to delete this rule?"
 msgstr ""
 
-#: src/Models/Ruleset.php:149
+#: src/Models/Ruleset.php:145
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:37
+#: src/Models/DefaultRuleset.php:39
 msgid "Are you sure to delete this ruleset?"
 msgstr ""
 
-#: src/RulesShippingMethod.php:79 src/Models/DefaultRuleset.php:54
-#: src/Models/Ruleset.php:166
+#: src/RulesShippingMethod.php:85 src/Models/DefaultRuleset.php:56
+#: src/Models/Ruleset.php:162
 msgid "Base price"
 msgstr ""
 
-#: src/Models/RuleConditions/RuleConditionCartItemCount.php:16
+#: src/Models/RuleConditions/RuleConditionCartItemCount.php:18
 msgid "Cart item quantity"
 msgstr ""
 
-#: src/Models/RuleConditions/RuleConditionCartPrice.php:16
+#: src/Models/RuleConditions/RuleConditionCartPrice.php:18
 msgid "Cart price"
 msgstr ""
 
-#: src/Models/Rule.php:116
+#: src/Models/Rule.php:107
 msgid "Choose an option"
 msgstr ""
 
-#: src/RulesShippingMethod.php:43
+#: src/RulesShippingMethod.php:49
 msgid "Debug mode"
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:22
+#: src/Models/DefaultRuleset.php:24
 msgid "Default"
 msgstr ""
 
@@ -103,31 +99,27 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:37
+#: src/Models/DefaultRuleset.php:39
 msgid "Delete default ruleset"
 msgstr ""
 
-#: src/Models/Ruleset.php:149
+#: src/Models/Ruleset.php:145
 msgid "Delete ruleset"
 msgstr ""
 
-#: src/WordPressPlugin.php:152
+#: src/WordPressPlugin.php:157
 msgid "Docs"
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:32 src/Models/Ruleset.php:144
+#: src/Models/DefaultRuleset.php:34 src/Models/Ruleset.php:140
 msgid "Edit"
 msgstr ""
 
-#: src/RulesShippingMethod.php:45
+#: src/RulesShippingMethod.php:51
 msgid "Enable Debug Mode"
 msgstr ""
 
-#: src/RulesShippingMethod.php:94
-msgid "Enable this method even if none of rulesets matches the shopping cart"
-msgstr ""
-
-#: src/RulesShippingMethod.php:83
+#: src/RulesShippingMethod.php:89
 #, php-format
 msgid ""
 "Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price "
@@ -142,23 +134,23 @@ msgstr ""
 msgid "https://www.pierrelebedel.fr"
 msgstr ""
 
-#: src/RulesShippingMethod.php:365
-msgid "Invalid data format"
-msgstr ""
-
 #. Description of the plugin
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr ""
 
-#: src/Models/Ruleset.php:131
+#: src/Models/Ruleset.php:127
 msgid "Move up/down to change ruleset priority"
 msgstr ""
 
-#: src/Models/Ruleset.php:178
+#: src/RulesShippingMethod.php:441
+msgid "No default ruleset yet."
+msgstr ""
+
+#: src/Models/Ruleset.php:174
 msgid "No rule in this ruleset yet."
 msgstr ""
 
-#: src/RulesShippingMethod.php:327
+#: src/RulesShippingMethod.php:428
 msgid "No ruleset yet."
 msgstr ""
 
@@ -170,52 +162,77 @@ msgstr ""
 msgid "Please choose the condition"
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:46 src/Models/Ruleset.php:158
+#: src/Models/DefaultRuleset.php:48 src/Models/Ruleset.php:154
 msgid "Price to apply:"
 msgstr ""
 
-#: src/Models/Rule.php:112
+#: src/Models/Rule.php:103
 msgid "Rule"
 msgstr ""
 
-#: src/RulesShippingMethod.php:54
+#: src/RulesShippingMethod.php:60
 msgid "Rules based shipping price"
 msgstr ""
 
-#: src/Models/Ruleset.php:21 src/Models/Ruleset.php:29
-#: src/Models/Ruleset.php:74
+#: src/Models/Ruleset.php:25 src/Models/Ruleset.php:70
 msgid "Ruleset"
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:27 src/Models/Ruleset.php:139
+#: src/Models/DefaultRuleset.php:29 src/Models/Ruleset.php:135
 msgid "Ruleset name"
 msgstr ""
 
-#: src/RulesShippingMethod.php:101
+#: src/RulesShippingMethod.php:108
 msgid "Rulesets"
 msgstr ""
 
-#: src/RulesShippingMethod.php:31
+#: src/RulesShippingMethod.php:32
 msgid "Rulesets based shipping price"
 msgstr ""
 
-#: src/RulesShippingMethod.php:32
-msgid "Set your own rulesets to calculate the shipping price"
+#: src/RulesShippingMethod.php:34
+msgid ""
+"Set your own rulesets to calculate the shipping price on Cart & Checkout "
+"pages."
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:33 src/Models/Ruleset.php:145
+#: src/Models/DefaultRuleset.php:35 src/Models/Ruleset.php:141
 msgid "Stop editing"
 msgstr ""
 
-#: src/Models/RuleConditions/RuleConditionCartPrice.php:22
+#: src/Models/RuleConditions/RuleConditionCartPrice.php:24
 msgid "Tax exclusive"
 msgstr ""
 
-#: src/Models/RuleConditions/RuleConditionCartPrice.php:23
+#: src/Models/RuleConditions/RuleConditionCartPrice.php:25
 msgid "Tax inclusive"
 msgstr ""
 
-#: src/AjaxAction.php:20
+#: src/RulesShippingMethod.php:37 src/RulesShippingMethod.php:441
+msgid ""
+"The default ruleset allows you to apply a rate even if none of rulesets "
+"matches the shopping cart."
+msgstr ""
+
+#: src/RulesShippingMethod.php:35
+msgid ""
+"The first ruleset whose rules all match the shopping cart will be applied to "
+"the order."
+msgstr ""
+
+#: src/RulesShippingMethod.php:90
+msgid ""
+"This base price will be added to the price of the group matching with the "
+"shopping cart."
+msgstr ""
+
+#: src/RulesShippingMethod.php:36
+msgid ""
+"This shipping method will not be available if the cart don't satisfies "
+"entirely none of rulesets."
+msgstr ""
+
+#: src/AjaxAction.php:21
 #, php-format
 msgid "Unknown ajax action: %s"
 msgstr ""
@@ -224,15 +241,11 @@ msgstr ""
 msgid "WooCommerce Shipping Rulesets"
 msgstr ""
 
-#: src/Models/DefaultRuleset.php:53 src/Models/Ruleset.php:165
+#: src/Models/DefaultRuleset.php:55 src/Models/Ruleset.php:161
 #, php-format
 msgid "Works the same as %s setting field"
 msgstr ""
 
-#: src/RulesShippingMethod.php:89
-msgid "Works the same as WooCommerce Flat Rate"
-msgstr ""
-
 #: src/RulesShippingMethod.php:96
-msgid "You can add a Default ruleset to apply custom price."
+msgid "Works the same as WooCommerce Flat Rate"
 msgstr ""

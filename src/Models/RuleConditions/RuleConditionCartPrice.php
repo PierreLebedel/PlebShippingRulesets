@@ -26,7 +26,7 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
         ];
     }
 
-    public function matchToWooCommercePackageArray(RuleInterface $rule, array $package = [], ?RulesShippingMethod $method = null): bool
+    public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
     {
         $conditionComparator = $rule->getConditionComparator();
         if(is_null($conditionComparator)) return false;
@@ -35,6 +35,7 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
         if(is_null($conditionValue)) return false;
         $conditionValue = floatval($conditionValue);
 
+        $method = new RulesShippingMethod($methodInstanceId);
         $package_cost = ($method && $method->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
         $package_cost = floatval($package_cost);
 

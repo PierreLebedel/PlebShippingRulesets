@@ -18,7 +18,7 @@ class RuleConditionCartItemCount extends RuleConditionNumericInteger
         return __("Cart item quantity", 'pleb');
     }
 
-    public function matchToWooCommercePackageArray(RuleInterface $rule, array $package = [], ?RulesShippingMethod $method = null): bool
+    public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
     {
         $conditionComparator = $rule->getConditionComparator();
         if(is_null($conditionComparator)) return false;

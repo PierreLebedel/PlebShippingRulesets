@@ -12,14 +12,19 @@ abstract class RuleCondition implements RuleConditionInterface
 {
     public static function all(): array
     {
-        $classes = [
+        $classes = apply_filters('plebwcsr_rule_condition_all', [
             RuleConditionCartItemCount::class,
             RuleConditionCartPrice::class,
-        ];
+        ]);
 
         $conditions = [];
         foreach($classes as $class) {
+            if(!class_exists($class)) continue;
+
             $instance = new $class();
+
+            if(!$instance instanceof RuleConditionInterface) continue;
+
             $conditions[ $instance->getId() ] = $instance;
         }
 
@@ -57,12 +62,14 @@ abstract class RuleCondition implements RuleConditionInterface
         ];
     }
 
-    public function getType(): string
+    public function getInputHtml(string $fieldName, mixed $value): string
     {
-        return 'none';
+        ob_start();
+		?><input type="hidden" name="<?php echo esc_attr($fieldName); ?>" value="" /><?php
+		return ob_get_clean();
     }
 
-    public function matchToWooCommercePackageArray(RuleInterface $rule, array $package = [], ?RulesShippingMethod $method = null): bool
+    public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
     {
         return false;
     }

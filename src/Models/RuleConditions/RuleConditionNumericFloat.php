@@ -6,10 +6,12 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumeric;
 
 abstract class RuleConditionNumericFloat extends RuleConditionNumeric
 {
-    
-    public function getType(): string
+
+    public function getInputHtml(string $fieldName, mixed $value): string
     {
-        return 'numeric:float';
+        ob_start();
+		?><input type="hidden" name="<?php echo esc_attr($fieldName); ?>" value="<?php esc_attr_e($value); ?>" /><?php
+		return ob_get_clean();
     }
 
 }

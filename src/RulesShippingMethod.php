@@ -5,6 +5,7 @@ namespace PlebWooCommerceShippingRulesets;
 use PlebWooCommerceShippingRulesets\Models\Rule;
 use PlebWooCommerceShippingRulesets\Models\Ruleset;
 use PlebWooCommerceShippingRulesets\Models\DefaultRuleset;
+use WC_Product_Simple;
 
 class RulesShippingMethod extends \WC_Shipping_Method
 {
@@ -14,11 +15,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
     private $debug_mode = false;
     private $debug_infos = '';
 
-    private $fee_cost           = '';
-    private $cost               = '0';
+    private $fee_cost = '';
     private $prices_include_tax = false;
-    private $always_enabled     = false;
-    private $rulesets           = [];
+    //private $always_enabled     = false;
 
     public static function autoRegister($methods)
     {
@@ -31,9 +30,14 @@ class RulesShippingMethod extends \WC_Shipping_Method
         $this->id                    = self::METHOD_ID;
         $this->instance_id           = absint($instance_id);
         $this->method_title          = __('Rulesets based shipping price', 'pleb');
-        $this->method_description    = __('Set your own rulesets to calculate the shipping price', 'pleb');
+        $this->method_description    = implode('<br>', [
+            __('Set your own rulesets to calculate the shipping price on Cart & Checkout pages.', 'pleb'),
+            __('The first ruleset whose rules all match the shopping cart will be applied to the order.', 'pleb'),
+            __("This shipping method will not be available if the cart don't satisfies entirely none of rulesets.", 'pleb'),
+            __("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb'),
+        ]);
 
-        $this->supports              = [
+        $this->supports = [
             'settings',
             'shipping-zones',
             'instance-settings',
@@ -83,6 +87,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 'placeholder'       => '',
                 'description'       => implode('<br>', [
                     sprintf(__("Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price calculation.", 'pleb'), '<code>10.00 * [qty]</code>'),
+                    __("This base price will be added to the price of the group matching with the shopping cart.", 'pleb'),
                     sprintf(__("%s: Number of items in cart", 'pleb'), '<code>[qty]</code>'),
                     sprintf(__("%s: Shopping cart price", 'pleb'), '<code>[cost]</code>'),
                     sprintf(__("%s: Percentage based fees", 'pleb'), '<code>[fee percent="10" min_fee="20" max_fee=""]</code>'),
@@ -91,14 +96,14 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb'),
                 'sanitize_callback' => [$this, 'sanitize_cost'],
             ],
-            'always_enabled' => array(
-				'title'       => __( 'Always enabled?', 'pleb' ),
-				'label'       => __( 'Enable this method even if none of rulesets matches the shopping cart', 'pleb' ),
-				'type'        => 'checkbox',
-				'description' => __("You can add a Default ruleset to apply custom price.", 'pleb' ),
-				'default'     => 'no',
-				'desc_tip'    => false,
-			),
+            // 'always_enabled' => array(
+			// 	'title'       => __( 'Always enabled?', 'pleb' ),
+			// 	'label'       => __( 'Enable this method even if none of rulesets matches the shopping cart', 'pleb' ),
+			// 	'type'        => 'checkbox',
+			// 	'description' => __("You can add a Default ruleset to apply custom price.", 'pleb' ),
+			// 	'default'     => 'no',
+			// 	'desc_tip'    => false,
+			// ),
             'rulesets'       => [
                 'title'             => __('Rulesets', 'pleb'),
                 'type'              => 'pleb_rulesets',
@@ -119,9 +124,8 @@ class RulesShippingMethod extends \WC_Shipping_Method
     {
         $this->title              = $this->get_option('title');
         $this->tax_status         = $this->get_option('tax_status', 'taxable');
-        $this->cost               = $this->get_option('cost', '0');
         $this->prices_include_tax = ($this->tax_status == 'none') ? false : ($this->get_option('prices_include_tax', 'no') === 'yes');
-        $this->always_enabled     = $this->get_option('always_enabled', 'no')!='no';
+        //$this->always_enabled     = $this->get_option('always_enabled', 'no')!='no';
 
         $this->debug_mode = $this->get_option('debug_mode', 'no') === 'yes';
     }
@@ -170,32 +174,50 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
         if ($atts['percent']) {
             $calculated_fee = $this->fee_cost * (floatval($atts['percent']) / 100);
-            $this->debug_infos .= '=> Fee '.$atts['percent'].'% = '.$this->fee_cost.'*'.(floatval($atts['percent']) / 100).' = '.$calculated_fee.'<br>';
+            $this->addDebugRow('Fee '.$atts['percent'].'% = '.$this->fee_cost.'*'.(floatval($atts['percent']) / 100).' = '.$calculated_fee);
         }
 
         if ($atts['min_fee'] && $calculated_fee < $atts['min_fee']) {
-            $this->debug_infos .= '=> Fee '.$calculated_fee.' < min:'.$atts['min_fee'].' = '.$atts['min_fee'].'<br>';
+            $this->addDebugRow('Fee '.$calculated_fee.' < min:'.$atts['min_fee'].' = '.$atts['min_fee']);
             $calculated_fee = $atts['min_fee'];
         }
 
         if ($atts['max_fee'] && $calculated_fee > $atts['max_fee']) {
-            $this->debug_infos .= '=> Fee '.$calculated_fee.' > max:'.$atts['max_fee'].' = '.$atts['max_fee'].'<br>';
+            $this->addDebugRow('Fee '.$calculated_fee.' > max:'.$atts['max_fee'].' = '.$atts['max_fee']);
             $calculated_fee = $atts['max_fee'];
         }
 
         return $calculated_fee;
     }
 
-    protected function evaluate_cost($costrule, $package_qty, $package_cost)
+    public function cleanDebugRows(): self
     {
-        $locale         = localeconv();
-        $decimals       = [wc_get_price_decimal_separator(), $locale['decimal_point'], $locale['mon_decimal_point'], ','];
+        $this->debug_infos = '';
+        return $this;
+    }
+
+    public function addDebugRow($content): self
+    {
+        $this->debug_infos .= $content;
+        $this->debug_infos .= '<br>';
+        return $this;
+    }
+
+    protected function evaluate_cost(string $costrule = '', array $package = [], string $debugCostName = '')
+    {
+        if($costrule==='') return 0;
+
+        $package_qty = 0;
+        foreach ($package['contents'] as $item_id => $values) {
+            if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
+                $package_qty += $values['quantity'];
+            }
+        }
 
         // We place the current $packageprice to $this->fee_cost to use it in fee() function (temp shortcode)
-        $this->fee_cost = $package_cost;
+        $this->fee_cost = ($this->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
 
-        $this->debug_infos .= '=> Tax: '.(($this->prices_include_tax) ? "inclusive" : "exclusive").'<br>';
-        $this->debug_infos .= '=> Rule: '.$costrule.'<br>';
+        $this->addDebugRow($debugCostName.'User input rule = '.$costrule);
 
         add_shortcode('fee', [$this, 'fee']);
         $sum = do_shortcode(
@@ -210,38 +232,29 @@ class RulesShippingMethod extends \WC_Shipping_Method
         remove_shortcode('fee', [$this, 'fee']);
 
         if(str_contains($costrule, '[qty]')) {
-            $this->debug_infos .= '=> Qty: '.$package_qty.'<br>';
+            $this->addDebugRow($debugCostName.'Rule [qty] tag value = '.$package_qty);
         }
         if(str_contains($costrule, '[cost]')) {
-            $this->debug_infos .= '=> Cost: '.$this->fee_cost.'<br>';
+            $this->addDebugRow($debugCostName.'Rule [cost] tag value = '.$this->fee_cost);
         }
 
         // Clean up chars
+        $locale   = localeconv();
+        $decimals = [wc_get_price_decimal_separator(), $locale['decimal_point'], $locale['mon_decimal_point'], ','];
+
         $sum = preg_replace('/\s+/', '', $sum);
         $sum = str_replace($decimals, '.', $sum);
         $sum = rtrim(ltrim($sum, "\t\n\r\0\x0B+*/"), "\t\n\r\0\x0B+-*/");
 
-        $this->debug_infos .= '=> '.$sum.'<br>';
+        $this->addDebugRow($debugCostName.'Values replaced rule = '.$sum);
+
+        if(!$sum) $sum = '0';
 
         include_once(WC()->plugin_path().'/includes/libraries/class-wc-eval-math.php');
-        if(!$sum) {
-            $sum = '0';
-        }
-
         $result = \WC_Eval_Math::evaluate($sum);
-        $this->debug_infos .= '=> '.$result.'<br>';
-        return $result;
-    }
+        $this->addDebugRow($debugCostName.'Math result rule = '.$result);
 
-    protected function get_package_item_qty($package)
-    {
-        $total_quantity = 0;
-        foreach ($package['contents'] as $item_id => $values) {
-            if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
-                $total_quantity += $values['quantity'];
-            }
-        }
-        return $total_quantity;
+        return $result;
     }
 
     private function find_matching_ruleset(array $package = []): ?Ruleset
@@ -251,7 +264,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
         if(!empty($rulesets)){
             foreach($rulesets as $ruleset){
 
-                if( $ruleset->matchToWooCommercePackageArray($package, $this) ){
+                if( $ruleset->matchToWooCommercePackageArray($package, $this->instance_id) ){
                     return $ruleset;
                 }
 
@@ -261,9 +274,26 @@ class RulesShippingMethod extends \WC_Shipping_Method
         return $this->get_default_ruleset('rulesets');
     }
 
+    private function get_dummy_woocommerce_package(): array
+    {
+        $product_1 = new WC_Product_Simple();
+        $product_1->set_virtual(false);
+
+        return [
+            'cart_subtotal' => 10,
+            'contents_cost' => 10,
+            'contents' => [
+                'item_1' => [
+                    'quantity' => 1,
+                    'data' => $product_1,
+                ]
+            ]
+        ];
+    }
+
     public function calculate_shipping($package = [])
     {
-        $this->debug_infos = '';
+        $this->cleanDebugRows();
 
         $rate = [
             'id'      => $this->get_rate_id(),
@@ -274,27 +304,30 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
         //dump($package);
 
-        $cost      = $this->get_option('cost', '0');
-        if ('' !== $cost) {
-            $package_cost = ($this->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
-            $rate['cost'] += $this->evaluate_cost($cost, $this->get_package_item_qty($package), $package_cost);
+        //$this->addDebugRow('Method always enabled = '.($this->always_enabled?'yes':'no'));
+        $this->addDebugRow('Taxable = '.(($this->is_taxable()) ? "yes" : "no"));
+        if($this->is_taxable()){
+            $this->addDebugRow('Prices taxes = '.(($this->is_prices_include_tax()) ? "inclusive" : "exclusive"));
         }
 
-        // $shipping_classes = WC()->shipping()->get_shipping_classes();
-        // dd($shipping_classes);
-
-        if($this->always_enabled){
-            $this->debug_infos = '=> Method always enabled<br>';
+        $basePrice = $this->get_option('cost', '0');
+        if ( $basePrice !== '' ) {
+            $rate['cost'] += $this->evaluate_cost($basePrice, $package, 'Base price cost: ');
         }
 
         $orderMatchingRuleset = $this->find_matching_ruleset($package);
 
         if($orderMatchingRuleset){
-            $this->debug_infos = '=> Ruleset found : '.$orderMatchingRuleset->getName().'<br>';
-            $rate['cost'] += $this->evaluate_cost($orderMatchingRuleset->getCost(), $this->get_package_item_qty($package), $package_cost);
+            $this->addDebugRow('Matching ruleset found : '.$orderMatchingRuleset->getName().($orderMatchingRuleset->isDefault()?' (default)':''));
+            if($orderMatchingRuleset->getCost()!==''){
+                $rate['cost'] += $this->evaluate_cost($orderMatchingRuleset->getCost(), $package, 'Ruleset cost: ');
+            }
+        }else{
+            $this->addDebugRow('No matching ruleset found');
         }
 
-        if($orderMatchingRuleset || $this->always_enabled){
+        //if($orderMatchingRuleset || $this->always_enabled){
+        if($orderMatchingRuleset){
             $this->add_rate($rate);
             do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
         }
@@ -390,7 +423,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 <?php /** Empty field required if no ruleset posted at all */ ?>
                 <input type="hidden" name="<?php echo esc_attr($field_key); ?>" value="">
 
-                <div id="pleb_no_ruleset_notice" class="notice notice-info inline text-center notice-alt" style="margin-top:0;<?php if(!empty($classicRulesets) || $defaultRuleset) {
+                <div id="pleb_no_ruleset_notice" class="notice notice-info inline text-center notice-alt" style="margin-top:0;margin-bottom:15px;<?php if(!empty($classicRulesets) || $defaultRuleset) {
                     echo 'display:none;';
                 } ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No ruleset yet.", 'pleb'); ?></p></div>
 
@@ -402,6 +435,10 @@ class RulesShippingMethod extends \WC_Shipping_Method
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
+
+                    <div id="pleb_no_ruleset_default_notice" class="notice notice-info inline text-center notice-alt" style="margin-top:0;margin-bottom:15px;<?php if($defaultRuleset) {
+                        echo 'display:none;';
+                    } ?>"><p><span class="dashicons dashicons-info"></span> <?php _e("No default ruleset yet.", 'pleb'); ?> <?php _e("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb'); ?></p></div>
 
                     <div id="pleb_ruleset_default_wrapper">
                         <?php if($defaultRuleset): ?>
@@ -429,16 +466,19 @@ class RulesShippingMethod extends \WC_Shipping_Method
         return serialize($value);
     }
 
-    public function sanitize_cost($value)
+    public function sanitize_cost(string $value)
     {
         $value = is_null($value) ? '' : $value;
         $value = wp_kses_post(trim(wp_unslash($value)));
         $value = str_replace([get_woocommerce_currency_symbol(), html_entity_decode(get_woocommerce_currency_symbol())], '', $value);
-        // Thrown an error on the front end if the evaluate_cost will fail.
-        $dummy_cost = $this->evaluate_cost($value, 1, 1);
-        if (false === $dummy_cost) {
-            throw new \Exception(\WC_Eval_Math::$last_error);
+        
+        if( $value !== '' ){
+            $dummy_cost = $this->evaluate_cost($value, $this->get_dummy_woocommerce_package(), 'Dummy cost: ');
+            if (false === $dummy_cost) {
+                throw new \Exception(\WC_Eval_Math::$last_error);
+            }
         }
+
         return $value;
     }
 
