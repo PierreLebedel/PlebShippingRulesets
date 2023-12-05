@@ -1,7 +1,12 @@
 jQuery( function( $ ) {
+
+    //console.log(pleb);
+
+    const shipping_method_fields_prefix = pleb.shipping_method.plugin_id+pleb.shipping_method.method_id+'_';
+
     function plebRulesetsShippingMethodShowHideTaxIncludeField( el ) {
         var form = $( el ).closest( 'form' );
-        var taxIncludeField = $( '#woocommerce_pleb_rulesets_method_prices_include_tax', form ).closest( 'tr' );
+        var taxIncludeField = $( '#'+shipping_method_fields_prefix+'prices_include_tax', form ).closest( 'tr' );
         if ( 'none' === $( el ).val() || '' === $( el ).val() ) {
             taxIncludeField.hide();
         } else {
@@ -9,14 +14,14 @@ jQuery( function( $ ) {
         }
     }
 
-    $( document.body ).on( 'change', '#woocommerce_pleb_rulesets_method_tax_status', function() {
+    $( document.body ).on( 'change', '#'+shipping_method_fields_prefix+'tax_status', function() {
         plebRulesetsShippingMethodShowHideTaxIncludeField( this );
     });
 
-    $( '#woocommerce_pleb_rulesets_method_tax_status' ).trigger( 'change' );
+    $( '#'+shipping_method_fields_prefix+'tax_status' ).trigger( 'change' );
     $( document.body ).on( 'wc_backbone_modal_loaded', function( evt, target ) {
         if ( 'wc-modal-shipping-method-settings' === target ) {
-            plebRulesetsShippingMethodShowHideTaxIncludeField( $( '#wc-backbone-modal-dialog #woocommerce_pleb_rulesets_method_tax_status', evt.currentTarget ) );
+            plebRulesetsShippingMethodShowHideTaxIncludeField( $( '#wc-backbone-modal-dialog #'+shipping_method_fields_prefix+'tax_status', evt.currentTarget ) );
         }
     } );
 
@@ -29,7 +34,7 @@ jQuery( function( $ ) {
         items: '> .pleb_ruleset',
         update: function(event, ui){
             $('#pleb_rulesets > .pleb_ruleset').each(function(index, elem){
-                $(elem).find('input[name^="woocommerce_pleb_rulesets_method_rulesets"][name$="[order]"]').val(index+1);
+                $(elem).find('input[name^="'+shipping_method_fields_prefix+'rulesets"][name$="[order]"]').val(index+1);
             });
         }
     });

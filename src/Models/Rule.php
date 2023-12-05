@@ -2,9 +2,12 @@
 
 namespace PlebWooCommerceShippingRulesets\Models;
 
-use PlebWooCommerceShippingRulesets\Models\RuleCondition;
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
+use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleCondition;
 
-class Rule
+class Rule implements RuleInterface
 {
     private $id;
     private $condition_id = null;
@@ -57,7 +60,7 @@ class Rule
         return $this->condition_id;
     }
 
-    public function getCondition(): ?RuleCondition
+    public function getCondition(): ?RuleConditionInterface
     {
         return RuleCondition::find($this->condition_id);
     }
@@ -66,10 +69,10 @@ class Rule
     {
         $condition = $this->getCondition();
 
-        if($condition) {
-            if(in_array($conditionComparator, $condition->getComparators(), true)) {
-                $this->condition_comparator = $conditionComparator;
-            }
+        if($condition && in_array($conditionComparator, $condition->getComparators(), true)) {
+            $this->condition_comparator = $conditionComparator;
+        }else{
+            $this->condition_comparator = null;
         }
 
         return $this;
@@ -133,10 +136,19 @@ class Rule
                 <?php $valueType = $condition->getType();
                 if($valueType == 'none'): ?>
                 <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="">
-                <?php elseif($valueType == 'number'): ?>
+
+                <?php elseif($valueType == 'numeric:float'): ?>
+                <input type="number" step="0.01" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
+                
+                <?php elseif($valueType == 'numeric:integer'): ?>
+                <input type="number" step="1" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
+                
+                <?php elseif($valueType == 'numeric'): ?>
                 <input type="number" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
+                
                 <?php else: ?>
                 <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
+                
                 <?php endif; ?>
             </td>
             <?php else: ?>
@@ -152,12 +164,13 @@ class Rule
         return ob_get_clean();
     }
 
-    public function matchToWooCommercePackageArray(array $package = []): bool
+    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool
     {
-        //dd($package);
+        $condition = $this->getCondition();
 
-
-
+        if($condition){
+            return $condition->matchToWooCommercePackageArray($this, $package, $method);
+        }
 
         return false;
     }

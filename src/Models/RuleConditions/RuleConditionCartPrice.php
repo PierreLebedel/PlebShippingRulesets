@@ -2,9 +2,11 @@
 
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Models\RuleCondition;
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumericFloat;
 
-class RuleConditionCartPrice extends RuleCondition
+class RuleConditionCartPrice extends RuleConditionNumericFloat
 {
     public function getId(): string
     {
@@ -24,20 +26,37 @@ class RuleConditionCartPrice extends RuleCondition
         ];
     }
 
-    public function getComparators(): array
+    public function matchToWooCommercePackageArray(RuleInterface $rule, array $package = [], ?RulesShippingMethod $method = null): bool
     {
-        return [
-            '<',
-            '<=',
-            '=',
-            '>=',
-            '>',
-        ];
-    }
+        $conditionComparator = $rule->getConditionComparator();
+        if(is_null($conditionComparator)) return false;
 
-    public function getType(): string
-    {
-        return 'number';
+        $conditionValue = $rule->getConditionValue();
+        if(is_null($conditionValue)) return false;
+        $conditionValue = floatval($conditionValue);
+
+        $package_cost = ($method && $method->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
+        $package_cost = floatval($package_cost);
+
+        switch($conditionComparator){
+            case '<':
+                if($package_cost < $conditionValue) return true;
+                break;
+            case '<=':
+                if($package_cost <= $conditionValue) return true;
+                break;
+            case '=':
+                if($package_cost == $conditionValue) return true;
+                break;
+            case '>=':
+                if($package_cost >= $conditionValue) return true;
+                break;
+            case '>':
+                if($package_cost > $conditionValue) return true;
+                break;
+        }
+
+        return false;
     }
 
 }

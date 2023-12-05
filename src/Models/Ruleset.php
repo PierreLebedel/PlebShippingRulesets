@@ -3,6 +3,7 @@
 namespace PlebWooCommerceShippingRulesets\Models;
 
 use PlebWooCommerceShippingRulesets\Models\Rule;
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 use PlebWooCommerceShippingRulesets\Contracts\RulesetInterface;
 
 class Ruleset implements RulesetInterface
@@ -188,14 +189,14 @@ class Ruleset implements RulesetInterface
         return ob_get_clean();
     }
 
-    public function matchToWooCommercePackageArray(array $package = []): bool
+    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool
     {
         $allRulesSuccess = true;
         
         $rules = $this->getRules();
         if( !empty($rules) ){
             foreach($rules as $rule){
-                $ruleSuccess = $rule->matchToWooCommercePackageArray($package);
+                $ruleSuccess = $rule->matchToWooCommercePackageArray($package, $method);
                 if(!$ruleSuccess){
                     $allRulesSuccess = false;
                 }

@@ -2,6 +2,8 @@
 
 namespace PlebWooCommerceShippingRulesets\Contracts;
 
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+
 interface RulesetInterface
 {
 
@@ -21,6 +23,6 @@ interface RulesetInterface
 
     public function htmlRender(string $fieldKey): string;
 
-    public function matchToWooCommercePackageArray(array $package = []): bool;
+    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool;
 
 }

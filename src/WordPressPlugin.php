@@ -130,6 +130,10 @@ class WordPressPlugin
             [
                 'plugin_version' => $this->version,
                 'ajax_url' => admin_url('admin-ajax.php'),
+                'shipping_method' => [
+                    'plugin_id' => 'plebwcsr_',
+                    'method_id' => 'pleb_rulesets_method',
+                ],
             ]
         );
     }

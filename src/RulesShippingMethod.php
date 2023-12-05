@@ -9,6 +9,7 @@ use PlebWooCommerceShippingRulesets\Models\DefaultRuleset;
 class RulesShippingMethod extends \WC_Shipping_Method
 {
     public const METHOD_ID = 'pleb_rulesets_method';
+    public $plugin_id = 'plebwcsr_';
 
     private $debug_mode = false;
     private $debug_infos = '';
@@ -148,6 +149,11 @@ class RulesShippingMethod extends \WC_Shipping_Method
         return true;
     }
 
+    public function is_prices_include_tax(): bool
+    {
+        return $this->prices_include_tax;
+    }
+
     public function fee($atts): float
     {
         $atts = shortcode_atts(
@@ -245,7 +251,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
         if(!empty($rulesets)){
             foreach($rulesets as $ruleset){
 
-                if( $ruleset->matchToWooCommercePackageArray($package) ){
+                if( $ruleset->matchToWooCommercePackageArray($package, $this) ){
                     return $ruleset;
                 }
 
@@ -270,21 +276,22 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
         $cost      = $this->get_option('cost', '0');
         if ('' !== $cost) {
-            $package_cost = ($this->prices_include_tax) ? $package['cart_subtotal'] : $package['contents_cost'];
-            $rate['cost'] = $this->evaluate_cost($cost, $this->get_package_item_qty($package), $package_cost);
+            $package_cost = ($this->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
+            $rate['cost'] += $this->evaluate_cost($cost, $this->get_package_item_qty($package), $package_cost);
         }
 
         // $shipping_classes = WC()->shipping()->get_shipping_classes();
         // dd($shipping_classes);
 
         if($this->always_enabled){
-            $this->debug_infos = '=> Method always enabled';
+            $this->debug_infos = '=> Method always enabled<br>';
         }
 
         $orderMatchingRuleset = $this->find_matching_ruleset($package);
 
         if($orderMatchingRuleset){
-            $this->debug_infos = '=> Ruleset found : '.$orderMatchingRuleset->getName();
+            $this->debug_infos = '=> Ruleset found : '.$orderMatchingRuleset->getName().'<br>';
+            $rate['cost'] += $this->evaluate_cost($orderMatchingRuleset->getCost(), $this->get_package_item_qty($package), $package_cost);
         }
 
         if($orderMatchingRuleset || $this->always_enabled){
@@ -342,7 +349,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
     {
         $rulesets = $this->get_rulesets_array($key);
 
-        $defaultRuleset = [];
+        $defaultRuleset = null;
 
         foreach($rulesets as $ruleset){
             if( $ruleset instanceof DefaultRuleset ){

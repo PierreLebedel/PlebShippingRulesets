@@ -1,10 +1,12 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models;
+namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemCount;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartPrice;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemCount;
 
 abstract class RuleCondition implements RuleConditionInterface
 {
@@ -58,6 +60,11 @@ abstract class RuleCondition implements RuleConditionInterface
     public function getType(): string
     {
         return 'none';
+    }
+
+    public function matchToWooCommercePackageArray(RuleInterface $rule, array $package = [], ?RulesShippingMethod $method = null): bool
+    {
+        return false;
     }
 
 }

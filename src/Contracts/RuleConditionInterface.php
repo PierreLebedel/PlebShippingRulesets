@@ -2,6 +2,8 @@
 
 namespace PlebWooCommerceShippingRulesets\Contracts;
 
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+
 interface RuleConditionInterface
 {
     public function getId(): string;
@@ -13,5 +15,7 @@ interface RuleConditionInterface
     public function getComparators(): array;
 
     public function getType(): string;
+
+    public function matchToWooCommercePackageArray(RuleInterface $rule, array $package = [], ?RulesShippingMethod $method = null): bool;
 
 }

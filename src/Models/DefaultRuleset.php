@@ -2,6 +2,8 @@
 
 namespace PlebWooCommerceShippingRulesets\Models;
 
+use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+
 class DefaultRuleset extends Ruleset
 {
 
@@ -61,7 +63,7 @@ class DefaultRuleset extends Ruleset
         return ob_get_clean();
     }
 
-    public function matchToWooCommercePackageArray(array $package = []): bool
+    public function matchToWooCommercePackageArray(array $package = [], ?RulesShippingMethod $method = null): bool
     {
         return true;
     }
