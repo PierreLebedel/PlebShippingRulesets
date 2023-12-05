@@ -10,6 +10,8 @@ You can extends ``\PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleCon
 
 ```php
 use \PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleCondition;
+use \PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
+use \PlebWooCommerceShippingRulesets\RulesShippingMethod;
 
 class CustomRuleCondition extends RuleCondition
 {
@@ -46,7 +48,7 @@ class CustomRuleCondition extends RuleCondition
 		return ob_get_clean();
 	}
 
-	public function matchToWooCommercePackageArray(array $package = [], ?\PlebWooCommerceShippingRulesets\Contracts\RuleInterface $rule = null, int $methodInstanceId = 0): bool
+	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
 	{
 		$conditionComparator = $rule->getConditionComparator();
 		if(is_null($conditionComparator)) return false;
