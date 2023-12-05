@@ -11,19 +11,19 @@ class Rule
     private $condition_comparator = null;
     private $condition_value = null;
 
-    public function __construct()
+    private function __construct()
     {
-    }
-
-    public static function create()
-    {
-        $instance = new self();
-        $instance->setId(uniqid());
-        return $instance;
     }
 
     public static function createFromArray(array $ruleArray): self
     {
+        $ruleArray = array_merge([
+            'id'                   => $id = uniqid(),
+            'condition_id'         => null,
+            'condition_comparator' => null,
+            'condition_value'      => null,
+        ], $ruleArray);
+
         $instance = new self();
         $instance->setId($ruleArray['id']);
         $instance->setConditionId($ruleArray['condition_id']);
@@ -91,11 +91,6 @@ class Rule
         return $this->condition_value;
     }
 
-    // public function getRuleset(): Ruleset
-    // {
-    //     return new Ruleset('test read from child');
-    // }
-
     public function htmlRender(string $fieldKey): string
     {
         ob_start();
@@ -111,7 +106,7 @@ class Rule
                         <?php if(!empty($rc->getVariants())): ?>
                         <optgroup label="<?php esc_attr_e($rc->getName()); ?>">
                             <?php foreach($rc->getVariants() as $k => $v): ?>
-                            <option value="<?php echo $rc_id.':'.$k; ?>" <?php selected($this->getConditionId() == $rc_id.':'.$k); ?>><?php _e($v, 'pleb'); ?></option>
+                            <option value="<?php echo $rc_id.':'.$k; ?>" <?php selected($this->getConditionId() == $rc_id.':'.$k); ?>><?php echo $rc->getName().' '.__($v, 'pleb'); ?></option>
                             <?php endforeach; ?>
                         </optgroup>
                         <?php else: ?>
@@ -136,7 +131,7 @@ class Rule
             </td>
             <td class="w-100">
                 <?php $valueType = $condition->getType();
-        if($valueType == 'none'): ?>
+                if($valueType == 'none'): ?>
                 <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="">
                 <?php elseif($valueType == 'number'): ?>
                 <input type="number" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_value]" value="<?php echo $this->getConditionValue(); ?>" class="w-100" required>
@@ -150,13 +145,21 @@ class Rule
             </td>
             <?php endif; ?>
             <td class="w-auto">
-                <a href="#" class="delete pleb_rule_delete" data-rule_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this rule?", 'pleb'); ?>" style="font-size:13px;"><nobr><?php esc_attr_e("Delete", 'pleb'); ?></nobr></a>
+                <a href="#" class="delete pleb_rule_delete" data-rule_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this rule?", 'pleb'); ?>" style="font-size:11px;"><nobr><?php esc_attr_e("Delete", 'pleb'); ?></nobr></a>
             </td>
         </tr><?php
 
         return ob_get_clean();
     }
 
+    public function matchToWooCommercePackageArray(array $package = []): bool
+    {
+        //dd($package);
 
+
+
+
+        return false;
+    }
 
 }

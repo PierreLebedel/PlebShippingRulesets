@@ -50,12 +50,38 @@ jQuery( function( $ ) {
                 field_key: field_key
             },
             success: function(response){
-                $('#pleb_no_ruleset_notice').hide();
                 $('#pleb_rulesets').append(response);
+                showHideNoRulesetNotice();
 
                 //$('#pleb_rulesets').find('.pleb_ruleset:last').find('.pleb_edit_ruleset_button').trigger('click');
             }
         });
+    });
+
+    $(document.body).on('click', '#pleb_ruleset_add_default_button', function(e){
+        e.preventDefault();
+        const $button = $(this);
+        const field_key = $button.attr('data-field_key');
+        if(!field_key){
+            alert("Field key is missing");
+            return false;
+        }
+        $.ajax({
+            url: pleb.ajax_url,
+            method: 'post',
+            data: {
+                action: 'pleb_ruleset_default_template',
+                field_key: field_key
+            },
+            success: function(response){
+
+                $('#pleb_ruleset_default_wrapper').html(response);
+
+                showHideNoRulesetNotice();
+            }
+        });
+
+        $button.hide();
     });
 
     $(document.body).on('click', '.pleb_ruleset_add_rule_button', function(e){
@@ -94,6 +120,15 @@ jQuery( function( $ ) {
         $button.find('.button_dynamic_action').toggle();
     });
 
+    function showHideNoRulesetNotice()
+    {
+        if( $('#pleb_rulesets .pleb_ruleset').length==0 && $('#pleb_ruleset_default_wrapper .pleb_ruleset').length==0 ){
+            $('#pleb_no_ruleset_notice').show();
+        }else{
+            $('#pleb_no_ruleset_notice').hide();
+        }
+    }
+
     $(document.body).on('click', '.pleb_ruleset_delete[data-ruleset_id][data-confirm]', function(e){
         e.preventDefault();
         const $button = $(this);
@@ -103,9 +138,24 @@ jQuery( function( $ ) {
             $ruleset.slideUp(300, function(){
                 $ruleset.remove();
 
-                if( $('.pleb_ruleset').length==0 ){
-                    $('#pleb_no_ruleset_notice').show();
-                }
+                showHideNoRulesetNotice();
+            });
+        }
+
+    });
+
+    $(document.body).on('click', '.pleb_ruleset_default_delete[data-confirm]', function(e){
+        e.preventDefault();
+        const $button = $(this);
+        const $ruleset = $button.parents('.pleb_ruleset');
+
+        if( confirm( $button.attr('data-confirm') ) ){
+            $ruleset.slideUp(300, function(){
+                $ruleset.remove();
+
+                $('#pleb_ruleset_add_default_button').show();
+
+                showHideNoRulesetNotice();
             });
         }
 
@@ -139,7 +189,7 @@ jQuery( function( $ ) {
         const field_key = $rule.attr('data-field_key');
         const condition_comparator = $rule.find('[name$="][condition_comparator]"]').val();
         const condition_value = $rule.find('[name$="][condition_value]"]').val();
-        $rules = $rule.parents('.ruleset_rules');
+        const $rules = $rule.parents('.ruleset_rules');
 
         $rule.addClass('loading');
         $rules.css('opacity', 0.5);

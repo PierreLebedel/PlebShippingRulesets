@@ -2,33 +2,36 @@
 
 namespace PlebWooCommerceShippingRulesets\Models;
 
-class Ruleset
+use PlebWooCommerceShippingRulesets\Models\Rule;
+use PlebWooCommerceShippingRulesets\Contracts\RulesetInterface;
+
+class Ruleset implements RulesetInterface
 {
     private $id;
-    private $name;
-    private $cost = '';
-    private $order = null;
-    private $rules = [];
+    protected $name;
+    protected $cost = '';
+    protected $order = null;
+    protected $rules = [];
 
-    public function __construct()
+    private function __construct()
     {
     }
 
-    public static function create(): self
+    public static function createFromArray(array $rulesetArray = []): self
     {
-        $instance = new self();
-        $instance->setId(uniqid());
-        $instance->setName(__("Ruleset", 'pleb').' #'.$instance->getId());
-        return $instance;
-    }
+        $rulesetArray = array_merge([
+            'id'      => $id = uniqid(),
+            'name'    => __("Ruleset", 'pleb').' #'.$id,
+            'cost'    => '',
+            'order'   => null,
+            'rules'   => [],
+        ], $rulesetArray);
 
-    public static function createFromArray(array $rulesetArray): self
-    {
-        $instance = new self();
+        $instance = new static();
         $instance->setId($rulesetArray['id']);
         $instance->setName($rulesetArray['name']);
         $instance->setCost($rulesetArray['cost']);
-        $instance->setOrder(!is_null($rulesetArray['order']) ? intval($rulesetArray['order']) : null);
+        $instance->setOrder($rulesetArray['order']);
 
         if (isset($rulesetArray['rules']) && is_array($rulesetArray['rules'])) {
             foreach ($rulesetArray['rules'] as $ruleArray) {
@@ -79,13 +82,17 @@ class Ruleset
         return $this->cost;
     }
 
-    public function setOrder(?int $order): self
+    public function setOrder(mixed $order): self
     {
-        $this->order = $order;
+        if(!$order=='default' && !is_null($order)){
+            $this->order = intval($order);
+        }else{
+            $this->order = $order;
+        }
         return $this;
     }
 
-    public function getOrder(): ?int
+    public function getOrder(): mixed
     {
         return $this->order;
     }
@@ -101,6 +108,11 @@ class Ruleset
         return $this->rules;
     }
 
+    public function isDefault(): bool
+    {
+        return $this->order=='default';
+    }
+
     public function htmlRender(string $fieldKey): string
     {
         ob_start();
@@ -108,33 +120,51 @@ class Ruleset
         ?><div class="postbox pleb_ruleset">
 
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">
-            <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="<?php echo esc_attr($this->getOrder()); ?>" reradonly>
+            <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="<?php echo esc_attr($this->getOrder()); ?>">
 
-            <div class="pleb_title_input_wrapper">
-                <div class="postbox-header" style="padding:4px 0;">
-                    <h2 class="hndle" title="<?php esc_attr_e("Move up/down to change ruleset priority", 'pleb'); ?>">
-                        <span>
-                            <span class="dashicons dashicons-move"></span>
-                            <?php echo $this->getName(); ?>
-                        </span>
-                    </h2>
-                    
-                    <div class="pleb_input_wrapper" style="display:none;height:30px;padding:3px 12px;">
-                        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Ruleset name", "pleb"); ?>" required>
+            <div class="postbox-header pleb_title_input_wrapper" style="padding:4px 0;">
+                <h2 class="hndle" title="<?php esc_attr_e("Move up/down to change ruleset priority", 'pleb'); ?>">
+                    <span>
+                        <span class="dashicons dashicons-move"></span>
+                        <?php echo $this->getName(); ?>
+                    </span>
+                </h2>
+                
+                <div class="pleb_input_wrapper" style="display:none;height:30px;padding:3px 12px;">
+                    <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][name]" value="<?php echo esc_attr($this->getName()); ?>" placeholder="<?php esc_attr_e("Ruleset name", "pleb"); ?>" required>
+                </div>
+                
+                <div class="handle-actions" style="padding-right:12px;">
+                    <button class="button button-small pleb_edit_ruleset_button">
+                        <span class="button_dynamic_action"><?php _e("Edit", 'pleb'); ?></span>
+                        <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
+                    </button>
+
+                    <div class="plugins" style="float:right;padding-top:5px;padding-left:5px;">
+                        <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>" style="text-decoration:none;font-size:11px;"><?php _e("Delete ruleset", 'pleb'); ?></a>
                     </div>
                     
-                    <div class="handle-actions" style="padding-right:12px;">
-                        <button class="button button-small pleb_edit_ruleset_button">
-                            <span class="button_dynamic_action"><?php _e("Edit", 'pleb'); ?></span>
-                            <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
-                        </button>
-                    </div>
                 </div>
             </div>
 
-            <div class="inside" style="margin-bottom:0;">
+            <div class="postbox-header" style="padding:8px 12px;justify-content:flex-start;">
+                
+                <label for="" style="display:block;font-weight:600;padding-right:5px;white-space:nowrap;">
+                    <?php esc_attr_e("Price to apply:", 'pleb'); ?>
+                </label>
 
-                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="regular-text" /><br>
+                <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb'); ?>" />
+
+                <?php echo wc_help_tip(
+                    sprintf(
+                        __("Works the same as %s setting field", 'pleb'), 
+                        '<b>'.__('Base price', 'pleb').'</b>'
+                    ), true
+                ); ?>
+
+            </div>
+
+            <div class="inside" style="margin-bottom:0;">
 
                 <?php $rules = $this->getRules(); ?>
 
@@ -150,16 +180,28 @@ class Ruleset
                     <?php endforeach; ?>
                 </table>
                 
-                <div class="plugins">
+                <button type="button" class="button pleb_ruleset_add_rule_button" data-field_key="<?php echo $fieldKey.'['.$this->getId().'][rules]'; ?>"><?php _e("Add new rule", 'pleb'); ?></button>
 
-                    <button type="button" class="button pleb_ruleset_add_rule_button" data-field_key="<?php echo $fieldKey.'['.$this->getId().'][rules]'; ?>"><?php _e("Add new rule", 'pleb'); ?></button>
-
-                    <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>" style="float:right;margin-top:6px;text-decoration:none;"><?php _e("Delete ruleset", 'pleb'); ?></a>
-                    
-                </div>
             </div>
         </div><?php
 
         return ob_get_clean();
+    }
+
+    public function matchToWooCommercePackageArray(array $package = []): bool
+    {
+        $allRulesSuccess = true;
+        
+        $rules = $this->getRules();
+        if( !empty($rules) ){
+            foreach($rules as $rule){
+                $ruleSuccess = $rule->matchToWooCommercePackageArray($package);
+                if(!$ruleSuccess){
+                    $allRulesSuccess = false;
+                }
+            }
+        }
+
+        return $allRulesSuccess;
     }
 }

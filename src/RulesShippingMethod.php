@@ -4,6 +4,7 @@ namespace PlebWooCommerceShippingRulesets;
 
 use PlebWooCommerceShippingRulesets\Models\Rule;
 use PlebWooCommerceShippingRulesets\Models\Ruleset;
+use PlebWooCommerceShippingRulesets\Models\DefaultRuleset;
 
 class RulesShippingMethod extends \WC_Shipping_Method
 {
@@ -15,6 +16,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
     private $fee_cost           = '';
     private $cost               = '0';
     private $prices_include_tax = false;
+    private $always_enabled     = false;
     private $rulesets           = [];
 
     public static function autoRegister($methods)
@@ -71,17 +73,31 @@ class RulesShippingMethod extends \WC_Shipping_Method
                     'yes' => __('Yes, I will enter prices inclusive of tax', 'woocommerce'),
                     'no'  => __('No, I will enter prices exclusive of tax', 'woocommerce'),
                 ],
+                'description' => __("", 'pleb'),
                 'desc_tip' => __("", 'pleb'),
             ],
             'cost'       => [
                 'title'             => __('Base price', 'pleb'),
                 'type'              => 'text',
                 'placeholder'       => '',
-                'description'       => __('Enter a cost (excl. tax) or sum, e.g. <code>10.00 * [qty]</code>.', 'woocommerce').'<br/><br/>'.__('Use <code>[qty]</code> for the number of items, <br/><code>[cost]</code> for the total cost of items, and <code>[fee percent="10" min_fee="20" max_fee=""]</code> for percentage based fees.', 'woocommerce'),
+                'description'       => implode('<br>', [
+                    sprintf(__("Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price calculation.", 'pleb'), '<code>10.00 * [qty]</code>'),
+                    sprintf(__("%s: Number of items in cart", 'pleb'), '<code>[qty]</code>'),
+                    sprintf(__("%s: Shopping cart price", 'pleb'), '<code>[cost]</code>'),
+                    sprintf(__("%s: Percentage based fees", 'pleb'), '<code>[fee percent="10" min_fee="20" max_fee=""]</code>'),
+                ]),
                 'default'           => '0',
-                'desc_tip'          => true,
+                'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb'),
                 'sanitize_callback' => [$this, 'sanitize_cost'],
             ],
+            'always_enabled' => array(
+				'title'       => __( 'Always enabled?', 'pleb' ),
+				'label'       => __( 'Enable this method even if none of rulesets matches the shopping cart', 'pleb' ),
+				'type'        => 'checkbox',
+				'description' => __("You can add a Default ruleset to apply custom price.", 'pleb' ),
+				'default'     => 'no',
+				'desc_tip'    => false,
+			),
             'rulesets'       => [
                 'title'             => __('Rulesets', 'pleb'),
                 'type'              => 'pleb_rulesets',
@@ -104,8 +120,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
         $this->tax_status         = $this->get_option('tax_status', 'taxable');
         $this->cost               = $this->get_option('cost', '0');
         $this->prices_include_tax = ($this->tax_status == 'none') ? false : ($this->get_option('prices_include_tax', 'no') === 'yes');
-
-
+        $this->always_enabled     = $this->get_option('always_enabled', 'no')!='no';
 
         $this->debug_mode = $this->get_option('debug_mode', 'no') === 'yes';
     }
@@ -223,6 +238,23 @@ class RulesShippingMethod extends \WC_Shipping_Method
         return $total_quantity;
     }
 
+    private function find_matching_ruleset(array $package = []): ?Ruleset
+    {
+        $rulesets = $this->get_classic_rulesets_array('rulesets');
+
+        if(!empty($rulesets)){
+            foreach($rulesets as $ruleset){
+
+                if( $ruleset->matchToWooCommercePackageArray($package) ){
+                    return $ruleset;
+                }
+
+            }
+        }
+
+        return $this->get_default_ruleset('rulesets');
+    }
+
     public function calculate_shipping($package = [])
     {
         $this->debug_infos = '';
@@ -245,11 +277,22 @@ class RulesShippingMethod extends \WC_Shipping_Method
         // $shipping_classes = WC()->shipping()->get_shipping_classes();
         // dd($shipping_classes);
 
-        $this->add_rate($rate);
+        if($this->always_enabled){
+            $this->debug_infos = '=> Method always enabled';
+        }
 
-        do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
+        $orderMatchingRuleset = $this->find_matching_ruleset($package);
 
-        if($this->debug_mode) {
+        if($orderMatchingRuleset){
+            $this->debug_infos = '=> Ruleset found : '.$orderMatchingRuleset->getName();
+        }
+
+        if($orderMatchingRuleset || $this->always_enabled){
+            $this->add_rate($rate);
+            do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
+        }
+
+        if($this->debug_mode && (is_cart() || is_checkout()) ) {
             $wpPluginInstance = WordPressPlugin::instance();
             $notice_content = '<strong>'.$this->method_title.'</strong> [plugin:'.$wpPluginInstance->name.']<br>'.$this->debug_infos;
             wc_add_notice($notice_content, 'notice');
@@ -257,10 +300,8 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
     }
 
-    public function generate_pleb_rulesets_html($key, $data)
+    private function get_rulesets_array(string $key = 'rulesets'): array
     {
-        $field_key = $this->get_field_key($key);
-
         $rulesets = $this->get_option($key);
 
         if(!is_array($rulesets)) {
@@ -272,21 +313,63 @@ class RulesShippingMethod extends \WC_Shipping_Method
             $rulesets = [];
         }
 
-        $rulesets = array_map(function ($ruleset) {
-            return ($ruleset instanceof Ruleset) ? $ruleset : Ruleset::createFromArray($ruleset);
-        }, $rulesets);
+        return $rulesets;
+    }
 
-        // $ruleset1 = Ruleset::create();
-        // $ruleset1->addRule(Rule::create());
-        // $ruleset1->addRule(Rule::create());
+    private function get_classic_rulesets_array(string $key = 'rulesets'): array
+    {
+        $rulesets = $this->get_rulesets_array($key);
 
-        // $ruleset2 = Ruleset::create();
-        // $ruleset2->addRule(Rule::create());
+        $classicRulesets = [];
 
-        // $rulesets = [
-        //     $ruleset1,
-        //     $ruleset2,
-        // ];
+        foreach($rulesets as $ruleset){
+            if( $ruleset instanceof DefaultRuleset ){
+                continue;
+            }elseif( $ruleset instanceof Ruleset ){
+                $classicRulesets[] = $ruleset;
+            }elseif(is_array($ruleset)){
+                if(isset($ruleset['order']) && $ruleset['order']=='default'){
+                    continue;
+                }
+                $classicRulesets[] = Ruleset::createFromArray($ruleset);
+            }
+        }
+
+        return $classicRulesets;
+    }
+
+    public function get_default_ruleset(string $key = 'rulesets'): ?Ruleset
+    {
+        $rulesets = $this->get_rulesets_array($key);
+
+        $defaultRuleset = [];
+
+        foreach($rulesets as $ruleset){
+            if( $ruleset instanceof DefaultRuleset ){
+                $defaultRuleset = $ruleset;
+                continue;
+            }elseif( $ruleset instanceof Ruleset ){
+                continue;
+            }elseif(is_array($ruleset)){
+                if(isset($ruleset['order']) && $ruleset['order']=='default'){
+                    $defaultRuleset = DefaultRuleset::createFromArray($ruleset);
+                }
+            }
+        }
+
+        return $defaultRuleset;
+    }
+
+    /**
+     * WooCommerce function to display "rulesets" field type
+     * generate_pleb_{{ $type }}_html
+     */
+    public function generate_pleb_rulesets_html($key, $data)
+    {
+        $field_key = $this->get_field_key($key);
+
+        $classicRulesets = $this->get_classic_rulesets_array($key);
+        $defaultRuleset = $this->get_default_ruleset($key);
 
         ob_start(); ?>
 		<tr valign="top">
@@ -297,21 +380,33 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				<?php //dump($data);?>
                 <?php //dump($rulesets);?>
 
-                <div id="pleb_no_ruleset_notice" class="notice notice-info inline text-center notice-alt" style="margin-top:0;<?php if(!empty($rulesets)) {
+                <?php /** Empty field required if no ruleset posted at all */ ?>
+                <input type="hidden" name="<?php echo esc_attr($field_key); ?>" value="">
+
+                <div id="pleb_no_ruleset_notice" class="notice notice-info inline text-center notice-alt" style="margin-top:0;<?php if(!empty($classicRulesets) || $defaultRuleset) {
                     echo 'display:none;';
                 } ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No ruleset yet.", 'pleb'); ?></p></div>
 
                 <div class="metabox-holder" style="padding-top:0;">
                     <div id="pleb_rulesets" data-instance_id="<?php echo $this->instance_id; ?>" class="meta-box-sortables">
-                        <?php if(!empty($rulesets)): ?>
-                            <?php foreach($rulesets as $ruleset): ?>
+                        <?php if(!empty($classicRulesets)): ?>
+                            <?php foreach($classicRulesets as $ruleset): ?>
                                 <?php echo $ruleset->htmlRender($field_key); ?>
                             <?php endforeach; ?>
                         <?php endif; ?>
                     </div>
+
+                    <div id="pleb_ruleset_default_wrapper">
+                        <?php if($defaultRuleset): ?>
+                            <?php echo $defaultRuleset->htmlRender($field_key); ?>
+                        <?php endif; ?>
+                    </div>
+
                 </div>
 
                 <button id="pleb_ruleset_add_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button"><?php _e("Add new ruleset", 'pleb'); ?></button>
+                <button id="pleb_ruleset_add_default_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button" style="<?php if($defaultRuleset){ echo 'display:none;'; } ?>"><?php _e("Add default ruleset", 'pleb'); ?></button>
+
 			</td>
 		</tr>
 		<?php
@@ -321,7 +416,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
     public function validate_rulesets_field($key, $value)
     {
         if(!is_array($value)) {
-            throw new \Exception(__("Invalid data format", 'pleb'));
+            $value = [];
         }
 
         return serialize($value);

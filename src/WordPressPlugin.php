@@ -80,6 +80,7 @@ class WordPressPlugin
     private function registerAjaxActions()
     {
         AjaxAction::register('pleb_ruleset_template');
+        AjaxAction::register('pleb_ruleset_default_template');
         AjaxAction::register('pleb_ruleset_rule_template');
         //AjaxAction::register('pleb_ruleset_delete');
         //AjaxAction::register('pleb_rule_delete');

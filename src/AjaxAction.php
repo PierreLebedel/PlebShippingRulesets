@@ -4,6 +4,7 @@ namespace PlebWooCommerceShippingRulesets;
 
 use PlebWooCommerceShippingRulesets\Models\Rule;
 use PlebWooCommerceShippingRulesets\Models\Ruleset;
+use PlebWooCommerceShippingRulesets\Models\DefaultRuleset;
 
 class AjaxAction
 {
@@ -45,7 +46,19 @@ class AjaxAction
     {
         $this->checkParameters(['field_key']);
 
-        $newRuleset = Ruleset::create();
+        $newRuleset = Ruleset::createFromArray([]);
+        echo $newRuleset->htmlRender($_REQUEST['field_key']);
+
+        if(defined('DOING_AJAX') && DOING_AJAX) {
+            die();
+        }
+    }
+
+    public function pleb_ruleset_default_template()
+    {
+        $this->checkParameters(['field_key']);
+
+        $newRuleset = DefaultRuleset::createFromArray([]);
         echo $newRuleset->htmlRender($_REQUEST['field_key']);
 
         if(defined('DOING_AJAX') && DOING_AJAX) {
@@ -57,7 +70,7 @@ class AjaxAction
     {
         $this->checkParameters(['field_key']);
 
-        $newRule = Rule::create();
+        $newRule = Rule::createFromArray([]);
         echo $newRule->htmlRender($_REQUEST['field_key']);
 
         if(defined('DOING_AJAX') && DOING_AJAX) {
@@ -78,7 +91,7 @@ class AjaxAction
 
     public function pleb_rule_template()
     {
-        $this->checkParameters(['rule_id', 'field_key', 'condition_id', 'condition_comparator', 'condition_value']);
+        $this->checkParameters(['rule_id', 'field_key', 'condition_id']);
 
         //dump($_REQUEST['rule_id'], $_REQUEST['condition_id'], $_REQUEST['condition_comparator'], $_REQUEST['condition_value']);
 
@@ -87,8 +100,8 @@ class AjaxAction
         $ruleObject = Rule::createFromArray([
             'id' => $_REQUEST['rule_id'],
             'condition_id' => $_REQUEST['condition_id'],
-            'condition_comparator' => $_REQUEST['condition_comparator'],
-            'condition_value' => $_REQUEST['condition_value'],
+            'condition_comparator' => $_REQUEST['condition_comparator'] ?? '',
+            'condition_value' => $_REQUEST['condition_value'] ?? '',
         ]);
 
         echo $ruleObject->htmlRender($_REQUEST['field_key']);
@@ -97,6 +110,8 @@ class AjaxAction
             die();
         }
     }
+
+    
 
 
 }
