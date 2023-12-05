@@ -97,13 +97,13 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 'sanitize_callback' => [$this, 'sanitize_cost'],
             ],
             // 'always_enabled' => array(
-			// 	'title'       => __( 'Always enabled?', 'pleb' ),
-			// 	'label'       => __( 'Enable this method even if none of rulesets matches the shopping cart', 'pleb' ),
-			// 	'type'        => 'checkbox',
-			// 	'description' => __("You can add a Default ruleset to apply custom price.", 'pleb' ),
-			// 	'default'     => 'no',
-			// 	'desc_tip'    => false,
-			// ),
+            // 	'title'       => __( 'Always enabled?', 'pleb' ),
+            // 	'label'       => __( 'Enable this method even if none of rulesets matches the shopping cart', 'pleb' ),
+            // 	'type'        => 'checkbox',
+            // 	'description' => __("You can add a Default ruleset to apply custom price.", 'pleb' ),
+            // 	'default'     => 'no',
+            // 	'desc_tip'    => false,
+            // ),
             'rulesets'       => [
                 'title'             => __('Rulesets', 'pleb'),
                 'type'              => 'pleb_rulesets',
@@ -205,7 +205,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
     protected function evaluate_cost(string $costrule = '', array $package = [], string $debugCostName = '')
     {
-        if($costrule==='') return 0;
+        if($costrule === '') {
+            return 0;
+        }
 
         $package_qty = 0;
         foreach ($package['contents'] as $item_id => $values) {
@@ -248,7 +250,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
         $this->addDebugRow($debugCostName.'Values replaced rule = '.$sum);
 
-        if(!$sum) $sum = '0';
+        if(!$sum) {
+            $sum = '0';
+        }
 
         include_once(WC()->plugin_path().'/includes/libraries/class-wc-eval-math.php');
         $result = \WC_Eval_Math::evaluate($sum);
@@ -261,10 +265,10 @@ class RulesShippingMethod extends \WC_Shipping_Method
     {
         $rulesets = $this->get_classic_rulesets_array('rulesets');
 
-        if(!empty($rulesets)){
-            foreach($rulesets as $ruleset){
+        if(!empty($rulesets)) {
+            foreach($rulesets as $ruleset) {
 
-                if( $ruleset->matchToWooCommercePackageArray($package, $this->instance_id) ){
+                if($ruleset->matchToWooCommercePackageArray($package, $this->instance_id)) {
                     return $ruleset;
                 }
 
@@ -286,8 +290,8 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 'item_1' => [
                     'quantity' => 1,
                     'data' => $product_1,
-                ]
-            ]
+                ],
+            ],
         ];
     }
 
@@ -306,33 +310,33 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
         //$this->addDebugRow('Method always enabled = '.($this->always_enabled?'yes':'no'));
         $this->addDebugRow('Taxable = '.(($this->is_taxable()) ? "yes" : "no"));
-        if($this->is_taxable()){
+        if($this->is_taxable()) {
             $this->addDebugRow('Prices taxes = '.(($this->is_prices_include_tax()) ? "inclusive" : "exclusive"));
         }
 
         $basePrice = $this->get_option('cost', '0');
-        if ( $basePrice !== '' ) {
+        if ($basePrice !== '') {
             $rate['cost'] += $this->evaluate_cost($basePrice, $package, 'Base price cost: ');
         }
 
         $orderMatchingRuleset = $this->find_matching_ruleset($package);
 
-        if($orderMatchingRuleset){
-            $this->addDebugRow('Matching ruleset found : '.$orderMatchingRuleset->getName().($orderMatchingRuleset->isDefault()?' (default)':''));
-            if($orderMatchingRuleset->getCost()!==''){
+        if($orderMatchingRuleset) {
+            $this->addDebugRow('Matching ruleset found : '.$orderMatchingRuleset->getName().($orderMatchingRuleset->isDefault() ? ' (default)' : ''));
+            if($orderMatchingRuleset->getCost() !== '') {
                 $rate['cost'] += $this->evaluate_cost($orderMatchingRuleset->getCost(), $package, 'Ruleset cost: ');
             }
-        }else{
+        } else {
             $this->addDebugRow('No matching ruleset found');
         }
 
         //if($orderMatchingRuleset || $this->always_enabled){
-        if($orderMatchingRuleset){
+        if($orderMatchingRuleset) {
             $this->add_rate($rate);
             do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
         }
 
-        if($this->debug_mode && (is_cart() || is_checkout()) ) {
+        if($this->debug_mode && (is_cart() || is_checkout())) {
             $wpPluginInstance = WordPressPlugin::instance();
             $notice_content = '<strong>'.$this->method_title.'</strong> [plugin:'.$wpPluginInstance->name.']<br>'.$this->debug_infos;
             wc_add_notice($notice_content, 'notice');
@@ -362,13 +366,13 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
         $classicRulesets = [];
 
-        foreach($rulesets as $ruleset){
-            if( $ruleset instanceof DefaultRuleset ){
+        foreach($rulesets as $ruleset) {
+            if($ruleset instanceof DefaultRuleset) {
                 continue;
-            }elseif( $ruleset instanceof Ruleset ){
+            } elseif($ruleset instanceof Ruleset) {
                 $classicRulesets[] = $ruleset;
-            }elseif(is_array($ruleset)){
-                if(isset($ruleset['order']) && $ruleset['order']=='default'){
+            } elseif(is_array($ruleset)) {
+                if(isset($ruleset['order']) && $ruleset['order'] == 'default') {
                     continue;
                 }
                 $classicRulesets[] = Ruleset::createFromArray($ruleset);
@@ -384,14 +388,14 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
         $defaultRuleset = null;
 
-        foreach($rulesets as $ruleset){
-            if( $ruleset instanceof DefaultRuleset ){
+        foreach($rulesets as $ruleset) {
+            if($ruleset instanceof DefaultRuleset) {
                 $defaultRuleset = $ruleset;
                 continue;
-            }elseif( $ruleset instanceof Ruleset ){
+            } elseif($ruleset instanceof Ruleset) {
                 continue;
-            }elseif(is_array($ruleset)){
-                if(isset($ruleset['order']) && $ruleset['order']=='default'){
+            } elseif(is_array($ruleset)) {
+                if(isset($ruleset['order']) && $ruleset['order'] == 'default') {
                     $defaultRuleset = DefaultRuleset::createFromArray($ruleset);
                 }
             }
@@ -449,7 +453,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
                 </div>
 
                 <button id="pleb_ruleset_add_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button"><?php _e("Add new ruleset", 'pleb'); ?></button>
-                <button id="pleb_ruleset_add_default_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button" style="<?php if($defaultRuleset){ echo 'display:none;'; } ?>"><?php _e("Add default ruleset", 'pleb'); ?></button>
+                <button id="pleb_ruleset_add_default_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button" style="<?php if($defaultRuleset) {
+                    echo 'display:none;';
+                } ?>"><?php _e("Add default ruleset", 'pleb'); ?></button>
 
 			</td>
 		</tr>
@@ -471,8 +477,8 @@ class RulesShippingMethod extends \WC_Shipping_Method
         $value = is_null($value) ? '' : $value;
         $value = wp_kses_post(trim(wp_unslash($value)));
         $value = str_replace([get_woocommerce_currency_symbol(), html_entity_decode(get_woocommerce_currency_symbol())], '', $value);
-        
-        if( $value !== '' ){
+
+        if($value !== '') {
             $dummy_cost = $this->evaluate_cost($value, $this->get_dummy_woocommerce_package(), 'Dummy cost: ');
             if (false === $dummy_cost) {
                 throw new \Exception(\WC_Eval_Math::$last_error);

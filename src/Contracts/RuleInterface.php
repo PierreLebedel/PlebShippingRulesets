@@ -6,7 +6,6 @@ use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 
 interface RuleInterface
 {
-
     public static function createFromArray(array $ruleArray): self;
 
     public function getId(): string;

@@ -19,11 +19,15 @@ abstract class RuleCondition implements RuleConditionInterface
 
         $conditions = [];
         foreach($classes as $class) {
-            if(!class_exists($class)) continue;
+            if(!class_exists($class)) {
+                continue;
+            }
 
             $instance = new $class();
 
-            if(!$instance instanceof RuleConditionInterface) continue;
+            if(!$instance instanceof RuleConditionInterface) {
+                continue;
+            }
 
             $conditions[ $instance->getId() ] = $instance;
         }
@@ -65,8 +69,8 @@ abstract class RuleCondition implements RuleConditionInterface
     public function getInputHtml(string $fieldName, mixed $value): string
     {
         ob_start();
-		?><input type="hidden" name="<?php echo esc_attr($fieldName); ?>" value="" /><?php
-		return ob_get_clean();
+        ?><input type="hidden" name="<?php echo esc_attr($fieldName); ?>" value="" /><?php
+        return ob_get_clean();
     }
 
     public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool

@@ -4,7 +4,6 @@ namespace PlebWooCommerceShippingRulesets\Models;
 
 class DefaultRuleset extends Ruleset
 {
-
     protected $order = 'default';
 
     public function htmlRender(string $fieldKey): string
@@ -50,15 +49,16 @@ class DefaultRuleset extends Ruleset
 
                 <?php echo wc_help_tip(
                     sprintf(
-                        __("Works the same as %s setting field", 'pleb'), 
+                        __("Works the same as %s setting field", 'pleb'),
                         '<b>'.__('Base price', 'pleb').'</b>'
-                    ), true
+                    ),
+                    true
                 ); ?>
 
             </div>
         </div><?php
 
-        return ob_get_clean();
+                return ob_get_clean();
     }
 
     public function matchToWooCommercePackageArray(array $package = [], int $methodInstanceId = 0): bool

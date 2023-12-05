@@ -21,10 +21,14 @@ class RuleConditionCartItemCount extends RuleConditionNumericInteger
     public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
     {
         $conditionComparator = $rule->getConditionComparator();
-        if(is_null($conditionComparator)) return false;
+        if(is_null($conditionComparator)) {
+            return false;
+        }
 
         $conditionValue = $rule->getConditionValue();
-        if(is_null($conditionValue)) return false;
+        if(is_null($conditionValue)) {
+            return false;
+        }
         $conditionValue = intval($conditionValue);
 
         $package_quantity = 0;
@@ -34,21 +38,31 @@ class RuleConditionCartItemCount extends RuleConditionNumericInteger
             }
         }
 
-        switch($conditionComparator){
+        switch($conditionComparator) {
             case '<':
-                if($package_quantity < $conditionValue) return true;
+                if($package_quantity < $conditionValue) {
+                    return true;
+                }
                 break;
             case '<=':
-                if($package_quantity <= $conditionValue) return true;
+                if($package_quantity <= $conditionValue) {
+                    return true;
+                }
                 break;
             case '=':
-                if($package_quantity == $conditionValue) return true;
+                if($package_quantity == $conditionValue) {
+                    return true;
+                }
                 break;
             case '>=':
-                if($package_quantity >= $conditionValue) return true;
+                if($package_quantity >= $conditionValue) {
+                    return true;
+                }
                 break;
             case '>':
-                if($package_quantity > $conditionValue) return true;
+                if($package_quantity > $conditionValue) {
+                    return true;
+                }
                 break;
         }
 

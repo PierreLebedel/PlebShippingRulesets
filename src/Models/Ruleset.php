@@ -84,9 +84,9 @@ class Ruleset implements RulesetInterface
 
     public function setOrder(mixed $order): self
     {
-        if(!$order=='default' && !is_null($order)){
+        if(!$order == 'default' && !is_null($order)) {
             $this->order = intval($order);
-        }else{
+        } else {
             $this->order = $order;
         }
         return $this;
@@ -110,7 +110,7 @@ class Ruleset implements RulesetInterface
 
     public function isDefault(): bool
     {
-        return $this->order=='default';
+        return $this->order == 'default';
     }
 
     public function htmlRender(string $fieldKey): string
@@ -157,9 +157,10 @@ class Ruleset implements RulesetInterface
 
                 <?php echo wc_help_tip(
                     sprintf(
-                        __("Works the same as %s setting field", 'pleb'), 
+                        __("Works the same as %s setting field", 'pleb'),
                         '<b>'.__('Base price', 'pleb').'</b>'
-                    ), true
+                    ),
+                    true
                 ); ?>
 
             </div>
@@ -192,14 +193,14 @@ class Ruleset implements RulesetInterface
     {
         $rules = $this->getRules();
 
-        if( empty($rules) ){
+        if(empty($rules)) {
             return false;
         }
 
         $allRulesSuccess = true;
-        foreach($rules as $rule){
+        foreach($rules as $rule) {
             $ruleSuccess = $rule->matchToWooCommercePackageArray($package, $methodInstanceId);
-            if(!$ruleSuccess){
+            if(!$ruleSuccess) {
                 $allRulesSuccess = false;
             }
         }
