@@ -34,12 +34,12 @@ class CustomRuleCondition extends RuleCondition
 	}
 
 	public function getComparators(): array
-    {
-        return [
-            '=',
+	{
+		return [
+			'=',
 			'!='
-        ];
-    }
+		];
+	}
 
 	public function getInputHtml(string $fieldName, mixed $value): string
 	{
@@ -60,10 +60,10 @@ class CustomRuleCondition extends RuleCondition
 		// $shipping_method = new RulesShippingMethod($methodInstanceId);
 		// $package_cost = ($shipping_method && $shipping_method->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
 
-        // Check your condition
+		// Check your condition
 		if(true){
-            return true;
-        }
+			return true;
+		}
 
 		return false;
 	}
@@ -80,3 +80,5 @@ add_filter('plebwcsr_rule_condition_all', function(array $ruleConditions = []){
 	return $ruleConditions;
 });
 ```
+
+Your own rule is now available in the shipping by rulesets settings pages.

@@ -29,7 +29,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
     {
         $this->id                    = self::METHOD_ID;
         $this->instance_id           = absint($instance_id);
-        $this->method_title          = __('Rulesets based shipping price', 'pleb');
+        $this->method_title          = __('Shipping rulesets', 'pleb');
         $this->method_description    = implode('<br>', [
             __('Set your own rulesets to calculate the shipping price on Cart & Checkout pages.', 'pleb'),
             __('The first ruleset whose rules all match the shopping cart will be applied to the order.', 'pleb'),
@@ -45,6 +45,10 @@ class RulesShippingMethod extends \WC_Shipping_Method
         ];
 
         $this->form_fields = [
+            [
+                'type'  => 'title',
+			    'title' => __( 'Global settings', 'pleb' ),
+            ],
             'debug_mode' => [
                 'title'       => __('Debug mode', 'pleb'),
                 'type'        => 'checkbox',

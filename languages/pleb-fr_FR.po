@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-05 17:15+0000\n"
+"PO-Revision-Date: 2023-12-05 18:48+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -23,17 +23,17 @@ msgstr ""
 "%s requiert l'installation et l'activation de WooCommerce. Vous pouvez "
 "télécharger %s ici."
 
-#: src/RulesShippingMethod.php:91
+#: src/RulesShippingMethod.php:95
 #, php-format
 msgid "%s: Number of items in cart"
 msgstr "%s : Nombre d'articles dans le panier"
 
-#: src/RulesShippingMethod.php:93
+#: src/RulesShippingMethod.php:97
 #, php-format
 msgid "%s: Percentage based fees"
 msgstr "%s : Supplément basé sur un pourcentage du prix"
 
-#: src/RulesShippingMethod.php:92
+#: src/RulesShippingMethod.php:96
 #, php-format
 msgid "%s: Shopping cart price"
 msgstr "%s : Prix du panier"
@@ -42,7 +42,7 @@ msgstr "%s : Prix du panier"
 msgid "..."
 msgstr "..."
 
-#: src/RulesShippingMethod.php:452
+#: src/RulesShippingMethod.php:462
 msgid "Add default ruleset"
 msgstr "Ajouter un groupe par défaut"
 
@@ -50,7 +50,7 @@ msgstr "Ajouter un groupe par défaut"
 msgid "Add new rule"
 msgstr "Ajouter une règle"
 
-#: src/RulesShippingMethod.php:451
+#: src/RulesShippingMethod.php:459
 msgid "Add new ruleset"
 msgstr "Ajouter un groupe de règles"
 
@@ -59,20 +59,20 @@ msgstr "Ajouter un groupe de règles"
 msgid "Ajax action missing params: %s"
 msgstr "Paramètre manquant dans la requête ajax : %s"
 
-#: src/Models/Rule.php:160
+#: src/Models/Rule.php:147
 msgid "Are you sure to delete this rule?"
 msgstr "Êtes-vous sûr de supprimer cette règle ?"
 
-#: src/Models/Ruleset.php:145
+#: src/Models/Ruleset.php:144
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr "Êtes-vous sûr de supprimer ce groupe de règles ?"
 
-#: src/Models/DefaultRuleset.php:39
+#: src/Models/DefaultRuleset.php:36
 msgid "Are you sure to delete this ruleset?"
 msgstr "Êtes-vous sûr de supprimer ce groupe de règles ?"
 
-#: src/RulesShippingMethod.php:85 src/Models/DefaultRuleset.php:56
-#: src/Models/Ruleset.php:162
+#: src/RulesShippingMethod.php:89 src/Models/DefaultRuleset.php:53
+#: src/Models/Ruleset.php:161
 msgid "Base price"
 msgstr "Tarif de base"
 
@@ -88,23 +88,23 @@ msgstr "Prix du panier"
 msgid "Choose an option"
 msgstr "Choisissez"
 
-#: src/RulesShippingMethod.php:49
+#: src/RulesShippingMethod.php:53
 msgid "Debug mode"
 msgstr "Mode débogage"
 
-#: src/Models/DefaultRuleset.php:24
+#: src/Models/DefaultRuleset.php:21
 msgid "Default"
 msgstr "Par défaut"
 
-#: src/Models/Rule.php:160
+#: src/Models/Rule.php:147
 msgid "Delete"
 msgstr "Supprimer"
 
-#: src/Models/DefaultRuleset.php:39
+#: src/Models/DefaultRuleset.php:36
 msgid "Delete default ruleset"
 msgstr "Supprimer le groupe par défaut"
 
-#: src/Models/Ruleset.php:145
+#: src/Models/Ruleset.php:144
 msgid "Delete ruleset"
 msgstr "Supprimer le groupe"
 
@@ -112,15 +112,15 @@ msgstr "Supprimer le groupe"
 msgid "Docs"
 msgstr "Documentation"
 
-#: src/Models/DefaultRuleset.php:34 src/Models/Ruleset.php:140
+#: src/Models/DefaultRuleset.php:31 src/Models/Ruleset.php:139
 msgid "Edit"
 msgstr "Modifier"
 
-#: src/RulesShippingMethod.php:51
+#: src/RulesShippingMethod.php:55
 msgid "Enable Debug Mode"
 msgstr "Activer le mode de débogage"
 
-#: src/RulesShippingMethod.php:89
+#: src/RulesShippingMethod.php:93
 #, php-format
 msgid ""
 "Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price "
@@ -128,6 +128,10 @@ msgid ""
 msgstr ""
 "Saisissez un prix ou une formule, ex : %s. Les tags seront automatiquement "
 "remplacés dans le calcul."
+
+#: src/RulesShippingMethod.php:50
+msgid "Global settings"
+msgstr "Réglages généraux"
 
 #. URI of the plugin
 msgid "https://github.com/PierreLebedel/WooCommerceShippingRulesets/"
@@ -141,12 +145,12 @@ msgstr "https://www.pierrelebedel.fr"
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr "Créez vos propres règles de calcul de frais d'expédition"
 
-#: src/Models/Ruleset.php:127
+#: src/Models/Ruleset.php:126
 msgid "Move up/down to change ruleset priority"
 msgstr ""
 "Déplacer vers le haut ou le bas pour modifier la priorité du groupe de règles"
 
-#: src/RulesShippingMethod.php:441
+#: src/RulesShippingMethod.php:449
 msgid "No default ruleset yet."
 msgstr "Aucun groupe par défaut pour le moment."
 
@@ -154,7 +158,7 @@ msgstr "Aucun groupe par défaut pour le moment."
 msgid "No rule in this ruleset yet."
 msgstr "Aucune règle dans ce groupe pour le moment."
 
-#: src/RulesShippingMethod.php:428
+#: src/RulesShippingMethod.php:436
 msgid "No ruleset yet."
 msgstr "Aucun groupe de règles pour le moment."
 
@@ -162,11 +166,11 @@ msgstr "Aucun groupe de règles pour le moment."
 msgid "Pierre Lebedel"
 msgstr "Pierre Lebedel"
 
-#: src/Models/Rule.php:156
+#: src/Models/Rule.php:143
 msgid "Please choose the condition"
 msgstr "Veuillez sélectionner la condition"
 
-#: src/Models/DefaultRuleset.php:48 src/Models/Ruleset.php:154
+#: src/Models/DefaultRuleset.php:45 src/Models/Ruleset.php:153
 msgid "Price to apply:"
 msgstr "Tarif à appliquer :"
 
@@ -174,25 +178,21 @@ msgstr "Tarif à appliquer :"
 msgid "Rule"
 msgstr "Règle"
 
-#: src/RulesShippingMethod.php:60
+#: src/RulesShippingMethod.php:64
 msgid "Rules based shipping price"
 msgstr "Tarif d'expédition basé sur des règles"
 
-#: src/Models/Ruleset.php:25 src/Models/Ruleset.php:70
+#: src/Models/Ruleset.php:24 src/Models/Ruleset.php:69
 msgid "Ruleset"
 msgstr "Groupe de règles"
 
-#: src/Models/DefaultRuleset.php:29 src/Models/Ruleset.php:135
+#: src/Models/DefaultRuleset.php:26 src/Models/Ruleset.php:134
 msgid "Ruleset name"
 msgstr "Nom du groupe de règles"
 
-#: src/RulesShippingMethod.php:108
+#: src/RulesShippingMethod.php:112
 msgid "Rulesets"
 msgstr "Groupes de règles"
-
-#: src/RulesShippingMethod.php:32
-msgid "Rulesets based shipping price"
-msgstr "Tarif d'expédition basé sur des règles"
 
 #: src/RulesShippingMethod.php:34
 msgid ""
@@ -202,7 +202,11 @@ msgstr ""
 "Créez vos propres groupes de règles afin de calculer les frais d'expédition "
 "sur les pages de Panier et de Commande."
 
-#: src/Models/DefaultRuleset.php:35 src/Models/Ruleset.php:141
+#: src/RulesShippingMethod.php:32
+msgid "Shipping rulesets"
+msgstr "Groupes de règles d'expédition"
+
+#: src/Models/DefaultRuleset.php:32 src/Models/Ruleset.php:140
 msgid "Stop editing"
 msgstr "Quitter l'édition"
 
@@ -214,7 +218,7 @@ msgstr "Hors-taxes"
 msgid "Tax inclusive"
 msgstr "Taxes incluses"
 
-#: src/RulesShippingMethod.php:37 src/RulesShippingMethod.php:441
+#: src/RulesShippingMethod.php:37 src/RulesShippingMethod.php:449
 msgid ""
 "The default ruleset allows you to apply a rate even if none of rulesets "
 "matches the shopping cart."
@@ -230,7 +234,7 @@ msgstr ""
 "Le tarif du premier groupe de règles à être entièrement satisfait par le "
 "panier d'achat sera appliqué à la commande."
 
-#: src/RulesShippingMethod.php:90
+#: src/RulesShippingMethod.php:94
 msgid ""
 "This base price will be added to the price of the group matching with the "
 "shopping cart."
@@ -253,13 +257,13 @@ msgstr "Action inconnue dans la requête ajax : %s"
 
 #. Name of the plugin
 msgid "WooCommerce Shipping Rulesets"
-msgstr ""
+msgstr "WooCommerce Shipping Rulesets"
 
-#: src/Models/DefaultRuleset.php:55 src/Models/Ruleset.php:161
+#: src/Models/DefaultRuleset.php:52 src/Models/Ruleset.php:160
 #, php-format
 msgid "Works the same as %s setting field"
 msgstr "Fonctionne pareil que le champ de réglages %s"
 
-#: src/RulesShippingMethod.php:96
+#: src/RulesShippingMethod.php:100
 msgid "Works the same as WooCommerce Flat Rate"
 msgstr "Fonctionne pareil que le mode d’expédition Forfait de WooCommerce"

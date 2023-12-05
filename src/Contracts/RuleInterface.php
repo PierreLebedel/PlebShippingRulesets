@@ -16,8 +16,6 @@ interface RuleInterface
 
     public function getConditionComparator(): ?string;
 
-    public function setConditionValue(?string $value): self;
-
     public function getConditionValue(): ?string;
 
     public function htmlRender(string $fieldKey): string;

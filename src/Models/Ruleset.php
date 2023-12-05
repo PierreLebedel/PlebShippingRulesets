@@ -110,7 +110,7 @@ class Ruleset implements RulesetInterface
 
     public function isDefault(): bool
     {
-        return $this->order == 'default';
+        return $this->getOrder() == 'default';
     }
 
     public function htmlRender(string $fieldKey): string
