@@ -15,4 +15,4 @@ vendor/
 composer.lock
 
 # Plugin dist
-svn
+svn/

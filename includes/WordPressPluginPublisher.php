@@ -83,10 +83,13 @@ class WordPressPluginPublisher
             'composer.lock',
             'LICENSE',
             'README.md',
-            'assets'
+            'assets',
         ] );
 
-        copy_dir( './assets', $pluginAssetsDir);
+        copy_dir( './assets', $pluginAssetsDir, [
+            'icon.psd',
+            'banner.psd',
+        ]);
 
         $instance = self::instance();
         $plugin = $instance->getPlugin();
