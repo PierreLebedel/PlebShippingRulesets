@@ -34,8 +34,8 @@
     </td>
     <td class="w-100">
         <?php echo $condition->getInputHtml(
-    $fieldKey.'['.$this->getId().'][condition_value]',
-    $this->getConditionValue()
+	$fieldKey.'['.$this->getId().'][condition_value]',
+	$this->getConditionValue()
 ); ?>
     </td>
     <?php else : ?>
@@ -44,6 +44,6 @@
     </td>
     <?php endif; ?>
     <td class="w-auto">
-        <a href="#" class="delete pleb_rule_delete" data-rule_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this rule?", 'pleb'); ?>" style="font-size:11px;"><nobr><?php esc_attr_e("Delete", 'pleb'); ?></nobr></a>
+        <a href="#" class="delete pleb_rule_delete" data-rule_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this rule?", 'pleb'); ?>" style="font-size:13px;"><nobr><?php esc_attr_e("Delete", 'pleb'); ?></nobr></a>
     </td>
 </tr>

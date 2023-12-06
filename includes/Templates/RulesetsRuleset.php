@@ -16,18 +16,12 @@
         </div>
         
         <div class="handle-actions" style="padding-right:12px;">
-            <button class="button button-small pleb_edit_ruleset_button">
+            <button class="button pleb_edit_ruleset_button">
                 <span class="button_dynamic_action"><?php _e("Edit", 'pleb'); ?></span>
                 <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
             </button>
 
-            <button class="button button-small pleb_duplicate_ruleset_button" data-ruleset_id="<?php echo $this->getId(); ?>">
-                <?php _e("Duplicate", 'pleb'); ?>
-            </button>
-
-            <div class="plugins" style="float:right;padding-top:5px;padding-left:5px;">
-                <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>" style="text-decoration:none;font-size:11px;"><?php _e("Delete ruleset", 'pleb'); ?></a>
-            </div>
+            
             
         </div>
     </div>
@@ -41,8 +35,8 @@
         <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb'); ?>" />
 
         <?php echo wc_help_tip(sprintf(
-    __("Works the same as %s setting field", 'pleb'),
-    '<b>'.__('Base price', 'pleb').'</b>'
+	__("Works the same as %s setting field", 'pleb'),
+	'<b>'.__('Base price', 'pleb').'</b>'
 ), true); ?>
 
     </div>
@@ -64,8 +58,22 @@
                 <?php echo $rule->htmlRender($fieldKey.'['.$this->getId().'][rules]');?>
             <?php endforeach; ?>
         </table>
+
+        <div style="display:flex;align-items:center;justify-content:space-between">
+            <button type="button" class="button pleb_ruleset_add_rule_button" data-field_key="<?php echo $fieldKey.'['.$this->getId().'][rules]'; ?>"><?php _e("Add new rule", 'pleb'); ?></button>
+
+            <div>
+                <button class="button pleb_duplicate_ruleset_button" data-ruleset_id="<?php echo $this->getId(); ?>">
+                    <?php _e("Duplicate", 'pleb'); ?>
+                </button>
+
+                <div class="plugins" style="float:right;padding-top:6px;padding-left:5px;">
+                    <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>" style="text-decoration:none;font-size:13px;"><?php _e("Delete", 'pleb'); ?></a>
+                </div>
+            </div>
+        </div>
         
-        <button type="button" class="button pleb_ruleset_add_rule_button" data-field_key="<?php echo $fieldKey.'['.$this->getId().'][rules]'; ?>"><?php _e("Add new rule", 'pleb'); ?></button>
+        
 
     </div>
 </div>

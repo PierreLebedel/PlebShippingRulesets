@@ -7,13 +7,12 @@ use WP_Filesystem_Direct;
 
 class WordPressPluginPublisher
 {
-
     private static $instance = null;
 
     private $plugin;
 
     private static function instance(): self
-	{
+    {
 		if (null === self::$instance) {
             require_once(dirname(__FILE__, 5).'/wp-config.php');
             require_once(dirname(__FILE__, 5).'/wp-includes/functions.php');
@@ -43,12 +42,12 @@ class WordPressPluginPublisher
     {
         require_once(dirname(__FILE__, 5).'/wp-config.php');
         require_once(dirname(__FILE__, 5).'/wp-admin/includes/file.php');
-        require_once ( ABSPATH . 'wp-admin/includes/class-wp-filesystem-base.php' );
-        require_once ( ABSPATH . 'wp-admin/includes/class-wp-filesystem-direct.php' );
+        require_once(ABSPATH.'wp-admin/includes/class-wp-filesystem-base.php');
+        require_once(ABSPATH.'wp-admin/includes/class-wp-filesystem-direct.php');
 
         $fileSystemDirect = new WP_Filesystem_Direct(false);
 
-        if ( ! WP_Filesystem() ) {
+        if (!WP_Filesystem()) {
             die('Unable to connect to thefilesystem');
         }
 
@@ -71,7 +70,7 @@ class WordPressPluginPublisher
         mkdir($pluginTrunkDir, 0777, true);
         mkdir($pluginAssetsDir, 0777, true);
 
-        copy_dir( './', $pluginTrunkDir, [
+        copy_dir('./', $pluginTrunkDir, [
             'svn',
             'vendor',
             'docs',
@@ -85,16 +84,16 @@ class WordPressPluginPublisher
             'README.md',
             'assets',
             'loco.xml',
-        ] );
+        ]);
 
-        copy_dir( './assets', $pluginAssetsDir, [
+        copy_dir('./assets', $pluginAssetsDir, [
             'icon.psd',
             'banner.psd',
         ]);
 
         $instance = self::instance();
         $plugin = $instance->getPlugin();
-    
+
         $readmeContentArray = [
             "=== ".$plugin->getPluginData('Name')." ===",
             "Plugin URI: ".$plugin->getPluginData('PluginURI'),
@@ -117,14 +116,14 @@ class WordPressPluginPublisher
         ];
 
         $faq = [
-            "Can I override a rule to make my own WooCommerce cart comparaison?" => "Yes, you can use WordPress filters to add your own RuleCondition, that determines if the shopping cart allows this shipping method (and price). See docs for more infos."
+            "Can I override a rule to make my own WooCommerce cart comparaison?" => "Yes, you can use WordPress filters to add your own RuleCondition, that determines if the shopping cart allows this shipping method (and price). See docs for more infos.",
         ];
 
-        if(!empty($faq)){
+        if(!empty($faq)) {
             $readmeContentArray[] = "";
             $readmeContentArray[] = "== Frequently Asked Questions ==";
 
-            foreach($faq as $q=>$a){
+            foreach($faq as $q => $a) {
                 $readmeContentArray[] = "";
                 $readmeContentArray[] = "= ".$q." =";
                 $readmeContentArray[] = "";
@@ -136,12 +135,12 @@ class WordPressPluginPublisher
 			//'1' => __("Screenshot #1 description", 'pleb'),
 		];
 
-        if(!empty($screenshots)){
+        if(!empty($screenshots)) {
             $readmeContentArray[] = "";
             $readmeContentArray[] = "== Screenshots ==";
             $readmeContentArray[] = "";
-            
-            foreach($screenshots as $filename => $description){
+
+            foreach($screenshots as $filename => $description) {
                 $filenameWithoutDecoration = str_replace(['screenshot-', '.png', '.jpg'], [], $filename);
                 $filenameNumber = intval($filenameWithoutDecoration);
                 $readmeContentArray[] = $filenameNumber.". ".$description;
@@ -163,27 +162,27 @@ class WordPressPluginPublisher
                 'Changed'  => [],
                 'Fixed'    => [
                     "Test 1",
-                    'Test 2'
+                    'Test 2',
                 ],
                 '' => [
-                    "First relase"
-                ]
+                    "First relase",
+                ],
             ],
         ];
 
-        if(!empty($versionsChanges)){
+        if(!empty($versionsChanges)) {
             $readmeContentArray[] = "";
             $readmeContentArray[] = "== Changelog ==";
             krsort($versionsChanges);
-            foreach($versionsChanges as $version=>$changesTypes){
+            foreach($versionsChanges as $version => $changesTypes) {
                 $readmeContentArray[] = "";
                 $readmeContentArray[] = "= ".$version." =";
-                foreach($changesTypes as $changesType=>$changes){
-                    foreach($changes as $change){
+                foreach($changesTypes as $changesType => $changes) {
+                    foreach($changes as $change) {
                         $row = '';
-                        if(empty($changesType)){
+                        if(empty($changesType)) {
                             $row .= "* ".$change.";";
-                        }else{
+                        } else {
                             $row .= "* ".$changesType.": ".$change.";";
                         }
                         $readmeContentArray[] = $row;
@@ -196,17 +195,17 @@ class WordPressPluginPublisher
             '1.0' => "Keep this plugin updated to access future rule types",
         ];
 
-        if(!empty($upgradeNotices)){
+        if(!empty($upgradeNotices)) {
             $readmeContentArray[] = "";
             $readmeContentArray[] = "== Upgrade Notice ==";
 
             krsort($upgradeNotices);
-            foreach($upgradeNotices as $version=>$notice){
+            foreach($upgradeNotices as $version => $notice) {
                 $readmeContentArray[] = "";
                 $readmeContentArray[] = "= ".$version." =";
                 $readmeContentArray[] = $notice;
             }
-            
+
         }
 
         $readmeContent = implode(PHP_EOL, $readmeContentArray);
@@ -215,7 +214,7 @@ class WordPressPluginPublisher
 
     }
 
-    
 
-    
+
+
 }

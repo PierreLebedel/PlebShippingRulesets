@@ -70,13 +70,13 @@ class WordPressPlugin
 
 	public function getPluginData(string $dataName, string $default = '')
 	{
-		if(is_null($this->pluginData)){
+		if(is_null($this->pluginData)) {
 			if (!function_exists('get_plugin_data')) {
 				require_once(ABSPATH.'wp-admin/includes/plugin.php');
 			}
 			$this->pluginData = \get_plugin_data($this->mainFile, false, false);
 		}
-		if(array_key_exists($dataName, $this->pluginData)){
+		if(array_key_exists($dataName, $this->pluginData)) {
 			return $this->pluginData[$dataName];
 		}
 		return $default;
@@ -143,11 +143,11 @@ class WordPressPlugin
 				'ajax_url' => admin_url('admin-ajax.php'),
 				'shipping_method' => [
 					'plugin_id' => 'plebwcsr_',
-					'method_id' => 'pleb_rulesets_method'
+					'method_id' => 'pleb_rulesets_method',
 				],
 				'translations' => [
 					'loading' => __("Loading...", 'pleb'),
-				]
+				],
 			]
 		);
 	}
@@ -177,7 +177,7 @@ class WordPressPlugin
 	public static function publish($event)
 	{
 		$vendorDir = $event->getComposer()->getConfig()->get('vendor-dir');
-        require_once($vendorDir . '/autoload.php');
+        require_once($vendorDir.'/autoload.php');
 
 		$pluginDir = './wp-plugin';
 
@@ -187,7 +187,7 @@ class WordPressPlugin
 
 		mkdir($pluginDir, 0777, true);
 
-		
+
 		WordPressPluginPublisher::publish();
 	}
 }

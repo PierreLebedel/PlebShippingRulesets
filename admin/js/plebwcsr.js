@@ -125,10 +125,10 @@ jQuery(function ( $ ) {
         $wrapper.find('.pleb_input_wrapper').toggle();
         $button.find('.button_dynamic_action').toggle();
 
-        const titleVal = $wrapper.find('h2').text().trim();
+        const titleVal = $wrapper.find('h2 > span').text().trim();
         const inputVal = $wrapper.find('.pleb_input_wrapper input').val();
         if($wrapper.find('h2').is(':visible')){
-            $wrapper.find('h2').text(inputVal);
+            $wrapper.find('h2 > span').text(inputVal);
         }else{
             $wrapper.find('.pleb_input_wrapper input').val(titleVal);
         }

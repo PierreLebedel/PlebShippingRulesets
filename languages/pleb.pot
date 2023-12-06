@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 17:18+0000\n"
+"POT-Creation-Date: 2023-12-06 17:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,141 +16,110 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: includes/WordPressPlugin.php:109 svn/trunk/includes/WordPressPlugin.php:108
+#: includes/WordPressPlugin.php:109
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
 #: includes/RulesShippingMethod.php:93
-#: svn/trunk/includes/RulesShippingMethod.php:95
 #, php-format
 msgid "%s: Number of items in cart"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:95
-#: svn/trunk/includes/RulesShippingMethod.php:97
 #, php-format
 msgid "%s: Percentage based fees"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:94
-#: svn/trunk/includes/RulesShippingMethod.php:96
 #, php-format
 msgid "%s: Shopping cart price"
 msgstr ""
 
 #: includes/Templates/RulesetsRulesetRule.php:26
-#: svn/trunk/includes/Models/Rule.php:126
 msgid "..."
 msgstr ""
 
 #: includes/Templates/Rulesets.php:40
-#: svn/trunk/includes/RulesShippingMethod.php:459
 msgid "Add default ruleset"
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:68
-#: svn/trunk/includes/Models/Ruleset.php:183
+#: includes/Templates/RulesetsRuleset.php:63
 msgid "Add new rule"
 msgstr ""
 
 #: includes/Templates/Rulesets.php:37
-#: svn/trunk/includes/RulesShippingMethod.php:456
 msgid "Add new ruleset"
 msgstr ""
 
-#: includes/AjaxAction.php:40 svn/trunk/includes/AjaxAction.php:40
+#: includes/AjaxAction.php:40
 #, php-format
 msgid "Ajax action missing params: %s"
 msgstr ""
 
+#: includes/Templates/RulesetsDefaultRuleset.php:23
+msgid "Are you sure to delete default ruleset?"
+msgstr ""
+
 #: includes/Templates/RulesetsRulesetRule.php:47
-#: svn/trunk/includes/Models/Rule.php:147
 msgid "Are you sure to delete this rule?"
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:29
-#: svn/trunk/includes/Models/Ruleset.php:144
+#: includes/Templates/RulesetsRuleset.php:71
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr ""
 
-#: includes/Templates/RulesetsDefaultRuleset.php:24
-#: svn/trunk/includes/Models/DefaultRuleset.php:36
-msgid "Are you sure to delete this ruleset?"
-msgstr ""
-
 #: includes/RulesShippingMethod.php:87
-#: includes/Templates/RulesetsDefaultRuleset.php:41
-#: includes/Templates/RulesetsRuleset.php:45
-#: svn/trunk/includes/RulesShippingMethod.php:89
-#: svn/trunk/includes/Models/DefaultRuleset.php:53
-#: svn/trunk/includes/Models/Ruleset.php:160
+#: includes/Templates/RulesetsDefaultRuleset.php:40
+#: includes/Templates/RulesetsRuleset.php:39
 msgid "Base price"
 msgstr ""
 
 #: includes/Models/RuleConditions/RuleConditionCartItemCount.php:18
-#: svn/trunk/includes/Models/RuleConditions/RuleConditionCartItemCount.php:18
 msgid "Cart item quantity"
 msgstr ""
 
 #: includes/Models/RuleConditions/RuleConditionCartPrice.php:18
-#: svn/trunk/includes/Models/RuleConditions/RuleConditionCartPrice.php:18
 msgid "Cart price"
 msgstr ""
 
 #: includes/Templates/RulesetsRulesetRule.php:7
-#: svn/trunk/includes/Models/Rule.php:107
 msgid "Choose an option"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:51
-#: svn/trunk/includes/RulesShippingMethod.php:53
 msgid "Debug mode"
 msgstr ""
 
 #: includes/Templates/RulesetsDefaultRuleset.php:9
-#: svn/trunk/includes/Models/DefaultRuleset.php:21
 msgid "Default"
 msgstr ""
 
+#: includes/Templates/RulesetsDefaultRuleset.php:23
+#: includes/Templates/RulesetsRuleset.php:71
 #: includes/Templates/RulesetsRulesetRule.php:47
-#: svn/trunk/includes/Models/Rule.php:147
 msgid "Delete"
 msgstr ""
 
-#: includes/Templates/RulesetsDefaultRuleset.php:24
-#: svn/trunk/includes/Models/DefaultRuleset.php:36
-msgid "Delete default ruleset"
-msgstr ""
-
-#: includes/Templates/RulesetsRuleset.php:29
-#: svn/trunk/includes/Models/Ruleset.php:144
-msgid "Delete ruleset"
-msgstr ""
-
-#: includes/WordPressPlugin.php:171 svn/trunk/includes/WordPressPlugin.php:167
+#: includes/WordPressPlugin.php:171
 msgid "Docs"
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:25
+#: includes/Templates/RulesetsRuleset.php:67
 msgid "Duplicate"
 msgstr ""
 
-#: includes/Templates/RulesetsDefaultRuleset.php:19
+#: includes/Templates/RulesetsDefaultRuleset.php:18
 #: includes/Templates/RulesetsRuleset.php:20
-#: svn/trunk/includes/Models/DefaultRuleset.php:31
-#: svn/trunk/includes/Models/Ruleset.php:139
 msgid "Edit"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:53
-#: svn/trunk/includes/RulesShippingMethod.php:55
 msgid "Enable Debug Mode"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:91
-#: svn/trunk/includes/RulesShippingMethod.php:93
 #, php-format
 msgid ""
 "Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price "
@@ -158,7 +127,6 @@ msgid ""
 msgstr ""
 
 #: includes/RulesShippingMethod.php:48
-#: svn/trunk/includes/RulesShippingMethod.php:50
 msgid "Global settings"
 msgstr ""
 
@@ -179,22 +147,18 @@ msgid "Make your own rulesets to calculate shipping rates"
 msgstr ""
 
 #: includes/Templates/RulesetsRuleset.php:7
-#: svn/trunk/includes/Models/Ruleset.php:126
 msgid "Move up/down to change ruleset priority"
 msgstr ""
 
 #: includes/Templates/Rulesets.php:27
-#: svn/trunk/includes/RulesShippingMethod.php:446
 msgid "No default ruleset yet."
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:57
-#: svn/trunk/includes/Models/Ruleset.php:172
+#: includes/Templates/RulesetsRuleset.php:51
 msgid "No rule in this ruleset yet."
 msgstr ""
 
 #: includes/Templates/Rulesets.php:14
-#: svn/trunk/includes/RulesShippingMethod.php:433
 msgid "No ruleset yet."
 msgstr ""
 
@@ -203,14 +167,11 @@ msgid "Pierre Lebedel"
 msgstr ""
 
 #: includes/Templates/RulesetsRulesetRule.php:43
-#: svn/trunk/includes/Models/Rule.php:143
 msgid "Please choose the condition"
 msgstr ""
 
-#: includes/Templates/RulesetsDefaultRuleset.php:33
-#: includes/Templates/RulesetsRuleset.php:38
-#: svn/trunk/includes/Models/DefaultRuleset.php:45
-#: svn/trunk/includes/Models/Ruleset.php:153
+#: includes/Templates/RulesetsDefaultRuleset.php:32
+#: includes/Templates/RulesetsRuleset.php:32
 msgid "Price to apply:"
 msgstr ""
 
@@ -223,92 +184,74 @@ msgid "Replace method title?"
 msgstr ""
 
 #: includes/Templates/RulesetsRulesetRule.php:3
-#: svn/trunk/includes/Models/Rule.php:103
 msgid "Rule"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:62
-#: svn/trunk/includes/RulesShippingMethod.php:64
 msgid "Rules based shipping price"
 msgstr ""
 
 #: includes/Models/Ruleset.php:24 includes/Models/Ruleset.php:74
-#: svn/trunk/includes/Models/Ruleset.php:24
-#: svn/trunk/includes/Models/Ruleset.php:69
 msgid "Ruleset"
 msgstr ""
 
-#: includes/Templates/RulesetsDefaultRuleset.php:14
+#: includes/Templates/RulesetsDefaultRuleset.php:13
 #: includes/Templates/RulesetsRuleset.php:15
-#: svn/trunk/includes/Models/DefaultRuleset.php:26
-#: svn/trunk/includes/Models/Ruleset.php:134
 msgid "Ruleset name"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:110
-#: svn/trunk/includes/RulesShippingMethod.php:112
 msgid "Rulesets"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:32
-#: svn/trunk/includes/RulesShippingMethod.php:34
 msgid ""
 "Set your own rulesets to calculate the shipping price on Cart & Checkout "
 "pages."
 msgstr ""
 
 #: includes/RulesShippingMethod.php:30
-#: svn/trunk/includes/RulesShippingMethod.php:32
 msgid "Shipping rulesets"
 msgstr ""
 
-#: includes/Templates/RulesetsDefaultRuleset.php:20
+#: includes/Templates/RulesetsDefaultRuleset.php:19
 #: includes/Templates/RulesetsRuleset.php:21
-#: svn/trunk/includes/Models/DefaultRuleset.php:32
-#: svn/trunk/includes/Models/Ruleset.php:140
 msgid "Stop editing"
 msgstr ""
 
 #: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
-#: svn/trunk/includes/Models/RuleConditions/RuleConditionCartPrice.php:24
 msgid "Tax exclusive"
 msgstr ""
 
 #: includes/Models/RuleConditions/RuleConditionCartPrice.php:25
-#: svn/trunk/includes/Models/RuleConditions/RuleConditionCartPrice.php:25
 msgid "Tax inclusive"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:35 includes/Templates/Rulesets.php:27
-#: svn/trunk/includes/RulesShippingMethod.php:37
-#: svn/trunk/includes/RulesShippingMethod.php:446
 msgid ""
 "The default ruleset allows you to apply a rate even if none of rulesets "
 "matches the shopping cart."
 msgstr ""
 
 #: includes/RulesShippingMethod.php:33
-#: svn/trunk/includes/RulesShippingMethod.php:35
 msgid ""
 "The first ruleset whose rules all match the shopping cart will be applied to "
 "the order."
 msgstr ""
 
 #: includes/RulesShippingMethod.php:92
-#: svn/trunk/includes/RulesShippingMethod.php:94
 msgid ""
 "This base price will be added to the price of the group matching with the "
 "shopping cart."
 msgstr ""
 
 #: includes/RulesShippingMethod.php:34
-#: svn/trunk/includes/RulesShippingMethod.php:36
 msgid ""
 "This shipping method will not be available if the cart don't satisfies "
 "entirely none of rulesets."
 msgstr ""
 
-#: includes/AjaxAction.php:20 svn/trunk/includes/AjaxAction.php:20
+#: includes/AjaxAction.php:20
 #, php-format
 msgid "Unknown ajax action: %s"
 msgstr ""
@@ -317,15 +260,12 @@ msgstr ""
 msgid "WooCommerce Shipping Rulesets"
 msgstr ""
 
-#: includes/Templates/RulesetsDefaultRuleset.php:40
-#: includes/Templates/RulesetsRuleset.php:44
-#: svn/trunk/includes/Models/DefaultRuleset.php:52
-#: svn/trunk/includes/Models/Ruleset.php:159
+#: includes/Templates/RulesetsDefaultRuleset.php:39
+#: includes/Templates/RulesetsRuleset.php:38
 #, php-format
 msgid "Works the same as %s setting field"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:98
-#: svn/trunk/includes/RulesShippingMethod.php:100
 msgid "Works the same as WooCommerce Flat Rate"
 msgstr ""

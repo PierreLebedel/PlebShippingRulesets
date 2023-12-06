@@ -98,14 +98,14 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb'),
 				'sanitize_callback' => [$this, 'sanitize_cost'],
 			],
-			'replace_method_title' => array(
-				'title'       => __( 'Replace method title?', 'pleb' ),
-				'label'       => __( 'Replace method title by matching ruleset name in the shopping cart?', 'pleb' ),
+			'replace_method_title' => [
+				'title'       => __('Replace method title?', 'pleb'),
+				'label'       => __('Replace method title by matching ruleset name in the shopping cart?', 'pleb'),
 				'type'        => 'checkbox',
-				'description' => __("", 'pleb' ),
+				'description' => __("", 'pleb'),
 				'default'     => 'no',
 				'desc_tip'    => false,
-			),
+			],
 			'rulesets'       => [
 				'title'             => __('Rulesets', 'pleb'),
 				'type'              => 'pleb_rulesets',
@@ -327,7 +327,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 		if ($orderMatchingRuleset) {
 			$this->addDebugRow('Matching ruleset found : '.$orderMatchingRuleset->getName().($orderMatchingRuleset->isDefault() ? ' (default)' : ''));
-			if( $this->do_replace_method_title() ){
+			if($this->do_replace_method_title()) {
 				$rate['label'] = $orderMatchingRuleset->getName();
 			}
 			if ($orderMatchingRuleset->getCost() !== '') {
