@@ -14,6 +14,8 @@ interface RuleInterface
 
 	public function getCondition(): ?RuleConditionInterface;
 
+	public function getConditionVariant(): ?string;
+
 	public function getConditionComparator(): ?string;
 
 	public function getConditionValue(): ?string;

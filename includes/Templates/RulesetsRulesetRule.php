@@ -1,4 +1,4 @@
-<tr class="pleb_rule inactive" data-field_key="<?php echo esc_attr($fieldKey); ?>" data-rule_id="<?php echo $this->getId(); ?>">
+<tr class="pleb_rule active" data-field_key="<?php echo esc_attr($fieldKey); ?>" data-rule_id="<?php echo $this->getId(); ?>">
     <td>
         <!-- <strong><?php _e("Rule", 'pleb'); ?> #<?php echo $this->getId(); ?></strong> -->
         <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">

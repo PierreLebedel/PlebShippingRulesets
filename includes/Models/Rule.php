@@ -70,6 +70,22 @@ class Rule implements RuleInterface
 		return RuleCondition::find($this->condition_id);
 	}
 
+	public function getConditionVariant(): ?string
+	{
+		$variant = null;
+
+		$conditionId = $this->getConditionId();
+		if ($conditionId && str_contains($conditionId, ':')) {
+			$idParts = explode(':', $conditionId);
+			if (count($idParts) >= 2) {
+				$id = $idParts[0];
+				$variant = $idParts[1];
+			}
+		}
+
+		return $variant;
+	}
+
 	public function setConditionComparator(?string $conditionComparator): self
 	{
 		$condition = $this->getCondition();

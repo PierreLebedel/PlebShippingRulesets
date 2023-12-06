@@ -75,6 +75,7 @@ abstract class RuleCondition implements RuleConditionInterface
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
 	{
+		//$method = new RulesShippingMethod($methodInstanceId);
 		return false;
 	}
 }
