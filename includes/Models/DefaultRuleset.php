@@ -4,13 +4,13 @@ namespace PlebWooCommerceShippingRulesets\Models;
 
 class DefaultRuleset extends Ruleset
 {
-    protected $order = 'default';
+	protected $order = 'default';
 
-    public function htmlRender(string $fieldKey): string
-    {
-        ob_start();
+	public function htmlRender(string $fieldKey): string
+	{
+		ob_start();
 
-        ?><div class="postbox pleb_ruleset" style="margin-bottom:15px;">
+		?><div class="postbox pleb_ruleset" style="margin-bottom:15px;">
 
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">
             <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="default">
@@ -58,12 +58,11 @@ class DefaultRuleset extends Ruleset
             </div>
         </div><?php
 
-                return ob_get_clean();
-    }
+        return ob_get_clean();
+	}
 
-    public function matchToWooCommercePackageArray(array $package = [], int $methodInstanceId = 0): bool
-    {
-        return true;
-    }
-
+	public function matchToWooCommercePackageArray(array $package = [], int $methodInstanceId = 0): bool
+	{
+		return true;
+	}
 }

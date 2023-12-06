@@ -35,10 +35,7 @@ class CustomRuleCondition extends RuleCondition
 
 	public function getComparators(): array
 	{
-		return [
-			'=',
-			'!='
-		];
+		return ['=', '!='];
 	}
 
 	public function getInputHtml(string $fieldName, mixed $value): string

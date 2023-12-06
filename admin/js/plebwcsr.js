@@ -1,29 +1,30 @@
-jQuery( function( $ ) {
+jQuery(function ( $ ) {
 
     //console.log(pleb);
 
-    const shipping_method_fields_prefix = pleb.shipping_method.plugin_id+pleb.shipping_method.method_id+'_';
+    const shipping_method_fields_prefix = pleb.shipping_method.plugin_id + pleb.shipping_method.method_id + '_';
 
-    function plebRulesetsShippingMethodShowHideTaxIncludeField( el ) {
-        var form = $( el ).closest( 'form' );
-        var taxIncludeField = $( '#'+shipping_method_fields_prefix+'prices_include_tax', form ).closest( 'tr' );
-        if ( 'none' === $( el ).val() || '' === $( el ).val() ) {
+    function plebRulesetsShippingMethodShowHideTaxIncludeField( el )
+    {
+        var form = $(el).closest('form');
+        var taxIncludeField = $('#' + shipping_method_fields_prefix + 'prices_include_tax', form).closest('tr');
+        if ( 'none' === $(el).val() || '' === $(el).val() ) {
             taxIncludeField.hide();
         } else {
             taxIncludeField.show();
         }
     }
 
-    $( document.body ).on( 'change', '#'+shipping_method_fields_prefix+'tax_status', function() {
-        plebRulesetsShippingMethodShowHideTaxIncludeField( this );
+    $(document.body).on('change', '#' + shipping_method_fields_prefix + 'tax_status', function () {
+        plebRulesetsShippingMethodShowHideTaxIncludeField(this);
     });
 
-    $( '#'+shipping_method_fields_prefix+'tax_status' ).trigger( 'change' );
-    $( document.body ).on( 'wc_backbone_modal_loaded', function( evt, target ) {
+    $('#' + shipping_method_fields_prefix + 'tax_status').trigger('change');
+    $(document.body).on('wc_backbone_modal_loaded', function ( evt, target ) {
         if ( 'wc-modal-shipping-method-settings' === target ) {
-            plebRulesetsShippingMethodShowHideTaxIncludeField( $( '#wc-backbone-modal-dialog #'+shipping_method_fields_prefix+'tax_status', evt.currentTarget ) );
+            plebRulesetsShippingMethodShowHideTaxIncludeField($('#wc-backbone-modal-dialog #' + shipping_method_fields_prefix + 'tax_status', evt.currentTarget));
         }
-    } );
+    });
 
 
     $('#pleb_rulesets').sortable({
@@ -32,18 +33,18 @@ jQuery( function( $ ) {
         cursor: 'move',
         handle: '.hndle',
         items: '> .pleb_ruleset',
-        update: function(event, ui){
-            $('#pleb_rulesets > .pleb_ruleset').each(function(index, elem){
-                $(elem).find('input[name^="'+shipping_method_fields_prefix+'rulesets"][name$="[order]"]').val(index+1);
+        update: function (event, ui) {
+            $('#pleb_rulesets > .pleb_ruleset').each(function (index, elem) {
+                $(elem).find('input[name^="' + shipping_method_fields_prefix + 'rulesets"][name$="[order]"]').val(index + 1);
             });
         }
     });
 
-    $(document.body).on('click', '#pleb_ruleset_add_button', function(e){
+    $(document.body).on('click', '#pleb_ruleset_add_button', function (e) {
         e.preventDefault();
         const $button = $(this);
         const field_key = $button.attr('data-field_key');
-        if(!field_key){
+        if (!field_key) {
             alert("Field key is missing");
             return false;
         }
@@ -54,7 +55,7 @@ jQuery( function( $ ) {
                 action: 'pleb_ruleset_template',
                 field_key: field_key
             },
-            success: function(response){
+            success: function (response) {
                 $('#pleb_rulesets').append(response);
                 showHideNoRulesetNotice();
 
@@ -63,11 +64,11 @@ jQuery( function( $ ) {
         });
     });
 
-    $(document.body).on('click', '#pleb_ruleset_add_default_button', function(e){
+    $(document.body).on('click', '#pleb_ruleset_add_default_button', function (e) {
         e.preventDefault();
         const $button = $(this);
         const field_key = $button.attr('data-field_key');
-        if(!field_key){
+        if (!field_key) {
             alert("Field key is missing");
             return false;
         }
@@ -78,7 +79,7 @@ jQuery( function( $ ) {
                 action: 'pleb_ruleset_default_template',
                 field_key: field_key
             },
-            success: function(response){
+            success: function (response) {
 
                 $('#pleb_ruleset_default_wrapper').html(response);
 
@@ -89,12 +90,12 @@ jQuery( function( $ ) {
         $button.hide();
     });
 
-    $(document.body).on('click', '.pleb_ruleset_add_rule_button', function(e){
+    $(document.body).on('click', '.pleb_ruleset_add_rule_button', function (e) {
         e.preventDefault();
         const $button = $(this);
         const field_key = $button.attr('data-field_key');
         const $ruleset = $button.parents('.pleb_ruleset');
-        if(!field_key){
+        if (!field_key) {
             alert("Field key is missing");
             return false;
         }
@@ -105,7 +106,7 @@ jQuery( function( $ ) {
                 action: 'pleb_ruleset_rule_template',
                 field_key: field_key
             },
-            success: function(response){
+            success: function (response) {
                 $ruleset.find('.pleb_no_ruleset_rule_notice').hide();
                 $ruleset.find('.ruleset_rules').show();
                 $ruleset.find('.ruleset_rules').append(response);
@@ -115,7 +116,7 @@ jQuery( function( $ ) {
         });
     });
 
-    $(document.body).on('click', '.pleb_edit_ruleset_button', function(e){
+    $(document.body).on('click', '.pleb_edit_ruleset_button', function (e) {
         e.preventDefault();
         const $button = $(this);
         const $wrapper = $button.parents('.pleb_title_input_wrapper');
@@ -127,27 +128,27 @@ jQuery( function( $ ) {
 
     function showHideNoRulesetNotice()
     {
-        if( $('#pleb_rulesets .pleb_ruleset').length==0 && $('#pleb_ruleset_default_wrapper .pleb_ruleset').length==0 ){
+        if ( $('#pleb_rulesets .pleb_ruleset').length == 0 && $('#pleb_ruleset_default_wrapper .pleb_ruleset').length == 0 ) {
             $('#pleb_no_ruleset_notice').show();
-        }else{
+        } else {
             $('#pleb_no_ruleset_notice').hide();
         }
 
         console.log($('#pleb_ruleset_default_wrapper .pleb_ruleset').length);
-        if( $('#pleb_ruleset_default_wrapper .pleb_ruleset').length==0 ){
+        if ( $('#pleb_ruleset_default_wrapper .pleb_ruleset').length == 0 ) {
             $('#pleb_no_ruleset_default_notice').show();
-        }else{
+        } else {
             $('#pleb_no_ruleset_default_notice').hide();
         }
     }
 
-    $(document.body).on('click', '.pleb_ruleset_delete[data-ruleset_id][data-confirm]', function(e){
+    $(document.body).on('click', '.pleb_ruleset_delete[data-ruleset_id][data-confirm]', function (e) {
         e.preventDefault();
         const $button = $(this);
         const $ruleset = $button.parents('.pleb_ruleset');
 
-        if( confirm( $button.attr('data-confirm') ) ){
-            $ruleset.slideUp(300, function(){
+        if ( confirm($button.attr('data-confirm')) ) {
+            $ruleset.slideUp(300, function () {
                 $ruleset.remove();
 
                 showHideNoRulesetNotice();
@@ -156,13 +157,13 @@ jQuery( function( $ ) {
 
     });
 
-    $(document.body).on('click', '.pleb_ruleset_default_delete[data-confirm]', function(e){
+    $(document.body).on('click', '.pleb_ruleset_default_delete[data-confirm]', function (e) {
         e.preventDefault();
         const $button = $(this);
         const $ruleset = $button.parents('.pleb_ruleset');
 
-        if( confirm( $button.attr('data-confirm') ) ){
-            $ruleset.slideUp(300, function(){
+        if ( confirm($button.attr('data-confirm')) ) {
+            $ruleset.slideUp(300, function () {
                 $ruleset.remove();
 
                 $('#pleb_ruleset_add_default_button').show();
@@ -173,20 +174,20 @@ jQuery( function( $ ) {
 
     });
 
-    $(document.body).on('click', '.pleb_rule_delete[data-rule_id][data-confirm]', function(e){
+    $(document.body).on('click', '.pleb_rule_delete[data-rule_id][data-confirm]', function (e) {
         e.preventDefault();
         const $button = $(this);
         const $rule = $button.parents('.pleb_rule');
         const $ruleset = $rule.parents('.pleb_ruleset');
 
-        if( confirm( $button.attr('data-confirm') ) ){
-            $rule.slideUp(300, function(){
+        if ( confirm($button.attr('data-confirm')) ) {
+            $rule.slideUp(300, function () {
                 $rule.remove();
 
-                if( $ruleset.find('.pleb_rule').length==0 ){
+                if ( $ruleset.find('.pleb_rule').length == 0 ) {
                     $ruleset.find('.pleb_no_ruleset_rule_notice').show();
                     $ruleset.find('.ruleset_rules').hide();
-                }else{
+                } else {
                     $ruleset.find('.ruleset_rules').show();
                 }
             });
@@ -194,7 +195,7 @@ jQuery( function( $ ) {
 
     });
 
-    $(document.body).on('change', 'select.rule_condition_id', function(e){
+    $(document.body).on('change', 'select.rule_condition_id', function (e) {
         const $select = $(this);
         const $rule = $select.parents('.pleb_rule');
         const rule_id = $rule.attr('data-rule_id');
@@ -217,11 +218,11 @@ jQuery( function( $ ) {
                 condition_comparator: condition_comparator,
                 condition_value: condition_value
             },
-            success: function(response){
+            success: function (response) {
 
                 $rule.replaceWith(response);
 
-                // class dejà absente 
+                // class dejà absente
                 //$rule.removeClass('loading');
                 $rules.css('opacity', 1);
             }

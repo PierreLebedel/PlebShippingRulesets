@@ -16,6 +16,9 @@ git clone git@github.com:PierreLebedel/WooCommerceShippingRulesets.git wp-conten
 ```shell
 # Run PHP CS Fixer
 ./vendor/bin/php-cs-fixer fix .
+
+# Or from Composer
+composer csfix
 ```
 
 ## Docs

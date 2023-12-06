@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PlebWooCommerceShippingRulesets\\": "src/"
+            "PlebWooCommerceShippingRulesets\\": "includes/"
         }
     },
     "config": {
@@ -24,6 +24,11 @@
         }
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.40"
+        "friendsofphp/php-cs-fixer": "*"
+    },
+    "scripts": {
+        "phpcs-run": "./vendor/bin/php-cs-fixer fix --dry-run --show-progress=dots --diff --verbose --using-cache=no",
+        "phpcs-fix": "./vendor/bin/php-cs-fixer fix --show-progress .",
+        "wp-plugin": "PlebWooCommerceShippingRulesets\\WordPressPluginPublisher::publish"
     }
 }
