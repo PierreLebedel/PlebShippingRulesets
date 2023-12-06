@@ -16,8 +16,6 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	private $debug_infos = '';
 
 	private $fee_cost = '';
-	private $prices_include_tax = false;
-	//private $always_enabled     = false;
 
 	public static function autoRegister($methods)
 	{
@@ -100,14 +98,14 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb'),
 				'sanitize_callback' => [$this, 'sanitize_cost'],
 			],
-			// 'always_enabled' => array(
-			//  'title'       => __( 'Always enabled?', 'pleb' ),
-			//  'label'       => __( 'Enable this method even if none of rulesets matches the shopping cart', 'pleb' ),
-			//  'type'        => 'checkbox',
-			//  'description' => __("You can add a Default ruleset to apply custom price.", 'pleb' ),
-			//  'default'     => 'no',
-			//  'desc_tip'    => false,
-			// ),
+			'replace_method_title' => array(
+				'title'       => __( 'Replace method title?', 'pleb' ),
+				'label'       => __( 'Replace method title by matching ruleset name in the shopping cart?', 'pleb' ),
+				'type'        => 'checkbox',
+				'description' => __("", 'pleb' ),
+				'default'     => 'no',
+				'desc_tip'    => false,
+			),
 			'rulesets'       => [
 				'title'             => __('Rulesets', 'pleb'),
 				'type'              => 'pleb_rulesets',
@@ -128,8 +126,6 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	{
 		$this->title              = $this->get_option('title');
 		$this->tax_status         = $this->get_option('tax_status', 'taxable');
-		$this->prices_include_tax = ($this->tax_status == 'none') ? false : ($this->get_option('prices_include_tax', 'no') === 'yes');
-		//$this->always_enabled     = $this->get_option('always_enabled', 'no')!='no';
 
 		$this->debug_mode = $this->get_option('debug_mode', 'no') === 'yes';
 	}
@@ -150,16 +146,21 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		if (WC()->customer && WC()->customer->get_is_vat_exempt()) {
 			return false;
 		}
-		if ($this->prices_include_tax) {
+		if ($this->do_prices_include_tax()) {
 			return false;
 		}
 
 		return true;
 	}
 
-	public function is_prices_include_tax(): bool
+	public function do_prices_include_tax(): bool
 	{
-		return $this->prices_include_tax;
+		return ($this->tax_status == 'none') ? false : ($this->get_option('prices_include_tax', 'no') === 'yes');
+	}
+
+	public function do_replace_method_title(): bool
+	{
+		return ($this->get_option('replace_method_title', 'no') === 'yes');
 	}
 
 	public function fee($atts): float
@@ -221,7 +222,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		// We place the current $packageprice to $this->fee_cost to use it in fee() function (temp shortcode)
-		$this->fee_cost = ($this->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
+		$this->fee_cost = ($this->do_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
 
 		$this->addDebugRow($debugCostName.'User input rule = '.$costrule);
 
@@ -269,6 +270,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	{
 		$rulesets = $this->get_classic_rulesets_array('rulesets');
 
+		// returns the first non-default ruleset matching all the rules
 		if (!empty($rulesets)) {
 			foreach ($rulesets as $ruleset) {
 				if ($ruleset->matchToWooCommercePackageArray($package, $this->instance_id)) {
@@ -277,6 +279,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			}
 		}
 
+		// Returns single default rulset if no one else matched on foreach loop
 		return $this->get_default_ruleset('rulesets');
 	}
 
@@ -310,10 +313,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 		//dump($package);
 
-		//$this->addDebugRow('Method always enabled = '.($this->always_enabled?'yes':'no'));
 		$this->addDebugRow('Taxable = '.(($this->is_taxable()) ? "yes" : "no"));
 		if ($this->is_taxable()) {
-			$this->addDebugRow('Prices taxes = '.(($this->is_prices_include_tax()) ? "inclusive" : "exclusive"));
+			$this->addDebugRow('Prices taxes = '.(($this->do_prices_include_tax()) ? "inclusive" : "exclusive"));
 		}
 
 		$basePrice = $this->get_option('cost', '0');
@@ -325,6 +327,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 		if ($orderMatchingRuleset) {
 			$this->addDebugRow('Matching ruleset found : '.$orderMatchingRuleset->getName().($orderMatchingRuleset->isDefault() ? ' (default)' : ''));
+			if( $this->do_replace_method_title() ){
+				$rate['label'] = $orderMatchingRuleset->getName();
+			}
 			if ($orderMatchingRuleset->getCost() !== '') {
 				$rate['cost'] += $this->evaluate_cost($orderMatchingRuleset->getCost(), $package, 'Ruleset cost: ');
 			}
@@ -332,7 +337,6 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			$this->addDebugRow('No matching ruleset found');
 		}
 
-		//if($orderMatchingRuleset || $this->always_enabled){
 		if ($orderMatchingRuleset) {
 			$this->add_rate($rate);
 			do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);

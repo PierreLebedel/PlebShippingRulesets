@@ -55,7 +55,7 @@ class CustomRuleCondition extends RuleCondition
 
 		// if needed, you can load the \WC_Shipping_Method instance (to get options value or public properties)
 		// $shipping_method = new RulesShippingMethod($methodInstanceId);
-		// $package_cost = ($shipping_method && $shipping_method->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
+		// $package_cost = ($shipping_method && $shipping_method->do_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
 
 		// Check your condition
 		if(true){

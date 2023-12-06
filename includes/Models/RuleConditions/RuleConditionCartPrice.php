@@ -40,7 +40,7 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
 		$conditionValue = floatval($conditionValue);
 
 		$method = new RulesShippingMethod($methodInstanceId);
-		$package_cost = ($method && $method->is_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
+		$package_cost = ($method && $method->do_prices_include_tax()) ? $package['cart_subtotal'] : $package['contents_cost'];
 		$package_cost = floatval($package_cost);
 
 		switch ($conditionComparator) {

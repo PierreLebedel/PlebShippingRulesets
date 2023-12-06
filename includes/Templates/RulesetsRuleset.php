@@ -21,6 +21,10 @@
                 <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
             </button>
 
+            <button class="button button-small pleb_duplicate_ruleset_button">
+                <?php _e("Duplicate", 'pleb'); ?>
+            </button>
+
             <div class="plugins" style="float:right;padding-top:5px;padding-left:5px;">
                 <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>" style="text-decoration:none;font-size:11px;"><?php _e("Delete ruleset", 'pleb'); ?></a>
             </div>
