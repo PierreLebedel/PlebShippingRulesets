@@ -12,13 +12,15 @@ abstract class RuleCondition implements RuleConditionInterface
 	public static function all(): array
 	{
 		$classes = apply_filters('plebwcsr_rule_condition_all', [
-			RuleConditionCartItemCount::class,
 			RuleConditionCartPrice::class,
 			RuleConditionCartWeight::class,
+			RuleConditionCartItemCount::class,
+			RuleConditionCartItemByShippingClassCount::class,
+			RuleConditionCartItemByCategoryCount::class,
 		]);
 
 		$conditions = [];
-		foreach ($classes as $class) {
+		foreach (array_unique($classes) as $class) {
 			if (!class_exists($class)) {
 				continue;
 			}

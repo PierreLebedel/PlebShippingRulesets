@@ -9,7 +9,7 @@
                 <?php if (!empty($rc->getVariants())) : ?>
                 <optgroup label="<?php esc_attr_e($rc->getName()); ?>">
                     <?php foreach ($rc->getVariants() as $k => $v) : ?>
-                    <option value="<?php echo $rc_id.':'.$k; ?>" <?php selected($this->getConditionId() == $rc_id.':'.$k); ?>><?php echo $rc->getName().' '.__($v, 'pleb'); ?></option>
+                    <option value="<?php echo $rc_id.':'.$k; ?>" <?php selected($this->getConditionId() == $rc_id.':'.$k); ?>><?php _e($v, 'pleb'); ?></option>
                     <?php endforeach; ?>
                 </optgroup>
                 <?php else : ?>

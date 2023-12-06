@@ -20,8 +20,8 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
 	public function getVariants(): array
 	{
 		return [
-			'tax_exclude' => __("Tax exclusive", 'pleb'),
-			'tax_include' => __("Tax inclusive", 'pleb'),
+			'tax_exclude' => __("Cart price tax exclusive", 'pleb'),
+			'tax_include' => __("Cart price tax inclusive", 'pleb'),
 		];
 	}
 
@@ -38,7 +38,7 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
 		}
 		$conditionValue = floatval($conditionValue);
 
-		$package_cost = ($rule->getConditionVariant()=='tax_include') ? $package['cart_subtotal'] : $package['contents_cost'];
+		$package_cost = ($rule->getConditionVariant() == 'tax_include') ? $package['cart_subtotal'] : $package['contents_cost'];
 		$package_cost = floatval($package_cost);
 
 		switch ($conditionComparator) {

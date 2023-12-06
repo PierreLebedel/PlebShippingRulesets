@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-06 18:56+0000\n"
+"PO-Revision-Date: 2023-12-06 19:30+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -82,14 +82,41 @@ msgstr "Tarif de base"
 msgid "Cart item quantity"
 msgstr "Quantité d'articles dans le panier"
 
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:17
+msgid "Cart item quantity (category)"
+msgstr "Quantité d'article (catégorie)"
+
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:17
+msgid "Cart item quantity (shipping class)"
+msgstr "Quantité d'articles (classe d'expédition)"
+
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:32
+#, php-format
+msgid "Cart item quantity from %s category"
+msgstr "Quantité d'articles de la catégorie %s"
+
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:32
+#, fuzzy, php-format
+#| msgid "Cart item quantity from %s"
+msgid "Cart item quantity from %s class"
+msgstr "Quantité d'articles de la classe %s"
+
 #: includes/Models/RuleConditions/RuleConditionCartPrice.php:17
 msgid "Cart price"
 msgstr "Prix du panier"
 
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:23
+msgid "Cart price tax exclusive"
+msgstr "Prix du panier HT"
+
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
+msgid "Cart price tax inclusive"
+msgstr "Prix du panier TTC"
+
 #: includes/Models/RuleConditions/RuleConditionCartWeight.php:17
 #, php-format
 msgid "Cart weight (%s)"
-msgstr "Poids du panier (%s)"
+msgstr "Poids des articles du panier (%s)"
 
 #: includes/Templates/RulesetsRulesetRule.php:7
 msgid "Choose an option"
@@ -231,14 +258,6 @@ msgstr "Groupes de règles d'expédition"
 #: includes/Templates/RulesetsRuleset.php:21
 msgid "Stop editing"
 msgstr "Quitter l'édition"
-
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:23
-msgid "Tax exclusive"
-msgstr "Hors-taxes"
-
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
-msgid "Tax inclusive"
-msgstr "Taxes incluses"
 
 #: includes/RulesShippingMethod.php:35 includes/Templates/Rulesets.php:27
 msgid ""

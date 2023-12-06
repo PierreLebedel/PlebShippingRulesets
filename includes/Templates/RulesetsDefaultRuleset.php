@@ -36,9 +36,9 @@
 
         <?php echo wc_help_tip(
 	sprintf(
-            	__("Works the same as %s setting field", 'pleb'),
-            	'<b>'.__('Base price', 'pleb').'</b>'
-            ),
+		__("Works the same as %s setting field", 'pleb'),
+		'<b>'.__('Base price', 'pleb').'</b>'
+	),
 	true
 ); ?>
 

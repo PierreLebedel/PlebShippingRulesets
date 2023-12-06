@@ -33,14 +33,14 @@ class RuleConditionCartWeight extends RuleConditionNumericInteger
 		$package_weight = 0;
 		//dump($package['contents']);
 		foreach ($package['contents'] as $values) {
-			if( $values['data']->needs_shipping() ){
+			if($values['data']->needs_shipping()) {
 				$productWeight = $values['data']->get_weight();
-				if( is_numeric($productWeight) ){
+				if(is_numeric($productWeight)) {
 					$cartItemWeight = $values['quantity'] * $productWeight;
 					$package_weight += $cartItemWeight;
 				}
 			}
-			
+
 		}
 
 		//dd($package_weight);

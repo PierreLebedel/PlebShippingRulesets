@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 18:56+0000\n"
+"POT-Creation-Date: 2023-12-06 19:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -80,8 +80,34 @@ msgstr ""
 msgid "Cart item quantity"
 msgstr ""
 
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:17
+msgid "Cart item quantity (category)"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:17
+msgid "Cart item quantity (shipping class)"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:32
+#, php-format
+msgid "Cart item quantity from %s category"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:32
+#, php-format
+msgid "Cart item quantity from %s class"
+msgstr ""
+
 #: includes/Models/RuleConditions/RuleConditionCartPrice.php:17
 msgid "Cart price"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:23
+msgid "Cart price tax exclusive"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
+msgid "Cart price tax inclusive"
 msgstr ""
 
 #: includes/Models/RuleConditions/RuleConditionCartWeight.php:17
@@ -222,14 +248,6 @@ msgstr ""
 #: includes/Templates/RulesetsDefaultRuleset.php:19
 #: includes/Templates/RulesetsRuleset.php:21
 msgid "Stop editing"
-msgstr ""
-
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:23
-msgid "Tax exclusive"
-msgstr ""
-
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
-msgid "Tax inclusive"
 msgstr ""
 
 #: includes/RulesShippingMethod.php:35 includes/Templates/Rulesets.php:27
