@@ -84,6 +84,7 @@ class WordPressPluginPublisher
             'LICENSE',
             'README.md',
             'assets',
+            'loco.xml',
         ] );
 
         copy_dir( './assets', $pluginAssetsDir, [

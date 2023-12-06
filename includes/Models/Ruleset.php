@@ -20,7 +20,7 @@ class Ruleset implements RulesetInterface
 	public static function createFromArray(array $rulesetArray = []): self
 	{
 		$rulesetArray = array_merge([
-			'id'      => $id = uniqid(),
+			'id'      => $id = self::generateId(),
 			'name'    => __("Ruleset", 'pleb'),
 			'cost'    => '',
 			'order'   => null,
@@ -43,6 +43,11 @@ class Ruleset implements RulesetInterface
 		return $instance;
 	}
 
+	public static function generateId(): string
+	{
+		return uniqid();
+	}
+
 	public function setId(string $id): self
 	{
 		$this->id = $id;
@@ -52,7 +57,7 @@ class Ruleset implements RulesetInterface
 	public function getId(): string
 	{
 		if (empty($this->id)) {
-			return uniqid();
+			return self::generateId();
 		}
 		return $this->id;
 	}

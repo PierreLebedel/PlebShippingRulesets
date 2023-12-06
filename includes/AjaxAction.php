@@ -109,4 +109,16 @@ class AjaxAction
 			die();
 		}
 	}
+
+	public function pleb_ruleset_generate_id()
+	{
+		$newRuleset = Ruleset::createFromArray([]);
+
+		echo $newRuleset->getId();
+
+		if (defined('DOING_AJAX') && DOING_AJAX) {
+			die();
+		}
+	}
+
 }

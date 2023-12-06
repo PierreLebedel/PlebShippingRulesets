@@ -124,6 +124,40 @@ jQuery(function ( $ ) {
         $wrapper.find('h2').toggle();
         $wrapper.find('.pleb_input_wrapper').toggle();
         $button.find('.button_dynamic_action').toggle();
+
+        const titleVal = $wrapper.find('h2').text().trim();
+        const inputVal = $wrapper.find('.pleb_input_wrapper input').val();
+        if($wrapper.find('h2').is(':visible')){
+            $wrapper.find('h2').text(inputVal);
+        }else{
+            $wrapper.find('.pleb_input_wrapper input').val(titleVal);
+        }
+    });
+
+    $(document.body).on('click', '.pleb_duplicate_ruleset_button', function (e) {
+        e.preventDefault();
+        const $button = $(this);
+        const ruleset_id = $button.attr('data-ruleset_id');
+        const $ruleset = $button.parents('.pleb_ruleset');
+
+        $('<div id="duplicate_loading" class="notice notice-info inline text-center notice-alt" style="margin-top:0;margin-bottom:15px;"><p><span class="spinner is-active" style="float:none;margin:0;"></span> '+pleb.translations.loading+'</p></div>').insertAfter($ruleset);
+
+        $.ajax({
+            url: pleb.ajax_url,
+            method: 'post',
+            data: {
+                action: 'pleb_ruleset_generate_id'
+            },
+            success: function (new_ruleset_id) {
+                const rulesetHtml = $ruleset[0].outerHTML;
+                const newRulesetHtml = rulesetHtml.replaceAll(ruleset_id, new_ruleset_id);
+                //alert('replace '+ruleset_id+' by '+new_ruleset_id);
+                $('#duplicate_loading').replaceWith(newRulesetHtml);
+            }
+        });
+
+        
+
     });
 
     function showHideNoRulesetNotice()

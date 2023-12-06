@@ -21,7 +21,7 @@
                 <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
             </button>
 
-            <button class="button button-small pleb_duplicate_ruleset_button">
+            <button class="button button-small pleb_duplicate_ruleset_button" data-ruleset_id="<?php echo $this->getId(); ?>">
                 <?php _e("Duplicate", 'pleb'); ?>
             </button>
 

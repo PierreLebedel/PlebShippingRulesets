@@ -95,6 +95,7 @@ class WordPressPlugin
 		//AjaxAction::register('pleb_ruleset_delete');
 		//AjaxAction::register('pleb_rule_delete');
 		AjaxAction::register('pleb_rule_template');
+		AjaxAction::register('pleb_ruleset_generate_id');
 	}
 
 	private function missingWooCommerceAdminNotice()
@@ -142,8 +143,11 @@ class WordPressPlugin
 				'ajax_url' => admin_url('admin-ajax.php'),
 				'shipping_method' => [
 					'plugin_id' => 'plebwcsr_',
-					'method_id' => 'pleb_rulesets_method',
+					'method_id' => 'pleb_rulesets_method'
 				],
+				'translations' => [
+					'loading' => __("Loading...", 'pleb'),
+				]
 			]
 		);
 	}

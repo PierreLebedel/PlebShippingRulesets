@@ -21,7 +21,7 @@ class Rule implements RuleInterface
 	public static function createFromArray(array $ruleArray): self
 	{
 		$ruleArray = array_merge([
-			'id'                   => $id = uniqid(),
+			'id'                   => $id = self::generateId(),
 			'condition_id'         => null,
 			'condition_comparator' => null,
 			'condition_value'      => null,
@@ -35,6 +35,11 @@ class Rule implements RuleInterface
 		return $instance;
 	}
 
+	public static function generateId(): string
+	{
+		return uniqid();
+	}
+
 	public function setId(string $id): self
 	{
 		$this->id = $id;
@@ -44,7 +49,7 @@ class Rule implements RuleInterface
 	public function getId(): string
 	{
 		if (empty($this->id)) {
-			return uniqid();
+			return self::generateId();
 		}
 		return $this->id;
 	}
