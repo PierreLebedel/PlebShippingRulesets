@@ -52,21 +52,27 @@ class WordPressPluginPublisher
             die('Unable to connect to thefilesystem');
         }
 
-        $pluginDistDir = './wp-plugin';
+        $pluginSvnDir = './svn';
+        $pluginTrunkDir = $pluginSvnDir.'/trunk';
+        $pluginAssetsDir = $pluginSvnDir.'/assets';
 
-        if (is_dir($pluginDistDir)) {
-            $fileSystemDirect->rmdir($pluginDistDir, true);
+        if (!is_dir($pluginSvnDir)) {
+            mkdir($pluginSvnDir, 0777, true);
         }
 
-        mkdir($pluginDistDir, 0777, true);
+        if (is_dir($pluginTrunkDir)) {
+            $fileSystemDirect->rmdir($pluginTrunkDir, true);
+        }
 
-        // copy_dir( './includes', $pluginDistDir.'/includes', [basename(__FILE__)] );
-        // copy_dir( './languages', $pluginDistDir.'/languages' );
-        // copy_dir( './admin', $pluginDistDir.'/admin' );
+        if (is_dir($pluginAssetsDir)) {
+            $fileSystemDirect->rmdir($pluginAssetsDir, true);
+        }
 
+        mkdir($pluginTrunkDir, 0777, true);
+        mkdir($pluginAssetsDir, 0777, true);
 
-        copy_dir( './', $pluginDistDir.'', [
-            'wp-plugin',
+        copy_dir( './', $pluginTrunkDir, [
+            'svn',
             'vendor',
             'docs',
             'includes/'.basename(__FILE__),
@@ -75,33 +81,15 @@ class WordPressPluginPublisher
             '.php-cs-fixer.php',
             'composer.json',
             'composer.lock',
+            'LICENSE',
+            'README.md',
+            'assets'
         ] );
 
-        /**
-            === Plugin Name ===
-            Plugin URI:
-            Authors:
-            Author URI:
-            Version:
-            Last updated time:
-            Creation time
-            Contributors: (this should be a list of wordpress.org userid's)
-            Donate link: https://example.com/
-            Tags: tag1, tag2
-            Requires at least: 4.7
-            Tested up to: 5.4
-            Stable tag: 4.3
-            Requires PHP: 7.0
-            License: GPLv2 or later
-            License URI: https://www.gnu.org/licenses/gpl-2.0.html
-            Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
-         */
+        copy_dir( './assets', $pluginAssetsDir);
 
         $instance = self::instance();
-
         $plugin = $instance->getPlugin();
-
-        //print_r($plugin);
     
         $readmeContentArray = [
             "=== ".$plugin->getPluginData('Name')." ===",
@@ -141,7 +129,7 @@ class WordPressPluginPublisher
         }
 
         $screenshots = [
-			'1' => __("Screenshot #1 description", 'pleb'),
+			//'1' => __("Screenshot #1 description", 'pleb'),
 		];
 
         if(!empty($screenshots)){
@@ -201,7 +189,7 @@ class WordPressPluginPublisher
         }
 
         $upgradeNotices = [
-            '1.0' => "Keep this plugin updated to access all new rule types",
+            '1.0' => "Keep this plugin updated to access future rule types",
         ];
 
         if(!empty($upgradeNotices)){
@@ -219,7 +207,7 @@ class WordPressPluginPublisher
 
         $readmeContent = implode(PHP_EOL, $readmeContentArray);
 
-        file_put_contents($pluginDistDir.'/readme.txt', $readmeContent);
+        file_put_contents($pluginTrunkDir.'/readme.txt', $readmeContent);
 
     }
 
