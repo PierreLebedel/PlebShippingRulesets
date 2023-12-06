@@ -107,7 +107,7 @@ class WordPressPluginPublisher
             "Tags: woocommerce, shipping, rulesets, rates",
             "Requires at least: ".$plugin->getPluginData('RequiresWP'),
             "Tested up to: 6.4.1",
-            "Stable tag: 0.1",
+            "Stable tag: 1.0",
             "Requires PHP: ".$plugin->getPluginData('RequiresPHP'),
             "License: GPLv3",
             "License URI: https://www.gnu.org/licenses/gpl-3.0.html",
@@ -213,8 +213,5 @@ class WordPressPluginPublisher
         file_put_contents($pluginTrunkDir.'/readme.txt', $readmeContent);
 
     }
-
-
-
 
 }

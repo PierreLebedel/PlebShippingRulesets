@@ -2,7 +2,6 @@
 
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartPrice;
@@ -15,6 +14,7 @@ abstract class RuleCondition implements RuleConditionInterface
 		$classes = apply_filters('plebwcsr_rule_condition_all', [
 			RuleConditionCartItemCount::class,
 			RuleConditionCartPrice::class,
+			RuleConditionCartWeight::class,
 		]);
 
 		$conditions = [];

@@ -29,6 +29,6 @@
     "scripts": {
         "phpcs-run": "./vendor/bin/php-cs-fixer fix --dry-run --show-progress=dots --diff --verbose --using-cache=no",
         "phpcs-fix": "./vendor/bin/php-cs-fixer fix --show-progress .",
-        "wp-plugin": "PlebWooCommerceShippingRulesets\\WordPressPluginPublisher::publish"
+        "make-trunk": "PlebWooCommerceShippingRulesets\\WordPressPluginPublisher::publish"
     }
 }

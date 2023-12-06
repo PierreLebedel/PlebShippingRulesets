@@ -1,8 +1,8 @@
 # WooCommerce Shipping Rulesets
 
-## :warning: Work in progress
+<!-- ## :warning: Work in progress
 
-This WordPress plugin is under development. Please wait for version 1.0.0 to use it in production.
+This WordPress plugin is under development. Please wait for version 1.0.0 to use it in production. -->
 
 ## Installation (dev)
 
@@ -14,11 +14,9 @@ git clone git@github.com:PierreLebedel/WooCommerceShippingRulesets.git wp-conten
 
 ## Useful commands
 ```shell
-# Run PHP CS Fixer
-./vendor/bin/php-cs-fixer fix .
-
-# Or from Composer
-composer csfix
+composer phpcs-run; # PHP CS Fixer --dry-run
+composer phpcs-fix; # PHP CS Fixer
+composer make-trunk; # Generate WordPress plugin SVN files
 ```
 
 ## Docs

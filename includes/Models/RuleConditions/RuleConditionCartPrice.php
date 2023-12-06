@@ -2,7 +2,6 @@
 
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumericFloat;
 

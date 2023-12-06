@@ -346,7 +346,6 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			$wpPluginInstance = WordPressPlugin::instance();
 			$notice_content = '<strong>'.$this->method_title.'</strong> [plugin:'.$wpPluginInstance->name.']<br>'.$this->debug_infos;
 			wc_add_notice($notice_content, 'notice');
-			dump('ici notice');
 		}
 	}
 

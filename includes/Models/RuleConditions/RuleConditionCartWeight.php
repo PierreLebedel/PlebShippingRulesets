@@ -5,16 +5,16 @@ namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumericInteger;
 
-class RuleConditionCartItemCount extends RuleConditionNumericInteger
+class RuleConditionCartWeight extends RuleConditionNumericInteger
 {
 	public function getId(): string
 	{
-		return 'cart_item_count';
+		return 'cart_weight';
 	}
 
 	public function getName(): string
 	{
-		return __("Cart item quantity", 'pleb');
+		return sprintf(__("Cart weight (%s)", 'pleb'), __(get_option('woocommerce_weight_unit'), 'woocommerce'));
 	}
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
@@ -30,36 +30,44 @@ class RuleConditionCartItemCount extends RuleConditionNumericInteger
 		}
 		$conditionValue = intval($conditionValue);
 
-		$package_quantity = 0;
+		$package_weight = 0;
+		//dump($package['contents']);
 		foreach ($package['contents'] as $values) {
-			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
-				$package_quantity += intval($values['quantity']);
+			if( $values['data']->needs_shipping() ){
+				$productWeight = $values['data']->get_weight();
+				if( is_numeric($productWeight) ){
+					$cartItemWeight = $values['quantity'] * $productWeight;
+					$package_weight += $cartItemWeight;
+				}
 			}
+			
 		}
+
+		//dd($package_weight);
 
 		switch ($conditionComparator) {
 			case '<':
-				if ($package_quantity < $conditionValue) {
+				if ($package_weight < $conditionValue) {
 					return true;
 				}
 				break;
 			case '<=':
-				if ($package_quantity <= $conditionValue) {
+				if ($package_weight <= $conditionValue) {
 					return true;
 				}
 				break;
 			case '=':
-				if ($package_quantity == $conditionValue) {
+				if ($package_weight == $conditionValue) {
 					return true;
 				}
 				break;
 			case '>=':
-				if ($package_quantity >= $conditionValue) {
+				if ($package_weight >= $conditionValue) {
 					return true;
 				}
 				break;
 			case '>':
-				if ($package_quantity > $conditionValue) {
+				if ($package_weight > $conditionValue) {
 					return true;
 				}
 				break;

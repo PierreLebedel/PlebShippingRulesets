@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-06 17:41+0000\n"
+"PO-Revision-Date: 2023-12-06 18:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -78,13 +78,18 @@ msgstr "Êtes-vous sûr de supprimer ce groupe ainsi que toutes ses règles ?"
 msgid "Base price"
 msgstr "Tarif de base"
 
-#: includes/Models/RuleConditions/RuleConditionCartItemCount.php:18
+#: includes/Models/RuleConditions/RuleConditionCartItemCount.php:17
 msgid "Cart item quantity"
 msgstr "Quantité d'articles dans le panier"
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:18
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:17
 msgid "Cart price"
 msgstr "Prix du panier"
+
+#: includes/Models/RuleConditions/RuleConditionCartWeight.php:17
+#, php-format
+msgid "Cart weight (%s)"
+msgstr "Poids du panier (%s)"
 
 #: includes/Templates/RulesetsRulesetRule.php:7
 msgid "Choose an option"
@@ -227,11 +232,11 @@ msgstr "Groupes de règles d'expédition"
 msgid "Stop editing"
 msgstr "Quitter l'édition"
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:23
 msgid "Tax exclusive"
 msgstr "Hors-taxes"
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:25
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
 msgid "Tax inclusive"
 msgstr "Taxes incluses"
 
