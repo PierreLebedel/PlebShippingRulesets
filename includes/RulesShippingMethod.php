@@ -30,7 +30,6 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		$this->method_title          = __('Shipping rulesets', 'pleb');
 		$this->method_description    = implode('<br>', [
 			__('Set your own rulesets to calculate the shipping price on Cart & Checkout pages.', 'pleb'),
-			__('The first ruleset whose rules all match the shopping cart will be applied to the order.', 'pleb'),
 			__("This shipping method will not be available if the cart don't satisfies entirely none of rulesets.", 'pleb'),
 			__("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb'),
 		]);
@@ -83,6 +82,26 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'description' => __("", 'pleb'),
 				'desc_tip' => __("", 'pleb'),
 			],
+			'rulesets_matching_mode' => [
+				'title'    => __('Ruleset(s) matching mode', 'pleb'),
+				'type'     => 'select',
+				'default'  => 'first',
+				'options'  => [
+					'first' => __("Single shipping rate based on the first ruleset with all rules matching the shopping cart", 'pleb'),
+					'many_grouped'  => __("Single shipping rate suming costs of all rulesets with all rules matching the shopping cart", 'pleb'),
+					'many_distinct' => __("Each matching ruleset is available as distinct shipping rate", 'pleb'),
+				],
+				'description' => __("", 'pleb'),
+				'desc_tip' => __("", 'pleb'),
+			],
+			'replace_method_title' => [
+				'title'       => __('Replace method title?', 'pleb'),
+				'label'       => __('Replace method title by matching ruleset name in the shopping cart?', 'pleb'),
+				'type'        => 'checkbox',
+				'description' => __("", 'pleb'),
+				'default'     => 'no',
+				'desc_tip'    => false,
+			],
 			'cost'       => [
 				'title'             => __('Base price', 'pleb'),
 				'type'              => 'text',
@@ -98,14 +117,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb'),
 				'sanitize_callback' => [$this, 'sanitize_cost'],
 			],
-			'replace_method_title' => [
-				'title'       => __('Replace method title?', 'pleb'),
-				'label'       => __('Replace method title by matching ruleset name in the shopping cart?', 'pleb'),
-				'type'        => 'checkbox',
-				'description' => __("", 'pleb'),
-				'default'     => 'no',
-				'desc_tip'    => false,
-			],
+
 			'rulesets'       => [
 				'title'             => __('Rulesets', 'pleb'),
 				'type'              => 'pleb_rulesets',
@@ -266,21 +278,36 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return $result;
 	}
 
-	private function find_matching_ruleset(array $package = []): ?Ruleset
+	private function find_matching_rulesets(array $package = []): array
 	{
-		$rulesets = $this->get_classic_rulesets_array('rulesets');
+		$matchingRulesets = [];
 
-		// returns the first non-default ruleset matching all the rules
-		if (!empty($rulesets)) {
-			foreach ($rulesets as $ruleset) {
+		$getOnlyFirst = ($this->get_option('rulesets_matching_mode', 'first') === 'first');
+
+		// Adds the non-default ruleset matching all the rules
+		$classicRulesets = $this->get_classic_rulesets_array('rulesets');
+		if (!empty($classicRulesets)) {
+			foreach ($classicRulesets as $ruleset) {
 				if ($ruleset->matchToWooCommercePackageArray($package, $this->instance_id)) {
-					return $ruleset;
+					$matchingRulesets[$ruleset->getId()] = $ruleset;
+
+					if($getOnlyFirst){
+						return $matchingRulesets;
+					}
 				}
 			}
 		}
 
-		// Returns single default rulset if no one else matched on foreach loop
-		return $this->get_default_ruleset('rulesets');
+		$defaultRuleset = $this->get_default_ruleset('rulesets');
+		if($defaultRuleset){
+			$matchingRulesets[$defaultRuleset->getId()] = $defaultRuleset;
+
+			if($getOnlyFirst){
+				return $matchingRulesets;
+			}
+		}
+
+		return $matchingRulesets;
 	}
 
 	private function get_dummy_woocommerce_package(): array
@@ -302,6 +329,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 	public function calculate_shipping($package = [])
 	{
+		//dump($package);
 		$this->cleanDebugRows();
 
 		$rate = [
@@ -311,34 +339,61 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			'package' => $package,
 		];
 
-		//dump($package);
-
 		$this->addDebugRow('Taxable = '.(($this->is_taxable()) ? "yes" : "no"));
 		if ($this->is_taxable()) {
 			$this->addDebugRow('Prices taxes = '.(($this->do_prices_include_tax()) ? "inclusive" : "exclusive"));
 		}
 
+		$rateId =  $this->get_rate_id();
+		$rateLabel = $this->title;
+		$baseCost = $rulesetsCost = 0;
+
 		$basePrice = $this->get_option('cost', '0');
 		if ($basePrice !== '') {
-			$rate['cost'] += $this->evaluate_cost($basePrice, $package, 'Base price cost: ');
+			$baseCost = $this->evaluate_cost($basePrice, $package, 'Base price cost: ');
 		}
 
-		$orderMatchingRuleset = $this->find_matching_ruleset($package);
+		$orderMatchingRulesets = $this->find_matching_rulesets($package);
 
-		if ($orderMatchingRuleset) {
-			$this->addDebugRow('Matching ruleset found : '.$orderMatchingRuleset->getName().($orderMatchingRuleset->isDefault() ? ' (default)' : ''));
-			if($this->do_replace_method_title()) {
-				$rate['label'] = $orderMatchingRuleset->getName();
+		if (!empty($orderMatchingRulesets)) {
+
+			$matchingMode = $this->get_option('rulesets_matching_mode', 'first');
+
+			foreach($orderMatchingRulesets as $matchingRuleset){
+				$this->addDebugRow('Matching ruleset found : '.$matchingRuleset->getName().($matchingRuleset->isDefault() ? ' (default)' : ''));
+
+				if($matchingMode!='many_grouped' && $this->do_replace_method_title()){
+					$rateLabel = $matchingRuleset->getName();
+				}
+
+				if ($matchingRuleset->getCost() !== '') {
+					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, 'Ruleset cost: ');
+				}
+
+				if($matchingMode == 'many_distinct'){
+					$this->add_rate([
+						'id'      => $this->get_rate_id($matchingRuleset->getId()),
+						'label'   => $rateLabel,
+						'cost'    => $baseCost + $rulesetsCost,
+						'package' => $package,
+					]);
+					do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
+					$rulesetsCost = 0;
+				}
+
 			}
-			if ($orderMatchingRuleset->getCost() !== '') {
-				$rate['cost'] += $this->evaluate_cost($orderMatchingRuleset->getCost(), $package, 'Ruleset cost: ');
-			}
+			
 		} else {
 			$this->addDebugRow('No matching ruleset found');
 		}
 
-		if ($orderMatchingRuleset) {
-			$this->add_rate($rate);
+		if (!empty($orderMatchingRulesets) && $matchingMode != 'many_distinct') {
+			$this->add_rate([
+				'id'      => $rateId,
+				'label'   => $rateLabel,
+				'cost'    => $baseCost + $rulesetsCost,
+				'package' => $package,
+			]);
 			do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
 		}
 

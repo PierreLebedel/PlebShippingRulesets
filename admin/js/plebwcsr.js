@@ -4,27 +4,49 @@ jQuery(function ( $ ) {
 
     const shipping_method_fields_prefix = pleb.shipping_method.plugin_id + pleb.shipping_method.method_id + '_';
 
-    function plebRulesetsShippingMethodShowHideTaxIncludeField( el )
-    {
-        var form = $(el).closest('form');
-        var taxIncludeField = $('#' + shipping_method_fields_prefix + 'prices_include_tax', form).closest('tr');
-        if ( 'none' === $(el).val() || '' === $(el).val() ) {
-            taxIncludeField.hide();
-        } else {
-            taxIncludeField.show();
-        }
+    function plebRulesetsShippingMethodFielChanged(el){
+        const elName = $(el).attr('id').replace(shipping_method_fields_prefix, '');
+        const elValue = $(el).val();
+        plebRulesetsShippingMethodShowHideField(elName, elValue);
     }
 
-    $(document.body).on('change', '#' + shipping_method_fields_prefix + 'tax_status', function () {
-        plebRulesetsShippingMethodShowHideTaxIncludeField(this);
+    function plebRulesetsShippingMethodFielTr(elName){
+        return $('#'+shipping_method_fields_prefix + elName).closest('tr');
+    }
+
+    function plebRulesetsShippingMethodShowHideField(elName, elValue){
+        console.log(elName+' : '+elValue);
+        
+        if(elName=='tax_status'){
+            var $tr = plebRulesetsShippingMethodFielTr('prices_include_tax');
+            if ( 'none' === elValue || '' === elValue ) {
+                $tr.hide();
+            } else {
+                $tr.show();
+            }
+        }
+
+        if(elName=='rulesets_matching_mode'){
+            var $tr = plebRulesetsShippingMethodFielTr('replace_method_title');
+            if ( 'many_grouped' === elValue ) {
+                $tr.hide();
+            } else {
+                $tr.show();
+            }
+        }
+
+    }
+
+    $(document.body).on('change', '[id^='+shipping_method_fields_prefix+']', function () {
+        plebRulesetsShippingMethodFielChanged(this);
     });
 
-    $('#' + shipping_method_fields_prefix + 'tax_status').trigger('change');
-    $(document.body).on('wc_backbone_modal_loaded', function ( evt, target ) {
-        if ( 'wc-modal-shipping-method-settings' === target ) {
-            plebRulesetsShippingMethodShowHideTaxIncludeField($('#wc-backbone-modal-dialog #' + shipping_method_fields_prefix + 'tax_status', evt.currentTarget));
-        }
-    });
+    $('[id^='+shipping_method_fields_prefix+']').trigger('change');
+    // $(document.body).on('wc_backbone_modal_loaded', function ( evt, target ) {
+    //     if ( 'wc-modal-shipping-method-settings' === target ) {
+    //         plebRulesetsShippingMethodShowHideTaxIncludeField($('#wc-backbone-modal-dialog #' + shipping_method_fields_prefix + 'tax_status', evt.currentTarget));
+    //     }
+    // });
 
 
     $('#pleb_rulesets').sortable({

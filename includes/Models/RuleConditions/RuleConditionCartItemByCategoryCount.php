@@ -29,7 +29,7 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger
 
 		if(!empty($wooCategories)) {
 			foreach($wooCategories as $termObject) {
-				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s category", 'pleb'),  $termObject->name);
+				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s category", 'pleb'), $termObject->name);
 			}
 		}
 
@@ -53,10 +53,10 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$shippingClassSlug = get_the_terms($values['data']->get_id(), 'product_cat');
-				if(!empty($shippingClassSlug)){
+				if(!empty($shippingClassSlug)) {
 					$conditionTermSlug = $rule->getConditionVariant();
-					foreach($shippingClassSlug as $termObject){
-						if($termObject->slug==$conditionTermSlug){
+					foreach($shippingClassSlug as $termObject) {
+						if($termObject->slug == $conditionTermSlug) {
 							$package_quantity += intval($values['quantity']);
 						}
 					}

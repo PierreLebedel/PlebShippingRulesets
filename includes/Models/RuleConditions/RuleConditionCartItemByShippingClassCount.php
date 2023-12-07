@@ -29,7 +29,7 @@ class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInte
 
 		if(!empty($wooShippingClasses)) {
 			foreach($wooShippingClasses as $termObject) {
-				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s class", 'pleb'),  $termObject->name);
+				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s class", 'pleb'), $termObject->name);
 			}
 		}
 
@@ -53,7 +53,7 @@ class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInte
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$shippingClassSlug = $values['data']->get_shipping_class();
-				if($shippingClassSlug && $shippingClassSlug==$rule->getConditionVariant() ){
+				if($shippingClassSlug && $shippingClassSlug == $rule->getConditionVariant()) {
 					$package_quantity += intval($values['quantity']);
 				}
 			}
