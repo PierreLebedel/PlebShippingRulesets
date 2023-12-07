@@ -15,12 +15,12 @@
         
         <div class="handle-actions" style="padding-right:12px;">
             <button class="button pleb_edit_ruleset_button">
-                <span class="button_dynamic_action"><?php _e("Edit", 'pleb'); ?></span>
+                <span class="button_dynamic_action"><span class="dashicons dashicons-edit pleb_icon"></span><?php _e("Edit", 'pleb'); ?></span>
                 <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
             </button>
 
             <div style="float:right;padding-top:7px;padding-left:5px;">
-                <a href="#" class="pleb_linkdanger pleb_ruleset_default_delete" data-confirm="<?php esc_attr_e("Are you sure to delete default ruleset?", 'pleb'); ?>"><?php _e("Delete", 'pleb'); ?></a>
+                <a href="#" class="pleb_linkdanger pleb_ruleset_default_delete" data-confirm="<?php esc_attr_e("Are you sure to delete default ruleset?", 'pleb'); ?>" title="<?php esc_attr_e("Delete", 'pleb'); ?>"><span class="dashicons dashicons-trash pleb_icon"></span></a>
             </div>
             
         </div>

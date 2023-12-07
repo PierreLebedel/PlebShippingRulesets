@@ -55,6 +55,10 @@ jQuery(function ( $ ) {
         cursor: 'move',
         handle: '.hndle',
         items: '> .pleb_ruleset',
+        placeholder: "pleb_ruleset_placeholder",
+        start: function(e, ui){
+            ui.placeholder.outerHeight(ui.item.outerHeight());
+        },
         update: function (event, ui) {
             $('#pleb_rulesets > .pleb_ruleset').each(function (index, elem) {
                 $(elem).find('input[name^="' + shipping_method_fields_prefix + 'rulesets"][name$="[order]"]').val(index + 1);

@@ -45,6 +45,6 @@
     <?php endif; ?>
 
     <td class="pleb_shrink" style="text-align:right;">
-        <a href="#" class="pleb_linkdanger pleb_rule_delete" data-rule_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this rule?", 'pleb'); ?>"><nobr><?php esc_attr_e("Delete", 'pleb'); ?></nobr></a>
+        <a href="#" class="pleb_linkdanger pleb_rule_delete" data-rule_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this rule?", 'pleb'); ?>" title="<?php esc_attr_e("Delete", 'pleb'); ?>"><span class="dashicons dashicons-trash pleb_icon"></span></a>
     </td>
 </tr>

@@ -30,8 +30,8 @@
 
         </div>
 
-        <button id="pleb_ruleset_add_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button"><?php _e("Add new ruleset", 'pleb'); ?></button>
-        <button id="pleb_ruleset_add_default_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button" style="<?php if ($defaultRuleset): ?>display:none;<?php endif; ?>"><?php _e("Add default ruleset", 'pleb'); ?></button>
+        <button id="pleb_ruleset_add_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button"><span class="dashicons dashicons-plus-alt pleb_icon"></span><?php _e("Add new ruleset", 'pleb'); ?></button>
+        <button id="pleb_ruleset_add_default_button" data-field_key="<?php echo $field_key; ?>" type="button" class="button" style="<?php if ($defaultRuleset): ?>display:none;<?php endif; ?>"><span class="dashicons dashicons-yes-alt pleb_icon"></span><?php _e("Add default ruleset", 'pleb'); ?></button>
 
     </td>
 </tr>
