@@ -1,4 +1,4 @@
-<div class="postbox pleb_ruleset" style="margin-bottom:15px;">
+<div class="postbox pleb_ruleset">
 
     <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">
     <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="default">
@@ -19,8 +19,8 @@
                 <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
             </button>
 
-            <div class="plugins" style="float:right;padding-top:7px;padding-left:5px;">
-                <a href="#" class="delete pleb_ruleset_default_delete" data-confirm="<?php esc_attr_e("Are you sure to delete default ruleset?", 'pleb'); ?>" style="text-decoration:none;font-size:13px;"><?php _e("Delete", 'pleb'); ?></a>
+            <div style="float:right;padding-top:7px;padding-left:5px;">
+                <a href="#" class="pleb_linkdanger pleb_ruleset_default_delete" data-confirm="<?php esc_attr_e("Are you sure to delete default ruleset?", 'pleb'); ?>"><?php _e("Delete", 'pleb'); ?></a>
             </div>
             
         </div>
@@ -28,11 +28,11 @@
 
     <div class="postbox-header" style="padding:8px 12px;justify-content:flex-start;border-bottom:none;">
         
-        <label for="" style="display:block;font-weight:600;padding-right:5px;white-space:nowrap;">
+        <label for="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" style="display:block;font-weight:600;padding-right:5px;white-space:nowrap;">
             <?php esc_attr_e("Price to apply:", 'pleb'); ?>
         </label>
 
-        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb'); ?>" />
+        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb'); ?>" id="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" />
 
         <?php echo wc_help_tip(
 	sprintf(

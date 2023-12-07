@@ -62,7 +62,8 @@ class WordPressPlugin
 
 		add_action('plugin_action_links_'.$this->baseName, [$this, 'pluginActionLinks']);
 		add_filter('woocommerce_shipping_methods', [RulesShippingMethod::class, 'autoRegister']);
-		add_action('admin_enqueue_scripts', [$this, 'loadAdminAssets']);
+		add_action('admin_enqueue_scripts', [$this, 'loadAdminJs']);
+		add_action('admin_print_styles', [$this, 'loadAdminCss'], 11);
 		add_action('before_woocommerce_init', [$this, 'setWooCommerceHposCompatibility']);
 
 		$this->registerAjaxActions();
@@ -124,8 +125,10 @@ class WordPressPlugin
 		}
 	}
 
-	public function loadAdminAssets()
+	public function loadAdminJs()
 	{
+		if( get_current_screen()->id != 'woocommerce_page_wc-settings' ) return;
+		
 		$admin_script_handle = 'pleb_wcsr';
 
 		wp_enqueue_script(
@@ -149,6 +152,18 @@ class WordPressPlugin
 					'loading' => __("Loading...", 'pleb'),
 				],
 			]
+		);
+	}
+
+	public function loadAdminCss()
+	{
+		if( get_current_screen()->id != 'woocommerce_page_wc-settings' ) return;
+
+		$admin_css_handle = 'pleb_wcsr';
+
+		wp_enqueue_style(
+			$admin_css_handle, 
+			$this->dirUrl.'admin/css/plebwcsr.css'
 		);
 	}
 

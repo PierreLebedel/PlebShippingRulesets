@@ -83,7 +83,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'desc_tip' => __("", 'pleb'),
 			],
 			'rulesets_matching_mode' => [
-				'title'    => __('Ruleset(s) matching mode', 'pleb'),
+				'title'    => __('Shipping rate(s) displayed', 'pleb'),
 				'type'     => 'select',
 				'default'  => 'first',
 				'options'  => [
@@ -378,7 +378,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 						'package' => $package,
 					]);
 					do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
-					$rulesetsCost = 0;
+					$rulesetsCost = 0; // reset to zero for the next loop
 				}
 
 			}

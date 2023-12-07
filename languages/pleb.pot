@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-06 19:29+0000\n"
+"POT-Creation-Date: 2023-12-07 15:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -22,17 +22,17 @@ msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:93
+#: includes/RulesShippingMethod.php:112
 #, php-format
 msgid "%s: Number of items in cart"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:95
+#: includes/RulesShippingMethod.php:114
 #, php-format
 msgid "%s: Percentage based fees"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:94
+#: includes/RulesShippingMethod.php:113
 #, php-format
 msgid "%s: Shopping cart price"
 msgstr ""
@@ -70,7 +70,7 @@ msgstr ""
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:87
+#: includes/RulesShippingMethod.php:106
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:39
 msgid "Base price"
@@ -119,7 +119,7 @@ msgstr ""
 msgid "Choose an option"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:51
+#: includes/RulesShippingMethod.php:50
 msgid "Debug mode"
 msgstr ""
 
@@ -141,23 +141,27 @@ msgstr ""
 msgid "Duplicate"
 msgstr ""
 
+#: includes/RulesShippingMethod.php:92
+msgid "Each matching ruleset is available as distinct shipping rate"
+msgstr ""
+
 #: includes/Templates/RulesetsDefaultRuleset.php:18
 #: includes/Templates/RulesetsRuleset.php:20
 msgid "Edit"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:53
+#: includes/RulesShippingMethod.php:52
 msgid "Enable Debug Mode"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:91
+#: includes/RulesShippingMethod.php:110
 #, php-format
 msgid ""
 "Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price "
 "calculation."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:48
+#: includes/RulesShippingMethod.php:47
 msgid "Global settings"
 msgstr ""
 
@@ -206,11 +210,11 @@ msgstr ""
 msgid "Price to apply:"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:103
+#: includes/RulesShippingMethod.php:99
 msgid "Replace method title by matching ruleset name in the shopping cart?"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:102
+#: includes/RulesShippingMethod.php:98
 msgid "Replace method title?"
 msgstr ""
 
@@ -218,7 +222,7 @@ msgstr ""
 msgid "Rule"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:62
+#: includes/RulesShippingMethod.php:61
 msgid "Rules based shipping price"
 msgstr ""
 
@@ -231,7 +235,7 @@ msgstr ""
 msgid "Ruleset name"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:110
+#: includes/RulesShippingMethod.php:122
 msgid "Rulesets"
 msgstr ""
 
@@ -241,8 +245,24 @@ msgid ""
 "pages."
 msgstr ""
 
+#: includes/RulesShippingMethod.php:86
+msgid "Shipping rate(s) displayed"
+msgstr ""
+
 #: includes/RulesShippingMethod.php:30
 msgid "Shipping rulesets"
+msgstr ""
+
+#: includes/RulesShippingMethod.php:90
+msgid ""
+"Single shipping rate based on the first ruleset with all rules matching the "
+"shopping cart"
+msgstr ""
+
+#: includes/RulesShippingMethod.php:91
+msgid ""
+"Single shipping rate suming costs of all rulesets with all rules matching "
+"the shopping cart"
 msgstr ""
 
 #: includes/Templates/RulesetsDefaultRuleset.php:19
@@ -250,25 +270,19 @@ msgstr ""
 msgid "Stop editing"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:35 includes/Templates/Rulesets.php:27
+#: includes/RulesShippingMethod.php:34 includes/Templates/Rulesets.php:27
 msgid ""
 "The default ruleset allows you to apply a rate even if none of rulesets "
 "matches the shopping cart."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:33
-msgid ""
-"The first ruleset whose rules all match the shopping cart will be applied to "
-"the order."
-msgstr ""
-
-#: includes/RulesShippingMethod.php:92
+#: includes/RulesShippingMethod.php:111
 msgid ""
 "This base price will be added to the price of the group matching with the "
 "shopping cart."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:34
+#: includes/RulesShippingMethod.php:33
 msgid ""
 "This shipping method will not be available if the cart don't satisfies "
 "entirely none of rulesets."
@@ -289,6 +303,6 @@ msgstr ""
 msgid "Works the same as %s setting field"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:98
+#: includes/RulesShippingMethod.php:117
 msgid "Works the same as WooCommerce Flat Rate"
 msgstr ""

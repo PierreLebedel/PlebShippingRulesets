@@ -1,4 +1,4 @@
-<div class="postbox pleb_ruleset" style="margin-bottom:15px;">
+<div class="postbox pleb_ruleset">
 
     <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">
     <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="<?php echo esc_attr($this->getOrder()); ?>">
@@ -20,19 +20,16 @@
                 <span class="button_dynamic_action"><?php _e("Edit", 'pleb'); ?></span>
                 <span class="button_dynamic_action" style="display:none;"><?php _e("Stop editing", 'pleb'); ?></span>
             </button>
-
-            
-            
         </div>
     </div>
 
     <div class="postbox-header" style="padding:8px 12px;justify-content:flex-start;">
         
-        <label for="" style="display:block;font-weight:600;padding-right:5px;white-space:nowrap;">
+        <label for="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" style="display:block;font-weight:600;padding-right:5px;white-space:nowrap;">
             <?php esc_attr_e("Price to apply:", 'pleb'); ?>
         </label>
 
-        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb'); ?>" />
+        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb'); ?>" id="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" />
 
         <?php echo wc_help_tip(sprintf(
 	__("Works the same as %s setting field", 'pleb'),
@@ -45,9 +42,7 @@
 
         <?php $rules = $this->getRules(); ?>
 
-        <div class="pleb_no_ruleset_rule_notice notice notice-info inline text-center notice-alt" style="margin:10px 0;<?php if (!empty($rules)) {
-            echo 'display:none;';
-        } ?>">
+        <div class="pleb_no_ruleset_rule_notice notice notice-info inline notice-alt pleb_notice" style=";<?php if (!empty($rules)): ?>display:none;<?php endif; ?>">
             <p><span class="dashicons dashicons-dismiss"></span> <?php _e("No rule in this ruleset yet.", 'pleb'); ?></p>
         </div>
 
@@ -67,8 +62,8 @@
                     <?php _e("Duplicate", 'pleb'); ?>
                 </button>
 
-                <div class="plugins" style="float:right;padding-top:6px;padding-left:5px;">
-                    <a href="#" class="delete pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>" style="text-decoration:none;font-size:13px;"><?php _e("Delete", 'pleb'); ?></a>
+                <div style="float:right;padding-top:6px;padding-left:5px;">
+                    <a href="#" class="pleb_linkdanger pleb_ruleset_delete" data-ruleset_id="<?php echo $this->getId(); ?>" data-confirm="<?php esc_attr_e("Are you sure to delete this ruleset and all of its rules?", 'pleb'); ?>"><?php _e("Delete", 'pleb'); ?></a>
                 </div>
             </div>
         </div>
