@@ -292,4 +292,21 @@ jQuery(function ( $ ) {
 
     });
 
+
+    $(document).on('click', '.pleb_nav_tabs a.nav-tab', function(e){
+        e.preventDefault();
+
+        const $link = $(this);
+        const $navTabs = $link.parents('.pleb_nav_tabs');
+        const $otherLinks = $navTabs.find('a.nav-tab').not($link);
+        const $tabsContents = $navTabs.find('.tab_content');
+
+        $link.addClass('nav-tab-active');
+        $otherLinks.removeClass('nav-tab-active');
+        $tabsContents.hide();
+        $navTabs.find('.tab_content'+$link.attr('href')).show();
+
+    });
+
+
 });
