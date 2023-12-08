@@ -55,6 +55,10 @@ jQuery(function ( $ ) {
         cursor: 'move',
         handle: '.hndle',
         items: '> .pleb_ruleset',
+        placeholder: "pleb_ruleset_placeholder",
+        start: function(e, ui){
+            ui.placeholder.outerHeight(ui.item.outerHeight());
+        },
         update: function (event, ui) {
             $('#pleb_rulesets > .pleb_ruleset').each(function (index, elem) {
                 $(elem).find('input[name^="' + shipping_method_fields_prefix + 'rulesets"][name$="[order]"]').val(index + 1);
@@ -287,5 +291,22 @@ jQuery(function ( $ ) {
 
 
     });
+
+
+    $(document).on('click', '.pleb_nav_tabs a.nav-tab', function(e){
+        e.preventDefault();
+
+        const $link = $(this);
+        const $navTabs = $link.parents('.pleb_nav_tabs');
+        const $otherLinks = $navTabs.find('a.nav-tab').not($link);
+        const $tabsContents = $navTabs.find('.tab_content');
+
+        $link.addClass('nav-tab-active');
+        $otherLinks.removeClass('nav-tab-active');
+        $tabsContents.hide();
+        $navTabs.find('.tab_content'+$link.attr('href')).show();
+
+    });
+
 
 });

@@ -42,6 +42,23 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		];
 
 		$this->form_fields = [
+			// [
+			// 	'type'  => 'pleb_tabs',
+			// 	'default' => 'tab1',
+			// 	'tabs' => [
+			// 		'tab1' => [
+			// 			'title' => __('Settings', 'pleb'),
+			// 			'content' => "Test settings",
+			// 		],
+			// 		'tab2' => [
+			// 			'title' => __('Docs', 'pleb'),
+			// 			'content' => "Test docs",
+			// 		],
+			// 	],
+			// ],
+			[
+				'type'  => 'pleb_autopromo',
+			],
 			[
 				'type'  => 'title',
 				'title' => __('Global settings', 'pleb'),
@@ -83,7 +100,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'desc_tip' => __("", 'pleb'),
 			],
 			'rulesets_matching_mode' => [
-				'title'    => __('Ruleset(s) matching mode', 'pleb'),
+				'title'    => __('Shipping rate(s) displayed', 'pleb'),
 				'type'     => 'select',
 				'default'  => 'first',
 				'options'  => [
@@ -378,7 +395,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 						'package' => $package,
 					]);
 					do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
-					$rulesetsCost = 0;
+					$rulesetsCost = 0; // reset to zero for the next loop
 				}
 
 			}
@@ -485,8 +502,59 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		if (!is_array($value)) {
 			$value = [];
 		}
-
 		return serialize($value);
+	}
+
+	public function generate_pleb_tabs_html( $key, $data ) {
+		$fieldKey = $this->get_field_key( $key );
+		$data = wp_parse_args( $data, [
+			'default'=>'',
+			'tabs' => [
+				'tab1' => [
+					'title' => 'Title',
+					'content' => 'Content',
+				]
+			],
+		] );
+
+		if(!array_key_exists($data['default'], $data['tabs'])){
+			$data['default'] = array_key_first($data['tabs']);
+		}
+
+		ob_start();
+		?></table>
+		
+		<div class="pleb_nav_tabs">
+
+			<h2 class="nav-tab-wrapper">
+				<?php foreach($data['tabs'] as $k=>$tab): ?>
+				<a href="#<?php echo $fieldKey; ?>_<?php echo $k; ?>" class="nav-tab <?php if($data['default']==$k): ?>nav-tab-active<?php endif; ?>"><?php echo $tab['title']; ?></a>
+				<?php endforeach; ?>
+			</h2>
+			
+			<?php foreach($data['tabs'] as $k=>$tab): ?>
+			<div class="tab_content" id="<?php echo $fieldKey; ?>_<?php echo $k; ?>" style="<?php if($data['default']!=$k): ?>display:none;<?php endif; ?>">
+				<?php dump($tab['content']); ?>
+			</div>
+			<?php endforeach; ?>
+
+		</div>
+
+		<table class="form-table">
+		<?php
+
+		return ob_get_clean();
+	}
+
+	public function generate_pleb_autopromo_html( $key, $data ) {
+		$fieldKey = $this->get_field_key($key);
+		$data = wp_parse_args( $data, [
+			'default' => __("Default", 'pleb')
+		] );
+
+		ob_start();
+		include(dirname(__FILE__).'/Templates/AutoPromo.php');
+		return ob_get_clean();
 	}
 
 	public function sanitize_cost(string $value)

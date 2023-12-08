@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-06 19:30+0000\n"
+"PO-Revision-Date: 2023-12-07 15:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -23,17 +23,17 @@ msgstr ""
 "%s requiert l'installation et l'activation de WooCommerce. Vous pouvez "
 "télécharger %s ici."
 
-#: includes/RulesShippingMethod.php:93
+#: includes/RulesShippingMethod.php:112
 #, php-format
 msgid "%s: Number of items in cart"
 msgstr "%s : Nombre d'articles dans le panier"
 
-#: includes/RulesShippingMethod.php:95
+#: includes/RulesShippingMethod.php:114
 #, php-format
 msgid "%s: Percentage based fees"
 msgstr "%s : Supplément basé sur un pourcentage du prix"
 
-#: includes/RulesShippingMethod.php:94
+#: includes/RulesShippingMethod.php:113
 #, php-format
 msgid "%s: Shopping cart price"
 msgstr "%s : Prix du panier"
@@ -72,7 +72,7 @@ msgstr "Êtes-vous sûr de supprimer cette règle ?"
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr "Êtes-vous sûr de supprimer ce groupe ainsi que toutes ses règles ?"
 
-#: includes/RulesShippingMethod.php:87
+#: includes/RulesShippingMethod.php:106
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:39
 msgid "Base price"
@@ -122,7 +122,7 @@ msgstr "Poids des articles du panier (%s)"
 msgid "Choose an option"
 msgstr "Choisissez"
 
-#: includes/RulesShippingMethod.php:51
+#: includes/RulesShippingMethod.php:50
 msgid "Debug mode"
 msgstr "Mode débogage"
 
@@ -144,16 +144,22 @@ msgstr "Documentation"
 msgid "Duplicate"
 msgstr "Dupliquer"
 
+#: includes/RulesShippingMethod.php:92
+msgid "Each matching ruleset is available as distinct shipping rate"
+msgstr ""
+"Un tarif d'expédition distinct pour chaque groupe de règles correspondant au "
+"panier"
+
 #: includes/Templates/RulesetsDefaultRuleset.php:18
 #: includes/Templates/RulesetsRuleset.php:20
 msgid "Edit"
 msgstr "Modifier"
 
-#: includes/RulesShippingMethod.php:53
+#: includes/RulesShippingMethod.php:52
 msgid "Enable Debug Mode"
 msgstr "Activer le mode de débogage"
 
-#: includes/RulesShippingMethod.php:91
+#: includes/RulesShippingMethod.php:110
 #, php-format
 msgid ""
 "Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price "
@@ -162,7 +168,7 @@ msgstr ""
 "Saisissez un prix ou une formule, ex : %s. Les tags seront automatiquement "
 "remplacés dans le calcul."
 
-#: includes/RulesShippingMethod.php:48
+#: includes/RulesShippingMethod.php:47
 msgid "Global settings"
 msgstr "Réglages généraux"
 
@@ -212,12 +218,12 @@ msgstr "Veuillez sélectionner la condition"
 msgid "Price to apply:"
 msgstr "Tarif à appliquer :"
 
-#: includes/RulesShippingMethod.php:103
+#: includes/RulesShippingMethod.php:99
 msgid "Replace method title by matching ruleset name in the shopping cart?"
 msgstr ""
 "Remplacer le titre de la méthode par le nom du groupe de règles sélectionné ?"
 
-#: includes/RulesShippingMethod.php:102
+#: includes/RulesShippingMethod.php:98
 msgid "Replace method title?"
 msgstr "Remplacer le titre de la méthode ?"
 
@@ -225,7 +231,7 @@ msgstr "Remplacer le titre de la méthode ?"
 msgid "Rule"
 msgstr "Règle"
 
-#: includes/RulesShippingMethod.php:62
+#: includes/RulesShippingMethod.php:61
 msgid "Rules based shipping price"
 msgstr "Tarif d'expédition basé sur des règles"
 
@@ -238,7 +244,7 @@ msgstr "Groupe de règles"
 msgid "Ruleset name"
 msgstr "Nom du groupe de règles"
 
-#: includes/RulesShippingMethod.php:110
+#: includes/RulesShippingMethod.php:122
 msgid "Rulesets"
 msgstr "Groupes de règles"
 
@@ -250,16 +256,36 @@ msgstr ""
 "Créez vos propres groupes de règles afin de calculer les frais d'expédition "
 "sur les pages de Panier et de Commande."
 
+#: includes/RulesShippingMethod.php:86
+msgid "Shipping rate(s) displayed"
+msgstr "Tarif(s) d'expédition affiché(s)"
+
 #: includes/RulesShippingMethod.php:30
 msgid "Shipping rulesets"
 msgstr "Groupes de règles d'expédition"
+
+#: includes/RulesShippingMethod.php:90
+msgid ""
+"Single shipping rate based on the first ruleset with all rules matching the "
+"shopping cart"
+msgstr ""
+"Un unique tarif d'expédition basé sur le premier groupe dont toutes les "
+"règles sont satisfaites par le panier"
+
+#: includes/RulesShippingMethod.php:91
+msgid ""
+"Single shipping rate suming costs of all rulesets with all rules matching "
+"the shopping cart"
+msgstr ""
+"Un unique tarif additionnant les tarifs de tous les groupes satisfaits par "
+"le panier"
 
 #: includes/Templates/RulesetsDefaultRuleset.php:19
 #: includes/Templates/RulesetsRuleset.php:21
 msgid "Stop editing"
 msgstr "Quitter l'édition"
 
-#: includes/RulesShippingMethod.php:35 includes/Templates/Rulesets.php:27
+#: includes/RulesShippingMethod.php:34 includes/Templates/Rulesets.php:27
 msgid ""
 "The default ruleset allows you to apply a rate even if none of rulesets "
 "matches the shopping cart."
@@ -267,15 +293,7 @@ msgstr ""
 "Le groupe par défaut vous permet d'appliquer un tarif même si aucun groupe "
 "de règle n'est entièrement satisfait par le panier."
 
-#: includes/RulesShippingMethod.php:33
-msgid ""
-"The first ruleset whose rules all match the shopping cart will be applied to "
-"the order."
-msgstr ""
-"Le tarif du premier groupe de règles à être entièrement satisfait par le "
-"panier d'achat sera appliqué à la commande."
-
-#: includes/RulesShippingMethod.php:92
+#: includes/RulesShippingMethod.php:111
 msgid ""
 "This base price will be added to the price of the group matching with the "
 "shopping cart."
@@ -283,7 +301,7 @@ msgstr ""
 "Le tarif de base sera ajouté au tarif indiqué dans le groupe de règles "
 "correspondant à la commande."
 
-#: includes/RulesShippingMethod.php:34
+#: includes/RulesShippingMethod.php:33
 msgid ""
 "This shipping method will not be available if the cart don't satisfies "
 "entirely none of rulesets."
@@ -306,6 +324,6 @@ msgstr "WooCommerce Shipping Rulesets"
 msgid "Works the same as %s setting field"
 msgstr "Fonctionne pareil que le champ de réglages %s"
 
-#: includes/RulesShippingMethod.php:98
+#: includes/RulesShippingMethod.php:117
 msgid "Works the same as WooCommerce Flat Rate"
 msgstr "Fonctionne pareil que le mode d’expédition Forfait de WooCommerce"
