@@ -22,6 +22,7 @@ class WordPressPlugin
 	public $textDomain;
 	public $domainPath;
 	public $pluginUri;
+	public $githubUri = 'https://github.com/PierreLebedel/WooCommerceShippingRulesets/';
 
 	public static function instance(?string $pluginMainFile = null): self
 	{
@@ -183,26 +184,10 @@ class WordPressPlugin
 		}
 
 		$row_meta = [
-			'docs' => '<a href="https://github.com/PierreLebedel/WooCommerceShippingRulesets/tree/main/docs/index.md" target="_blank">'.esc_html__('Docs', 'pleb-woocommerce-shipping-rulesets').'</a>',
+			'docs' => '<a href="'.trailingslashit($this->githubUri).'tree/main/docs/index.md" target="_blank">'.esc_html__('Docs', 'pleb-woocommerce-shipping-rulesets').'</a>',
 		];
 
 		return array_merge($links, $row_meta);
 	}
 
-	public static function publish($event)
-	{
-		$vendorDir = $event->getComposer()->getConfig()->get('vendor-dir');
-        require_once($vendorDir.'/autoload.php');
-
-		$pluginDir = './wp-plugin';
-
-		if (!is_dir($pluginDir)) {
-			mkdir($pluginDir);
-		}
-
-		mkdir($pluginDir, 0777, true);
-
-
-		WordPressPluginPublisher::publish();
-	}
 }

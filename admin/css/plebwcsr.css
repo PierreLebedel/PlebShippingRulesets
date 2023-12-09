@@ -1,5 +1,7 @@
 
-
+.woocommerce a .dashicons{
+    text-decoration:none;
+}
 
 .woocommerce table.form-table .pleb_notice{
     margin:0 0 15px 0;
