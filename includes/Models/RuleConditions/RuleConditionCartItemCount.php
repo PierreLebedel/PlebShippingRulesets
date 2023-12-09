@@ -14,7 +14,7 @@ class RuleConditionCartItemCount extends RuleConditionNumericInteger
 
 	public function getName(): string
 	{
-		return __("Cart item quantity", 'pleb');
+		return __("Cart item quantity", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool

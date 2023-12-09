@@ -21,7 +21,7 @@ class Ruleset implements RulesetInterface
 	{
 		$rulesetArray = array_merge([
 			'id'      => $id = self::generateId(),
-			'name'    => __("Ruleset", 'pleb'),
+			'name'    => __("Ruleset", 'pleb-woocommerce-shipping-rulesets'),
 			'cost'    => '',
 			'order'   => null,
 			'rules'   => [],
@@ -71,7 +71,7 @@ class Ruleset implements RulesetInterface
 	public function getName(): string
 	{
 		if (empty($this->name)) {
-			return __("Ruleset", 'pleb').' #'.$this->getId();
+			return __("Ruleset", 'pleb-woocommerce-shipping-rulesets').' #'.$this->getId();
 		}
 		return $this->name;
 	}

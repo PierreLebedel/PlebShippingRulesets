@@ -14,7 +14,7 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger
 
 	public function getName(): string
 	{
-		return __("Cart item quantity (category)", 'pleb');
+		return __("Cart item quantity (category)", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function getVariants(): array
@@ -29,7 +29,7 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger
 
 		if(!empty($wooCategories)) {
 			foreach($wooCategories as $termObject) {
-				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s category", 'pleb'), $termObject->name);
+				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s category", 'pleb-woocommerce-shipping-rulesets'), $termObject->name);
 			}
 		}
 

@@ -14,14 +14,14 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
 
 	public function getName(): string
 	{
-		return __("Cart price", 'pleb');
+		return __("Cart price", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function getVariants(): array
 	{
 		return [
-			'tax_exclude' => __("Cart price tax exclusive", 'pleb'),
-			'tax_include' => __("Cart price tax inclusive", 'pleb'),
+			'tax_exclude' => __("Cart price tax exclusive", 'pleb-woocommerce-shipping-rulesets'),
+			'tax_include' => __("Cart price tax inclusive", 'pleb-woocommerce-shipping-rulesets'),
 		];
 	}
 

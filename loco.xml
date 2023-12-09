@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bundle name="WooCommerce Shipping Rulesets">
-  <domain name="pleb">
-    <project name="WooCommerce Shipping Rulesets" slug="pleb">
+  <domain name="pleb-woocommerce-shipping-rulesets">
+    <project name="WooCommerce Shipping Rulesets" slug="pleb-woocommerce-shipping-rulesets">
       <source>
         <directory>.</directory>
       </source>
@@ -9,7 +9,7 @@
         <directory>languages</directory>
       </target>
       <template>
-        <file>languages/pleb.pot</file>
+        <file>languages/pleb-woocommerce-shipping-rulesets.pot</file>
       </template>
     </project>
   </domain>

@@ -27,11 +27,11 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	{
 		$this->id                    = self::METHOD_ID;
 		$this->instance_id           = absint($instance_id);
-		$this->method_title          = __('Shipping rulesets', 'pleb');
+		$this->method_title          = __('Shipping rulesets', 'pleb-woocommerce-shipping-rulesets');
 		$this->method_description    = implode('<br>', [
-			__('Set your own rulesets to calculate the shipping price on Cart & Checkout pages.', 'pleb'),
-			__("This shipping method will not be available if the cart don't satisfies entirely none of rulesets.", 'pleb'),
-			__("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb'),
+			__('Set your own rulesets to calculate the shipping price on Cart & Checkout pages.', 'pleb-woocommerce-shipping-rulesets'),
+			__("This shipping method will not be available if the cart don't satisfies entirely none of rulesets.", 'pleb-woocommerce-shipping-rulesets'),
+			__("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb-woocommerce-shipping-rulesets'),
 		]);
 
 		$this->supports = [
@@ -47,11 +47,11 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			// 	'default' => 'tab1',
 			// 	'tabs' => [
 			// 		'tab1' => [
-			// 			'title' => __('Settings', 'pleb'),
+			// 			'title' => __('Settings', 'pleb-woocommerce-shipping-rulesets'),
 			// 			'content' => "Test settings",
 			// 		],
 			// 		'tab2' => [
-			// 			'title' => __('Docs', 'pleb'),
+			// 			'title' => __('Docs', 'pleb-woocommerce-shipping-rulesets'),
 			// 			'content' => "Test docs",
 			// 		],
 			// 	],
@@ -61,12 +61,12 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			],
 			[
 				'type'  => 'title',
-				'title' => __('Global settings', 'pleb'),
+				'title' => __('Global settings', 'pleb-woocommerce-shipping-rulesets'),
 			],
 			'debug_mode' => [
-				'title'       => __('Debug mode', 'pleb'),
+				'title'       => __('Debug mode', 'pleb-woocommerce-shipping-rulesets'),
 				'type'        => 'checkbox',
-				'label'       => __('Enable Debug Mode', 'pleb'),
+				'label'       => __('Enable Debug Mode', 'pleb-woocommerce-shipping-rulesets'),
 			],
 		];
 
@@ -75,7 +75,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'title'       => __('Method title', 'woocommerce'),
 				'type'        => 'text',
 				'description' => __('This controls the title which the user sees during checkout.', 'woocommerce'),
-				'default'     => __('Rules based shipping price', 'pleb'),
+				'default'     => __('Rules based shipping price', 'pleb-woocommerce-shipping-rulesets'),
 				'desc_tip'    => true,
 			],
 			'tax_status' => [
@@ -96,50 +96,50 @@ class RulesShippingMethod extends \WC_Shipping_Method
 					'yes' => __('Yes, I will enter prices inclusive of tax', 'woocommerce'),
 					'no'  => __('No, I will enter prices exclusive of tax', 'woocommerce'),
 				],
-				'description' => __("", 'pleb'),
-				'desc_tip' => __("", 'pleb'),
+				'description' => __("", 'pleb-woocommerce-shipping-rulesets'),
+				'desc_tip' => __("", 'pleb-woocommerce-shipping-rulesets'),
 			],
 			'rulesets_matching_mode' => [
-				'title'    => __('Shipping rate(s) displayed', 'pleb'),
+				'title'    => __('Shipping rate(s) displayed', 'pleb-woocommerce-shipping-rulesets'),
 				'type'     => 'select',
 				'default'  => 'first',
 				'options'  => [
-					'first' => __("Single shipping rate based on the first ruleset with all rules matching the shopping cart", 'pleb'),
-					'many_grouped'  => __("Single shipping rate suming costs of all rulesets with all rules matching the shopping cart", 'pleb'),
-					'many_distinct' => __("Each matching ruleset is available as distinct shipping rate", 'pleb'),
+					'first' => __("Single shipping rate based on the first ruleset with all rules matching the shopping cart", 'pleb-woocommerce-shipping-rulesets'),
+					'many_grouped'  => __("Single shipping rate suming costs of all rulesets with all rules matching the shopping cart", 'pleb-woocommerce-shipping-rulesets'),
+					'many_distinct' => __("Each matching ruleset is available as distinct shipping rate", 'pleb-woocommerce-shipping-rulesets'),
 				],
-				'description' => __("", 'pleb'),
-				'desc_tip' => __("", 'pleb'),
+				'description' => __("", 'pleb-woocommerce-shipping-rulesets'),
+				'desc_tip' => __("", 'pleb-woocommerce-shipping-rulesets'),
 			],
 			'replace_method_title' => [
-				'title'       => __('Replace method title?', 'pleb'),
-				'label'       => __('Replace method title by matching ruleset name in the shopping cart?', 'pleb'),
+				'title'       => __('Replace method title?', 'pleb-woocommerce-shipping-rulesets'),
+				'label'       => __('Replace method title by matching ruleset name in the shopping cart?', 'pleb-woocommerce-shipping-rulesets'),
 				'type'        => 'checkbox',
-				'description' => __("", 'pleb'),
+				'description' => __("", 'pleb-woocommerce-shipping-rulesets'),
 				'default'     => 'no',
 				'desc_tip'    => false,
 			],
 			'cost'       => [
-				'title'             => __('Base price', 'pleb'),
+				'title'             => __('Base price', 'pleb-woocommerce-shipping-rulesets'),
 				'type'              => 'text',
 				'placeholder'       => '',
 				'description'       => implode('<br>', [
-					sprintf(__("Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price calculation.", 'pleb'), '<code>10.00 * [qty]</code>'),
-					__("This base price will be added to the price of the group matching with the shopping cart.", 'pleb'),
-					sprintf(__("%s: Number of items in cart", 'pleb'), '<code>[qty]</code>'),
-					sprintf(__("%s: Shopping cart price", 'pleb'), '<code>[cost]</code>'),
-					sprintf(__("%s: Percentage based fees", 'pleb'), '<code>[fee percent="10" min_fee="20" max_fee=""]</code>'),
+					sprintf(__("Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price calculation.", 'pleb-woocommerce-shipping-rulesets'), '<code>10.00 * [qty]</code>'),
+					__("This base price will be added to the price of the group matching with the shopping cart.", 'pleb-woocommerce-shipping-rulesets'),
+					sprintf(__("%s: Number of items in cart", 'pleb-woocommerce-shipping-rulesets'), '<code>[qty]</code>'),
+					sprintf(__("%s: Shopping cart price", 'pleb-woocommerce-shipping-rulesets'), '<code>[cost]</code>'),
+					sprintf(__("%s: Percentage based fees", 'pleb-woocommerce-shipping-rulesets'), '<code>[fee percent="10" min_fee="20" max_fee=""]</code>'),
 				]),
 				'default'           => '0',
-				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb'),
+				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb-woocommerce-shipping-rulesets'),
 				'sanitize_callback' => [$this, 'sanitize_cost'],
 			],
 
 			'rulesets'       => [
-				'title'             => __('Rulesets', 'pleb'),
+				'title'             => __('Rulesets', 'pleb-woocommerce-shipping-rulesets'),
 				'type'              => 'pleb_rulesets',
 				'placeholder'       => '',
-				'description'       => __("", 'pleb'),
+				'description'       => __("", 'pleb-woocommerce-shipping-rulesets'),
 				'default'           => [],
 				'desc_tip'          => true,
 				//'sanitize_callback' => [$this, 'sanitize_cost'],
@@ -549,7 +549,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	public function generate_pleb_autopromo_html( $key, $data ) {
 		$fieldKey = $this->get_field_key($key);
 		$data = wp_parse_args( $data, [
-			'default' => __("Default", 'pleb')
+			'default' => __("Default", 'pleb-woocommerce-shipping-rulesets')
 		] );
 
 		ob_start();

@@ -2,7 +2,7 @@
 
     <div class="postbox" style="flex:auto;">
         <div class="postbox-header">
-            <h2 class="hndle"><?php _e("Thank you tu use this plugin!", 'pleb'); ?></h2>
+            <h2 class="hndle"><?php _e("Thank you tu use this plugin!", 'pleb-woocommerce-shipping-rulesets'); ?></h2>
         </div>
         <div class="inside">
             
@@ -11,7 +11,7 @@
 
     <div class="postbox" style="width:200px;">
         <div class="postbox-header">
-            <h2 class="hndle"><?php _e("Useful links", 'pleb'); ?></h2>
+            <h2 class="hndle"><?php _e("Useful links", 'pleb-woocommerce-shipping-rulesets'); ?></h2>
         </div>
         <div class="inside">
             <ul>

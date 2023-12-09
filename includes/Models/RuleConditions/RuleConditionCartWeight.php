@@ -14,7 +14,7 @@ class RuleConditionCartWeight extends RuleConditionNumericInteger
 
 	public function getName(): string
 	{
-		return sprintf(__("Cart weight (%s)", 'pleb'), __(get_option('woocommerce_weight_unit'), 'woocommerce'));
+		return sprintf(__("Cart weight (%s)", 'pleb-woocommerce-shipping-rulesets'), __(get_option('woocommerce_weight_unit'), 'woocommerce'));
 	}
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool

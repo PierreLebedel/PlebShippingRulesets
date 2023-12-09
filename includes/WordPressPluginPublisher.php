@@ -132,7 +132,7 @@ class WordPressPluginPublisher
         }
 
         $screenshots = [
-			//'1' => __("Screenshot #1 description", 'pleb'),
+			//'1' => __("Screenshot #1 description", 'pleb-woocommerce-shipping-rulesets'),
 		];
 
         if(!empty($screenshots)) {

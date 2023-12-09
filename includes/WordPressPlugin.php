@@ -102,12 +102,12 @@ class WordPressPlugin
 	private function missingWooCommerceAdminNotice()
 	{
 		// $message = sprintf(
-		//     esc_html__('WooCommerce Shipping Rules requires WooCommerce to be installed and active. You can download %s here.', 'pleb'),
+		//     esc_html__('WooCommerce Shipping Rules requires WooCommerce to be installed and active. You can download %s here.', 'pleb-woocommerce-shipping-rulesets'),
 		//     '<a href="https://woocommerce.com/" target="_blank">WooCommerce</a>'
 		// );
 
 		$message = sprintf(
-			esc_html__('%s requires WooCommerce to be installed and active. You can download %s here.', 'pleb'),
+			esc_html__('%s requires WooCommerce to be installed and active. You can download %s here.', 'pleb-woocommerce-shipping-rulesets'),
 			$this->name,
 			'<a href="'.admin_url('plugin-install.php?s=WooCommerce&tab=search&type=term').'">WooCommerce</a>'
 		);
@@ -140,7 +140,7 @@ class WordPressPlugin
 
 		wp_localize_script(
 			$admin_script_handle,
-			'pleb',
+			'pleb-woocommerce-shipping-rulesets',
 			[
 				'plugin_version' => $this->version,
 				'ajax_url' => admin_url('admin-ajax.php'),
@@ -149,7 +149,7 @@ class WordPressPlugin
 					'method_id' => 'pleb_rulesets_method',
 				],
 				'translations' => [
-					'loading' => __("Loading...", 'pleb'),
+					'loading' => __("Loading...", 'pleb-woocommerce-shipping-rulesets'),
 				],
 			]
 		);
@@ -183,7 +183,7 @@ class WordPressPlugin
 		}
 
 		$row_meta = [
-			'docs' => '<a href="https://github.com/PierreLebedel/WooCommerceShippingRulesets/tree/main/docs" target="_blank">'.esc_html__('Docs', 'pleb').'</a>',
+			'docs' => '<a href="https://github.com/PierreLebedel/WooCommerceShippingRulesets/tree/main/docs/index.md" target="_blank">'.esc_html__('Docs', 'pleb-woocommerce-shipping-rulesets').'</a>',
 		];
 
 		return array_merge($links, $row_meta);

@@ -17,7 +17,7 @@ class AjaxAction
 		$instance = new self();
 
 		if (!method_exists($instance, $hook)) {
-			throw new \Exception(sprintf(__("Unknown ajax action: %s", 'pleb'), $hook));
+			throw new \Exception(sprintf(__("Unknown ajax action: %s", 'pleb-woocommerce-shipping-rulesets'), $hook));
 		}
 
 		if ($public) {
@@ -37,7 +37,7 @@ class AjaxAction
 			}
 		}
 		if (!empty($missingParameters)) {
-			throw new \Exception(sprintf(__("Ajax action missing params: %s", 'pleb'), implode(', ', $missingParameters)));
+			throw new \Exception(sprintf(__("Ajax action missing params: %s", 'pleb-woocommerce-shipping-rulesets'), implode(', ', $missingParameters)));
 		}
 	}
 
