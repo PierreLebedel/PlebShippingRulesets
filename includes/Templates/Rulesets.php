@@ -11,7 +11,7 @@
 
         <div id="pleb_no_ruleset_notice" class="notice notice-info inline notice-alt pleb_notice" style="<?php if (!empty($classicRulesets) || $defaultRuleset): ?>display:none;<?php endif; ?>"><p><span class="dashicons dashicons-dismiss"></span> <?php _e("No ruleset yet.", 'pleb-woocommerce-shipping-rulesets'); ?></p></div>
 
-        <div class="metabox-holder" style="padding-top:0;">
+        <div class="metabox-holder" style="padding-top:0;max-width:900px;">
             <div id="pleb_rulesets" data-instance_id="<?php echo $this->instance_id; ?>" class="meta-box-sortables">
                 <?php if (!empty($classicRulesets)) : ?>
                     <?php foreach ($classicRulesets as $ruleset) : ?>

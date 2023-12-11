@@ -237,7 +237,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return $this;
 	}
 
-	protected function evaluate_cost(string $costrule = '', array $package = [], string $debugCostName = '')
+	protected function evaluate_cost(string $costrule = '', array $package = [], string $debugCostName = '', array $replaces = [])
 	{
 		if ($costrule === '') {
 			return 0;
@@ -255,23 +255,19 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 		$this->addDebugRow($debugCostName.'User input rule = '.$costrule);
 
+		$replaces = array_merge([
+			'[qty]' => $package_qty,
+			'[cost]' => $this->fee_cost,
+		], $replaces);
+
 		add_shortcode('fee', [$this, 'fee']);
-		$sum = do_shortcode(
-			str_replace([
-				'[qty]',
-				'[cost]',
-			], [
-				$package_qty,
-				$this->fee_cost,
-			], $costrule)
-		);
+		$sum = do_shortcode(strtr($costrule, $replaces));
 		remove_shortcode('fee', [$this, 'fee']);
 
-		if (str_contains($costrule, '[qty]')) {
-			$this->addDebugRow($debugCostName.'Rule [qty] tag value = '.$package_qty);
-		}
-		if (str_contains($costrule, '[cost]')) {
-			$this->addDebugRow($debugCostName.'Rule [cost] tag value = '.$this->fee_cost);
+		foreach($replaces as $k=>$v){
+			if (str_contains($costrule, $k)) {
+				$this->addDebugRow($debugCostName.'Rule '.$k.' tag value = '.$v);
+			}
 		}
 
 		// Clean up chars
@@ -289,7 +285,12 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		include_once(WC()->plugin_path().'/includes/libraries/class-wc-eval-math.php');
+		set_error_handler(function() use ($debugCostName) {
+			$this->addDebugRow($debugCostName.'Erreur de formule');
+		});
 		$result = \WC_Eval_Math::evaluate($sum);
+		restore_error_handler();
+			
 		$this->addDebugRow($debugCostName.'Math result rule = '.$result);
 
 		return $result;
@@ -384,7 +385,17 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				}
 
 				if ($matchingRuleset->getCost() !== '') {
-					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, 'Ruleset cost: ');
+					$replaces = [];
+					$rules = $matchingRuleset->getRules();
+					if(!empty($rules)){
+						foreach($rules as $rule){
+							$condition = $rule->getCondition();
+							if(!$condition) continue; 
+                			if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) continue;
+							$replaces[ '[rule_'.$rule->getId().']' ] = $condition->extractValueFromWooCommercePackageArray($package, $rule, $this->instance_id);
+						}
+					}
+					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, 'Ruleset cost: ', $replaces);
 				}
 
 				if($matchingMode == 'many_distinct'){

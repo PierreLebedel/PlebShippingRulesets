@@ -1,4 +1,8 @@
-<div class="postbox pleb_ruleset">
+<?php
+
+$rules = $this->getRules();
+
+?><div class="postbox pleb_ruleset">
 
     <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][id]" value="<?php echo $this->getId(); ?>">
     <input type="hidden" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][order]" value="<?php echo esc_attr($this->getOrder()); ?>">
@@ -23,24 +27,44 @@
         </div>
     </div>
 
-    <div class="postbox-header" style="padding:8px 12px;justify-content:flex-start;">
+    <div class="postbox-header" style="padding:8px 12px;justify-content:flex-start;display:block;">
+
+        <div style="width:100%;display:flex;justify-content:flex-start;align-items:center;">
+            <label for="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" style="display:block;font-weight:600;padding-right:5px;white-space:nowrap;">
+                <?php esc_attr_e("Price to apply:", 'pleb-woocommerce-shipping-rulesets'); ?>
+            </label>
+
+            <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb-woocommerce-shipping-rulesets'); ?>" id="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" />
+
+            <?php echo wc_help_tip(sprintf(
+                __("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
+                '<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
+            ), true); ?>
+
+            <code class="pleb_open_ruleset_variables" style="display:block;float:right;cursor:pointer;margin-left:5px;white-space:nowrap;" title="<?php esc_attr_e("Show available variables for this ruleset", 'pleb-woocommerce-shipping-rulesets'); ?>"><?php _e("Vars", 'pleb-woocommerce-shipping-rulesets'); ?></code>
+
+        </div>
         
-        <label for="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" style="display:block;font-weight:600;padding-right:5px;white-space:nowrap;">
-            <?php esc_attr_e("Price to apply:", 'pleb-woocommerce-shipping-rulesets'); ?>
-        </label>
+        
 
-        <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb-woocommerce-shipping-rulesets'); ?>" id="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" />
 
-        <?php echo wc_help_tip(sprintf(
-	__("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
-	'<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
-), true); ?>
+        <div class="pleb_ruleset_variables" style="background: #f0f0f1;padding:5px 10px;line-height:21px;margin-top:7px;display:none;">
+            <?php foreach($rules as $rule):
+                $condition = $rule->getCondition();
+                if(!$condition) continue; 
+                if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) continue;
+                $variants = $condition->getVariants();
+                $variant = $rule->getConditionVariant(); ?>
+                <div>
+                    <code>[rule_<?php echo $rule->getId(); ?>]</code> : 
+                    <?php echo (is_array($variants) && array_key_exists($variant, $variants)) ? __($variants[$variant], 'pleb') : $condition->getName(); ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
 
     </div>
 
     <div class="inside" style="margin-bottom:0;">
-
-        <?php $rules = $this->getRules(); ?>
 
         <div class="pleb_no_ruleset_rule_notice notice notice-info inline notice-alt pleb_notice" style=";<?php if (!empty($rules)): ?>display:none;<?php endif; ?>">
             <p><span class="dashicons dashicons-dismiss"></span> <?php _e("No rule in this ruleset yet.", 'pleb-woocommerce-shipping-rulesets'); ?></p>

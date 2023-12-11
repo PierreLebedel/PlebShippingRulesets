@@ -308,5 +308,12 @@ jQuery(function ( $ ) {
 
     });
 
+    $(document).on('click', '.pleb_ruleset .pleb_open_ruleset_variables', function(e){
+        e.preventDefault();
+        const $ruleset = $(this).parents('.pleb_ruleset');
+        const $vars = $ruleset.find('.pleb_ruleset_variables');
+        $vars.slideToggle(200);
+    });
+
 
 });
