@@ -10,6 +10,7 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditio
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionCartItemCount;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByCategoryCount;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByShippingClassCount;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionDayOfWeek;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserHasRole;
 
 abstract class RuleCondition implements RuleConditionInterface
@@ -24,6 +25,7 @@ abstract class RuleCondition implements RuleConditionInterface
 			RuleConditionCartItemByCategoryCount::class,
 			RuleConditionUserIsLoggedIn::class,
 			RuleConditionUserHasRole::class,
+			RuleConditionDayOfWeek::class,
 		]);
 
 		$conditions = [];

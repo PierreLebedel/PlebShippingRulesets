@@ -2,7 +2,7 @@
 
 namespace PlebWooCommerceShippingRulesets\Contracts;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
 
 interface RuleInterface
 {

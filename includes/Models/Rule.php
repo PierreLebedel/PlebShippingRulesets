@@ -2,7 +2,6 @@
 
 namespace PlebWooCommerceShippingRulesets\Models;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;

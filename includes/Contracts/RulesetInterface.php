@@ -2,8 +2,6 @@
 
 namespace PlebWooCommerceShippingRulesets\Contracts;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
-
 interface RulesetInterface
 {
 	public static function createFromArray(array $rulesetArray = []): self;

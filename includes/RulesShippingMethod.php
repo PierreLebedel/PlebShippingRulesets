@@ -2,7 +2,6 @@
 
 namespace PlebWooCommerceShippingRulesets;
 
-use PlebWooCommerceShippingRulesets\Models\Rule;
 use PlebWooCommerceShippingRulesets\Models\Ruleset;
 use PlebWooCommerceShippingRulesets\Models\DefaultRuleset;
 use WC_Product_Simple;
