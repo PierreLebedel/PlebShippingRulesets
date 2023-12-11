@@ -2,8 +2,10 @@
 
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
+use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
+use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
 
 class RuleConditionDayOfMonth extends RuleConditionChoices
 {
@@ -15,6 +17,11 @@ class RuleConditionDayOfMonth extends RuleConditionChoices
 	public function getName(): string
 	{
 		return __("Day of month", 'pleb-woocommerce-shipping-rulesets');
+	}
+
+	public function getGroup(): ?RuleConditionsGroupInterface
+	{
+		return new DateTimeGroup();
 	}
 
 	public function getComparators(): array

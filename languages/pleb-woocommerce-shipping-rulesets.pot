@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-11 14:39+0000\n"
+"POT-Creation-Date: 2023-12-11 18:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -22,17 +22,17 @@ msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:129
+#: includes/RulesShippingMethod.php:128
 #, php-format
 msgid "%s: Number of items in cart"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:131
+#: includes/RulesShippingMethod.php:130
 #, php-format
 msgid "%s: Percentage based fees"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:130
+#: includes/RulesShippingMethod.php:129
 #, php-format
 msgid "%s: Shopping cart price"
 msgstr ""
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Add default ruleset"
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:81
+#: includes/Templates/RulesetsRuleset.php:85
 msgid "Add new rule"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Add new ruleset"
 msgstr ""
 
-#: includes/WordPressPluginPublisher.php:161
+#: includes/WordPressPluginPublisher.php:162
 msgid "Add Shipping rulesets method to the shipping zone"
 msgstr ""
 
@@ -74,11 +74,11 @@ msgstr ""
 msgid "Are you sure to delete this rule?"
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:89
+#: includes/Templates/RulesetsRuleset.php:93
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:123
+#: includes/RulesShippingMethod.php:122
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:41
 msgid "Base price"
@@ -123,21 +123,37 @@ msgstr ""
 msgid "Cart weight (%s)"
 msgstr ""
 
+#: includes/Models/RuleConditions/Abstracts/RuleConditionBoolean.php:18
+msgid "Check for true, uncheck for false"
+msgstr ""
+
 #: includes/Templates/RulesetsRulesetRule.php:7
 msgid "Choose an option"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:67
+#: includes/Models/RuleConditions/RuleConditionCoupon.php:17
+msgid "Coupon"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionDayOfMonth.php:17
+msgid "Day of month"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionDayOfWeek.php:17
+msgid "Day of week"
+msgstr ""
+
+#: includes/RulesShippingMethod.php:66
 msgid "Debug mode"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:557
+#: includes/RulesShippingMethod.php:564
 #: includes/Templates/RulesetsDefaultRuleset.php:9
 msgid "Default"
 msgstr ""
 
 #: includes/Templates/RulesetsDefaultRuleset.php:23
-#: includes/Templates/RulesetsRuleset.php:89
+#: includes/Templates/RulesetsRuleset.php:93
 #: includes/Templates/RulesetsRulesetRule.php:48
 msgid "Delete"
 msgstr ""
@@ -146,11 +162,11 @@ msgstr ""
 msgid "Docs"
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:85
+#: includes/Templates/RulesetsRuleset.php:89
 msgid "Duplicate"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:109
+#: includes/RulesShippingMethod.php:108
 msgid "Each matching ruleset is available as distinct shipping rate"
 msgstr ""
 
@@ -159,11 +175,11 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:69
+#: includes/RulesShippingMethod.php:68
 msgid "Enable Debug Mode"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:127
+#: includes/RulesShippingMethod.php:126
 #, php-format
 msgid ""
 "Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price "
@@ -176,11 +192,11 @@ msgid ""
 "missing."
 msgstr ""
 
-#: includes/WordPressPluginPublisher.php:164
+#: includes/WordPressPluginPublisher.php:165
 msgid "Front end cart display shipping method name & rate"
 msgstr ""
 
-#: includes/WordPressPluginPublisher.php:165
+#: includes/WordPressPluginPublisher.php:166
 msgid "Front end debug mode enabled, shows matching ruleset(s)"
 msgstr ""
 
@@ -192,7 +208,7 @@ msgstr ""
 msgid "Github repository"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:64
+#: includes/RulesShippingMethod.php:63
 msgid "Global settings"
 msgstr ""
 
@@ -213,6 +229,14 @@ msgstr ""
 msgid "If you are a developer, feel free to contribute on %s!"
 msgstr ""
 
+#: includes/Models/RuleConditions/RuleConditionCoupon.php:32
+msgid "is absent"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionCoupon.php:31
+msgid "is present"
+msgstr ""
+
 #: includes/Templates/AutoPromo.php:46
 msgid "Issues"
 msgstr ""
@@ -225,6 +249,10 @@ msgstr ""
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr ""
 
+#: includes/Models/RuleConditions/RuleConditionMonthOfYear.php:17
+msgid "Month of year"
+msgstr ""
+
 #: includes/Templates/RulesetsRuleset.php:11
 msgid "Move up/down to change ruleset priority"
 msgstr ""
@@ -233,12 +261,16 @@ msgstr ""
 msgid "No default ruleset yet."
 msgstr ""
 
-#: includes/Templates/RulesetsRuleset.php:69
+#: includes/Templates/RulesetsRuleset.php:73
 msgid "No rule in this ruleset yet."
 msgstr ""
 
 #: includes/Templates/Rulesets.php:12
 msgid "No ruleset yet."
+msgstr ""
+
+#: includes/Templates/RulesetsRuleset.php:64
+msgid "No variable available yet. Add rule and save to get shortcode."
 msgstr ""
 
 #. Author of the plugin
@@ -258,11 +290,11 @@ msgstr ""
 msgid "Price to apply:"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:116
+#: includes/RulesShippingMethod.php:115
 msgid "Replace method title by matching ruleset name in the shopping cart?"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:115
+#: includes/RulesShippingMethod.php:114
 msgid "Replace method title?"
 msgstr ""
 
@@ -270,7 +302,7 @@ msgstr ""
 msgid "Rule"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:78
+#: includes/RulesShippingMethod.php:77
 msgid "Rules based shipping price"
 msgstr ""
 
@@ -283,29 +315,29 @@ msgstr ""
 msgid "Ruleset name"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:139
+#: includes/RulesShippingMethod.php:138
 msgid "Rulesets"
 msgstr ""
 
-#: includes/WordPressPluginPublisher.php:163
+#: includes/WordPressPluginPublisher.php:164
 msgid "Rulesets & rules settings metaboxes"
 msgstr ""
 
-#: includes/WordPressPluginPublisher.php:162
+#: includes/WordPressPluginPublisher.php:163
 msgid "Rulesets based shipping method display options form"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:32
+#: includes/RulesShippingMethod.php:31
 msgid ""
 "Set your own rulesets to calculate the shipping rate on Cart & Checkout "
 "pages."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:103
+#: includes/RulesShippingMethod.php:102
 msgid "Shipping rate(s) displayed"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:30
+#: includes/RulesShippingMethod.php:29
 msgid "Shipping rulesets"
 msgstr ""
 
@@ -313,13 +345,13 @@ msgstr ""
 msgid "Show available variables for this ruleset"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:107
+#: includes/RulesShippingMethod.php:106
 msgid ""
 "Single shipping rate based on the first ruleset with all rules matching the "
 "shopping cart"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:108
+#: includes/RulesShippingMethod.php:107
 msgid ""
 "Single shipping rate suming costs of all rulesets with all rules matching "
 "the shopping cart"
@@ -334,19 +366,19 @@ msgstr ""
 msgid "Thank you tu use this plugin!"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:34 includes/Templates/Rulesets.php:23
+#: includes/RulesShippingMethod.php:33 includes/Templates/Rulesets.php:23
 msgid ""
 "The default ruleset allows you to apply a rate even if none of rulesets "
 "matches the shopping cart."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:128
+#: includes/RulesShippingMethod.php:127
 msgid ""
 "This base price will be added to the price of the group matching with the "
 "shopping cart."
 msgstr ""
 
-#: includes/RulesShippingMethod.php:33
+#: includes/RulesShippingMethod.php:32
 msgid ""
 "This shipping method will not be available if the cart don't satisfies "
 "entirely none of rulesets."
@@ -359,6 +391,24 @@ msgstr ""
 #: includes/AjaxAction.php:20
 #, php-format
 msgid "Unknown ajax action: %s"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionUserIsLoggedIn.php:17
+msgid "User is logged in"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:18
+msgid "User role"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:24
+msgctxt "User role is/isn't"
+msgid "is"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:25
+msgctxt "User role is/isn't"
+msgid "isn't"
 msgstr ""
 
 #: includes/Templates/RulesetsRuleset.php:44
@@ -379,6 +429,10 @@ msgstr ""
 msgid "Works the same as %s setting field"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:134
+#: includes/RulesShippingMethod.php:133
 msgid "Works the same as WooCommerce Flat Rate"
+msgstr ""
+
+#: includes/Models/RuleConditions/RuleConditionYear.php:18
+msgid "Year"
 msgstr ""

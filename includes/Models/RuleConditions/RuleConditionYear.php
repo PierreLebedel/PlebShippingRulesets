@@ -3,6 +3,8 @@
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
+use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
@@ -16,6 +18,11 @@ class RuleConditionYear extends RuleConditionNumericInteger
 	public function getName(): string
 	{
 		return __("Year", 'pleb-woocommerce-shipping-rulesets');
+	}
+
+	public function getGroup(): ?RuleConditionsGroupInterface
+	{
+		return new DateTimeGroup();
 	}
 
 	public function getComparators(): array

@@ -3,6 +3,8 @@
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
+use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
 
 class RuleConditionMonthOfYear extends RuleConditionChoices
@@ -15,6 +17,11 @@ class RuleConditionMonthOfYear extends RuleConditionChoices
 	public function getName(): string
 	{
 		return __("Month of year", 'pleb-woocommerce-shipping-rulesets');
+	}
+
+	public function getGroup(): ?RuleConditionsGroupInterface
+	{
+		return new DateTimeGroup();
 	}
 
 	public function getComparators(): array

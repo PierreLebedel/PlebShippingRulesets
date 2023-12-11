@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-11 14:39+0000\n"
+"PO-Revision-Date: 2023-12-11 18:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -23,17 +23,17 @@ msgstr ""
 "%s requiert l'installation et l'activation de WooCommerce. Vous pouvez "
 "télécharger %s ici."
 
-#: includes/RulesShippingMethod.php:129
+#: includes/RulesShippingMethod.php:128
 #, php-format
 msgid "%s: Number of items in cart"
 msgstr "%s : Nombre d'articles dans le panier"
 
-#: includes/RulesShippingMethod.php:131
+#: includes/RulesShippingMethod.php:130
 #, php-format
 msgid "%s: Percentage based fees"
 msgstr "%s : Supplément basé sur un pourcentage du prix"
 
-#: includes/RulesShippingMethod.php:130
+#: includes/RulesShippingMethod.php:129
 #, php-format
 msgid "%s: Shopping cart price"
 msgstr "%s : Prix du panier"
@@ -46,7 +46,7 @@ msgstr "..."
 msgid "Add default ruleset"
 msgstr "Ajouter un groupe par défaut"
 
-#: includes/Templates/RulesetsRuleset.php:81
+#: includes/Templates/RulesetsRuleset.php:85
 msgid "Add new rule"
 msgstr "Ajouter une règle"
 
@@ -54,7 +54,7 @@ msgstr "Ajouter une règle"
 msgid "Add new ruleset"
 msgstr "Ajouter un groupe de règles"
 
-#: includes/WordPressPluginPublisher.php:161
+#: includes/WordPressPluginPublisher.php:162
 msgid "Add Shipping rulesets method to the shipping zone"
 msgstr ""
 "Ajoutez le mode Groupe de règles d'expédition à votre zone d'expédition"
@@ -77,11 +77,11 @@ msgstr "Êtes-vous sûr de supprimer le groupe par défaut ?"
 msgid "Are you sure to delete this rule?"
 msgstr "Êtes-vous sûr de supprimer cette règle ?"
 
-#: includes/Templates/RulesetsRuleset.php:89
+#: includes/Templates/RulesetsRuleset.php:93
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr "Êtes-vous sûr de supprimer ce groupe ainsi que toutes ses règles ?"
 
-#: includes/RulesShippingMethod.php:123
+#: includes/RulesShippingMethod.php:122
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:41
 msgid "Base price"
@@ -127,21 +127,37 @@ msgstr "Prix du panier TTC"
 msgid "Cart weight (%s)"
 msgstr "Poids des articles du panier (%s)"
 
+#: includes/Models/RuleConditions/Abstracts/RuleConditionBoolean.php:18
+msgid "Check for true, uncheck for false"
+msgstr "Cocher pour vrai, décocher pour faux"
+
 #: includes/Templates/RulesetsRulesetRule.php:7
 msgid "Choose an option"
 msgstr "Choisissez"
 
-#: includes/RulesShippingMethod.php:67
+#: includes/Models/RuleConditions/RuleConditionCoupon.php:17
+msgid "Coupon"
+msgstr "Code promo"
+
+#: includes/Models/RuleConditions/RuleConditionDayOfMonth.php:17
+msgid "Day of month"
+msgstr "Jour du mois"
+
+#: includes/Models/RuleConditions/RuleConditionDayOfWeek.php:17
+msgid "Day of week"
+msgstr "Jour de la semaine"
+
+#: includes/RulesShippingMethod.php:66
 msgid "Debug mode"
 msgstr "Mode débogage"
 
-#: includes/RulesShippingMethod.php:557
+#: includes/RulesShippingMethod.php:564
 #: includes/Templates/RulesetsDefaultRuleset.php:9
 msgid "Default"
 msgstr "Par défaut"
 
 #: includes/Templates/RulesetsDefaultRuleset.php:23
-#: includes/Templates/RulesetsRuleset.php:89
+#: includes/Templates/RulesetsRuleset.php:93
 #: includes/Templates/RulesetsRulesetRule.php:48
 msgid "Delete"
 msgstr "Supprimer"
@@ -150,11 +166,11 @@ msgstr "Supprimer"
 msgid "Docs"
 msgstr "Documentation"
 
-#: includes/Templates/RulesetsRuleset.php:85
+#: includes/Templates/RulesetsRuleset.php:89
 msgid "Duplicate"
 msgstr "Dupliquer"
 
-#: includes/RulesShippingMethod.php:109
+#: includes/RulesShippingMethod.php:108
 msgid "Each matching ruleset is available as distinct shipping rate"
 msgstr ""
 "Un tarif d'expédition distinct pour chaque groupe de règles correspondant au "
@@ -165,11 +181,11 @@ msgstr ""
 msgid "Edit"
 msgstr "Modifier"
 
-#: includes/RulesShippingMethod.php:69
+#: includes/RulesShippingMethod.php:68
 msgid "Enable Debug Mode"
 msgstr "Activer le mode de débogage"
 
-#: includes/RulesShippingMethod.php:127
+#: includes/RulesShippingMethod.php:126
 #, php-format
 msgid ""
 "Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price "
@@ -186,11 +202,11 @@ msgstr ""
 "N'hésitez pas à envoyer vos demandes si vous pensez qu'il manque des règles "
 "essentielles."
 
-#: includes/WordPressPluginPublisher.php:164
+#: includes/WordPressPluginPublisher.php:165
 msgid "Front end cart display shipping method name & rate"
 msgstr "Affichage du mode de livraison et du prix en Front end"
 
-#: includes/WordPressPluginPublisher.php:165
+#: includes/WordPressPluginPublisher.php:166
 msgid "Front end debug mode enabled, shows matching ruleset(s)"
 msgstr ""
 "Mode de débogage activé, affichage des détails des groupes de règles "
@@ -204,7 +220,7 @@ msgstr "Fichiers sur Github"
 msgid "Github repository"
 msgstr "Github repository"
 
-#: includes/RulesShippingMethod.php:64
+#: includes/RulesShippingMethod.php:63
 msgid "Global settings"
 msgstr "Réglages généraux"
 
@@ -226,6 +242,14 @@ msgid "If you are a developer, feel free to contribute on %s!"
 msgstr ""
 "Si vous être développeur, n'hésitez pas à contribuer au projet sur %s !"
 
+#: includes/Models/RuleConditions/RuleConditionCoupon.php:32
+msgid "is absent"
+msgstr "est absent"
+
+#: includes/Models/RuleConditions/RuleConditionCoupon.php:31
+msgid "is present"
+msgstr "est présent"
+
 #: includes/Templates/AutoPromo.php:46
 msgid "Issues"
 msgstr "Issues"
@@ -238,6 +262,10 @@ msgstr "Chargement..."
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr "Créez vos propres règles de calcul de frais d'expédition"
 
+#: includes/Models/RuleConditions/RuleConditionMonthOfYear.php:17
+msgid "Month of year"
+msgstr "Mois de l'année"
+
 #: includes/Templates/RulesetsRuleset.php:11
 msgid "Move up/down to change ruleset priority"
 msgstr ""
@@ -247,13 +275,19 @@ msgstr ""
 msgid "No default ruleset yet."
 msgstr "Aucun groupe par défaut pour le moment."
 
-#: includes/Templates/RulesetsRuleset.php:69
+#: includes/Templates/RulesetsRuleset.php:73
 msgid "No rule in this ruleset yet."
 msgstr "Aucune règle dans ce groupe pour le moment."
 
 #: includes/Templates/Rulesets.php:12
 msgid "No ruleset yet."
 msgstr "Aucun groupe de règles pour le moment."
+
+#: includes/Templates/RulesetsRuleset.php:64
+msgid "No variable available yet. Add rule and save to get shortcode."
+msgstr ""
+"Aucune variable disponible pour le moment. Ajoutez une règle et enregistrez "
+"pour afficher les shortcodes."
 
 #. Author of the plugin
 msgid "Pierre Lebedel"
@@ -272,12 +306,12 @@ msgstr "Page de l'extension"
 msgid "Price to apply:"
 msgstr "Tarif à appliquer :"
 
-#: includes/RulesShippingMethod.php:116
+#: includes/RulesShippingMethod.php:115
 msgid "Replace method title by matching ruleset name in the shopping cart?"
 msgstr ""
 "Remplacer le titre de la méthode par le nom du groupe de règles sélectionné ?"
 
-#: includes/RulesShippingMethod.php:115
+#: includes/RulesShippingMethod.php:114
 msgid "Replace method title?"
 msgstr "Remplacer le titre de la méthode ?"
 
@@ -285,7 +319,7 @@ msgstr "Remplacer le titre de la méthode ?"
 msgid "Rule"
 msgstr "Règle"
 
-#: includes/RulesShippingMethod.php:78
+#: includes/RulesShippingMethod.php:77
 msgid "Rules based shipping price"
 msgstr "Tarif d'expédition basé sur des règles"
 
@@ -298,19 +332,19 @@ msgstr "Groupe de règles"
 msgid "Ruleset name"
 msgstr "Nom du groupe de règles"
 
-#: includes/RulesShippingMethod.php:139
+#: includes/RulesShippingMethod.php:138
 msgid "Rulesets"
 msgstr "Groupes de règles"
 
-#: includes/WordPressPluginPublisher.php:163
+#: includes/WordPressPluginPublisher.php:164
 msgid "Rulesets & rules settings metaboxes"
 msgstr "Affichage des règles et groupes de règles"
 
-#: includes/WordPressPluginPublisher.php:162
+#: includes/WordPressPluginPublisher.php:163
 msgid "Rulesets based shipping method display options form"
 msgstr "Formulaire de réglages des options d'affichage"
 
-#: includes/RulesShippingMethod.php:32
+#: includes/RulesShippingMethod.php:31
 #, fuzzy
 #| msgid ""
 #| "Set your own rulesets to calculate the shipping price on Cart & Checkout "
@@ -322,11 +356,11 @@ msgstr ""
 "Créez vos propres groupes de règles afin de calculer les frais d'expédition "
 "sur les pages de Panier et de Commande."
 
-#: includes/RulesShippingMethod.php:103
+#: includes/RulesShippingMethod.php:102
 msgid "Shipping rate(s) displayed"
 msgstr "Tarif(s) d'expédition affiché(s)"
 
-#: includes/RulesShippingMethod.php:30
+#: includes/RulesShippingMethod.php:29
 msgid "Shipping rulesets"
 msgstr "Groupes de règles d'expédition"
 
@@ -334,7 +368,7 @@ msgstr "Groupes de règles d'expédition"
 msgid "Show available variables for this ruleset"
 msgstr "Afficher les variables disponibles pour ce groupe"
 
-#: includes/RulesShippingMethod.php:107
+#: includes/RulesShippingMethod.php:106
 msgid ""
 "Single shipping rate based on the first ruleset with all rules matching the "
 "shopping cart"
@@ -342,7 +376,7 @@ msgstr ""
 "Un unique tarif d'expédition basé sur le premier groupe dont toutes les "
 "règles sont satisfaites par le panier"
 
-#: includes/RulesShippingMethod.php:108
+#: includes/RulesShippingMethod.php:107
 msgid ""
 "Single shipping rate suming costs of all rulesets with all rules matching "
 "the shopping cart"
@@ -359,7 +393,7 @@ msgstr "Quitter l'édition"
 msgid "Thank you tu use this plugin!"
 msgstr "Merci d'utiliser ce plugin !"
 
-#: includes/RulesShippingMethod.php:34 includes/Templates/Rulesets.php:23
+#: includes/RulesShippingMethod.php:33 includes/Templates/Rulesets.php:23
 msgid ""
 "The default ruleset allows you to apply a rate even if none of rulesets "
 "matches the shopping cart."
@@ -367,7 +401,7 @@ msgstr ""
 "Le groupe par défaut vous permet d'appliquer un tarif même si aucun groupe "
 "de règle n'est entièrement satisfait par le panier."
 
-#: includes/RulesShippingMethod.php:128
+#: includes/RulesShippingMethod.php:127
 msgid ""
 "This base price will be added to the price of the group matching with the "
 "shopping cart."
@@ -375,7 +409,7 @@ msgstr ""
 "Le tarif de base sera ajouté au tarif indiqué dans le groupe de règles "
 "correspondant à la commande."
 
-#: includes/RulesShippingMethod.php:33
+#: includes/RulesShippingMethod.php:32
 msgid ""
 "This shipping method will not be available if the cart don't satisfies "
 "entirely none of rulesets."
@@ -391,6 +425,24 @@ msgstr "Traduction"
 #, php-format
 msgid "Unknown ajax action: %s"
 msgstr "Action inconnue dans la requête ajax : %s"
+
+#: includes/Models/RuleConditions/RuleConditionUserIsLoggedIn.php:17
+msgid "User is logged in"
+msgstr "L'utilisateur est connecté"
+
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:18
+msgid "User role"
+msgstr "Le rôle de l'utilisateur"
+
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:24
+msgctxt "User role is/isn't"
+msgid "is"
+msgstr "est"
+
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:25
+msgctxt "User role is/isn't"
+msgid "isn't"
+msgstr "n'est pas"
 
 #: includes/Templates/RulesetsRuleset.php:44
 msgid "Vars"
@@ -410,6 +462,10 @@ msgstr "Extension WordPress"
 msgid "Works the same as %s setting field"
 msgstr "Fonctionne pareil que le champ de réglages %s"
 
-#: includes/RulesShippingMethod.php:134
+#: includes/RulesShippingMethod.php:133
 msgid "Works the same as WooCommerce Flat Rate"
 msgstr "Fonctionne pareil que le mode d’expédition Forfait de WooCommerce"
+
+#: includes/Models/RuleConditions/RuleConditionYear.php:18
+msgid "Year"
+msgstr "Année"

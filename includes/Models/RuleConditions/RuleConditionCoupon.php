@@ -17,17 +17,20 @@ class RuleConditionCoupon extends RuleConditionText
 		return __("Coupon", 'pleb-woocommerce-shipping-rulesets');
 	}
 
-	public function getVariants(): array
-	{
-		return [
-			'present'  => __("Coupon is present", 'pleb-woocommerce-shipping-rulesets'),
-			'absent' => __("Coupon is absent", 'pleb-woocommerce-shipping-rulesets'),
-		];
-	}
+	// public function getVariants(): array
+	// {
+	// 	return [
+	// 		'present' => __("Coupon is present", 'pleb-woocommerce-shipping-rulesets'),
+	// 		'absent'  => __("Coupon is absent", 'pleb-woocommerce-shipping-rulesets'),
+	// 	];
+	// }
 
 	public function getComparators(): array
 	{
-		return [];
+		return [
+			'=' => __("is present", 'pleb-woocommerce-shipping-rulesets'),
+			'!=' => __("is absent", 'pleb-woocommerce-shipping-rulesets'),
+		];
 	}
 
 	private function cleanTextField(string $text): string
@@ -39,6 +42,11 @@ class RuleConditionCoupon extends RuleConditionText
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
 	{
+		$conditionComparator = $rule->getConditionComparator();
+		if (is_null($conditionComparator)) {
+			return false;
+		}
+		
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;
@@ -52,11 +60,19 @@ class RuleConditionCoupon extends RuleConditionText
 			}
 		}
 		
-		if( $rule->getConditionVariant()=='present' && in_array($conditionValue, $cleanedArray) ){
+		// if( $rule->getConditionVariant()=='present' && in_array($conditionValue, $cleanedArray) ){
+		// 	return true;
+		// }
+
+		// if( $rule->getConditionVariant()=='absent' && !in_array($conditionValue, $cleanedArray) ){
+		// 	return true;
+		// }
+
+		if( $conditionComparator=='=' && in_array($conditionValue, $cleanedArray) ){
 			return true;
 		}
 
-		if( $rule->getConditionVariant()=='absent' && !in_array($conditionValue, $cleanedArray) ){
+		if( $conditionComparator=='!=' && !in_array($conditionValue, $cleanedArray) ){
 			return true;
 		}
 

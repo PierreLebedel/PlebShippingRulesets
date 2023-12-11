@@ -10,6 +10,10 @@ interface RuleConditionInterface
 
 	public function getVariants(): array;
 
+	public function getGroup(): ?RuleConditionsGroupInterface;
+
+	public function getGroupName(): ?string;
+
 	public function getComparators(): array;
 
 	public function getInputHtml(string $fieldName, mixed $value): string;
