@@ -3,7 +3,7 @@
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumericInteger;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
 class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInteger
 {

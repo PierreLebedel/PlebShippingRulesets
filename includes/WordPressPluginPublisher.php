@@ -84,6 +84,7 @@ class WordPressPluginPublisher
             'README.md',
             'assets',
             'loco.xml',
+            '.git',
         ]);
 
         copy_dir('./assets', $pluginAssetsDir, [

@@ -3,7 +3,7 @@
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumericInteger;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionBoolean;
 
 class RuleConditionUserIsLoggedIn extends RuleConditionBoolean
 {
@@ -15,13 +15,6 @@ class RuleConditionUserIsLoggedIn extends RuleConditionBoolean
 	public function getName(): string
 	{
 		return __("User is logged in", 'pleb-woocommerce-shipping-rulesets');
-	}
-
-	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
-	{
-		$is_logged = false;
-		
-		return $is_logged;
 	}
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool

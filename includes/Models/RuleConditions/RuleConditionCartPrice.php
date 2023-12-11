@@ -3,7 +3,7 @@
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumericFloat;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericFloat;
 
 class RuleConditionCartPrice extends RuleConditionNumericFloat
 {

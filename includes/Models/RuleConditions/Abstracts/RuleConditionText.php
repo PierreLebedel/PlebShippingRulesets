@@ -2,7 +2,7 @@
 
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleCondition;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
 
 abstract class RuleConditionText extends RuleCondition
 {

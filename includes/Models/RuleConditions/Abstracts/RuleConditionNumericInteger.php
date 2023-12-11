@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts;
 
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionNumeric;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumeric;
 
 abstract class RuleConditionNumericInteger extends RuleConditionNumeric
 {

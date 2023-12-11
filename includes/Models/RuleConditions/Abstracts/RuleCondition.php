@@ -1,11 +1,16 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts;
 
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartPrice;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemCount;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartWeight;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserIsLoggedIn;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionCartPrice;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionCartItemCount;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByCategoryCount;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByShippingClassCount;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserHasRole;
 
 abstract class RuleCondition implements RuleConditionInterface
 {
@@ -18,6 +23,7 @@ abstract class RuleCondition implements RuleConditionInterface
 			RuleConditionCartItemByShippingClassCount::class,
 			RuleConditionCartItemByCategoryCount::class,
 			RuleConditionUserIsLoggedIn::class,
+			RuleConditionUserHasRole::class,
 		]);
 
 		$conditions = [];

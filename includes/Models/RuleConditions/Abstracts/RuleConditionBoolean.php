@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts;
 
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleCondition;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
 
 abstract class RuleConditionBoolean extends RuleCondition
 {

@@ -395,7 +395,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
 							$replaces[ '[rule_'.$rule->getId().']' ] = $condition->extractValueFromWooCommercePackageArray($package, $rule, $this->instance_id) ?? '0';
 						}
 					}
-					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, 'Ruleset cost: ', $replaces);
+
+					$rulesetDebugTitle = ($matchingRuleset->isDefault()) ? 'Ruleset cost (default): ' : 'Ruleset cost: ';
+					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, $rulesetDebugTitle, $replaces);
 				}
 
 				if($matchingMode == 'many_distinct'){

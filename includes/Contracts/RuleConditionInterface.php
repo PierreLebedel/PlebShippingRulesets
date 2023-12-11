@@ -2,8 +2,6 @@
 
 namespace PlebWooCommerceShippingRulesets\Contracts;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
-
 interface RuleConditionInterface
 {
 	public function getId(): string;
