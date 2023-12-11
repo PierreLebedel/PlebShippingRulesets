@@ -10,10 +10,12 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditio
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionCartItemCount;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByCategoryCount;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByShippingClassCount;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCoupon;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionDayOfMonth;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionDayOfWeek;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionMonthOfYear;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserHasRole;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionYear;
 
 abstract class RuleCondition implements RuleConditionInterface
 {
@@ -25,11 +27,13 @@ abstract class RuleCondition implements RuleConditionInterface
 			RuleConditionCartItemCount::class,
 			RuleConditionCartItemByShippingClassCount::class,
 			RuleConditionCartItemByCategoryCount::class,
+			RuleConditionCoupon::class,
 			RuleConditionUserIsLoggedIn::class,
 			RuleConditionUserHasRole::class,
 			RuleConditionDayOfWeek::class,
 			RuleConditionDayOfMonth::class,
 			RuleConditionMonthOfYear::class,
+			RuleConditionYear::class,
 		]);
 
 		$conditions = [];

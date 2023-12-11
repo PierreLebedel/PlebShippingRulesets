@@ -1,6 +1,6 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts;
 
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
 
