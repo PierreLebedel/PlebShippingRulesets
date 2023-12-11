@@ -41,15 +41,17 @@ $rules = $this->getRules();
                 '<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
             ), true); ?>
 
-            <code class="pleb_open_ruleset_variables" style="display:block;float:right;cursor:pointer;margin-left:5px;white-space:nowrap;" title="<?php esc_attr_e("Show available variables for this ruleset", 'pleb-woocommerce-shipping-rulesets'); ?>"><?php _e("Vars", 'pleb-woocommerce-shipping-rulesets'); ?></code>
+            <code class="pleb_open_ruleset_variables" style="display:block;cursor:pointer;margin-left:5px;white-space:nowrap;" title="<?php esc_attr_e("Show available variables for this ruleset", 'pleb-woocommerce-shipping-rulesets'); ?>"><?php _e("Vars", 'pleb-woocommerce-shipping-rulesets'); ?></code>
 
         </div>
         
         <div class="pleb_ruleset_variables" style="background: #f0f0f1;padding:5px 10px;line-height:21px;margin-top:7px;display:none;">
-            <?php foreach($rules as $rule):
+            <?php $has_variables = false;
+            foreach($rules as $rule):
                 $condition = $rule->getCondition();
                 if(!$condition) continue; 
                 if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) continue;
+                $has_variables = true;
                 $variants = $condition->getVariants();
                 $variant = $rule->getConditionVariant(); ?>
                 <div>
@@ -57,6 +59,10 @@ $rules = $this->getRules();
                     <?php echo (is_array($variants) && array_key_exists($variant, $variants)) ? __($variants[$variant], 'pleb') : $condition->getName(); ?>
                 </div>
             <?php endforeach; ?>
+
+            <?php if(!$has_variables): ?>
+                <?php _e("No variable available yet. Add rule and save to get shortcode.", 'pleb-woocommerce-shipping-rulesets'); ?>
+            <?php endif; ?>
         </div>
 
     </div>

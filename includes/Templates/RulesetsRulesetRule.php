@@ -24,8 +24,8 @@
         <?php if (!empty($condition->getComparators())) : ?>
         <select name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_comparator]" required class="">
             <option value="" <?php selected(is_null($this->getConditionComparator())); ?> disabled><?php _e("...", 'pleb-woocommerce-shipping-rulesets'); ?></option>
-            <?php foreach ($condition->getComparators() as $display) : ?>
-            <option value="<?php echo $display; ?>" <?php selected($this->getConditionComparator() == $display || count($condition->getComparators()) == 1); ?>><?php echo $display; ?></option>
+            <?php foreach ($condition->getComparators() as $k=>$display) : ?>
+            <option value="<?php echo $k; ?>" <?php selected($this->getConditionComparator() == $k || count($condition->getComparators()) == 1); ?>><?php echo $display; ?></option>
             <?php endforeach; ?>
         </select>
         <?php else : ?>

@@ -9,11 +9,11 @@ abstract class RuleConditionNumeric extends RuleCondition
 	public function getComparators(): array
 	{
 		return [
-			'<',
-			'<=',
-			'=',
-			'>=',
-			'>',
+			'<'  => "<",
+			'<=' => "<=",
+			'='  => "=",
+			'>=' => ">=",
+			'>'  => ">",
 		];
 	}
 

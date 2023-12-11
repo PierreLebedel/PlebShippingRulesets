@@ -9,8 +9,8 @@ abstract class RuleConditionText extends RuleCondition
 	public function getComparators(): array
 	{
 		return [
-			'=',
-			'!=',
+			'=' => "=",
+			'!=' => "!=",
 		];
 	}
 

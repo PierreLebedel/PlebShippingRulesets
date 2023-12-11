@@ -90,7 +90,7 @@ class Rule implements RuleInterface
 	{
 		$condition = $this->getCondition();
 
-		if ($condition && in_array($conditionComparator, $condition->getComparators(), true)) {
+		if ($condition && array_key_exists($conditionComparator, $condition->getComparators())) {
 			$this->condition_comparator = $conditionComparator;
 		} else {
 			$this->condition_comparator = null;

@@ -285,11 +285,11 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		include_once(WC()->plugin_path().'/includes/libraries/class-wc-eval-math.php');
-		set_error_handler(function() use ($debugCostName) {
-			$this->addDebugRow($debugCostName.'Erreur de formule');
+		set_error_handler(function() use ($debugCostName, $sum) {
+			//$this->addDebugRow($debugCostName.'Formula error : '.$sum);
 		});
 		$result = \WC_Eval_Math::evaluate($sum);
-		restore_error_handler();
+		restore_error_handler(); 
 			
 		$this->addDebugRow($debugCostName.'Math result rule = '.$result);
 
@@ -392,7 +392,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 							$condition = $rule->getCondition();
 							if(!$condition) continue; 
                 			if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) continue;
-							$replaces[ '[rule_'.$rule->getId().']' ] = $condition->extractValueFromWooCommercePackageArray($package, $rule, $this->instance_id);
+							$replaces[ '[rule_'.$rule->getId().']' ] = $condition->extractValueFromWooCommercePackageArray($package, $rule, $this->instance_id) ?? '0';
 						}
 					}
 					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, 'Ruleset cost: ', $replaces);
