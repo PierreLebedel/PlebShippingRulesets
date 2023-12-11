@@ -10,6 +10,8 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionYear;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCoupon;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartPrice;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionDayOfWeek;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionHourOfDay;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionTodayDate;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartWeight;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionDayOfMonth;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionMonthOfYear;
@@ -18,7 +20,6 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemC
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserIsLoggedIn;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByCategoryCount;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByShippingClassCount;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionHourOfDay;
 
 abstract class RuleCondition implements RuleConditionInterface
 {
@@ -35,6 +36,7 @@ abstract class RuleCondition implements RuleConditionInterface
 			RuleConditionUserIsLoggedIn::class,
 			RuleConditionUserHasRole::class,
 			RuleConditionHourOfDay::class,
+			RuleConditionTodayDate::class,
 			RuleConditionDayOfWeek::class,
 			RuleConditionMonthOfYear::class,
 			RuleConditionDayOfMonth::class,
