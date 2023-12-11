@@ -45,9 +45,6 @@ $rules = $this->getRules();
 
         </div>
         
-        
-
-
         <div class="pleb_ruleset_variables" style="background: #f0f0f1;padding:5px 10px;line-height:21px;margin-top:7px;display:none;">
             <?php foreach($rules as $rule):
                 $condition = $rule->getCondition();

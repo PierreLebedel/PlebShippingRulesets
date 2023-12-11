@@ -36,20 +36,10 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger
 		return $classes;
 	}
 
-	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
+	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
-		$conditionComparator = $rule->getConditionComparator();
-		if (is_null($conditionComparator)) {
-			return false;
-		}
-
-		$conditionValue = $rule->getConditionValue();
-		if (is_null($conditionValue)) {
-			return false;
-		}
-		$conditionValue = intval($conditionValue);
-
 		$package_quantity = 0;
+		
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$shippingClassSlug = get_the_terms($values['data']->get_id(), 'product_cat');
@@ -63,6 +53,24 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger
 				}
 			}
 		}
+
+		return $package_quantity;
+	}
+
+	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
+	{
+		$conditionComparator = $rule->getConditionComparator();
+		if (is_null($conditionComparator)) {
+			return false;
+		}
+
+		$conditionValue = $rule->getConditionValue();
+		if (is_null($conditionValue)) {
+			return false;
+		}
+		$conditionValue = intval($conditionValue);
+
+		$package_quantity = $this->extractValueFromWooCommercePackageArray($package, $rule, $methodInstanceId);
 
 		switch ($conditionComparator) {
 			case '<':

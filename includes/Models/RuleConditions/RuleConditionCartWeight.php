@@ -17,6 +17,24 @@ class RuleConditionCartWeight extends RuleConditionNumericInteger
 		return sprintf(__("Cart weight (%s)", 'pleb-woocommerce-shipping-rulesets'), __(get_option('woocommerce_weight_unit'), 'woocommerce'));
 	}
 
+	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
+	{
+		$package_weight = 0;
+		
+		//dump($package['contents']);
+		foreach ($package['contents'] as $values) {
+			if($values['data']->needs_shipping()) {
+				$productWeight = $values['data']->get_weight();
+				if(is_numeric($productWeight)) {
+					$cartItemWeight = $values['quantity'] * $productWeight;
+					$package_weight += $cartItemWeight;
+				}
+			}
+		}
+
+		return $package_weight;
+	}
+
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
 	{
 		$conditionComparator = $rule->getConditionComparator();
@@ -30,20 +48,7 @@ class RuleConditionCartWeight extends RuleConditionNumericInteger
 		}
 		$conditionValue = intval($conditionValue);
 
-		$package_weight = 0;
-		//dump($package['contents']);
-		foreach ($package['contents'] as $values) {
-			if($values['data']->needs_shipping()) {
-				$productWeight = $values['data']->get_weight();
-				if(is_numeric($productWeight)) {
-					$cartItemWeight = $values['quantity'] * $productWeight;
-					$package_weight += $cartItemWeight;
-				}
-			}
-
-		}
-
-		//dd($package_weight);
+		$package_weight = $this->extractValueFromWooCommercePackageArray($package, $rule, $methodInstanceId);
 
 		switch ($conditionComparator) {
 			case '<':

@@ -75,9 +75,15 @@ abstract class RuleCondition implements RuleConditionInterface
 		return ob_get_clean();
 	}
 
+	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
+	{
+		return null;
+	}
+
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
 	{
-		//$method = new RulesShippingMethod($methodInstanceId);
+		// $method = new RulesShippingMethod($methodInstanceId);
+		// $compareValue = $this->extractValueFromWooCommercePackageArray($package, $rule, $methodInstanceId);
 		return false;
 	}
 }

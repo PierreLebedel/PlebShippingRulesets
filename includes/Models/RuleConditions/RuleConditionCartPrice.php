@@ -25,6 +25,12 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
 		];
 	}
 
+	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
+	{
+		$package_cost = ($rule->getConditionVariant() == 'tax_include') ? $package['cart_subtotal'] : $package['contents_cost'];
+		return floatval($package_cost);
+	}
+
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
 	{
 		$conditionComparator = $rule->getConditionComparator();
@@ -38,8 +44,7 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat
 		}
 		$conditionValue = floatval($conditionValue);
 
-		$package_cost = ($rule->getConditionVariant() == 'tax_include') ? $package['cart_subtotal'] : $package['contents_cost'];
-		$package_cost = floatval($package_cost);
+		$package_cost = $this->extractValueFromWooCommercePackageArray($package, $rule, $methodInstanceId);
 
 		switch ($conditionComparator) {
 			case '<':
