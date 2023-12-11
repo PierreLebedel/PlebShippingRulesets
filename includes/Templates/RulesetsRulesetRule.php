@@ -6,16 +6,15 @@
         <select name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_id]" required class="rule_condition_id pleb_w100">
             <option value="" selected disabled><?php _e("Choose an option", 'pleb-woocommerce-shipping-rulesets'); ?></option>
             <?php 
-            
             $currentGroup = '';
-
             foreach ($allRuleConditions as $rc_id => $rc) : ?>
                 <?php if (!empty($rc->getVariants())) : ?>
                 <optgroup label="<?php echo esc_attr($rc->getName()); ?>">
                     <?php foreach ($rc->getVariants() as $k => $v) : ?>
-                    <option value="<?php echo $rc_id.':'.$k; ?>" <?php selected($this->getConditionId() == $rc_id.':'.$k); ?>><?php _e($v, 'pleb-woocommerce-shipping-rulesets'); ?></option>
+                    <option value="<?php echo $rc_id.':'.$k; ?>" <?php selected($this->getConditionId() == $rc_id.':'.$k); ?>><?php echo $v; ?></option>
                     <?php endforeach; ?>
                 </optgroup>
+
                 <?php elseif(method_exists($rc, 'getGroupName')): ?>
                     <?php if(!empty($currentGroup) && $currentGroup!=$rc->getGroupName()): ?>
                         </optgroup>

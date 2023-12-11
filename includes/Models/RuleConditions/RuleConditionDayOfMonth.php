@@ -57,7 +57,7 @@ class RuleConditionDayOfMonth extends RuleConditionChoices
 		}
 		$conditionValue = intval($conditionValue);
 
-		$packageValue = intval(date('j'));
+		$packageValue = intval(wp_date('j'));
 
 		switch ($conditionComparator) {
 			case '<':

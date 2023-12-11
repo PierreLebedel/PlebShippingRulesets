@@ -69,11 +69,11 @@ class RuleConditionDayOfWeek extends RuleConditionChoices
 		}
 		$conditionValue = intval($conditionValue);
 
-		if( $conditionComparator=='=' && $conditionValue==intval(date('w')) ){
+		if( $conditionComparator=='=' && $conditionValue==intval(wp_date('w')) ){
 			return true;
 		}
 
-		if( $conditionComparator=='!=' && $conditionValue!=intval(date('w')) ){
+		if( $conditionComparator=='!=' && $conditionValue!=intval(wp_date('w')) ){
 			return true;
 		}
 

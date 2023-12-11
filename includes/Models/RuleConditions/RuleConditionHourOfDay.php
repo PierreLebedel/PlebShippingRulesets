@@ -5,36 +5,23 @@ namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionTime;
 
-class RuleConditionYear extends RuleConditionNumericInteger
+class RuleConditionHourOfDay extends RuleConditionTime
 {
 	public function getId(): string
 	{
-		return 'year';
+		return 'hour_of_day';
 	}
 
 	public function getName(): string
 	{
-		return __("Year", 'pleb-woocommerce-shipping-rulesets');
+		return __("Hour of day", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface
 	{
 		return new DateTimeGroup();
-	}
-
-	public function getComparators(): array
-	{
-		return [
-			'<'  => "<",
-			'<=' => "<=",
-			'='  => "=",
-			'!=' => "!=",
-			'>=' => ">=",
-			'>'  => ">",
-		];
 	}
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
@@ -48,9 +35,8 @@ class RuleConditionYear extends RuleConditionNumericInteger
 		if (is_null($conditionValue)) {
 			return false;
 		}
-		$conditionValue = intval($conditionValue);
 
-		$packageValue = intval(wp_date('Y'));
+		$packageValue = wp_date('H:i');
 
 		switch ($conditionComparator) {
 			case '<':

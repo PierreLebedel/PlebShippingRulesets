@@ -102,7 +102,7 @@ class WordPressPluginPublisher
             "Authors: ".$plugin->getPluginData('AuthorName'),
             "Author URI: ".$plugin->getPluginData('AuthorURI'),
             "Version: ".$plugin->getPluginData('Version'),
-            "Last updated time: ".date('Y-m-d'),
+            "Last updated time: ".wp_date('Y-m-d'),
             "Creation time: 2023-12-11",
             "Contributors: pierre-lebedel",
             "Donate link: ",

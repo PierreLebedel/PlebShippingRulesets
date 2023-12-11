@@ -18,7 +18,7 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemC
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserIsLoggedIn;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByCategoryCount;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByShippingClassCount;
-
+use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionHourOfDay;
 
 abstract class RuleCondition implements RuleConditionInterface
 {
@@ -34,6 +34,7 @@ abstract class RuleCondition implements RuleConditionInterface
 			RuleConditionCoupon::class,
 			RuleConditionUserIsLoggedIn::class,
 			RuleConditionUserHasRole::class,
+			RuleConditionHourOfDay::class,
 			RuleConditionDayOfWeek::class,
 			RuleConditionMonthOfYear::class,
 			RuleConditionDayOfMonth::class,

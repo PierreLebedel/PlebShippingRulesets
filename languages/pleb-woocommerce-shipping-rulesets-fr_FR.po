@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-11 18:55+0000\n"
+"PO-Revision-Date: 2023-12-11 20:26+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -38,7 +38,7 @@ msgstr "%s : Supplément basé sur un pourcentage du prix"
 msgid "%s: Shopping cart price"
 msgstr "%s : Prix du panier"
 
-#: includes/Templates/RulesetsRulesetRule.php:26
+#: includes/Templates/RulesetsRulesetRule.php:49
 msgid "..."
 msgstr "..."
 
@@ -73,7 +73,7 @@ msgstr "Paramètre manquant dans la requête ajax : %s"
 msgid "Are you sure to delete default ruleset?"
 msgstr "Êtes-vous sûr de supprimer le groupe par défaut ?"
 
-#: includes/Templates/RulesetsRulesetRule.php:48
+#: includes/Templates/RulesetsRulesetRule.php:71
 msgid "Are you sure to delete this rule?"
 msgstr "Êtes-vous sûr de supprimer cette règle ?"
 
@@ -139,11 +139,15 @@ msgstr "Choisissez"
 msgid "Coupon"
 msgstr "Code promo"
 
-#: includes/Models/RuleConditions/RuleConditionDayOfMonth.php:17
+#: includes/Models/RuleConditionsGroups/DateTimeGroup.php:11
+msgid "Date & time"
+msgstr "Date & heure"
+
+#: includes/Models/RuleConditions/RuleConditionDayOfMonth.php:19
 msgid "Day of month"
 msgstr "Jour du mois"
 
-#: includes/Models/RuleConditions/RuleConditionDayOfWeek.php:17
+#: includes/Models/RuleConditions/RuleConditionDayOfWeek.php:19
 msgid "Day of week"
 msgstr "Jour de la semaine"
 
@@ -158,7 +162,7 @@ msgstr "Par défaut"
 
 #: includes/Templates/RulesetsDefaultRuleset.php:23
 #: includes/Templates/RulesetsRuleset.php:93
-#: includes/Templates/RulesetsRulesetRule.php:48
+#: includes/Templates/RulesetsRulesetRule.php:71
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -262,7 +266,7 @@ msgstr "Chargement..."
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr "Créez vos propres règles de calcul de frais d'expédition"
 
-#: includes/Models/RuleConditions/RuleConditionMonthOfYear.php:17
+#: includes/Models/RuleConditions/RuleConditionMonthOfYear.php:19
 msgid "Month of year"
 msgstr "Mois de l'année"
 
@@ -293,7 +297,7 @@ msgstr ""
 msgid "Pierre Lebedel"
 msgstr "Pierre Lebedel"
 
-#: includes/Templates/RulesetsRulesetRule.php:43
+#: includes/Templates/RulesetsRulesetRule.php:66
 msgid "Please choose the condition"
 msgstr "Veuillez sélectionner la condition"
 
@@ -426,20 +430,24 @@ msgstr "Traduction"
 msgid "Unknown ajax action: %s"
 msgstr "Action inconnue dans la requête ajax : %s"
 
-#: includes/Models/RuleConditions/RuleConditionUserIsLoggedIn.php:17
+#: includes/Models/RuleConditionsGroups/UserGroup.php:11
+msgid "User"
+msgstr "Utilisateur"
+
+#: includes/Models/RuleConditions/RuleConditionUserIsLoggedIn.php:19
 msgid "User is logged in"
 msgstr "L'utilisateur est connecté"
 
-#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:18
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:20
 msgid "User role"
 msgstr "Le rôle de l'utilisateur"
 
-#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:24
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:31
 msgctxt "User role is/isn't"
 msgid "is"
 msgstr "est"
 
-#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:25
+#: includes/Models/RuleConditions/RuleConditionUserHasRole.php:32
 msgctxt "User role is/isn't"
 msgid "isn't"
 msgstr "n'est pas"
@@ -466,6 +474,6 @@ msgstr "Fonctionne pareil que le champ de réglages %s"
 msgid "Works the same as WooCommerce Flat Rate"
 msgstr "Fonctionne pareil que le mode d’expédition Forfait de WooCommerce"
 
-#: includes/Models/RuleConditions/RuleConditionYear.php:18
+#: includes/Models/RuleConditions/RuleConditionYear.php:20
 msgid "Year"
 msgstr "Année"

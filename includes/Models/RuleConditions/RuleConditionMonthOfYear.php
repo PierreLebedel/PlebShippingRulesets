@@ -65,7 +65,7 @@ class RuleConditionMonthOfYear extends RuleConditionChoices
 		}
 		$conditionValue = intval($conditionValue);
 
-		$packageValue = intval(date('m'));
+		$packageValue = intval(wp_date('m'));
 
 		switch ($conditionComparator) {
 			case '<':
