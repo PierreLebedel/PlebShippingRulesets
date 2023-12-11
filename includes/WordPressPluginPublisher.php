@@ -101,12 +101,12 @@ class WordPressPluginPublisher
             "Author URI: ".$plugin->getPluginData('AuthorURI'),
             "Version: ".$plugin->getPluginData('Version'),
             "Last updated time: ".date('Y-m-d'),
-            "Creation time: 2023-12-06",
+            "Creation time: 2023-12-11",
             "Contributors: pierre-lebedel",
             "Donate link: ",
             "Tags: woocommerce, shipping, rulesets, rates",
             "Requires at least: ".$plugin->getPluginData('RequiresWP'),
-            "Tested up to: 6.4.1",
+            "Tested up to: 6.4.2",
             "Stable tag: 1.0",
             "Requires PHP: ".$plugin->getPluginData('RequiresPHP'),
             "License: GPLv3",
@@ -114,6 +114,31 @@ class WordPressPluginPublisher
             "",
             $plugin->getPluginData('Description'),
         ];
+
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "== Purpose ==";
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "Once the plugin is installed and activated, you can create your own rulesets, consisting of the rules of your choice, by going to WooCommerce > Settings > Shipping, edit the shipping zone, and add Shipping Rulesets method.";
+        $readmeContentArray[] = "Each of these rulesets is associated with a rate, which will be applied to the customer's shopping cart if it matches all the rules.";
+        $readmeContentArray[] = "Like the original WooCommerce Flat Rate, the ruleset's rate is a formula that can include variables. Ex: €12.00 * [qty]";
+
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "== 3 usage modes ==";
+
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "= The first ruleset that match applies their rate =";
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "Rulesets should be ordered in order of priority. The ruleset with the highest priority that matches will apply its rate to the shopping cart.";
+
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "= Each of the rulesets that match applies its own rate =";
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "Rulesets should be ordered in display order. Each of the rulesets that match the shopping cart will be a separate rate, selectable by the customer.";
+
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "= All the rulesets that match are grouped together in one rate =";
+        $readmeContentArray[] = "";
+        $readmeContentArray[] = "Rulesets doesn't need to be ordered. Each of the rulesets that match the shopping cart will be added together in a single rate.";
 
         $faq = [
             "Can I override a rule to make my own WooCommerce cart comparaison?" => "Yes, you can use WordPress filters to add your own RuleCondition, that determines if the shopping cart allows this shipping method (and price). See docs for more infos.",
@@ -132,7 +157,11 @@ class WordPressPluginPublisher
         }
 
         $screenshots = [
-			//'1' => __("Screenshot #1 description", 'pleb-woocommerce-shipping-rulesets'),
+			'1' => __("Add Shipping rulesets method to the shipping zone", 'pleb-woocommerce-shipping-rulesets'),
+            '2' => __("Rulesets based shipping method display options form", 'pleb-woocommerce-shipping-rulesets'),
+            '3' => __("Rulesets & rules settings metaboxes", 'pleb-woocommerce-shipping-rulesets'),
+            '4' => __("Front end cart display shipping method name & rate", 'pleb-woocommerce-shipping-rulesets'),
+            '5' => __("Front end debug mode enabled, shows matching ruleset(s)", 'pleb-woocommerce-shipping-rulesets'),
 		];
 
         if(!empty($screenshots)) {

@@ -1,8 +1,8 @@
 jQuery(function ( $ ) {
 
-    //console.log(pleb);
+    //console.log(plebjs);
 
-    const shipping_method_fields_prefix = pleb.shipping_method.plugin_id + pleb.shipping_method.method_id + '_';
+    const shipping_method_fields_prefix = plebjs.shipping_method.plugin_id + plebjs.shipping_method.method_id + '_';
 
     function plebRulesetsShippingMethodFielChanged(el){
         const elName = $(el).attr('id').replace(shipping_method_fields_prefix, '');
@@ -75,7 +75,7 @@ jQuery(function ( $ ) {
             return false;
         }
         $.ajax({
-            url: pleb.ajax_url,
+            url: plebjs.ajax_url,
             method: 'post',
             data: {
                 action: 'pleb_ruleset_template',
@@ -99,7 +99,7 @@ jQuery(function ( $ ) {
             return false;
         }
         $.ajax({
-            url: pleb.ajax_url,
+            url: plebjs.ajax_url,
             method: 'post',
             data: {
                 action: 'pleb_ruleset_default_template',
@@ -126,7 +126,7 @@ jQuery(function ( $ ) {
             return false;
         }
         $.ajax({
-            url: pleb.ajax_url,
+            url: plebjs.ajax_url,
             method: 'post',
             data: {
                 action: 'pleb_ruleset_rule_template',
@@ -166,10 +166,10 @@ jQuery(function ( $ ) {
         const ruleset_id = $button.attr('data-ruleset_id');
         const $ruleset = $button.parents('.pleb_ruleset');
 
-        $('<div id="duplicate_loading" class="notice notice-info inline text-center notice-alt" style="margin-top:0;margin-bottom:15px;"><p><span class="spinner is-active" style="float:none;margin:0;"></span> '+pleb.translations.loading+'</p></div>').insertAfter($ruleset);
+        $('<div id="duplicate_loading" class="notice notice-info inline text-center notice-alt" style="margin-top:0;margin-bottom:15px;"><p><span class="spinner is-active" style="float:none;margin:0;"></span> '+plebjs.translations.loading+'</p></div>').insertAfter($ruleset);
 
         $.ajax({
-            url: pleb.ajax_url,
+            url: plebjs.ajax_url,
             method: 'post',
             data: {
                 action: 'pleb_ruleset_generate_id'
@@ -268,7 +268,7 @@ jQuery(function ( $ ) {
         $rules.css('opacity', 0.5);
 
         $.ajax({
-            url: pleb.ajax_url,
+            url: plebjs.ajax_url,
             method: 'post',
             data: {
                 action: 'pleb_rule_template',

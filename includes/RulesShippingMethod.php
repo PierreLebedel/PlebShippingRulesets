@@ -29,7 +29,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		$this->instance_id           = absint($instance_id);
 		$this->method_title          = __('Shipping rulesets', 'pleb-woocommerce-shipping-rulesets');
 		$this->method_description    = implode('<br>', [
-			__('Set your own rulesets to calculate the shipping price on Cart & Checkout pages.', 'pleb-woocommerce-shipping-rulesets'),
+			__("Set your own rulesets to calculate the shipping rate on Cart & Checkout pages.", 'pleb-woocommerce-shipping-rulesets'),
 			__("This shipping method will not be available if the cart don't satisfies entirely none of rulesets.", 'pleb-woocommerce-shipping-rulesets'),
 			__("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb-woocommerce-shipping-rulesets'),
 		]);

@@ -141,7 +141,7 @@ class WordPressPlugin
 
 		wp_localize_script(
 			$admin_script_handle,
-			'pleb-woocommerce-shipping-rulesets',
+			'plebjs',
 			[
 				'plugin_version' => $this->version,
 				'ajax_url' => admin_url('admin-ajax.php'),
