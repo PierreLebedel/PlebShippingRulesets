@@ -14,9 +14,10 @@ $pluginInstance = \PlebWooCommerceShippingRulesets\WordPressPlugin::instance();
                     <?php _e("Feel free to send your requests if you think certain essential rules are missing.", 'pleb-woocommerce-shipping-rulesets'); ?> 
                     <?php _e("I will work on these according on the time I have available.", 'pleb-woocommerce-shipping-rulesets'); ?>
                 </p>
-                <p style="margin:0 0;">
+                <p style="margin:0 0 1em;">
                     <?php echo sprintf(__("If you are a developer, feel free to contribute on %s!", 'pleb-woocommerce-shipping-rulesets'), '<a href="'.$pluginInstance->githubUri.'" target="_blank">Github</a>'); ?>
                 </p>
+                <p style="margin:0 0;text-align:right;font-weight:bold;font-style:italic;">Pleb</p>
             </div>
             
         </div>

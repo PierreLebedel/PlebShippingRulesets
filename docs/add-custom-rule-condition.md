@@ -1,4 +1,4 @@
-[Project home](../README.md) > [Docs home](index.md)
+[Docs home](index.md)
 
 # Create your custom rule condition
 
