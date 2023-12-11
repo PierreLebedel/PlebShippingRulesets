@@ -87,6 +87,7 @@ class WordPressPluginPublisher
         ]);
 
         copy_dir('./assets', $pluginAssetsDir, [
+            'icon.svg', // not used in this plugin
             'icon.psd',
             'banner.psd',
         ]);
