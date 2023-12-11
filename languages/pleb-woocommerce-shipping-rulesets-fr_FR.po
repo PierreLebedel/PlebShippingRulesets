@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-09 13:42+0000\n"
+"PO-Revision-Date: 2023-12-11 13:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: pleb"
 
-#: includes/WordPressPlugin.php:110
+#: includes/WordPressPlugin.php:111
 #, php-format
 msgid ""
 "%s requires WooCommerce to be installed and active. You can download %s here."
@@ -53,6 +53,15 @@ msgstr "Ajouter une règle"
 #: includes/Templates/Rulesets.php:33
 msgid "Add new ruleset"
 msgstr "Ajouter un groupe de règles"
+
+#: includes/WordPressPluginPublisher.php:160
+msgid "Add Shipping rulesets method to the shipping zone"
+msgstr ""
+"Ajoutez le mode Groupe de règles d'expédition à votre zone d'expédition"
+
+#: includes/Templates/AutoPromo.php:32
+msgid "Add your review"
+msgstr "Notez cette extenstion"
 
 #: includes/AjaxAction.php:40
 #, php-format
@@ -137,7 +146,7 @@ msgstr "Par défaut"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: includes/WordPressPlugin.php:186
+#: includes/WordPressPlugin.php:187 includes/Templates/AutoPromo.php:46
 msgid "Docs"
 msgstr "Documentation"
 
@@ -169,19 +178,59 @@ msgstr ""
 "Saisissez un prix ou une formule, ex : %s. Les tags seront automatiquement "
 "remplacés dans le calcul."
 
+#: includes/Templates/AutoPromo.php:14
+msgid ""
+"Feel free to send your requests if you think certain essential rules are "
+"missing."
+msgstr ""
+"N'hésitez pas à envoyer vos demandes si vous pensez qu'il manque des règles "
+"essentielles."
+
+#: includes/WordPressPluginPublisher.php:163
+msgid "Front end cart display shipping method name & rate"
+msgstr "Affichage du mode de livraison et du prix en Front end"
+
+#: includes/WordPressPluginPublisher.php:164
+msgid "Front end debug mode enabled, shows matching ruleset(s)"
+msgstr ""
+"Mode de débogage activé, affichage des détails des groupes de règles "
+"identifiés"
+
+#: includes/Templates/AutoPromo.php:40
+msgid "Github files"
+msgstr "Fichiers sur Github"
+
+#: includes/Templates/AutoPromo.php:44
+msgid "Github repository"
+msgstr "Github repository"
+
 #: includes/RulesShippingMethod.php:64
 msgid "Global settings"
 msgstr "Réglages généraux"
 
 #. URI of the plugin
-msgid "https://github.com/PierreLebedel/WooCommerceShippingRulesets/"
-msgstr "https://github.com/PierreLebedel/WooCommerceShippingRulesets/"
+msgid "https://wordpress.org/plugins/pleb-woocommerce-shipping-rulesets/"
+msgstr "https://wordpress.org/plugins/pleb-woocommerce-shipping-rulesets/"
 
 #. Author URI of the plugin
 msgid "https://www.pierrelebedel.fr"
 msgstr "https://www.pierrelebedel.fr"
 
-#: includes/WordPressPlugin.php:152
+#: includes/Templates/AutoPromo.php:15
+msgid "I will work on these according on the time I have available."
+msgstr "Je travaillerai dessus selon le temps libre dont je dispose."
+
+#: includes/Templates/AutoPromo.php:18
+#, php-format
+msgid "If you are a developer, feel free to contribute on %s!"
+msgstr ""
+"Si vous être développeur, n'hésitez pas à contribuer au projet sur %s !"
+
+#: includes/Templates/AutoPromo.php:45
+msgid "Issues"
+msgstr "Issues"
+
+#: includes/WordPressPlugin.php:153
 msgid "Loading..."
 msgstr "Chargement..."
 
@@ -213,6 +262,10 @@ msgstr "Pierre Lebedel"
 #: includes/Templates/RulesetsRulesetRule.php:43
 msgid "Please choose the condition"
 msgstr "Veuillez sélectionner la condition"
+
+#: includes/Templates/AutoPromo.php:31
+msgid "Plugin directory"
+msgstr "Page de l'extension"
 
 #: includes/Templates/RulesetsDefaultRuleset.php:32
 #: includes/Templates/RulesetsRuleset.php:29
@@ -249,9 +302,21 @@ msgstr "Nom du groupe de règles"
 msgid "Rulesets"
 msgstr "Groupes de règles"
 
+#: includes/WordPressPluginPublisher.php:162
+msgid "Rulesets & rules settings metaboxes"
+msgstr "Affichage des règles et groupes de règles"
+
+#: includes/WordPressPluginPublisher.php:161
+msgid "Rulesets based shipping method display options form"
+msgstr "Formulaire de réglages des options d'affichage"
+
 #: includes/RulesShippingMethod.php:32
+#, fuzzy
+#| msgid ""
+#| "Set your own rulesets to calculate the shipping price on Cart & Checkout "
+#| "pages."
 msgid ""
-"Set your own rulesets to calculate the shipping price on Cart & Checkout "
+"Set your own rulesets to calculate the shipping rate on Cart & Checkout "
 "pages."
 msgstr ""
 "Créez vos propres groupes de règles afin de calculer les frais d'expédition "
@@ -286,7 +351,7 @@ msgstr ""
 msgid "Stop editing"
 msgstr "Quitter l'édition"
 
-#: includes/Templates/AutoPromo.php:5
+#: includes/Templates/AutoPromo.php:9
 msgid "Thank you tu use this plugin!"
 msgstr "Merci d'utiliser ce plugin !"
 
@@ -314,18 +379,22 @@ msgstr ""
 "Ce mode d'expédition sera inaccessible si le panier d'achat ne satisfait pas "
 "entièrement l'un des groupes de règles."
 
+#: includes/Templates/AutoPromo.php:33
+msgid "Translating"
+msgstr "Traduction"
+
 #: includes/AjaxAction.php:20
 #, php-format
 msgid "Unknown ajax action: %s"
 msgstr "Action inconnue dans la requête ajax : %s"
 
-#: includes/Templates/AutoPromo.php:14
-msgid "Useful links"
-msgstr "Liens utiles"
-
 #. Name of the plugin
 msgid "WooCommerce Shipping Rulesets"
 msgstr "WooCommerce Shipping Rulesets"
+
+#: includes/Templates/AutoPromo.php:27
+msgid "WordPress plugin"
+msgstr "Extension WordPress"
 
 #: includes/Templates/RulesetsDefaultRuleset.php:39
 #: includes/Templates/RulesetsRuleset.php:35
