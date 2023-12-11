@@ -17,7 +17,7 @@ class RuleConditionYear extends RuleConditionNumericInteger
 
 	public function getName(): string
 	{
-		return __("Year", 'pleb-woocommerce-shipping-rulesets');
+		return __("Current year", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface

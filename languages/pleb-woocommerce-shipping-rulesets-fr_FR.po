@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-11 20:26+0000\n"
+"PO-Revision-Date: 2023-12-11 20:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -138,6 +138,18 @@ msgstr "Choisissez"
 #: includes/Models/RuleConditions/RuleConditionCoupon.php:17
 msgid "Coupon"
 msgstr "Code promo"
+
+#: includes/Models/RuleConditions/RuleConditionTodayDate.php:19
+msgid "Current date"
+msgstr "Date courante"
+
+#: includes/Models/RuleConditions/RuleConditionHourOfDay.php:19
+msgid "Current time"
+msgstr "Heure courante"
+
+#: includes/Models/RuleConditions/RuleConditionYear.php:20
+msgid "Current year"
+msgstr "Année courante"
 
 #: includes/Models/RuleConditionsGroups/DateTimeGroup.php:11
 msgid "Date & time"
@@ -473,7 +485,3 @@ msgstr "Fonctionne pareil que le champ de réglages %s"
 #: includes/RulesShippingMethod.php:133
 msgid "Works the same as WooCommerce Flat Rate"
 msgstr "Fonctionne pareil que le mode d’expédition Forfait de WooCommerce"
-
-#: includes/Models/RuleConditions/RuleConditionYear.php:20
-msgid "Year"
-msgstr "Année"

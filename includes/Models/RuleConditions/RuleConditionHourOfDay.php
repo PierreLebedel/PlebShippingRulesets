@@ -11,12 +11,12 @@ class RuleConditionHourOfDay extends RuleConditionTime
 {
 	public function getId(): string
 	{
-		return 'hour_of_day';
+		return 'current_time';
 	}
 
 	public function getName(): string
 	{
-		return __("Hour of day", 'pleb-woocommerce-shipping-rulesets');
+		return __("Current time", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface

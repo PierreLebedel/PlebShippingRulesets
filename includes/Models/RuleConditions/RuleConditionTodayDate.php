@@ -16,7 +16,7 @@ class RuleConditionTodayDate extends RuleConditionDate
 
 	public function getName(): string
 	{
-		return __("Today's date", 'pleb-woocommerce-shipping-rulesets');
+		return __("Current date", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface
