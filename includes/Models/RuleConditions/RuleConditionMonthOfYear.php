@@ -5,23 +5,27 @@ namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
 
-class RuleConditionDayOfWeek extends RuleConditionChoices
+class RuleConditionMonthOfYear extends RuleConditionChoices
 {
 	public function getId(): string
 	{
-		return 'day_of_week';
+		return 'month_of_year';
 	}
 
 	public function getName(): string
 	{
-		return __("Day of week", 'pleb-woocommerce-shipping-rulesets');
+		return __("Month of year", 'pleb-woocommerce-shipping-rulesets');
 	}
 
 	public function getComparators(): array
 	{
 		return [
+			'<'  => "<",
+			'<=' => "<=",
 			'='  => "=",
-			'!=' => "!=",
+			'!='  => "!=",
+			'>=' => ">=",
+			'>'  => ">",
 		];
 	}
 
@@ -31,22 +35,14 @@ class RuleConditionDayOfWeek extends RuleConditionChoices
 		 * @global \WP_Locale $wp_locale WordPress date and time locale object.
 		 */
 		global $wp_locale;
-		
-		$days = [];
 
-		$startIndex = get_option( 'start_of_week', 0 );
+		$months = [];
 
-		// on boucle du premier jour de la semaine (réglages) au samedi
-		for($i=$startIndex; $i<7; $i++){
-			$days[$i] = ucfirst($wp_locale->get_weekday( $i ));
+		for($i=1; $i<=12; $i++){
+			$months[$i] = ucfirst($wp_locale->get_month($i));
 		}
 
-		// on boucle du dimanche à l'avant-premier jour de la semaine
-		for($i=0; $i<$startIndex; $i++){
-			$days[$i] = ucfirst($wp_locale->get_weekday( $i ));
-		}
-
-		return $days;
+		return $months;
 	}
 
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool
@@ -62,12 +58,39 @@ class RuleConditionDayOfWeek extends RuleConditionChoices
 		}
 		$conditionValue = intval($conditionValue);
 
-		if( $conditionComparator=='=' && $conditionValue==intval(date('w')) ){
-			return true;
-		}
+		$packageValue = intval(date('m'));
 
-		if( $conditionComparator=='!=' && $conditionValue!=intval(date('w')) ){
-			return true;
+		switch ($conditionComparator) {
+			case '<':
+				if ($packageValue < $conditionValue) {
+					return true;
+				}
+				break;
+			case '<=':
+				if ($packageValue <= $conditionValue) {
+					return true;
+				}
+				break;
+			case '=':
+				if ($packageValue == $conditionValue) {
+					return true;
+				}
+				break;
+			case '!=':
+				if ($packageValue != $conditionValue) {
+					return true;
+				}
+				break;
+			case '>=':
+				if ($packageValue >= $conditionValue) {
+					return true;
+				}
+				break;
+			case '>':
+				if ($packageValue > $conditionValue) {
+					return true;
+				}
+				break;
 		}
 
 		return false;
