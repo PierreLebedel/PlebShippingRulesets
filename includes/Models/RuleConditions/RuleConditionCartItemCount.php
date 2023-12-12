@@ -3,9 +3,10 @@
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
+use PlebWooCommerceShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
-class RuleConditionCartItemCount extends RuleConditionNumericInteger
+class RuleConditionCartItemCount extends RuleConditionNumericInteger implements RuleConditionPackageValueShortcodeInterface
 {
 	public function getId(): string
 	{

@@ -117,7 +117,8 @@ abstract class RuleCondition implements RuleConditionInterface
 		return ob_get_clean();
 	}
 
-	/*public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
+	/* // class implements RuleConditionPackageValueShortcodeInterface
+	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
 		return null;
 	}*/

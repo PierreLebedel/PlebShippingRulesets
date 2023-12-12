@@ -18,7 +18,5 @@ interface RuleConditionInterface
 
 	public function getInputHtml(string $fieldName, mixed $value): string;
 
-	//public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed;
-
 	public function matchToWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): bool;
 }

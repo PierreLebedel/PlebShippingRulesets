@@ -2,10 +2,11 @@
 
 namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
 
+use PlebWooCommerceShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
 use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
 use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
-class RuleConditionCartWeight extends RuleConditionNumericInteger
+class RuleConditionCartWeight extends RuleConditionNumericInteger implements RuleConditionPackageValueShortcodeInterface
 {
 	public function getId(): string
 	{
