@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-12 09:40+0000\n"
+"PO-Revision-Date: 2023-12-12 10:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -81,48 +81,48 @@ msgstr "Êtes-vous sûr de supprimer cette règle ?"
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr "Êtes-vous sûr de supprimer ce groupe ainsi que toutes ses règles ?"
 
-#: includes/RulesShippingMethod.php:122
+#: includes/RulesShippingMethod.php:122 includes/RulesShippingMethod.php:145
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:41
 msgid "Base price"
 msgstr "Tarif de base"
 
-#: includes/Models/RuleConditions/RuleConditionCartItemCount.php:17
+#: includes/Models/RuleConditions/RuleConditionCartItemCount.php:18
 msgid "Cart item quantity"
 msgstr "Quantité d'articles dans le panier"
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:17
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:18
 msgid "Cart item quantity (category)"
 msgstr "Quantité d'article (catégorie)"
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:17
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:18
 msgid "Cart item quantity (shipping class)"
 msgstr "Quantité d'articles (classe d'expédition)"
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:32
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:33
 #, php-format
 msgid "Cart item quantity from %s category"
 msgstr "Quantité d'articles de la catégorie %s"
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:32
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:33
 #, fuzzy, php-format
 #| msgid "Cart item quantity from %s"
 msgid "Cart item quantity from %s class"
 msgstr "Quantité d'articles de la classe %s"
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:17
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:18
 msgid "Cart price"
 msgstr "Prix du panier"
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:23
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
 msgid "Cart price tax exclusive"
 msgstr "Prix du panier HT"
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:25
 msgid "Cart price tax inclusive"
 msgstr "Prix du panier TTC"
 
-#: includes/Models/RuleConditions/RuleConditionCartWeight.php:17
+#: includes/Models/RuleConditions/RuleConditionCartWeight.php:18
 #, php-format
 msgid "Cart weight (%s)"
 msgstr "Poids des articles du panier (%s)"
@@ -132,6 +132,7 @@ msgid "Check for true, uncheck for false"
 msgstr "Cocher pour vrai, décocher pour faux"
 
 #: includes/Templates/RulesetsRulesetRule.php:7
+#: includes/Models/RuleConditions/Abstracts/RuleConditionChoices.php:19
 msgid "Choose an option"
 msgstr "Choisissez"
 
@@ -167,7 +168,7 @@ msgstr "Jour de la semaine"
 msgid "Debug mode"
 msgstr "Mode débogage"
 
-#: includes/RulesShippingMethod.php:564
+#: includes/RulesShippingMethod.php:576
 #: includes/Templates/RulesetsDefaultRuleset.php:9
 msgid "Default"
 msgstr "Par défaut"
@@ -278,6 +279,14 @@ msgstr "Chargement..."
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr "Créez vos propres règles de calcul de frais d'expédition"
 
+#: includes/RulesShippingMethod.php:628
+msgid "Max:"
+msgstr "Maximum :"
+
+#: includes/RulesShippingMethod.php:622
+msgid "Min:"
+msgstr "Minimum :"
+
 #: includes/Models/RuleConditions/RuleConditionMonthOfYear.php:19
 msgid "Month of year"
 msgstr "Mois de l'année"
@@ -317,6 +326,10 @@ msgstr "Veuillez sélectionner la condition"
 msgid "Plugin directory"
 msgstr "Page de l'extension"
 
+#: includes/RulesShippingMethod.php:137
+msgid "Price limits"
+msgstr "Limites de prix"
+
 #: includes/Templates/RulesetsDefaultRuleset.php:32
 #: includes/Templates/RulesetsRuleset.php:34
 msgid "Price to apply:"
@@ -348,7 +361,7 @@ msgstr "Groupe de règles"
 msgid "Ruleset name"
 msgstr "Nom du groupe de règles"
 
-#: includes/RulesShippingMethod.php:138
+#: includes/RulesShippingMethod.php:150
 msgid "Rulesets"
 msgstr "Groupes de règles"
 
@@ -476,12 +489,14 @@ msgstr "WooCommerce Shipping Rulesets"
 msgid "WordPress plugin"
 msgstr "Extension WordPress"
 
+#: includes/RulesShippingMethod.php:144
 #: includes/Templates/RulesetsDefaultRuleset.php:39
 #: includes/Templates/RulesetsRuleset.php:40
 #, php-format
 msgid "Works the same as %s setting field"
-msgstr "Fonctionne pareil que le champ de réglages %s"
+msgstr "Fonctionne de la même manière que le champ de réglages %s"
 
 #: includes/RulesShippingMethod.php:133
 msgid "Works the same as WooCommerce Flat Rate"
-msgstr "Fonctionne pareil que le mode d’expédition Forfait de WooCommerce"
+msgstr ""
+"Fonctionne de la même manière que le mode d’expédition Forfait de WooCommerce"

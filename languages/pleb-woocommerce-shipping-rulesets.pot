@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-11 20:41+0000\n"
+"POT-Creation-Date: 2023-12-12 10:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -78,47 +78,47 @@ msgstr ""
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:122
+#: includes/RulesShippingMethod.php:122 includes/RulesShippingMethod.php:145
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:41
 msgid "Base price"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartItemCount.php:17
+#: includes/Models/RuleConditions/RuleConditionCartItemCount.php:18
 msgid "Cart item quantity"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:17
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:18
 msgid "Cart item quantity (category)"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:17
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:18
 msgid "Cart item quantity (shipping class)"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:32
+#: includes/Models/RuleConditions/RuleConditionCartItemByCategoryCount.php:33
 #, php-format
 msgid "Cart item quantity from %s category"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:32
+#: includes/Models/RuleConditions/RuleConditionCartItemByShippingClassCount.php:33
 #, php-format
 msgid "Cart item quantity from %s class"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:17
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:18
 msgid "Cart price"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:23
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
 msgid "Cart price tax exclusive"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartPrice.php:24
+#: includes/Models/RuleConditions/RuleConditionCartPrice.php:25
 msgid "Cart price tax inclusive"
 msgstr ""
 
-#: includes/Models/RuleConditions/RuleConditionCartWeight.php:17
+#: includes/Models/RuleConditions/RuleConditionCartWeight.php:18
 #, php-format
 msgid "Cart weight (%s)"
 msgstr ""
@@ -128,6 +128,7 @@ msgid "Check for true, uncheck for false"
 msgstr ""
 
 #: includes/Templates/RulesetsRulesetRule.php:7
+#: includes/Models/RuleConditions/Abstracts/RuleConditionChoices.php:19
 msgid "Choose an option"
 msgstr ""
 
@@ -163,7 +164,7 @@ msgstr ""
 msgid "Debug mode"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:564
+#: includes/RulesShippingMethod.php:576
 #: includes/Templates/RulesetsDefaultRuleset.php:9
 msgid "Default"
 msgstr ""
@@ -265,6 +266,14 @@ msgstr ""
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr ""
 
+#: includes/RulesShippingMethod.php:628
+msgid "Max:"
+msgstr ""
+
+#: includes/RulesShippingMethod.php:622
+msgid "Min:"
+msgstr ""
+
 #: includes/Models/RuleConditions/RuleConditionMonthOfYear.php:19
 msgid "Month of year"
 msgstr ""
@@ -301,6 +310,10 @@ msgstr ""
 msgid "Plugin directory"
 msgstr ""
 
+#: includes/RulesShippingMethod.php:137
+msgid "Price limits"
+msgstr ""
+
 #: includes/Templates/RulesetsDefaultRuleset.php:32
 #: includes/Templates/RulesetsRuleset.php:34
 msgid "Price to apply:"
@@ -331,7 +344,7 @@ msgstr ""
 msgid "Ruleset name"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:138
+#: includes/RulesShippingMethod.php:150
 msgid "Rulesets"
 msgstr ""
 
@@ -443,6 +456,7 @@ msgstr ""
 msgid "WordPress plugin"
 msgstr ""
 
+#: includes/RulesShippingMethod.php:144
 #: includes/Templates/RulesetsDefaultRuleset.php:39
 #: includes/Templates/RulesetsRuleset.php:40
 #, php-format

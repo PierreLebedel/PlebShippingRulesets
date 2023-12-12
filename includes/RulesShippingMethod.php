@@ -133,7 +133,19 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb-woocommerce-shipping-rulesets'),
 				'sanitize_callback' => [$this, 'sanitize_cost'],
 			],
-
+			'cost_min_max'       => [
+				'title'             => __('Price limits', 'pleb-woocommerce-shipping-rulesets'),
+				'type'              => 'pleb_minmax',
+				'default'           => [
+					'min' => '', 
+					'max' => ''
+				],
+				'desc_tip'          => sprintf(
+					__("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
+					'<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
+				),
+				'sanitize_callback' => [$this, 'sanitize_cost_min_max'],
+			],
 			'rulesets'       => [
 				'title'             => __('Rulesets', 'pleb-woocommerce-shipping-rulesets'),
 				'type'              => 'pleb_rulesets',
@@ -370,6 +382,17 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			$baseCost = $this->evaluate_cost($basePrice, $package, 'Base price cost: ');
 		}
 
+		$min = $max = null;
+		$minMax = $this->get_option('cost_min_max');
+
+		if ($minMax['min'] !== '') {
+			$min = $this->evaluate_cost($minMax['min'], $package, 'Min price: ');
+		}
+		if ($minMax['max'] !== '') {
+			$maxTemp = $this->evaluate_cost($minMax['max'], $package, 'Max price: ');
+			$max = ($min) ? max($min, $maxTemp) : $maxTemp;
+		}
+
 		$orderMatchingRulesets = $this->find_matching_rulesets($package);
 
 		if (!empty($orderMatchingRulesets)) {
@@ -400,10 +423,19 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				}
 
 				if($matchingMode == 'many_distinct'){
+					$rateCost = ($baseCost + $rulesetsCost);
+
+					if( $min && $rateCost < $min ){
+						$rateCost = $min;
+					}
+					if( $max && $rateCost > $max ){
+						$rateCost = $max;
+					}
+
 					$this->add_rate([
 						'id'      => $this->get_rate_id($matchingRuleset->getId()),
 						'label'   => $rateLabel,
-						'cost'    => $baseCost + $rulesetsCost,
+						'cost'    => $rateCost,
 						'package' => $package,
 					]);
 					do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
@@ -417,10 +449,19 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		if (!empty($orderMatchingRulesets) && $matchingMode != 'many_distinct') {
+			$rateCost = ($baseCost + $rulesetsCost);
+
+			if( $min && $rateCost < $min ){
+				$rateCost = $min;
+			}
+			if( $max && $rateCost > $max ){
+				$rateCost = $max;
+			}
+
 			$this->add_rate([
 				'id'      => $rateId,
 				'label'   => $rateLabel,
-				'cost'    => $baseCost + $rulesetsCost,
+				'cost'    => $rateCost,
 				'package' => $package,
 			]);
 			do_action('woocommerce_'.$this->id.'_shipping_add_rate', $this, $rate);
@@ -584,4 +625,54 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 		return $value;
 	}
+
+	public function generate_pleb_minmax_html( $key, $data ) {
+		$fieldKey = $this->get_field_key($key);
+		$defaults  = array(
+			'title'             => 'Min / Max',
+			'default'           => [
+				'min' => '', 
+				'max' => '2'
+			],
+		);
+
+		$data = wp_parse_args( $data, $defaults );
+		$values = $this->get_option( $key );
+
+		ob_start();
+		?><tr valign="top">
+			<th scope="row" class="titledesc">
+				<label><?php echo wp_kses_post( $data['title'] ); ?> <?php echo $this->get_tooltip_html($data); // WPCS: XSS ok.?></label>
+			</th>
+			<td class="forminp">
+				<div style="width:400px;">
+					<div style="float:left;width:48%;">
+						<label for="<?php echo esc_attr( $fieldKey ); ?>_min" style="display:block;margin-bottom:4px;">
+							<?php _e("Min:", 'pleb-woocommerce-shipping-rulesets'); ?>
+						</label>
+						<input type="text" name="<?php echo esc_attr( $fieldKey ); ?>[min]" id="<?php echo esc_attr( $fieldKey ); ?>_min" value="<?php echo esc_attr( wc_format_localized_price($values['min']) ); ?>" style="width:100%;margin:0;" />
+					</div>
+					<div style="float:right;width:48%;">
+						<label for="<?php echo esc_attr( $fieldKey ); ?>_max" style="display:block;margin-bottom:4px;">
+							<?php _e("Max:", 'pleb-woocommerce-shipping-rulesets'); ?>
+						</label>
+						<input type="text" name="<?php echo esc_attr( $fieldKey ); ?>[max]" id="<?php echo esc_attr( $fieldKey ); ?>_max" value="<?php echo esc_attr( wc_format_localized_price($values['max']) ); ?>" style="width:100%;margin:0;" />
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+				
+				
+			</td>
+		</tr><?php
+		return ob_get_clean();
+	}
+
+	public function sanitize_cost_min_max(array $value)
+	{
+		return array_merge([
+			'min' => '',
+			'max' => '',
+		], $value);
+	}
+
 }
