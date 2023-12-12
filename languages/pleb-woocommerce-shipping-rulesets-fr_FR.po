@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-12 10:35+0000\n"
+"PO-Revision-Date: 2023-12-12 11:23+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -81,7 +81,7 @@ msgstr "Êtes-vous sûr de supprimer cette règle ?"
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr "Êtes-vous sûr de supprimer ce groupe ainsi que toutes ses règles ?"
 
-#: includes/RulesShippingMethod.php:122 includes/RulesShippingMethod.php:145
+#: includes/RulesShippingMethod.php:122 includes/RulesShippingMethod.php:156
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:41
 msgid "Base price"
@@ -168,7 +168,7 @@ msgstr "Jour de la semaine"
 msgid "Debug mode"
 msgstr "Mode débogage"
 
-#: includes/RulesShippingMethod.php:576
+#: includes/RulesShippingMethod.php:616
 #: includes/Templates/RulesetsDefaultRuleset.php:9
 msgid "Default"
 msgstr "Par défaut"
@@ -218,6 +218,15 @@ msgid ""
 msgstr ""
 "N'hésitez pas à envoyer vos demandes si vous pensez qu'il manque des règles "
 "essentielles."
+
+#: includes/RulesShippingMethod.php:146
+#, php-format
+msgid ""
+"For example, you can set shipping costs of %s minimum, and %s of the order "
+"price maximum, using %s %s and %s %s"
+msgstr ""
+"Par exemple, vous pouvez régler les frais de livraison à %s minimum, et %s "
+"du prix de la commande maximum, en inscrivant %s %s et %s %s"
 
 #: includes/WordPressPluginPublisher.php:165
 msgid "Front end cart display shipping method name & rate"
@@ -279,11 +288,11 @@ msgstr "Chargement..."
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr "Créez vos propres règles de calcul de frais d'expédition"
 
-#: includes/RulesShippingMethod.php:628
+#: includes/RulesShippingMethod.php:151 includes/RulesShippingMethod.php:670
 msgid "Max:"
 msgstr "Maximum :"
 
-#: includes/RulesShippingMethod.php:622
+#: includes/RulesShippingMethod.php:149 includes/RulesShippingMethod.php:664
 msgid "Min:"
 msgstr "Minimum :"
 
@@ -361,7 +370,7 @@ msgstr "Groupe de règles"
 msgid "Ruleset name"
 msgstr "Nom du groupe de règles"
 
-#: includes/RulesShippingMethod.php:150
+#: includes/RulesShippingMethod.php:161
 msgid "Rulesets"
 msgstr "Groupes de règles"
 
@@ -430,6 +439,17 @@ msgstr ""
 "Le groupe par défaut vous permet d'appliquer un tarif même si aucun groupe "
 "de règle n'est entièrement satisfait par le panier d'achats."
 
+#: includes/RulesShippingMethod.php:144
+msgid ""
+"These fields will limit the prices dynamically calculated by the rulesets."
+msgstr ""
+"Ces champs vont limiter les prix dynamiquement calculés par les groupes de "
+"règles."
+
+#: includes/RulesShippingMethod.php:145
+msgid "They can also contain variables."
+msgstr "Ils peuvent eux-mêmes contenir des variables."
+
 #: includes/RulesShippingMethod.php:127
 msgid ""
 "This base price will be added to the price of the group matching with the "
@@ -489,7 +509,7 @@ msgstr "WooCommerce Shipping Rulesets"
 msgid "WordPress plugin"
 msgstr "Extension WordPress"
 
-#: includes/RulesShippingMethod.php:144
+#: includes/RulesShippingMethod.php:155
 #: includes/Templates/RulesetsDefaultRuleset.php:39
 #: includes/Templates/RulesetsRuleset.php:40
 #, php-format

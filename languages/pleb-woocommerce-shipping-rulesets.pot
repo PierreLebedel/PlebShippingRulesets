@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-12 10:35+0000\n"
+"POT-Creation-Date: 2023-12-12 11:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -78,7 +78,7 @@ msgstr ""
 msgid "Are you sure to delete this ruleset and all of its rules?"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:122 includes/RulesShippingMethod.php:145
+#: includes/RulesShippingMethod.php:122 includes/RulesShippingMethod.php:156
 #: includes/Templates/RulesetsDefaultRuleset.php:40
 #: includes/Templates/RulesetsRuleset.php:41
 msgid "Base price"
@@ -164,7 +164,7 @@ msgstr ""
 msgid "Debug mode"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:576
+#: includes/RulesShippingMethod.php:616
 #: includes/Templates/RulesetsDefaultRuleset.php:9
 msgid "Default"
 msgstr ""
@@ -207,6 +207,13 @@ msgstr ""
 msgid ""
 "Feel free to send your requests if you think certain essential rules are "
 "missing."
+msgstr ""
+
+#: includes/RulesShippingMethod.php:146
+#, php-format
+msgid ""
+"For example, you can set shipping costs of %s minimum, and %s of the order "
+"price maximum, using %s %s and %s %s"
 msgstr ""
 
 #: includes/WordPressPluginPublisher.php:165
@@ -266,11 +273,11 @@ msgstr ""
 msgid "Make your own rulesets to calculate shipping rates"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:628
+#: includes/RulesShippingMethod.php:151 includes/RulesShippingMethod.php:670
 msgid "Max:"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:622
+#: includes/RulesShippingMethod.php:149 includes/RulesShippingMethod.php:664
 msgid "Min:"
 msgstr ""
 
@@ -344,7 +351,7 @@ msgstr ""
 msgid "Ruleset name"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:150
+#: includes/RulesShippingMethod.php:161
 msgid "Rulesets"
 msgstr ""
 
@@ -399,6 +406,15 @@ msgstr ""
 msgid ""
 "The default ruleset allows you to apply a rate even if none of rulesets "
 "matches the shopping cart."
+msgstr ""
+
+#: includes/RulesShippingMethod.php:144
+msgid ""
+"These fields will limit the prices dynamically calculated by the rulesets."
+msgstr ""
+
+#: includes/RulesShippingMethod.php:145
+msgid "They can also contain variables."
 msgstr ""
 
 #: includes/RulesShippingMethod.php:127
@@ -456,7 +472,7 @@ msgstr ""
 msgid "WordPress plugin"
 msgstr ""
 
-#: includes/RulesShippingMethod.php:144
+#: includes/RulesShippingMethod.php:155
 #: includes/Templates/RulesetsDefaultRuleset.php:39
 #: includes/Templates/RulesetsRuleset.php:40
 #, php-format

@@ -140,6 +140,17 @@ class RulesShippingMethod extends \WC_Shipping_Method
 					'min' => '', 
 					'max' => ''
 				],
+				'description'       => implode('<br>', [
+					__("These fields will limit the prices dynamically calculated by the rulesets.", 'pleb-woocommerce-shipping-rulesets'),
+					__("They can also contain variables.", 'pleb-woocommerce-shipping-rulesets').' '.sprintf(
+						__("For example, you can set shipping costs of %s minimum, and %s of the order price maximum, using %s %s and %s %s", 'pleb-woocommerce-shipping-rulesets'), 
+						wc_price(5.5), 
+						'10%',
+						__("Min:",'pleb-woocommerce-shipping-rulesets'), 
+						'<code>5.5</code>', 
+						__("Max:",'pleb-woocommerce-shipping-rulesets'), 
+						'<code>[cost] * 0.1</code>'),
+				]),
 				'desc_tip'          => sprintf(
 					__("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
 					'<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
@@ -634,6 +645,8 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'min' => '', 
 				'max' => '2'
 			],
+			'desc_tip'          => false,
+			'description'       => '',
 		);
 
 		$data = wp_parse_args( $data, $defaults );
@@ -660,8 +673,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 					</div>
 					<div style="clear:both;"></div>
 				</div>
-				
-				
+				<?php echo $this->get_description_html( $data ); // WPCS: XSS ok. ?>
 			</td>
 		</tr><?php
 		return ob_get_clean();
