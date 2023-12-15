@@ -51,6 +51,7 @@ class WordPressPluginPublisher
             die('Unable to connect to thefilesystem');
         }
 
+        echo "Make SVN directories".PHP_EOL;
         $pluginSvnDir = './svn';
         $pluginTrunkDir = $pluginSvnDir.'/trunk';
         $pluginAssetsDir = $pluginSvnDir.'/assets';
@@ -70,6 +71,7 @@ class WordPressPluginPublisher
         mkdir($pluginTrunkDir, 0777, true);
         mkdir($pluginAssetsDir, 0777, true);
 
+        echo " - Copy files in ".$pluginTrunkDir.PHP_EOL;
         copy_dir('./', $pluginTrunkDir, [
             'svn',
             'vendor',
@@ -85,13 +87,19 @@ class WordPressPluginPublisher
             'assets',
             'loco.xml',
             '.git',
+            'pleb-woocommerce-shipping-rulesets.zip',
         ]);
 
+        echo " - Copy assets files in ".$pluginAssetsDir.PHP_EOL;
         copy_dir('./assets', $pluginAssetsDir, [
             'icon.svg', // not used in this plugin
             'icon.psd',
             'banner.psd',
         ]);
+
+        /**
+         * 
+         */
 
         $instance = self::instance();
         $plugin = $instance->getPlugin();
@@ -241,7 +249,66 @@ class WordPressPluginPublisher
 
         $readmeContent = implode(PHP_EOL, $readmeContentArray);
 
+        echo " - Make ".$pluginTrunkDir.'/readme.txt'.PHP_EOL;
         file_put_contents($pluginTrunkDir.'/readme.txt', $readmeContent);
+
+        /**
+         * 
+         */
+
+        echo "Create Zip file".PHP_EOL;
+        $zip = new \ZipArchive();
+        $zipFilePath = $plugin->slug.'.zip';
+
+        if(file_exists($zipFilePath)) {
+            unlink ($zipFilePath);
+        }
+
+        if ($zip->open($zipFilePath, \ZipArchive::CREATE) != TRUE) {
+            die ("Could not open archive");
+        }
+
+        $files = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator(
+                $pluginTrunkDir,
+                \FilesystemIterator::SKIP_DOTS
+            ),
+            \RecursiveIteratorIterator::LEAVES_ONLY
+        );
+
+        echo " - Zip plugin files: ";
+        foreach ($files as $key => $file) {
+            if ($file->getFilename() == '.' || $file->getFilename() == '..'){
+                continue;
+            }
+            echo '.';
+            $filePath = str_replace('\\', '/', $key);
+            $filePath = str_replace('./svn/trunk/', '', $filePath);
+            $zip->addFile($file->getRealPath(), $filePath);
+        }
+        echo PHP_EOL;
+
+        $files = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator(
+                $pluginAssetsDir,
+                \FilesystemIterator::SKIP_DOTS
+            ),
+            \RecursiveIteratorIterator::LEAVES_ONLY
+        );
+
+        echo " - Zip assets files: ";
+        foreach ($files as $key => $file) {
+            if ($file->getFilename() == '.' || $file->getFilename() == '..'){
+                continue;
+            }
+            echo '.';
+            $filePath = str_replace('\\', '/', $key);
+            $filePath = str_replace('./svn/', '', $filePath);
+            $zip->addFile($file->getRealPath(), $filePath);
+        }
+        echo PHP_EOL;
+
+        $zip->close();
 
     }
 

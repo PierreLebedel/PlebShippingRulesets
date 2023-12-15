@@ -12,13 +12,11 @@
  * Requires at least: 6.4
  * Requires PHP: 8.0
  * WC requires at least: 8.3.0
- * WC tested up to: 8.3.0
+ * WC tested up to: 8.4.0
  * Woo:
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */
-
-use PlebWooCommerceShippingRulesets\WordPressPlugin;
 
 defined('ABSPATH') || exit;
 
@@ -32,7 +30,10 @@ spl_autoload_register(function ($class) {
 	$relative_class = substr($class, $len);
 	$file = $base_dir.str_replace('\\', '/', $relative_class).'.php';
 	if (file_exists($file)) {
+		//echo "require: ".$file."<br>";
 		require $file;
+	}else{
+		//echo "!!!require: ".$file."<br>";
 	}
 });
 
@@ -56,9 +57,9 @@ if (!function_exists('dd')) {
 if (!class_exists('PlebWooCommerceShippingRulessets')) {
 	class PlebWooCommerceShippingRulessets
 	{
-		public static function wordPressPluginInstance(): WordPressPlugin
+		public static function wordPressPluginInstance(): \PlebWooCommerceShippingRulesets\WordPressPlugin
 		{
-			return WordPressPlugin::instance(__FILE__);
+			return \PlebWooCommerceShippingRulesets\WordPressPlugin::instance(__FILE__);
 		}
 
 		public static function activate()

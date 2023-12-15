@@ -546,6 +546,21 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	}
 
 	/**
+	 * WooCommerce 8.4 update replaces <table class="table-form"> by a <div> to match new modal settings,
+	 * but this destroy the classic settings page
+	 * Problem seems fixed, but waiting for WC update to avoid this method override here
+	 */
+	public function get_admin_options_html() {
+		if ( $this->instance_id ) {
+			$settings_html = $this->generate_settings_html( $this->get_instance_form_fields(), false );
+		} else {
+			$settings_html = $this->generate_settings_html( $this->get_form_fields(), false );
+		}
+
+		return '<table class="form-table">' . $settings_html . '</table>';
+	}
+
+	/**
 	 * WooCommerce function to display "rulesets" field type
 	 * generate_pleb_{{ $type }}_html
 	 */
