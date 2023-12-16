@@ -1,4 +1,4 @@
-# WooCommerce Shipping Rulesets
+# Pleb Shipping Rulesets for WooCommerce
 
 <!-- ## :warning: Work in progress
 
@@ -9,7 +9,7 @@ This WordPress plugin is under development. Please wait for version 1.0.0 to use
 Install the plugin in your WordPress website
 
 ```shell
-git clone git@github.com:PierreLebedel/WooCommerceShippingRulesets.git wp-content/plugins/pleb-woocommerce-shipping-rules/
+git clone git@github.com:PierreLebedel/PlebShippingRulesets.git wp-content/plugins/pleb-shipping-rules/
 ```
 
 ## Useful commands

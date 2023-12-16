@@ -1,10 +1,10 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets;
+namespace PlebShippingRulesets;
 
-use PlebWooCommerceShippingRulesets\Models\Rule;
-use PlebWooCommerceShippingRulesets\Models\Ruleset;
-use PlebWooCommerceShippingRulesets\Models\DefaultRuleset;
+use PlebShippingRulesets\Models\Rule;
+use PlebShippingRulesets\Models\Ruleset;
+use PlebShippingRulesets\Models\DefaultRuleset;
 
 class AjaxAction
 {
@@ -17,7 +17,7 @@ class AjaxAction
 		$instance = new self();
 
 		if (!method_exists($instance, $hook)) {
-			throw new \Exception(sprintf(__("Unknown ajax action: %s", 'pleb-woocommerce-shipping-rulesets'), $hook));
+			throw new \Exception(sprintf(__("Unknown ajax action: %s", 'pleb-shipping-rulesets'), $hook));
 		}
 
 		if ($public) {
@@ -37,7 +37,7 @@ class AjaxAction
 			}
 		}
 		if (!empty($missingParameters)) {
-			throw new \Exception(sprintf(__("Ajax action missing params: %s", 'pleb-woocommerce-shipping-rulesets'), implode(', ', $missingParameters)));
+			throw new \Exception(sprintf(__("Ajax action missing params: %s", 'pleb-shipping-rulesets'), implode(', ', $missingParameters)));
 		}
 	}
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\UserGroup;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionBoolean;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Models\RuleConditionsGroups\UserGroup;
+use PlebShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionBoolean;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
 
 class RuleConditionUserHasRole extends RuleConditionChoices
 {
@@ -17,7 +17,7 @@ class RuleConditionUserHasRole extends RuleConditionChoices
 
 	public function getName(): string
 	{
-		return __("User role", 'pleb-woocommerce-shipping-rulesets');
+		return __("User role", 'pleb-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface
@@ -28,8 +28,8 @@ class RuleConditionUserHasRole extends RuleConditionChoices
 	public function getComparators(): array
 	{
 		return [
-			'=' => _x("is", "User role is/isn't", 'pleb-woocommerce-shipping-rulesets'),
-			'!=' => _x("isn't", "User role is/isn't", 'pleb-woocommerce-shipping-rulesets'),
+			'=' => _x("is", "User role is/isn't", 'pleb-shipping-rulesets'),
+			'!=' => _x("isn't", "User role is/isn't", 'pleb-shipping-rulesets'),
 		];
 	}
 
@@ -39,8 +39,8 @@ class RuleConditionUserHasRole extends RuleConditionChoices
 		$rolesArray = apply_filters('pwsr_get_all_roles', $wp_roles->roles);
 
 		$rolesChoices = [];
-		foreach($rolesArray as $k=>$v){
-			$rolesChoices[$k] = translate_user_role($v['name'], 'pleb-woocommerce-shipping-rulesets');
+		foreach($rolesArray as $k => $v) {
+			$rolesChoices[$k] = translate_user_role($v['name'], 'pleb-shipping-rulesets');
 		}
 
 		return $rolesChoices;
@@ -52,20 +52,22 @@ class RuleConditionUserHasRole extends RuleConditionChoices
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;
 		}
 
 		$user = wp_get_current_user();
-		if(!$user->exists()) return false;
+		if(!$user->exists()) {
+		return false;
+		}
 
-		if( $conditionComparator=='=' && in_array($conditionValue, $user->roles) ){
+		if($conditionComparator == '=' && in_array($conditionValue, $user->roles, true)) {
 			return true;
 		}
 
-		if( $conditionComparator=='!=' && !in_array($conditionValue, $user->roles) ){
+		if($conditionComparator == '!=' && !in_array($conditionValue, $user->roles, true)) {
 			return true;
 		}
 

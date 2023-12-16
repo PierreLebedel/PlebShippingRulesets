@@ -1,9 +1,9 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models;
+namespace PlebShippingRulesets\Models;
 
-use PlebWooCommerceShippingRulesets\Models\Rule;
-use PlebWooCommerceShippingRulesets\Contracts\RulesetInterface;
+use PlebShippingRulesets\Models\Rule;
+use PlebShippingRulesets\Contracts\RulesetInterface;
 
 class Ruleset implements RulesetInterface
 {
@@ -21,7 +21,7 @@ class Ruleset implements RulesetInterface
 	{
 		$rulesetArray = array_merge([
 			'id'      => $id = self::generateId(),
-			'name'    => __("Ruleset", 'pleb-woocommerce-shipping-rulesets'),
+			'name'    => __("Ruleset", 'pleb-shipping-rulesets'),
 			'cost'    => '',
 			'order'   => null,
 			'rules'   => [],
@@ -71,7 +71,7 @@ class Ruleset implements RulesetInterface
 	public function getName(): string
 	{
 		if (empty($this->name)) {
-			return __("Ruleset", 'pleb-woocommerce-shipping-rulesets').' #'.$this->getId();
+			return __("Ruleset", 'pleb-shipping-rulesets').' #'.$this->getId();
 		}
 		return $this->name;
 	}

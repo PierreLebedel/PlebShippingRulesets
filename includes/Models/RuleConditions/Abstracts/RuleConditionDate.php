@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts;
+namespace PlebShippingRulesets\Models\RuleConditions\Abstracts;
 
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
 
 abstract class RuleConditionDate extends RuleCondition
 {

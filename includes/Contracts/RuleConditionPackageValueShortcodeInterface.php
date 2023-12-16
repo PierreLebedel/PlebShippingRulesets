@@ -1,6 +1,6 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Contracts;
+namespace PlebShippingRulesets\Contracts;
 
 interface RuleConditionPackageValueShortcodeInterface
 {

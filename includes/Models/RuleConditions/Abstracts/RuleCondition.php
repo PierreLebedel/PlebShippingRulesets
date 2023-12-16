@@ -1,29 +1,28 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts;
+namespace PlebShippingRulesets\Models\RuleConditions\Abstracts;
 
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionYear;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCoupon;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartPrice;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionDayOfWeek;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionHourOfDay;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionTodayDate;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartWeight;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionDayOfMonth;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionMonthOfYear;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserHasRole;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemCount;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionUserIsLoggedIn;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByCategoryCount;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemByShippingClassCount;
+use PlebShippingRulesets\RulesShippingMethod;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionInterface;
+use PlebShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionYear;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionCoupon;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionCartPrice;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionDayOfWeek;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionHourOfDay;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionTodayDate;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionCartWeight;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionDayOfMonth;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionMonthOfYear;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionUserHasRole;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionCartItemCount;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionUserIsLoggedIn;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionCartItemByCategoryCount;
+use PlebShippingRulesets\Models\RuleConditions\RuleConditionCartItemByShippingClassCount;
 
 abstract class RuleCondition implements RuleConditionInterface
 {
-
 	private static function getClasses()
 	{
 		$classes = apply_filters('plebwcsr_rule_condition_all', [
@@ -101,7 +100,9 @@ abstract class RuleCondition implements RuleConditionInterface
 	public function getGroupName(): ?string
 	{
 		$group = $this->getGroup();
-		if(!$group) return null;
+		if(!$group) {
+		return null;
+		}
 		return $group->getName();
 	}
 

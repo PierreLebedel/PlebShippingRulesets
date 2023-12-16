@@ -1,5 +1,5 @@
 {
-    "name": "pleb/woocommerce-shipping-rulesets",
+    "name": "pleb/shipping-rulesets-for-woocommerce",
     "description": "",
     "keywords": ["wordpress", "plugin", "woocommerce", "shipping"],
     "license": "GPL-3.0+",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PlebWooCommerceShippingRulesets\\": "includes/"
+            "PlebShippingRulesets\\": "includes/"
         }
     },
     "config": {
@@ -29,6 +29,6 @@
     "scripts": {
         "phpcs-run": "./vendor/bin/php-cs-fixer fix --dry-run --show-progress=dots --diff --verbose --using-cache=no",
         "phpcs-fix": "./vendor/bin/php-cs-fixer fix --show-progress .",
-        "make-trunk": "PlebWooCommerceShippingRulesets\\WordPressPluginPublisher::publish"
+        "make-trunk": "PlebShippingRulesets\\WordPressPluginPublisher::publish"
     }
 }

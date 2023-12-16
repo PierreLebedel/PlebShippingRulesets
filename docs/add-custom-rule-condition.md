@@ -4,14 +4,14 @@
 
 ## Declare your PHP class
 
-Your class must implements ``\PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface``
+Your class must implements ``\PlebShippingRulesets\Contracts\RuleConditionInterface``
 
-You can extends ``\PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleCondition``
+You can extends ``\PlebShippingRulesets\Models\RuleConditions\RuleCondition``
 
 ```php
-use \PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleCondition;
-use \PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use \PlebWooCommerceShippingRulesets\RulesShippingMethod;
+use \PlebShippingRulesets\Models\RuleConditions\RuleCondition;
+use \PlebShippingRulesets\Contracts\RuleInterface;
+use \PlebShippingRulesets\RulesShippingMethod;
 
 class CustomRuleCondition extends RuleCondition
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups;
+namespace PlebShippingRulesets\Models\RuleConditionsGroups;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebShippingRulesets\Contracts\RuleConditionsGroupInterface;
 
 abstract class RuleConditionsGroup implements RuleConditionsGroupInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups;
+namespace PlebShippingRulesets\Models\RuleConditionsGroups;
 
-use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\RuleConditionsGroup;
+use PlebShippingRulesets\Models\RuleConditionsGroups\RuleConditionsGroup;
 
 class UserGroup extends RuleConditionsGroup
 {
 	public function getName(): string
 	{
-		return __("User", 'pleb-woocommerce-shipping-rulesets');
+		return __("User", 'pleb-shipping-rulesets');
 	}
 }

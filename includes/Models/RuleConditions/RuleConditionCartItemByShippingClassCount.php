@@ -1,10 +1,10 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
 class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInteger implements RuleConditionPackageValueShortcodeInterface
 {
@@ -15,7 +15,7 @@ class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInte
 
 	public function getName(): string
 	{
-		return __("Cart item quantity (shipping class)", 'pleb-woocommerce-shipping-rulesets');
+		return __("Cart item quantity (shipping class)", 'pleb-shipping-rulesets');
 	}
 
 	public function getVariants(): array
@@ -30,7 +30,7 @@ class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInte
 
 		if(!empty($wooShippingClasses)) {
 			foreach($wooShippingClasses as $termObject) {
-				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s class", 'pleb-woocommerce-shipping-rulesets'), $termObject->name);
+				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s class", 'pleb-shipping-rulesets'), $termObject->name);
 			}
 		}
 
@@ -40,7 +40,7 @@ class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInte
 	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
 		$package_quantity = 0;
-		
+
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$shippingClassSlug = $values['data']->get_shipping_class();

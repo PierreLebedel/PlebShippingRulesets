@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Plugin Name: WooCommerce Shipping Rulesets
- * Plugin URI: https://wordpress.org/plugins/pleb-woocommerce-shipping-rulesets/
- * Description: Make your own rulesets to calculate shipping rates
+ * Plugin Name: Pleb Shipping Rulesets
+ * Plugin URI: https://wordpress.org/plugins/pleb-shipping-rulesets/
+ * Description: Make your own rulesets to calculate shipping rates in WooCommerce
  * Version: 1.0.0
  * Author: Pierre Lebedel
  * Author URI: https://www.pierrelebedel.fr
- * Text Domain: pleb-woocommerce-shipping-rulesets
+ * Text Domain: pleb-shipping-rulesets
  * Domain Path: /languages
  * Requires at least: 6.4
  * Requires PHP: 8.0
@@ -21,7 +21,7 @@
 defined('ABSPATH') || exit;
 
 spl_autoload_register(function ($class) {
-	$prefix = 'PlebWooCommerceShippingRulesets\\';
+	$prefix = 'PlebShippingRulesets\\';
 	$base_dir = __DIR__.'/includes/';
 	$len = strlen($prefix);
 	if (strncmp($prefix, $class, $len) !== 0) {
@@ -32,7 +32,7 @@ spl_autoload_register(function ($class) {
 	if (file_exists($file)) {
 		//echo "require: ".$file."<br>";
 		require $file;
-	}else{
+	} else {
 		//echo "!!!require: ".$file."<br>";
 	}
 });
@@ -54,12 +54,12 @@ if (!function_exists('dd')) {
 	}
 }
 
-if (!class_exists('PlebWooCommerceShippingRulessets')) {
-	class PlebWooCommerceShippingRulessets
+if (!class_exists('PlebShippingRulessets')) {
+	class PlebShippingRulessets
 	{
-		public static function wordPressPluginInstance(): \PlebWooCommerceShippingRulesets\WordPressPlugin
+		public static function wordPressPluginInstance(): \PlebShippingRulesets\WordPressPlugin
 		{
-			return \PlebWooCommerceShippingRulesets\WordPressPlugin::instance(__FILE__);
+			return \PlebShippingRulesets\WordPressPlugin::instance(__FILE__);
 		}
 
 		public static function activate()
@@ -72,7 +72,7 @@ if (!class_exists('PlebWooCommerceShippingRulessets')) {
 	}
 }
 
-register_activation_hook(__FILE__, [PlebWooCommerceShippingRulessets::class, 'activate']);
-register_deactivation_hook(__FILE__, [PlebWooCommerceShippingRulessets::class, 'deactivate']);
+register_activation_hook(__FILE__, [PlebShippingRulessets::class, 'activate']);
+register_deactivation_hook(__FILE__, [PlebShippingRulessets::class, 'deactivate']);
 
-add_action('plugins_loaded', [PlebWooCommerceShippingRulessets::class, 'wordPressPluginInstance'], 1);
+add_action('plugins_loaded', [PlebShippingRulessets::class, 'wordPressPluginInstance'], 1);

@@ -1,12 +1,12 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
 class RuleConditionYear extends RuleConditionNumericInteger
 {
@@ -17,7 +17,7 @@ class RuleConditionYear extends RuleConditionNumericInteger
 
 	public function getName(): string
 	{
-		return __("Current year", 'pleb-woocommerce-shipping-rulesets');
+		return __("Current year", 'pleb-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface
@@ -43,7 +43,7 @@ class RuleConditionYear extends RuleConditionNumericInteger
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;

@@ -1,11 +1,11 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionTime;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionTime;
 
 class RuleConditionHourOfDay extends RuleConditionTime
 {
@@ -16,7 +16,7 @@ class RuleConditionHourOfDay extends RuleConditionTime
 
 	public function getName(): string
 	{
-		return __("Current time", 'pleb-woocommerce-shipping-rulesets');
+		return __("Current time", 'pleb-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface
@@ -30,7 +30,7 @@ class RuleConditionHourOfDay extends RuleConditionTime
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Woocommerce Shipping Rules\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-11-30 17:39+0000\n"
-"PO-Revision-Date: 2023-12-16 16:32+0000\n"
+"PO-Revision-Date: 2023-12-16 17:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -251,8 +251,8 @@ msgid "Global settings"
 msgstr "Réglages généraux"
 
 #. URI of the plugin
-msgid "https://wordpress.org/plugins/pleb-woocommerce-shipping-rulesets/"
-msgstr "https://wordpress.org/plugins/pleb-woocommerce-shipping-rulesets/"
+msgid "https://wordpress.org/plugins/pleb-shipping-rulesets/"
+msgstr "https://wordpress.org/plugins/pleb-shipping-rulesets/"
 
 #. Author URI of the plugin
 msgid "https://www.pierrelebedel.fr"
@@ -293,8 +293,10 @@ msgid "Loading..."
 msgstr "Chargement..."
 
 #. Description of the plugin
-msgid "Make your own rulesets to calculate shipping rates"
-msgstr "Créez vos propres règles de calcul de frais d'expédition"
+msgid "Make your own rulesets to calculate shipping rates in WooCommerce"
+msgstr ""
+"Créez vos propres règles pour attribuer les frais de livraison dans "
+"WooCommerce"
 
 #: includes/RulesShippingMethod.php:151 includes/RulesShippingMethod.php:685
 msgid "Max:"
@@ -342,6 +344,10 @@ msgstr "Veuillez sélectionner la condition"
 #: includes/Templates/AutoPromo.php:14
 msgid "Please leave a thumbs up ;)"
 msgstr "Laissez un petit pouce ;)"
+
+#. Name of the plugin
+msgid "Pleb Shipping Rulesets"
+msgstr "Pleb Shipping Rulesets"
 
 #: includes/Templates/AutoPromo.php:54
 msgid "Plugin directory"
@@ -516,10 +522,6 @@ msgstr "n'est pas"
 #: includes/Templates/RulesetsRuleset.php:44
 msgid "Vars"
 msgstr "Variables"
-
-#. Name of the plugin
-msgid "WooCommerce Shipping Rulesets"
-msgstr "WooCommerce Shipping Rulesets"
 
 #: includes/Templates/AutoPromo.php:51
 msgid "WordPress plugin"

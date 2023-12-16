@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Contracts;
+namespace PlebShippingRulesets\Contracts;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
+use PlebShippingRulesets\Contracts\RuleConditionInterface;
 
 interface RuleInterface
 {

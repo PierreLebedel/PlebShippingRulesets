@@ -1,13 +1,13 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups;
+namespace PlebShippingRulesets\Models\RuleConditionsGroups;
 
-use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\RuleConditionsGroup;
+use PlebShippingRulesets\Models\RuleConditionsGroups\RuleConditionsGroup;
 
 class DateTimeGroup extends RuleConditionsGroup
 {
 	public function getName(): string
 	{
-		return __("Date & time", 'pleb-woocommerce-shipping-rulesets');
+		return __("Date & time", 'pleb-shipping-rulesets');
 	}
 }

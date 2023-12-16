@@ -1,10 +1,10 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models;
+namespace PlebShippingRulesets\Models;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
 
 class Rule implements RuleInterface
 {
@@ -117,7 +117,7 @@ class Rule implements RuleInterface
 	public function htmlRender(string $fieldKey): string
 	{
 		$allRuleConditions = RuleCondition::all();
-		
+
 		ob_start();
 		include(dirname(__FILE__, 2).'/Templates/RulesetsRulesetRule.php');
 		return ob_get_clean();

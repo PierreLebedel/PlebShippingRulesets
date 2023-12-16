@@ -1,9 +1,9 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets;
+namespace PlebShippingRulesets;
 
-use PlebWooCommerceShippingRulesets\Models\Ruleset;
-use PlebWooCommerceShippingRulesets\Models\DefaultRuleset;
+use PlebShippingRulesets\Models\Ruleset;
+use PlebShippingRulesets\Models\DefaultRuleset;
 use WC_Product_Simple;
 
 class RulesShippingMethod extends \WC_Shipping_Method
@@ -26,11 +26,11 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	{
 		$this->id                    = self::METHOD_ID;
 		$this->instance_id           = absint($instance_id);
-		$this->method_title          = __('Shipping rulesets', 'pleb-woocommerce-shipping-rulesets');
+		$this->method_title          = __('Shipping rulesets', 'pleb-shipping-rulesets');
 		$this->method_description    = implode('<br>', [
-			__("Set your own rulesets to calculate the shipping rate on Cart & Checkout pages.", 'pleb-woocommerce-shipping-rulesets'),
-			__("This shipping method will not be available if the cart don't satisfies entirely none of rulesets.", 'pleb-woocommerce-shipping-rulesets'),
-			__("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb-woocommerce-shipping-rulesets'),
+			__("Set your own rulesets to calculate the shipping rate on Cart & Checkout pages.", 'pleb-shipping-rulesets'),
+			__("This shipping method will not be available if the cart don't satisfies entirely none of rulesets.", 'pleb-shipping-rulesets'),
+			__("The default ruleset allows you to apply a rate even if none of rulesets matches the shopping cart.", 'pleb-shipping-rulesets'),
 		]);
 
 		$this->supports = [
@@ -46,11 +46,11 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			// 	'default' => 'tab1',
 			// 	'tabs' => [
 			// 		'tab1' => [
-			// 			'title' => __('Settings', 'pleb-woocommerce-shipping-rulesets'),
+			// 			'title' => __('Settings', 'pleb-shipping-rulesets'),
 			// 			'content' => "Test settings",
 			// 		],
 			// 		'tab2' => [
-			// 			'title' => __('Docs', 'pleb-woocommerce-shipping-rulesets'),
+			// 			'title' => __('Docs', 'pleb-shipping-rulesets'),
 			// 			'content' => "Test docs",
 			// 		],
 			// 	],
@@ -60,12 +60,12 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			],
 			[
 				'type'  => 'title',
-				'title' => __('Global settings', 'pleb-woocommerce-shipping-rulesets'),
+				'title' => __('Global settings', 'pleb-shipping-rulesets'),
 			],
 			'debug_mode' => [
-				'title'       => __('Debug mode', 'pleb-woocommerce-shipping-rulesets'),
+				'title'       => __('Debug mode', 'pleb-shipping-rulesets'),
 				'type'        => 'checkbox',
-				'label'       => __('Enable Debug Mode', 'pleb-woocommerce-shipping-rulesets'),
+				'label'       => __('Enable Debug Mode', 'pleb-shipping-rulesets'),
 			],
 		];
 
@@ -74,7 +74,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'title'       => __('Method title', 'woocommerce'),
 				'type'        => 'text',
 				'description' => __('This controls the title which the user sees during checkout.', 'woocommerce'),
-				'default'     => __('Rules based shipping price', 'pleb-woocommerce-shipping-rulesets'),
+				'default'     => __('Rules based shipping price', 'pleb-shipping-rulesets'),
 				'desc_tip'    => true,
 			],
 			'tax_status' => [
@@ -95,73 +95,74 @@ class RulesShippingMethod extends \WC_Shipping_Method
 					'yes' => __('Yes, I will enter prices inclusive of tax', 'woocommerce'),
 					'no'  => __('No, I will enter prices exclusive of tax', 'woocommerce'),
 				],
-				'description' => __("", 'pleb-woocommerce-shipping-rulesets'),
-				'desc_tip' => __("", 'pleb-woocommerce-shipping-rulesets'),
+				'description' => __("", 'pleb-shipping-rulesets'),
+				'desc_tip' => __("", 'pleb-shipping-rulesets'),
 			],
 			'rulesets_matching_mode' => [
-				'title'    => __('Shipping rate(s) displayed', 'pleb-woocommerce-shipping-rulesets'),
+				'title'    => __('Shipping rate(s) displayed', 'pleb-shipping-rulesets'),
 				'type'     => 'select',
 				'default'  => 'first',
 				'options'  => [
-					'first' => __("Single shipping rate based on the first ruleset with all rules matching the shopping cart", 'pleb-woocommerce-shipping-rulesets'),
-					'many_grouped'  => __("Single shipping rate suming costs of all rulesets with all rules matching the shopping cart", 'pleb-woocommerce-shipping-rulesets'),
-					'many_distinct' => __("Each matching ruleset is available as distinct shipping rate", 'pleb-woocommerce-shipping-rulesets'),
+					'first' => __("Single shipping rate based on the first ruleset with all rules matching the shopping cart", 'pleb-shipping-rulesets'),
+					'many_grouped'  => __("Single shipping rate suming costs of all rulesets with all rules matching the shopping cart", 'pleb-shipping-rulesets'),
+					'many_distinct' => __("Each matching ruleset is available as distinct shipping rate", 'pleb-shipping-rulesets'),
 				],
-				'description' => __("", 'pleb-woocommerce-shipping-rulesets'),
-				'desc_tip' => __("", 'pleb-woocommerce-shipping-rulesets'),
+				'description' => __("", 'pleb-shipping-rulesets'),
+				'desc_tip' => __("", 'pleb-shipping-rulesets'),
 			],
 			'replace_method_title' => [
-				'title'       => __('Replace method title?', 'pleb-woocommerce-shipping-rulesets'),
-				'label'       => __('Replace method title by matching ruleset name in the shopping cart?', 'pleb-woocommerce-shipping-rulesets'),
+				'title'       => __('Replace method title?', 'pleb-shipping-rulesets'),
+				'label'       => __('Replace method title by matching ruleset name in the shopping cart?', 'pleb-shipping-rulesets'),
 				'type'        => 'checkbox',
-				'description' => __("", 'pleb-woocommerce-shipping-rulesets'),
+				'description' => __("", 'pleb-shipping-rulesets'),
 				'default'     => 'no',
 				'desc_tip'    => false,
 			],
 			'cost'       => [
-				'title'             => __('Base price', 'pleb-woocommerce-shipping-rulesets'),
+				'title'             => __('Base price', 'pleb-shipping-rulesets'),
 				'type'              => 'text',
 				'placeholder'       => '',
 				'description'       => implode('<br>', [
-					sprintf(__("Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price calculation.", 'pleb-woocommerce-shipping-rulesets'), '<code>10.00 * [qty]</code>'),
-					__("This base price will be added to the price of the group matching with the shopping cart.", 'pleb-woocommerce-shipping-rulesets'),
-					sprintf(__("%s: Number of items in cart", 'pleb-woocommerce-shipping-rulesets'), '<code>[qty]</code>'),
-					sprintf(__("%s: Shopping cart price", 'pleb-woocommerce-shipping-rulesets'), '<code>[cost]</code>'),
-					sprintf(__("%s: Percentage based fees", 'pleb-woocommerce-shipping-rulesets'), '<code>[fee percent="10" min_fee="20" max_fee=""]</code>'),
+					sprintf(__("Enter a cost or sum, e.g. %s. Tags will be dynamically replaced in price calculation.", 'pleb-shipping-rulesets'), '<code>10.00 * [qty]</code>'),
+					__("This base price will be added to the price of the group matching with the shopping cart.", 'pleb-shipping-rulesets'),
+					sprintf(__("%s: Number of items in cart", 'pleb-shipping-rulesets'), '<code>[qty]</code>'),
+					sprintf(__("%s: Shopping cart price", 'pleb-shipping-rulesets'), '<code>[cost]</code>'),
+					sprintf(__("%s: Percentage based fees", 'pleb-shipping-rulesets'), '<code>[fee percent="10" min_fee="20" max_fee=""]</code>'),
 				]),
 				'default'           => '0',
-				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb-woocommerce-shipping-rulesets'),
+				'desc_tip'          => __("Works the same as WooCommerce Flat Rate", 'pleb-shipping-rulesets'),
 				'sanitize_callback' => [$this, 'sanitize_cost'],
 			],
 			'cost_min_max'       => [
-				'title'             => __('Price limits', 'pleb-woocommerce-shipping-rulesets'),
+				'title'             => __('Price limits', 'pleb-shipping-rulesets'),
 				'type'              => 'pleb_minmax',
 				'default'           => [
-					'min' => '', 
-					'max' => ''
+					'min' => '',
+					'max' => '',
 				],
 				'description'       => implode('<br>', [
-					__("These fields will limit the prices dynamically calculated by the rulesets.", 'pleb-woocommerce-shipping-rulesets'),
-					__("They can also contain variables.", 'pleb-woocommerce-shipping-rulesets').' '.sprintf(
-						__("For example, you can set shipping costs of %s minimum, and %s of the order price maximum, using %s %s and %s %s", 'pleb-woocommerce-shipping-rulesets'), 
-						wc_price(5.5), 
+					__("These fields will limit the prices dynamically calculated by the rulesets.", 'pleb-shipping-rulesets'),
+					__("They can also contain variables.", 'pleb-shipping-rulesets').' '.sprintf(
+						__("For example, you can set shipping costs of %s minimum, and %s of the order price maximum, using %s %s and %s %s", 'pleb-shipping-rulesets'),
+						wc_price(5.5),
 						'10%',
-						__("Min:",'pleb-woocommerce-shipping-rulesets'), 
-						'<code>5.5</code>', 
-						__("Max:",'pleb-woocommerce-shipping-rulesets'), 
-						'<code>[cost] * 0.1</code>'),
+						__("Min:", 'pleb-shipping-rulesets'),
+						'<code>5.5</code>',
+						__("Max:", 'pleb-shipping-rulesets'),
+						'<code>[cost] * 0.1</code>'
+					),
 				]),
 				'desc_tip'          => sprintf(
-					__("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
-					'<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
+					__("Works the same as %s setting field", 'pleb-shipping-rulesets'),
+					'<b>'.__('Base price', 'pleb-shipping-rulesets').'</b>'
 				),
 				'sanitize_callback' => [$this, 'sanitize_cost_min_max'],
 			],
 			'rulesets'       => [
-				'title'             => __('Rulesets', 'pleb-woocommerce-shipping-rulesets'),
+				'title'             => __('Rulesets', 'pleb-shipping-rulesets'),
 				'type'              => 'pleb_rulesets',
 				'placeholder'       => '',
-				'description'       => __("", 'pleb-woocommerce-shipping-rulesets'),
+				'description'       => __("", 'pleb-shipping-rulesets'),
 				'default'           => [],
 				'desc_tip'          => true,
 				//'sanitize_callback' => [$this, 'sanitize_cost'],
@@ -286,7 +287,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		$sum = do_shortcode(strtr($costrule, $replaces));
 		remove_shortcode('fee', [$this, 'fee']);
 
-		foreach($replaces as $k=>$v){
+		foreach($replaces as $k => $v) {
 			if (str_contains($costrule, $k)) {
 				$this->addDebugRow($debugCostName.'Rule '.$k.' tag value = '.$v);
 			}
@@ -307,12 +308,12 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		include_once(WC()->plugin_path().'/includes/libraries/class-wc-eval-math.php');
-		set_error_handler(function() use ($debugCostName, $sum) {
+		set_error_handler(function () use ($debugCostName, $sum) {
 			//$this->addDebugRow($debugCostName.'Formula error : '.$sum);
 		});
 		$result = \WC_Eval_Math::evaluate($sum);
-		restore_error_handler(); 
-			
+		restore_error_handler();
+
 		$this->addDebugRow($debugCostName.'Math result rule = '.$result);
 
 		return $result;
@@ -331,7 +332,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				if ($ruleset->matchToWooCommercePackageArray($package, $this->instance_id)) {
 					$matchingRulesets[$ruleset->getId()] = $ruleset;
 
-					if($getOnlyFirst){
+					if($getOnlyFirst) {
 						return $matchingRulesets;
 					}
 				}
@@ -339,10 +340,10 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		$defaultRuleset = $this->get_default_ruleset('rulesets');
-		if($defaultRuleset){
+		if($defaultRuleset) {
 			$matchingRulesets[$defaultRuleset->getId()] = $defaultRuleset;
 
-			if($getOnlyFirst){
+			if($getOnlyFirst) {
 				return $matchingRulesets;
 			}
 		}
@@ -410,21 +411,25 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 			$matchingMode = $this->get_option('rulesets_matching_mode', 'first');
 
-			foreach($orderMatchingRulesets as $matchingRuleset){
+			foreach($orderMatchingRulesets as $matchingRuleset) {
 				$this->addDebugRow('Matching ruleset found : '.$matchingRuleset->getName().($matchingRuleset->isDefault() ? ' (default)' : ''));
 
-				if($matchingMode!='many_grouped' && $this->do_replace_method_title()){
+				if($matchingMode != 'many_grouped' && $this->do_replace_method_title()) {
 					$rateLabel = $matchingRuleset->getName();
 				}
 
 				if ($matchingRuleset->getCost() !== '') {
 					$replaces = [];
 					$rules = $matchingRuleset->getRules();
-					if(!empty($rules)){
-						foreach($rules as $rule){
+					if(!empty($rules)) {
+						foreach($rules as $rule) {
 							$condition = $rule->getCondition();
-							if(!$condition) continue; 
-                			if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) continue;
+							if(!$condition) {
+							continue;
+							}
+                			if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) {
+                			continue;
+                			}
 							$replaces[ '[rule_'.$rule->getId().']' ] = $condition->extractValueFromWooCommercePackageArray($package, $rule, $this->instance_id) ?? '0';
 						}
 					}
@@ -433,13 +438,13 @@ class RulesShippingMethod extends \WC_Shipping_Method
 					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, $rulesetDebugTitle, $replaces);
 				}
 
-				if($matchingMode == 'many_distinct'){
+				if($matchingMode == 'many_distinct') {
 					$rateCost = ($baseCost + $rulesetsCost);
 
-					if( $min && $rateCost < $min ){
+					if($min && $rateCost < $min) {
 						$rateCost = $min;
 					}
-					if( $max && $rateCost > $max ){
+					if($max && $rateCost > $max) {
 						$rateCost = $max;
 					}
 
@@ -454,7 +459,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				}
 
 			}
-			
+
 		} else {
 			$this->addDebugRow('No matching ruleset found');
 		}
@@ -462,10 +467,10 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		if (!empty($orderMatchingRulesets) && $matchingMode != 'many_distinct') {
 			$rateCost = ($baseCost + $rulesetsCost);
 
-			if( $min && $rateCost < $min ){
+			if($min && $rateCost < $min) {
 				$rateCost = $min;
 			}
-			if( $max && $rateCost > $max ){
+			if($max && $rateCost > $max) {
 				$rateCost = $max;
 			}
 
@@ -550,14 +555,15 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	 * but this destroy the classic settings page
 	 * Problem seems fixed, but waiting for WC update to avoid this method override here
 	 */
-	public function get_admin_options_html() {
-		if ( $this->instance_id ) {
-			$settings_html = $this->generate_settings_html( $this->get_instance_form_fields(), false );
+	public function get_admin_options_html()
+	{
+		if ($this->instance_id) {
+			$settings_html = $this->generate_settings_html($this->get_instance_form_fields(), false);
 		} else {
-			$settings_html = $this->generate_settings_html( $this->get_form_fields(), false );
+			$settings_html = $this->generate_settings_html($this->get_form_fields(), false);
 		}
 
-		return '<table class="form-table">' . $settings_html . '</table>';
+		return '<table class="form-table">'.$settings_html.'</table>';
 	}
 
 	/**
@@ -584,19 +590,20 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return serialize($value);
 	}
 
-	public function generate_pleb_tabs_html( $key, $data ) {
-		$fieldKey = $this->get_field_key( $key );
-		$data = wp_parse_args( $data, [
-			'default'=>'',
+	public function generate_pleb_tabs_html($key, $data)
+	{
+		$fieldKey = $this->get_field_key($key);
+		$data = wp_parse_args($data, [
+			'default' => '',
 			'tabs' => [
 				'tab1' => [
 					'title' => 'Title',
 					'content' => 'Content',
-				]
+				],
 			],
-		] );
+		]);
 
-		if(!array_key_exists($data['default'], $data['tabs'])){
+		if(!array_key_exists($data['default'], $data['tabs'])) {
 			$data['default'] = array_key_first($data['tabs']);
 		}
 
@@ -606,13 +613,13 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		<div class="pleb_nav_tabs">
 
 			<h2 class="nav-tab-wrapper">
-				<?php foreach($data['tabs'] as $k=>$tab): ?>
-				<a href="#<?php echo $fieldKey; ?>_<?php echo $k; ?>" class="nav-tab <?php if($data['default']==$k): ?>nav-tab-active<?php endif; ?>"><?php echo $tab['title']; ?></a>
+				<?php foreach($data['tabs'] as $k => $tab): ?>
+				<a href="#<?php echo $fieldKey; ?>_<?php echo $k; ?>" class="nav-tab <?php if($data['default'] == $k): ?>nav-tab-active<?php endif; ?>"><?php echo $tab['title']; ?></a>
 				<?php endforeach; ?>
 			</h2>
 			
-			<?php foreach($data['tabs'] as $k=>$tab): ?>
-			<div class="tab_content" id="<?php echo $fieldKey; ?>_<?php echo $k; ?>" style="<?php if($data['default']!=$k): ?>display:none;<?php endif; ?>">
+			<?php foreach($data['tabs'] as $k => $tab): ?>
+			<div class="tab_content" id="<?php echo $fieldKey; ?>_<?php echo $k; ?>" style="<?php if($data['default'] != $k): ?>display:none;<?php endif; ?>">
 				<?php dump($tab['content']); ?>
 			</div>
 			<?php endforeach; ?>
@@ -625,11 +632,12 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return ob_get_clean();
 	}
 
-	public function generate_pleb_autopromo_html( $key, $data ) {
+	public function generate_pleb_autopromo_html($key, $data)
+	{
 		$fieldKey = $this->get_field_key($key);
-		$data = wp_parse_args( $data, [
-			'default' => __("Default", 'pleb-woocommerce-shipping-rulesets')
-		] );
+		$data = wp_parse_args($data, [
+			'default' => __("Default", 'pleb-shipping-rulesets'),
+		]);
 
 		ob_start();
 		include(dirname(__FILE__).'/Templates/AutoPromo.php');
@@ -652,43 +660,44 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return $value;
 	}
 
-	public function generate_pleb_minmax_html( $key, $data ) {
+	public function generate_pleb_minmax_html($key, $data)
+	{
 		$fieldKey = $this->get_field_key($key);
-		$defaults  = array(
+		$defaults  = [
 			'title'             => 'Min / Max',
 			'default'           => [
-				'min' => '', 
-				'max' => '2'
+				'min' => '',
+				'max' => '2',
 			],
 			'desc_tip'          => false,
 			'description'       => '',
-		);
+		];
 
-		$data = wp_parse_args( $data, $defaults );
-		$values = $this->get_option( $key );
+		$data = wp_parse_args($data, $defaults);
+		$values = $this->get_option($key);
 
 		ob_start();
 		?><tr valign="top">
 			<th scope="row" class="titledesc">
-				<label><?php echo wp_kses_post( $data['title'] ); ?> <?php echo $this->get_tooltip_html($data); // WPCS: XSS ok.?></label>
+				<label><?php echo wp_kses_post($data['title']); ?> <?php echo $this->get_tooltip_html($data); // WPCS: XSS ok.?></label>
 			</th>
 			<td class="forminp">
 				<div style="width:400px;">
 					<div style="float:left;width:48%;">
-						<label for="<?php echo esc_attr( $fieldKey ); ?>_min" style="display:block;margin-bottom:4px;">
-							<?php _e("Min:", 'pleb-woocommerce-shipping-rulesets'); ?>
+						<label for="<?php echo esc_attr($fieldKey); ?>_min" style="display:block;margin-bottom:4px;">
+							<?php _e("Min:", 'pleb-shipping-rulesets'); ?>
 						</label>
-						<input type="text" name="<?php echo esc_attr( $fieldKey ); ?>[min]" id="<?php echo esc_attr( $fieldKey ); ?>_min" value="<?php echo esc_attr( wc_format_localized_price($values['min']) ); ?>" style="width:100%;margin:0;" />
+						<input type="text" name="<?php echo esc_attr($fieldKey); ?>[min]" id="<?php echo esc_attr($fieldKey); ?>_min" value="<?php echo esc_attr(wc_format_localized_price($values['min'])); ?>" style="width:100%;margin:0;" />
 					</div>
 					<div style="float:right;width:48%;">
-						<label for="<?php echo esc_attr( $fieldKey ); ?>_max" style="display:block;margin-bottom:4px;">
-							<?php _e("Max:", 'pleb-woocommerce-shipping-rulesets'); ?>
+						<label for="<?php echo esc_attr($fieldKey); ?>_max" style="display:block;margin-bottom:4px;">
+							<?php _e("Max:", 'pleb-shipping-rulesets'); ?>
 						</label>
-						<input type="text" name="<?php echo esc_attr( $fieldKey ); ?>[max]" id="<?php echo esc_attr( $fieldKey ); ?>_max" value="<?php echo esc_attr( wc_format_localized_price($values['max']) ); ?>" style="width:100%;margin:0;" />
+						<input type="text" name="<?php echo esc_attr($fieldKey); ?>[max]" id="<?php echo esc_attr($fieldKey); ?>_max" value="<?php echo esc_attr(wc_format_localized_price($values['max'])); ?>" style="width:100%;margin:0;" />
 					</div>
 					<div style="clear:both;"></div>
 				</div>
-				<?php echo $this->get_description_html( $data ); // WPCS: XSS ok. ?>
+				<?php echo $this->get_description_html($data); // WPCS: XSS ok.?>
 			</td>
 		</tr><?php
 		return ob_get_clean();

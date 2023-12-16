@@ -1,11 +1,11 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
 
 class RuleConditionMonthOfYear extends RuleConditionChoices
 {
@@ -16,7 +16,7 @@ class RuleConditionMonthOfYear extends RuleConditionChoices
 
 	public function getName(): string
 	{
-		return __("Month of year", 'pleb-woocommerce-shipping-rulesets');
+		return __("Month of year", 'pleb-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface
@@ -45,7 +45,7 @@ class RuleConditionMonthOfYear extends RuleConditionChoices
 
 		$months = [];
 
-		for($i=1; $i<=12; $i++){
+		for($i = 1; $i <= 12; $i++) {
 			$months[$i] = ucfirst($wp_locale->get_month($i));
 		}
 
@@ -58,7 +58,7 @@ class RuleConditionMonthOfYear extends RuleConditionChoices
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;

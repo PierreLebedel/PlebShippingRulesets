@@ -1,10 +1,10 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericFloat;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericFloat;
 
 class RuleConditionCartPrice extends RuleConditionNumericFloat implements RuleConditionPackageValueShortcodeInterface
 {
@@ -15,14 +15,14 @@ class RuleConditionCartPrice extends RuleConditionNumericFloat implements RuleCo
 
 	public function getName(): string
 	{
-		return __("Cart price", 'pleb-woocommerce-shipping-rulesets');
+		return __("Cart price", 'pleb-shipping-rulesets');
 	}
 
 	public function getVariants(): array
 	{
 		return [
-			'tax_exclude' => __("Cart price tax exclusive", 'pleb-woocommerce-shipping-rulesets'),
-			'tax_include' => __("Cart price tax inclusive", 'pleb-woocommerce-shipping-rulesets'),
+			'tax_exclude' => __("Cart price tax exclusive", 'pleb-shipping-rulesets'),
+			'tax_include' => __("Cart price tax inclusive", 'pleb-shipping-rulesets'),
 		];
 	}
 

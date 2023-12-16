@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts;
+namespace PlebShippingRulesets\Models\RuleConditions\Abstracts;
 
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleCondition;
 
 abstract class RuleConditionBoolean extends RuleCondition
 {
@@ -15,7 +15,7 @@ abstract class RuleConditionBoolean extends RuleCondition
 	{
 		ob_start();
 		?><input type="checkbox" name="<?php echo esc_attr($fieldName); ?>" value="1" <?php checked('1', $value, true); ?> id="checkbox_<?php echo esc_attr($fieldName); ?>" />
-		<label for="checkbox_<?php echo esc_attr($fieldName); ?>"><?php _e("Check for true, uncheck for false", 'pleb-woocommerce-shipping-rulesets'); ?></label>
+		<label for="checkbox_<?php echo esc_attr($fieldName); ?>"><?php _e("Check for true, uncheck for false", 'pleb-shipping-rulesets'); ?></label>
 		<?php
 		return ob_get_clean();
 	}

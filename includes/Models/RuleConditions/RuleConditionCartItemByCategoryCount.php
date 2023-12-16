@@ -1,10 +1,10 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
 class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger implements RuleConditionPackageValueShortcodeInterface
 {
@@ -15,7 +15,7 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger i
 
 	public function getName(): string
 	{
-		return __("Cart item quantity (category)", 'pleb-woocommerce-shipping-rulesets');
+		return __("Cart item quantity (category)", 'pleb-shipping-rulesets');
 	}
 
 	public function getVariants(): array
@@ -30,7 +30,7 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger i
 
 		if(!empty($wooCategories)) {
 			foreach($wooCategories as $termObject) {
-				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s category", 'pleb-woocommerce-shipping-rulesets'), $termObject->name);
+				$classes[$termObject->slug] = sprintf(__("Cart item quantity from %s category", 'pleb-shipping-rulesets'), $termObject->name);
 			}
 		}
 
@@ -40,7 +40,7 @@ class RuleConditionCartItemByCategoryCount extends RuleConditionNumericInteger i
 	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
 		$package_quantity = 0;
-		
+
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$shippingClassSlug = get_the_terms($values['data']->get_id(), 'product_cat');

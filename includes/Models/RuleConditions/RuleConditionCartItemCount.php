@@ -1,10 +1,10 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Contracts\RuleConditionPackageValueShortcodeInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionNumericInteger;
 
 class RuleConditionCartItemCount extends RuleConditionNumericInteger implements RuleConditionPackageValueShortcodeInterface
 {
@@ -15,13 +15,13 @@ class RuleConditionCartItemCount extends RuleConditionNumericInteger implements 
 
 	public function getName(): string
 	{
-		return __("Cart item quantity", 'pleb-woocommerce-shipping-rulesets');
+		return __("Cart item quantity", 'pleb-shipping-rulesets');
 	}
 
 	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
 		$package_quantity = 0;
-		
+
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$package_quantity += intval($values['quantity']);

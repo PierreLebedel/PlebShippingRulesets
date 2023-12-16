@@ -1,9 +1,9 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionText;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionText;
 
 class RuleConditionCoupon extends RuleConditionText
 {
@@ -14,22 +14,22 @@ class RuleConditionCoupon extends RuleConditionText
 
 	public function getName(): string
 	{
-		return __("Coupon", 'pleb-woocommerce-shipping-rulesets');
+		return __("Coupon", 'pleb-shipping-rulesets');
 	}
 
 	// public function getVariants(): array
 	// {
 	// 	return [
-	// 		'present' => __("Coupon is present", 'pleb-woocommerce-shipping-rulesets'),
-	// 		'absent'  => __("Coupon is absent", 'pleb-woocommerce-shipping-rulesets'),
+	// 		'present' => __("Coupon is present", 'pleb-shipping-rulesets'),
+	// 		'absent'  => __("Coupon is absent", 'pleb-shipping-rulesets'),
 	// 	];
 	// }
 
 	public function getComparators(): array
 	{
 		return [
-			'=' => __("is present", 'pleb-woocommerce-shipping-rulesets'),
-			'!=' => __("is absent", 'pleb-woocommerce-shipping-rulesets'),
+			'=' => __("is present", 'pleb-shipping-rulesets'),
+			'!=' => __("is absent", 'pleb-shipping-rulesets'),
 		];
 	}
 
@@ -46,7 +46,7 @@ class RuleConditionCoupon extends RuleConditionText
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;
@@ -54,12 +54,12 @@ class RuleConditionCoupon extends RuleConditionText
 		$conditionValue = $this->cleanTextField($conditionValue);
 
 		$cleanedArray = [];
-		if( array_key_exists('applied_coupons', $package) && is_array($package['applied_coupons']) ){
-			foreach($package['applied_coupons'] as $coupon){
+		if(array_key_exists('applied_coupons', $package) && is_array($package['applied_coupons'])) {
+			foreach($package['applied_coupons'] as $coupon) {
 				$cleanedArray[] = $this->cleanTextField($coupon);
 			}
 		}
-		
+
 		// if( $rule->getConditionVariant()=='present' && in_array($conditionValue, $cleanedArray) ){
 		// 	return true;
 		// }
@@ -68,11 +68,11 @@ class RuleConditionCoupon extends RuleConditionText
 		// 	return true;
 		// }
 
-		if( $conditionComparator=='=' && in_array($conditionValue, $cleanedArray) ){
+		if($conditionComparator == '=' && in_array($conditionValue, $cleanedArray, true)) {
 			return true;
 		}
 
-		if( $conditionComparator=='!=' && !in_array($conditionValue, $cleanedArray) ){
+		if($conditionComparator == '!=' && !in_array($conditionValue, $cleanedArray, true)) {
 			return true;
 		}
 

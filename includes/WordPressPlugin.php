@@ -1,11 +1,11 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets;
+namespace PlebShippingRulesets;
 
-use PlebWooCommerceShippingRulesets\AjaxAction;
-use PlebWooCommerceShippingRulesets\AdminNotice;
+use PlebShippingRulesets\AjaxAction;
+use PlebShippingRulesets\AdminNotice;
 use Automattic\WooCommerce\Utilities\FeaturesUtil;
-use PlebWooCommerceShippingRulesets\RulesShippingMethod;
+use PlebShippingRulesets\RulesShippingMethod;
 
 class WordPressPlugin
 {
@@ -22,7 +22,7 @@ class WordPressPlugin
 	public $textDomain;
 	public $domainPath;
 	public $pluginUri;
-	public $githubUri = 'https://github.com/PierreLebedel/WooCommerceShippingRulesets/';
+	public $githubUri = 'https://github.com/PierreLebedel/PlebShippingRulesets/';
 
 	public static function instance(?string $pluginMainFile = null): self
 	{
@@ -103,12 +103,12 @@ class WordPressPlugin
 	private function missingWooCommerceAdminNotice()
 	{
 		// $message = sprintf(
-		//     esc_html__('WooCommerce Shipping Rules requires WooCommerce to be installed and active. You can download %s here.', 'pleb-woocommerce-shipping-rulesets'),
+		//     esc_html__('Pleb Shipping Rulesets requires WooCommerce to be installed and active. You can download %s here.', 'pleb-shipping-rulesets'),
 		//     '<a href="https://woocommerce.com/" target="_blank">WooCommerce</a>'
 		// );
 
 		$message = sprintf(
-			esc_html__('%s requires WooCommerce to be installed and active. You can download %s here.', 'pleb-woocommerce-shipping-rulesets'),
+			esc_html__('%s requires WooCommerce to be installed and active. You can download %s here.', 'pleb-shipping-rulesets'),
 			$this->name,
 			'<a href="'.admin_url('plugin-install.php?s=WooCommerce&tab=search&type=term').'">WooCommerce</a>'
 		);
@@ -128,8 +128,10 @@ class WordPressPlugin
 
 	public function loadAdminJs()
 	{
-		if( get_current_screen()->id != 'woocommerce_page_wc-settings' ) return;
-		
+		if(get_current_screen()->id != 'woocommerce_page_wc-settings') {
+		return;
+		}
+
 		$admin_script_handle = 'pleb_wcsr';
 
 		wp_enqueue_script(
@@ -150,7 +152,7 @@ class WordPressPlugin
 					'method_id' => 'pleb_rulesets_method',
 				],
 				'translations' => [
-					'loading' => __("Loading...", 'pleb-woocommerce-shipping-rulesets'),
+					'loading' => __("Loading...", 'pleb-shipping-rulesets'),
 				],
 			]
 		);
@@ -158,12 +160,14 @@ class WordPressPlugin
 
 	public function loadAdminCss()
 	{
-		if( get_current_screen()->id != 'woocommerce_page_wc-settings' ) return;
+		if(get_current_screen()->id != 'woocommerce_page_wc-settings') {
+		return;
+		}
 
 		$admin_css_handle = 'pleb_wcsr';
 
 		wp_enqueue_style(
-			$admin_css_handle, 
+			$admin_css_handle,
 			$this->dirUrl.'admin/css/plebwcsr.css'
 		);
 	}
@@ -184,7 +188,7 @@ class WordPressPlugin
 		}
 
 		$row_meta = [
-			'docs' => '<a href="'.trailingslashit($this->githubUri).'tree/main/docs/index.md" target="_blank">'.esc_html__('Docs', 'pleb-woocommerce-shipping-rulesets').'</a>',
+			'docs' => '<a href="'.trailingslashit($this->githubUri).'tree/main/docs/index.md" target="_blank">'.esc_html__('Docs', 'pleb-shipping-rulesets').'</a>',
 		];
 
 		return array_merge($links, $row_meta);

@@ -1,8 +1,8 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets;
+namespace PlebShippingRulesets;
 
-use PlebWooCommerceShippingRulesets\WordPressPlugin;
+use PlebShippingRulesets\WordPressPlugin;
 use WP_Filesystem_Direct;
 
 class WordPressPluginPublisher
@@ -87,7 +87,7 @@ class WordPressPluginPublisher
             'assets',
             'loco.xml',
             '.git',
-            'pleb-woocommerce-shipping-rulesets.zip',
+            'pleb-shipping-rulesets.zip',
         ]);
 
         echo " - Copy assets files in ".$pluginAssetsDir.PHP_EOL;
@@ -98,7 +98,7 @@ class WordPressPluginPublisher
         ]);
 
         /**
-         * 
+         *
          */
 
         $instance = self::instance();
@@ -167,11 +167,11 @@ class WordPressPluginPublisher
         }
 
         $screenshots = [
-			'1' => __("Add Shipping rulesets method to the shipping zone", 'pleb-woocommerce-shipping-rulesets'),
-            '2' => __("Rulesets based shipping method display options form", 'pleb-woocommerce-shipping-rulesets'),
-            '3' => __("Rulesets & rules settings metaboxes", 'pleb-woocommerce-shipping-rulesets'),
-            '4' => __("Front end cart display shipping method name & rate", 'pleb-woocommerce-shipping-rulesets'),
-            '5' => __("Front end debug mode enabled, shows matching ruleset(s)", 'pleb-woocommerce-shipping-rulesets'),
+			'1' => __("Add Shipping rulesets method to the shipping zone", 'pleb-shipping-rulesets'),
+            '2' => __("Rulesets based shipping method display options form", 'pleb-shipping-rulesets'),
+            '3' => __("Rulesets & rules settings metaboxes", 'pleb-shipping-rulesets'),
+            '4' => __("Front end cart display shipping method name & rate", 'pleb-shipping-rulesets'),
+            '5' => __("Front end debug mode enabled, shows matching ruleset(s)", 'pleb-shipping-rulesets'),
 		];
 
         if(!empty($screenshots)) {
@@ -199,10 +199,7 @@ class WordPressPluginPublisher
                 'Updated'  => [],
                 'Improved' => [],
                 'Changed'  => [],
-                'Fixed'    => [
-                    "Test 1",
-                    'Test 2',
-                ],
+                'Fixed'    => [],
                 '' => [
                     "First relase",
                 ],
@@ -231,7 +228,7 @@ class WordPressPluginPublisher
         }
 
         $upgradeNotices = [
-            '1.0' => "Keep this plugin updated to access future rule types",
+            '1.0.0' => "Keep this plugin updated to access future rule types",
         ];
 
         if(!empty($upgradeNotices)) {
@@ -253,7 +250,7 @@ class WordPressPluginPublisher
         file_put_contents($pluginTrunkDir.'/readme.txt', $readmeContent);
 
         /**
-         * 
+         *
          */
 
         echo "Create Zip file".PHP_EOL;
@@ -261,24 +258,24 @@ class WordPressPluginPublisher
         $zipFilePath = $plugin->slug.'.zip';
 
         if(file_exists($zipFilePath)) {
-            unlink ($zipFilePath);
+            unlink($zipFilePath);
         }
 
-        if ($zip->open($zipFilePath, \ZipArchive::CREATE) != TRUE) {
-            die ("Could not open archive");
+        if ($zip->open($zipFilePath, \ZipArchive::CREATE) != true) {
+            die("Could not open archive");
         }
 
         $files = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator(
-                $pluginTrunkDir,
-                \FilesystemIterator::SKIP_DOTS
+        	new \RecursiveDirectoryIterator(
+            	$pluginTrunkDir,
+            	\FilesystemIterator::SKIP_DOTS
             ),
-            \RecursiveIteratorIterator::LEAVES_ONLY
+        	\RecursiveIteratorIterator::LEAVES_ONLY
         );
 
         echo " - Zip plugin files: ";
         foreach ($files as $key => $file) {
-            if ($file->getFilename() == '.' || $file->getFilename() == '..'){
+            if ($file->getFilename() == '.' || $file->getFilename() == '..') {
                 continue;
             }
             echo '.';
@@ -289,16 +286,16 @@ class WordPressPluginPublisher
         echo PHP_EOL;
 
         $files = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator(
-                $pluginAssetsDir,
-                \FilesystemIterator::SKIP_DOTS
+        	new \RecursiveDirectoryIterator(
+            	$pluginAssetsDir,
+            	\FilesystemIterator::SKIP_DOTS
             ),
-            \RecursiveIteratorIterator::LEAVES_ONLY
+        	\RecursiveIteratorIterator::LEAVES_ONLY
         );
 
         echo " - Zip assets files: ";
         foreach ($files as $key => $file) {
-            if ($file->getFilename() == '.' || $file->getFilename() == '..'){
+            if ($file->getFilename() == '.' || $file->getFilename() == '..') {
                 continue;
             }
             echo '.';

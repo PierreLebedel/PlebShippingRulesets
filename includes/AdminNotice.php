@@ -1,6 +1,6 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets;
+namespace PlebShippingRulesets;
 
 class AdminNotice
 {

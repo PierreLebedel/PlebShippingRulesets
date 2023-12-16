@@ -1,6 +1,6 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models;
+namespace PlebShippingRulesets\Models;
 
 class DefaultRuleset extends Ruleset
 {

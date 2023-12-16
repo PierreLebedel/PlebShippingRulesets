@@ -1,11 +1,11 @@
 <?php
 
-namespace PlebWooCommerceShippingRulesets\Models\RuleConditions;
+namespace PlebShippingRulesets\Models\RuleConditions;
 
-use PlebWooCommerceShippingRulesets\Contracts\RuleConditionsGroupInterface;
-use PlebWooCommerceShippingRulesets\Contracts\RuleInterface;
-use PlebWooCommerceShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
-use PlebWooCommerceShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
+use PlebShippingRulesets\Contracts\RuleConditionsGroupInterface;
+use PlebShippingRulesets\Contracts\RuleInterface;
+use PlebShippingRulesets\Models\RuleConditions\Abstracts\RuleConditionChoices;
+use PlebShippingRulesets\Models\RuleConditionsGroups\DateTimeGroup;
 
 class RuleConditionDayOfMonth extends RuleConditionChoices
 {
@@ -16,7 +16,7 @@ class RuleConditionDayOfMonth extends RuleConditionChoices
 
 	public function getName(): string
 	{
-		return __("Day of month", 'pleb-woocommerce-shipping-rulesets');
+		return __("Day of month", 'pleb-shipping-rulesets');
 	}
 
 	public function getGroup(): ?RuleConditionsGroupInterface
@@ -38,7 +38,7 @@ class RuleConditionDayOfMonth extends RuleConditionChoices
 	public function getChoices(): array
 	{
 		$days = [];
-		for($i=1; $i<=31; $i++){
+		for($i = 1; $i <= 31; $i++) {
 			$days[$i] = $i;
 		}
 		return $days;
@@ -50,7 +50,7 @@ class RuleConditionDayOfMonth extends RuleConditionChoices
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;
