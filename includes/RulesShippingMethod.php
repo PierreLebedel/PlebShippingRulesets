@@ -139,6 +139,8 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'default'           => [
 					'min' => '',
 					'max' => '',
+					'min' => '',
+					'max' => '',
 				],
 				'description'       => implode('<br>', [
 					__("These fields will limit the prices dynamically calculated by the rulesets.", 'pleb-shipping-rulesets'),
@@ -421,14 +423,15 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				if ($matchingRuleset->getCost() !== '') {
 					$replaces = [];
 					$rules = $matchingRuleset->getRules();
+
 					if(!empty($rules)) {
 						foreach($rules as $rule) {
 							$condition = $rule->getCondition();
 							if(!$condition) {
-							continue;
+								continue;
 							}
                 			if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) {
-                			continue;
+                				continue;
                 			}
 							$replaces[ '[rule_'.$rule->getId().']' ] = $condition->extractValueFromWooCommercePackageArray($package, $rule, $this->instance_id) ?? '0';
 						}
@@ -459,6 +462,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				}
 
 			}
+
 
 		} else {
 			$this->addDebugRow('No matching ruleset found');
@@ -635,9 +639,9 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	public function generate_pleb_autopromo_html($key, $data)
 	{
 		$fieldKey = $this->get_field_key($key);
-		$data = wp_parse_args($data, [
-			'default' => __("Default", 'pleb-shipping-rulesets'),
-		]);
+		$data = wp_parse_args( $data, [
+			'default' => __("Default", 'pleb-shipping-rulesets')
+		] );
 
 		ob_start();
 		include(dirname(__FILE__).'/Templates/AutoPromo.php');
@@ -684,13 +688,13 @@ class RulesShippingMethod extends \WC_Shipping_Method
 			<td class="forminp">
 				<div style="width:400px;">
 					<div style="float:left;width:48%;">
-						<label for="<?php echo esc_attr($fieldKey); ?>_min" style="display:block;margin-bottom:4px;">
+						<label for="<?php echo esc_attr( $fieldKey ); ?>_min" style="display:block;margin-bottom:4px;">
 							<?php _e("Min:", 'pleb-shipping-rulesets'); ?>
 						</label>
 						<input type="text" name="<?php echo esc_attr($fieldKey); ?>[min]" id="<?php echo esc_attr($fieldKey); ?>_min" value="<?php echo esc_attr(wc_format_localized_price($values['min'])); ?>" style="width:100%;margin:0;" />
 					</div>
 					<div style="float:right;width:48%;">
-						<label for="<?php echo esc_attr($fieldKey); ?>_max" style="display:block;margin-bottom:4px;">
+						<label for="<?php echo esc_attr( $fieldKey ); ?>_max" style="display:block;margin-bottom:4px;">
 							<?php _e("Max:", 'pleb-shipping-rulesets'); ?>
 						</label>
 						<input type="text" name="<?php echo esc_attr($fieldKey); ?>[max]" id="<?php echo esc_attr($fieldKey); ?>_max" value="<?php echo esc_attr(wc_format_localized_price($values['max'])); ?>" style="width:100%;margin:0;" />

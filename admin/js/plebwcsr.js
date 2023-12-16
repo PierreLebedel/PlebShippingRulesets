@@ -15,7 +15,7 @@ jQuery(function ( $ ) {
     }
 
     function plebRulesetsShippingMethodShowHideField(elName, elValue){
-        console.log(elName+' : '+elValue);
+        //console.log(elName+' : '+elValue);
         
         if(elName=='tax_status'){
             var $tr = plebRulesetsShippingMethodFielTr('prices_include_tax');
@@ -151,10 +151,10 @@ jQuery(function ( $ ) {
         $wrapper.find('.pleb_input_wrapper').toggle();
         $button.find('.button_dynamic_action').toggle();
 
-        const titleVal = $wrapper.find('h2 > span').text().trim();
+        const titleVal = $wrapper.find('h2 span.text').text().trim();
         const inputVal = $wrapper.find('.pleb_input_wrapper input').val();
         if($wrapper.find('h2').is(':visible')){
-            $wrapper.find('h2 > span').text(inputVal);
+            $wrapper.find('h2 span.text').text(inputVal);
         }else{
             $wrapper.find('.pleb_input_wrapper input').val(titleVal);
         }
@@ -194,7 +194,6 @@ jQuery(function ( $ ) {
             $('#pleb_no_ruleset_notice').hide();
         }
 
-        console.log($('#pleb_ruleset_default_wrapper .pleb_ruleset').length);
         if ( $('#pleb_ruleset_default_wrapper .pleb_ruleset').length == 0 ) {
             $('#pleb_no_ruleset_default_notice').show();
         } else {

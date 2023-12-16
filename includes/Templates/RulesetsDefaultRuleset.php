@@ -5,7 +5,7 @@
 
     <div class="postbox-header pleb_title_input_wrapper" style="padding:4px 0;">
         <h2 class="hndle" style="cursor:auto;justify-content:flex-start;">
-            <span><?php echo $this->getName(); ?></span>&nbsp;
+            <span class="text"><?php echo $this->getName(); ?></span>&nbsp;
             <em style="opacity:0.6;">(<?php _e("Default", 'pleb-shipping-rulesets'); ?>)</em>
         </h2>
         

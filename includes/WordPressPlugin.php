@@ -61,6 +61,16 @@ class WordPressPlugin
 			return;
 		}
 
+		if (!defined('PHP_VERSION_ID')) {
+			$version = explode('.', PHP_VERSION);
+			define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+		}
+
+		if (PHP_VERSION_ID < 80000) {
+			$this->missingPhpVersionAdminNotice();
+			return;
+		}
+
 		add_action('plugin_action_links_'.$this->baseName, [$this, 'pluginActionLinks']);
 		add_filter('woocommerce_shipping_methods', [RulesShippingMethod::class, 'autoRegister']);
 		add_action('admin_enqueue_scripts', [$this, 'loadAdminJs']);
@@ -111,6 +121,20 @@ class WordPressPlugin
 			esc_html__('%s requires WooCommerce to be installed and active. You can download %s here.', 'pleb-shipping-rulesets'),
 			$this->name,
 			'<a href="'.admin_url('plugin-install.php?s=WooCommerce&tab=search&type=term').'">WooCommerce</a>'
+		);
+
+		$notice = (new AdminNotice($message, 'error'))
+			->setStrong(false);
+
+		add_action('admin_notices', $notice);
+	}
+
+	private function missingPhpVersionAdminNotice()
+	{
+		$message = sprintf(
+			esc_html__('%s requires at least PHP %s to be installed and active. PLease upgrade PHP to use this plugin.', 'pleb-woocommerce-shipping-rulesets'),
+			$this->name,
+			'8.0'
 		);
 
 		$notice = (new AdminNotice($message, 'error'))

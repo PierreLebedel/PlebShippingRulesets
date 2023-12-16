@@ -11,7 +11,7 @@ $rules = $this->getRules();
         <h2 class="hndle" title="<?php esc_attr_e("Move up/down to change ruleset priority", 'pleb-shipping-rulesets'); ?>">
             <span>
                 <span class="dashicons dashicons-move"></span>
-                <?php echo $this->getName(); ?>
+                <span class="text"><?php echo $this->getName(); ?></span>
             </span>
         </h2>
         
@@ -37,9 +37,9 @@ $rules = $this->getRules();
             <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb-shipping-rulesets'); ?>" id="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" />
 
             <?php echo wc_help_tip(sprintf(
-	__("Works the same as %s setting field", 'pleb-shipping-rulesets'),
-	'<b>'.__('Base price', 'pleb-shipping-rulesets').'</b>'
-), true); ?>
+                __("Works the same as %s setting field", 'pleb-shipping-rulesets'),
+                '<b>'.__('Base price', 'pleb-shipping-rulesets').'</b>'
+            ), true); ?>
 
             <code class="pleb_open_ruleset_variables" style="display:block;cursor:pointer;margin-left:5px;white-space:nowrap;" title="<?php esc_attr_e("Show available variables for this ruleset", 'pleb-shipping-rulesets'); ?>"><?php _e("Vars", 'pleb-shipping-rulesets'); ?></code>
 
@@ -50,10 +50,10 @@ $rules = $this->getRules();
             foreach($rules as $rule):
                 $condition = $rule->getCondition();
                 if(!$condition) {
-                continue;
+                    continue;
                 }
                 if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) {
-                continue;
+                    continue;
                 }
                 $has_variables = true;
                 $variants = $condition->getVariants();

@@ -267,9 +267,9 @@ class WordPressPluginPublisher
 
         $files = new \RecursiveIteratorIterator(
         	new \RecursiveDirectoryIterator(
-            	$pluginTrunkDir,
-            	\FilesystemIterator::SKIP_DOTS
-            ),
+        		$pluginTrunkDir,
+        		\FilesystemIterator::SKIP_DOTS
+        	),
         	\RecursiveIteratorIterator::LEAVES_ONLY
         );
 
@@ -287,9 +287,9 @@ class WordPressPluginPublisher
 
         $files = new \RecursiveIteratorIterator(
         	new \RecursiveDirectoryIterator(
-            	$pluginAssetsDir,
-            	\FilesystemIterator::SKIP_DOTS
-            ),
+        		$pluginAssetsDir,
+        		\FilesystemIterator::SKIP_DOTS
+        	),
         	\RecursiveIteratorIterator::LEAVES_ONLY
         );
 
