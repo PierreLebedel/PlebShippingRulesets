@@ -117,7 +117,7 @@ class Rule implements RuleInterface
 	public function htmlRender(string $fieldKey): string
 	{
 		$allRuleConditions = RuleCondition::all();
-		
+
 		ob_start();
 		include(dirname(__FILE__, 2).'/Templates/RulesetsRulesetRule.php');
 		return ob_get_clean();

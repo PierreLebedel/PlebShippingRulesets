@@ -38,7 +38,7 @@ class RuleConditionDayOfMonth extends RuleConditionChoices
 	public function getChoices(): array
 	{
 		$days = [];
-		for($i=1; $i<=31; $i++){
+		for($i = 1; $i <= 31; $i++) {
 			$days[$i] = $i;
 		}
 		return $days;
@@ -50,7 +50,7 @@ class RuleConditionDayOfMonth extends RuleConditionChoices
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;

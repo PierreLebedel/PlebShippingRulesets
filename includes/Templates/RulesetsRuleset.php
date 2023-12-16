@@ -37,9 +37,9 @@ $rules = $this->getRules();
             <input type="text" name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][cost]" value="<?php echo $this->getCost(); ?>" class="" placeholder="<?php esc_attr_e("", 'pleb-woocommerce-shipping-rulesets'); ?>" id="<?php echo esc_attr($fieldKey); ?>_<?php echo $this->getId(); ?>_cost" />
 
             <?php echo wc_help_tip(sprintf(
-                __("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
-                '<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
-            ), true); ?>
+	__("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
+	'<b>'.__('Base price', 'pleb-woocommerce-shipping-rulesets').'</b>'
+), true); ?>
 
             <code class="pleb_open_ruleset_variables" style="display:block;cursor:pointer;margin-left:5px;white-space:nowrap;" title="<?php esc_attr_e("Show available variables for this ruleset", 'pleb-woocommerce-shipping-rulesets'); ?>"><?php _e("Vars", 'pleb-woocommerce-shipping-rulesets'); ?></code>
 
@@ -49,8 +49,12 @@ $rules = $this->getRules();
             <?php $has_variables = false;
             foreach($rules as $rule):
                 $condition = $rule->getCondition();
-                if(!$condition) continue; 
-                if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) continue;
+                if(!$condition) {
+                continue;
+                }
+                if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) {
+                continue;
+                }
                 $has_variables = true;
                 $variants = $condition->getVariants();
                 $variant = $rule->getConditionVariant(); ?>

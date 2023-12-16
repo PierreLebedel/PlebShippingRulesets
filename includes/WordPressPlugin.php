@@ -61,6 +61,16 @@ class WordPressPlugin
 			return;
 		}
 
+		if (!defined('PHP_VERSION_ID')) {
+			$version = explode('.', PHP_VERSION);
+			define('PHP_VERSION_ID', ($version[0] * 10000 + $version[1] * 100 + $version[2]));
+		}
+
+		if (PHP_VERSION_ID < 80000) {
+			$this->missingPhpVersionAdminNotice();
+			return;
+		}
+
 		add_action('plugin_action_links_'.$this->baseName, [$this, 'pluginActionLinks']);
 		add_filter('woocommerce_shipping_methods', [RulesShippingMethod::class, 'autoRegister']);
 		add_action('admin_enqueue_scripts', [$this, 'loadAdminJs']);
@@ -119,6 +129,20 @@ class WordPressPlugin
 		add_action('admin_notices', $notice);
 	}
 
+	private function missingPhpVersionAdminNotice()
+	{
+		$message = sprintf(
+			esc_html__('%s requires at least PHP %s to be installed and active. PLease upgrade PHP to use this plugin.', 'pleb-woocommerce-shipping-rulesets'),
+			$this->name,
+			'8.0',
+		);
+
+		$notice = (new AdminNotice($message, 'error'))
+			->setStrong(false);
+
+		add_action('admin_notices', $notice);
+	}
+
 	public function setWooCommerceHposCompatibility()
 	{
 		if (class_exists(FeaturesUtil::class)) {
@@ -128,8 +152,10 @@ class WordPressPlugin
 
 	public function loadAdminJs()
 	{
-		if( get_current_screen()->id != 'woocommerce_page_wc-settings' ) return;
-		
+		if(get_current_screen()->id != 'woocommerce_page_wc-settings') {
+		return;
+		}
+
 		$admin_script_handle = 'pleb_wcsr';
 
 		wp_enqueue_script(
@@ -158,12 +184,14 @@ class WordPressPlugin
 
 	public function loadAdminCss()
 	{
-		if( get_current_screen()->id != 'woocommerce_page_wc-settings' ) return;
+		if(get_current_screen()->id != 'woocommerce_page_wc-settings') {
+		return;
+		}
 
 		$admin_css_handle = 'pleb_wcsr';
 
 		wp_enqueue_style(
-			$admin_css_handle, 
+			$admin_css_handle,
 			$this->dirUrl.'admin/css/plebwcsr.css'
 		);
 	}

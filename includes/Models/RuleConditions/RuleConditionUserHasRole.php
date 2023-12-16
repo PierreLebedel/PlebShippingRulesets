@@ -39,7 +39,7 @@ class RuleConditionUserHasRole extends RuleConditionChoices
 		$rolesArray = apply_filters('pwsr_get_all_roles', $wp_roles->roles);
 
 		$rolesChoices = [];
-		foreach($rolesArray as $k=>$v){
+		foreach($rolesArray as $k => $v) {
 			$rolesChoices[$k] = translate_user_role($v['name'], 'pleb-woocommerce-shipping-rulesets');
 		}
 
@@ -52,20 +52,22 @@ class RuleConditionUserHasRole extends RuleConditionChoices
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;
 		}
 
 		$user = wp_get_current_user();
-		if(!$user->exists()) return false;
+		if(!$user->exists()) {
+		return false;
+		}
 
-		if( $conditionComparator=='=' && in_array($conditionValue, $user->roles) ){
+		if($conditionComparator == '=' && in_array($conditionValue, $user->roles, true)) {
 			return true;
 		}
 
-		if( $conditionComparator=='!=' && !in_array($conditionValue, $user->roles) ){
+		if($conditionComparator == '!=' && !in_array($conditionValue, $user->roles, true)) {
 			return true;
 		}
 

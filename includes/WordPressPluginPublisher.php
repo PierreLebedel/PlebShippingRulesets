@@ -98,7 +98,7 @@ class WordPressPluginPublisher
         ]);
 
         /**
-         * 
+         *
          */
 
         $instance = self::instance();
@@ -253,7 +253,7 @@ class WordPressPluginPublisher
         file_put_contents($pluginTrunkDir.'/readme.txt', $readmeContent);
 
         /**
-         * 
+         *
          */
 
         echo "Create Zip file".PHP_EOL;
@@ -261,24 +261,24 @@ class WordPressPluginPublisher
         $zipFilePath = $plugin->slug.'.zip';
 
         if(file_exists($zipFilePath)) {
-            unlink ($zipFilePath);
+            unlink($zipFilePath);
         }
 
-        if ($zip->open($zipFilePath, \ZipArchive::CREATE) != TRUE) {
-            die ("Could not open archive");
+        if ($zip->open($zipFilePath, \ZipArchive::CREATE) != true) {
+            die("Could not open archive");
         }
 
         $files = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator(
-                $pluginTrunkDir,
-                \FilesystemIterator::SKIP_DOTS
+        	new \RecursiveDirectoryIterator(
+            	$pluginTrunkDir,
+            	\FilesystemIterator::SKIP_DOTS
             ),
-            \RecursiveIteratorIterator::LEAVES_ONLY
+        	\RecursiveIteratorIterator::LEAVES_ONLY
         );
 
         echo " - Zip plugin files: ";
         foreach ($files as $key => $file) {
-            if ($file->getFilename() == '.' || $file->getFilename() == '..'){
+            if ($file->getFilename() == '.' || $file->getFilename() == '..') {
                 continue;
             }
             echo '.';
@@ -289,16 +289,16 @@ class WordPressPluginPublisher
         echo PHP_EOL;
 
         $files = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator(
-                $pluginAssetsDir,
-                \FilesystemIterator::SKIP_DOTS
+        	new \RecursiveDirectoryIterator(
+            	$pluginAssetsDir,
+            	\FilesystemIterator::SKIP_DOTS
             ),
-            \RecursiveIteratorIterator::LEAVES_ONLY
+        	\RecursiveIteratorIterator::LEAVES_ONLY
         );
 
         echo " - Zip assets files: ";
         foreach ($files as $key => $file) {
-            if ($file->getFilename() == '.' || $file->getFilename() == '..'){
+            if ($file->getFilename() == '.' || $file->getFilename() == '..') {
                 continue;
             }
             echo '.';

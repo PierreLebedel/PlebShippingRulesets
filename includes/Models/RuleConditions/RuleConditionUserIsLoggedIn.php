@@ -34,11 +34,11 @@ class RuleConditionUserIsLoggedIn extends RuleConditionBoolean
 
 		$user_is_logged_in = (bool) is_user_logged_in();
 
-		if( $conditionValue && $user_is_logged_in ){
+		if($conditionValue && $user_is_logged_in) {
 			return true;
 		}
 
-		if( $conditionValue && !$user_is_logged_in ){
+		if($conditionValue && !$user_is_logged_in) {
 			return true;
 		}
 

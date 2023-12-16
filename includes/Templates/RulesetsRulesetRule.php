@@ -5,7 +5,7 @@
 
         <select name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_id]" required class="rule_condition_id pleb_w100">
             <option value="" selected disabled><?php _e("Choose an option", 'pleb-woocommerce-shipping-rulesets'); ?></option>
-            <?php 
+            <?php
             $currentGroup = '';
             foreach ($allRuleConditions as $rc_id => $rc) : ?>
                 <?php if (!empty($rc->getVariants())) : ?>
@@ -16,11 +16,11 @@
                 </optgroup>
 
                 <?php elseif(method_exists($rc, 'getGroupName')): ?>
-                    <?php if(!empty($currentGroup) && $currentGroup!=$rc->getGroupName()): ?>
+                    <?php if(!empty($currentGroup) && $currentGroup != $rc->getGroupName()): ?>
                         </optgroup>
                         <?php $currentGroup = ''; ?>
                     <?php endif; ?>
-                    <?php if($currentGroup!=$rc->getGroupName()): ?>
+                    <?php if($currentGroup != $rc->getGroupName()): ?>
                         <optgroup label="<?php echo esc_attr($rc->getGroupName()); ?>">
                         <?php $currentGroup = $rc->getGroupName(); ?>
                     <?php endif; ?>
@@ -35,7 +35,7 @@
                 <?php endif; ?>
             <?php endforeach; ?>
 
-            <?php if(!empty($currentOpen) && $currentGroup!=$rc->getGroupName()): ?>
+            <?php if(!empty($currentOpen) && $currentGroup != $rc->getGroupName()): ?>
                 </optgroup>
             <?php endif; ?>
 
@@ -47,7 +47,7 @@
         <?php if (!empty($condition->getComparators())) : ?>
         <select name="<?php echo esc_attr($fieldKey); ?>[<?php echo $this->getId(); ?>][condition_comparator]" required class="">
             <option value="" <?php selected(is_null($this->getConditionComparator())); ?> disabled><?php _e("...", 'pleb-woocommerce-shipping-rulesets'); ?></option>
-            <?php foreach ($condition->getComparators() as $k=>$display) : ?>
+            <?php foreach ($condition->getComparators() as $k => $display) : ?>
             <option value="<?php echo $k; ?>" <?php selected($this->getConditionComparator() == $k || count($condition->getComparators()) == 1); ?>><?php echo $display; ?></option>
             <?php endforeach; ?>
         </select>
@@ -57,9 +57,9 @@
     </td>
     <td class="">
         <?php echo $condition->getInputHtml(
-            $fieldKey.'['.$this->getId().'][condition_value]',
-            $this->getConditionValue()
-        ); ?>
+            	$fieldKey.'['.$this->getId().'][condition_value]',
+            	$this->getConditionValue()
+            ); ?>
     </td>
     <?php else : ?>
     <td colspan="2">

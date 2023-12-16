@@ -21,7 +21,7 @@ class RuleConditionCartItemCount extends RuleConditionNumericInteger implements 
 	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
 		$package_quantity = 0;
-		
+
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$package_quantity += intval($values['quantity']);

@@ -137,19 +137,20 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				'title'             => __('Price limits', 'pleb-woocommerce-shipping-rulesets'),
 				'type'              => 'pleb_minmax',
 				'default'           => [
-					'min' => '', 
-					'max' => ''
+					'min' => '',
+					'max' => '',
 				],
 				'description'       => implode('<br>', [
 					__("These fields will limit the prices dynamically calculated by the rulesets.", 'pleb-woocommerce-shipping-rulesets'),
 					__("They can also contain variables.", 'pleb-woocommerce-shipping-rulesets').' '.sprintf(
-						__("For example, you can set shipping costs of %s minimum, and %s of the order price maximum, using %s %s and %s %s", 'pleb-woocommerce-shipping-rulesets'), 
-						wc_price(5.5), 
+						__("For example, you can set shipping costs of %s minimum, and %s of the order price maximum, using %s %s and %s %s", 'pleb-woocommerce-shipping-rulesets'),
+						wc_price(5.5),
 						'10%',
-						__("Min:",'pleb-woocommerce-shipping-rulesets'), 
-						'<code>5.5</code>', 
-						__("Max:",'pleb-woocommerce-shipping-rulesets'), 
-						'<code>[cost] * 0.1</code>'),
+						__("Min:", 'pleb-woocommerce-shipping-rulesets'),
+						'<code>5.5</code>',
+						__("Max:", 'pleb-woocommerce-shipping-rulesets'),
+						'<code>[cost] * 0.1</code>'
+					),
 				]),
 				'desc_tip'          => sprintf(
 					__("Works the same as %s setting field", 'pleb-woocommerce-shipping-rulesets'),
@@ -286,7 +287,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		$sum = do_shortcode(strtr($costrule, $replaces));
 		remove_shortcode('fee', [$this, 'fee']);
 
-		foreach($replaces as $k=>$v){
+		foreach($replaces as $k => $v) {
 			if (str_contains($costrule, $k)) {
 				$this->addDebugRow($debugCostName.'Rule '.$k.' tag value = '.$v);
 			}
@@ -307,12 +308,12 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		include_once(WC()->plugin_path().'/includes/libraries/class-wc-eval-math.php');
-		set_error_handler(function() use ($debugCostName, $sum) {
+		set_error_handler(function () use ($debugCostName, $sum) {
 			//$this->addDebugRow($debugCostName.'Formula error : '.$sum);
 		});
 		$result = \WC_Eval_Math::evaluate($sum);
-		restore_error_handler(); 
-			
+		restore_error_handler();
+
 		$this->addDebugRow($debugCostName.'Math result rule = '.$result);
 
 		return $result;
@@ -331,7 +332,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				if ($ruleset->matchToWooCommercePackageArray($package, $this->instance_id)) {
 					$matchingRulesets[$ruleset->getId()] = $ruleset;
 
-					if($getOnlyFirst){
+					if($getOnlyFirst) {
 						return $matchingRulesets;
 					}
 				}
@@ -339,10 +340,10 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		}
 
 		$defaultRuleset = $this->get_default_ruleset('rulesets');
-		if($defaultRuleset){
+		if($defaultRuleset) {
 			$matchingRulesets[$defaultRuleset->getId()] = $defaultRuleset;
 
-			if($getOnlyFirst){
+			if($getOnlyFirst) {
 				return $matchingRulesets;
 			}
 		}
@@ -410,21 +411,25 @@ class RulesShippingMethod extends \WC_Shipping_Method
 
 			$matchingMode = $this->get_option('rulesets_matching_mode', 'first');
 
-			foreach($orderMatchingRulesets as $matchingRuleset){
+			foreach($orderMatchingRulesets as $matchingRuleset) {
 				$this->addDebugRow('Matching ruleset found : '.$matchingRuleset->getName().($matchingRuleset->isDefault() ? ' (default)' : ''));
 
-				if($matchingMode!='many_grouped' && $this->do_replace_method_title()){
+				if($matchingMode != 'many_grouped' && $this->do_replace_method_title()) {
 					$rateLabel = $matchingRuleset->getName();
 				}
 
 				if ($matchingRuleset->getCost() !== '') {
 					$replaces = [];
 					$rules = $matchingRuleset->getRules();
-					if(!empty($rules)){
-						foreach($rules as $rule){
+					if(!empty($rules)) {
+						foreach($rules as $rule) {
 							$condition = $rule->getCondition();
-							if(!$condition) continue; 
-                			if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) continue;
+							if(!$condition) {
+							continue;
+							}
+                			if(!method_exists($condition, 'extractValueFromWooCommercePackageArray')) {
+                			continue;
+                			}
 							$replaces[ '[rule_'.$rule->getId().']' ] = $condition->extractValueFromWooCommercePackageArray($package, $rule, $this->instance_id) ?? '0';
 						}
 					}
@@ -433,13 +438,13 @@ class RulesShippingMethod extends \WC_Shipping_Method
 					$rulesetsCost += $this->evaluate_cost($matchingRuleset->getCost(), $package, $rulesetDebugTitle, $replaces);
 				}
 
-				if($matchingMode == 'many_distinct'){
+				if($matchingMode == 'many_distinct') {
 					$rateCost = ($baseCost + $rulesetsCost);
 
-					if( $min && $rateCost < $min ){
+					if($min && $rateCost < $min) {
 						$rateCost = $min;
 					}
-					if( $max && $rateCost > $max ){
+					if($max && $rateCost > $max) {
 						$rateCost = $max;
 					}
 
@@ -454,7 +459,7 @@ class RulesShippingMethod extends \WC_Shipping_Method
 				}
 
 			}
-			
+
 		} else {
 			$this->addDebugRow('No matching ruleset found');
 		}
@@ -462,10 +467,10 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		if (!empty($orderMatchingRulesets) && $matchingMode != 'many_distinct') {
 			$rateCost = ($baseCost + $rulesetsCost);
 
-			if( $min && $rateCost < $min ){
+			if($min && $rateCost < $min) {
 				$rateCost = $min;
 			}
-			if( $max && $rateCost > $max ){
+			if($max && $rateCost > $max) {
 				$rateCost = $max;
 			}
 
@@ -550,14 +555,15 @@ class RulesShippingMethod extends \WC_Shipping_Method
 	 * but this destroy the classic settings page
 	 * Problem seems fixed, but waiting for WC update to avoid this method override here
 	 */
-	public function get_admin_options_html() {
-		if ( $this->instance_id ) {
-			$settings_html = $this->generate_settings_html( $this->get_instance_form_fields(), false );
+	public function get_admin_options_html()
+	{
+		if ($this->instance_id) {
+			$settings_html = $this->generate_settings_html($this->get_instance_form_fields(), false);
 		} else {
-			$settings_html = $this->generate_settings_html( $this->get_form_fields(), false );
+			$settings_html = $this->generate_settings_html($this->get_form_fields(), false);
 		}
 
-		return '<table class="form-table">' . $settings_html . '</table>';
+		return '<table class="form-table">'.$settings_html.'</table>';
 	}
 
 	/**
@@ -584,19 +590,20 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return serialize($value);
 	}
 
-	public function generate_pleb_tabs_html( $key, $data ) {
-		$fieldKey = $this->get_field_key( $key );
-		$data = wp_parse_args( $data, [
-			'default'=>'',
+	public function generate_pleb_tabs_html($key, $data)
+	{
+		$fieldKey = $this->get_field_key($key);
+		$data = wp_parse_args($data, [
+			'default' => '',
 			'tabs' => [
 				'tab1' => [
 					'title' => 'Title',
 					'content' => 'Content',
-				]
+				],
 			],
-		] );
+		]);
 
-		if(!array_key_exists($data['default'], $data['tabs'])){
+		if(!array_key_exists($data['default'], $data['tabs'])) {
 			$data['default'] = array_key_first($data['tabs']);
 		}
 
@@ -606,13 +613,13 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		<div class="pleb_nav_tabs">
 
 			<h2 class="nav-tab-wrapper">
-				<?php foreach($data['tabs'] as $k=>$tab): ?>
-				<a href="#<?php echo $fieldKey; ?>_<?php echo $k; ?>" class="nav-tab <?php if($data['default']==$k): ?>nav-tab-active<?php endif; ?>"><?php echo $tab['title']; ?></a>
+				<?php foreach($data['tabs'] as $k => $tab): ?>
+				<a href="#<?php echo $fieldKey; ?>_<?php echo $k; ?>" class="nav-tab <?php if($data['default'] == $k): ?>nav-tab-active<?php endif; ?>"><?php echo $tab['title']; ?></a>
 				<?php endforeach; ?>
 			</h2>
 			
-			<?php foreach($data['tabs'] as $k=>$tab): ?>
-			<div class="tab_content" id="<?php echo $fieldKey; ?>_<?php echo $k; ?>" style="<?php if($data['default']!=$k): ?>display:none;<?php endif; ?>">
+			<?php foreach($data['tabs'] as $k => $tab): ?>
+			<div class="tab_content" id="<?php echo $fieldKey; ?>_<?php echo $k; ?>" style="<?php if($data['default'] != $k): ?>display:none;<?php endif; ?>">
 				<?php dump($tab['content']); ?>
 			</div>
 			<?php endforeach; ?>
@@ -625,11 +632,12 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return ob_get_clean();
 	}
 
-	public function generate_pleb_autopromo_html( $key, $data ) {
+	public function generate_pleb_autopromo_html($key, $data)
+	{
 		$fieldKey = $this->get_field_key($key);
-		$data = wp_parse_args( $data, [
-			'default' => __("Default", 'pleb-woocommerce-shipping-rulesets')
-		] );
+		$data = wp_parse_args($data, [
+			'default' => __("Default", 'pleb-woocommerce-shipping-rulesets'),
+		]);
 
 		ob_start();
 		include(dirname(__FILE__).'/Templates/AutoPromo.php');
@@ -652,43 +660,44 @@ class RulesShippingMethod extends \WC_Shipping_Method
 		return $value;
 	}
 
-	public function generate_pleb_minmax_html( $key, $data ) {
+	public function generate_pleb_minmax_html($key, $data)
+	{
 		$fieldKey = $this->get_field_key($key);
-		$defaults  = array(
+		$defaults  = [
 			'title'             => 'Min / Max',
 			'default'           => [
-				'min' => '', 
-				'max' => '2'
+				'min' => '',
+				'max' => '2',
 			],
 			'desc_tip'          => false,
 			'description'       => '',
-		);
+		];
 
-		$data = wp_parse_args( $data, $defaults );
-		$values = $this->get_option( $key );
+		$data = wp_parse_args($data, $defaults);
+		$values = $this->get_option($key);
 
 		ob_start();
 		?><tr valign="top">
 			<th scope="row" class="titledesc">
-				<label><?php echo wp_kses_post( $data['title'] ); ?> <?php echo $this->get_tooltip_html($data); // WPCS: XSS ok.?></label>
+				<label><?php echo wp_kses_post($data['title']); ?> <?php echo $this->get_tooltip_html($data); // WPCS: XSS ok.?></label>
 			</th>
 			<td class="forminp">
 				<div style="width:400px;">
 					<div style="float:left;width:48%;">
-						<label for="<?php echo esc_attr( $fieldKey ); ?>_min" style="display:block;margin-bottom:4px;">
+						<label for="<?php echo esc_attr($fieldKey); ?>_min" style="display:block;margin-bottom:4px;">
 							<?php _e("Min:", 'pleb-woocommerce-shipping-rulesets'); ?>
 						</label>
-						<input type="text" name="<?php echo esc_attr( $fieldKey ); ?>[min]" id="<?php echo esc_attr( $fieldKey ); ?>_min" value="<?php echo esc_attr( wc_format_localized_price($values['min']) ); ?>" style="width:100%;margin:0;" />
+						<input type="text" name="<?php echo esc_attr($fieldKey); ?>[min]" id="<?php echo esc_attr($fieldKey); ?>_min" value="<?php echo esc_attr(wc_format_localized_price($values['min'])); ?>" style="width:100%;margin:0;" />
 					</div>
 					<div style="float:right;width:48%;">
-						<label for="<?php echo esc_attr( $fieldKey ); ?>_max" style="display:block;margin-bottom:4px;">
+						<label for="<?php echo esc_attr($fieldKey); ?>_max" style="display:block;margin-bottom:4px;">
 							<?php _e("Max:", 'pleb-woocommerce-shipping-rulesets'); ?>
 						</label>
-						<input type="text" name="<?php echo esc_attr( $fieldKey ); ?>[max]" id="<?php echo esc_attr( $fieldKey ); ?>_max" value="<?php echo esc_attr( wc_format_localized_price($values['max']) ); ?>" style="width:100%;margin:0;" />
+						<input type="text" name="<?php echo esc_attr($fieldKey); ?>[max]" id="<?php echo esc_attr($fieldKey); ?>_max" value="<?php echo esc_attr(wc_format_localized_price($values['max'])); ?>" style="width:100%;margin:0;" />
 					</div>
 					<div style="clear:both;"></div>
 				</div>
-				<?php echo $this->get_description_html( $data ); // WPCS: XSS ok. ?>
+				<?php echo $this->get_description_html($data); // WPCS: XSS ok.?>
 			</td>
 		</tr><?php
 		return ob_get_clean();

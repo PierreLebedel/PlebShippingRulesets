@@ -21,7 +21,7 @@ class RuleConditionCartWeight extends RuleConditionNumericInteger implements Rul
 	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
 		$package_weight = 0;
-		
+
 		//dump($package['contents']);
 		foreach ($package['contents'] as $values) {
 			if($values['data']->needs_shipping()) {

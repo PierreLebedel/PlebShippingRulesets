@@ -32,7 +32,7 @@ spl_autoload_register(function ($class) {
 	if (file_exists($file)) {
 		//echo "require: ".$file."<br>";
 		require $file;
-	}else{
+	} else {
 		//echo "!!!require: ".$file."<br>";
 	}
 });

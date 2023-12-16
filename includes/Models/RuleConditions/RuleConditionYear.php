@@ -43,7 +43,7 @@ class RuleConditionYear extends RuleConditionNumericInteger
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;

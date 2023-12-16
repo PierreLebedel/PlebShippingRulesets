@@ -46,7 +46,7 @@ class RuleConditionCoupon extends RuleConditionText
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;
@@ -54,12 +54,12 @@ class RuleConditionCoupon extends RuleConditionText
 		$conditionValue = $this->cleanTextField($conditionValue);
 
 		$cleanedArray = [];
-		if( array_key_exists('applied_coupons', $package) && is_array($package['applied_coupons']) ){
-			foreach($package['applied_coupons'] as $coupon){
+		if(array_key_exists('applied_coupons', $package) && is_array($package['applied_coupons'])) {
+			foreach($package['applied_coupons'] as $coupon) {
 				$cleanedArray[] = $this->cleanTextField($coupon);
 			}
 		}
-		
+
 		// if( $rule->getConditionVariant()=='present' && in_array($conditionValue, $cleanedArray) ){
 		// 	return true;
 		// }
@@ -68,11 +68,11 @@ class RuleConditionCoupon extends RuleConditionText
 		// 	return true;
 		// }
 
-		if( $conditionComparator=='=' && in_array($conditionValue, $cleanedArray) ){
+		if($conditionComparator == '=' && in_array($conditionValue, $cleanedArray, true)) {
 			return true;
 		}
 
-		if( $conditionComparator=='!=' && !in_array($conditionValue, $cleanedArray) ){
+		if($conditionComparator == '!=' && !in_array($conditionValue, $cleanedArray, true)) {
 			return true;
 		}
 

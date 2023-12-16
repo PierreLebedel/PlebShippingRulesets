@@ -40,7 +40,7 @@ class RuleConditionCartItemByShippingClassCount extends RuleConditionNumericInte
 	public function extractValueFromWooCommercePackageArray(array $package = [], ?RuleInterface $rule = null, int $methodInstanceId = 0): mixed
 	{
 		$package_quantity = 0;
-		
+
 		foreach ($package['contents'] as $values) {
 			if ($values['quantity'] > 0 && $values['data']->needs_shipping()) {
 				$shippingClassSlug = $values['data']->get_shipping_class();

@@ -45,7 +45,7 @@ class RuleConditionMonthOfYear extends RuleConditionChoices
 
 		$months = [];
 
-		for($i=1; $i<=12; $i++){
+		for($i = 1; $i <= 12; $i++) {
 			$months[$i] = ucfirst($wp_locale->get_month($i));
 		}
 
@@ -58,7 +58,7 @@ class RuleConditionMonthOfYear extends RuleConditionChoices
 		if (is_null($conditionComparator)) {
 			return false;
 		}
-		
+
 		$conditionValue = $rule->getConditionValue();
 		if (is_null($conditionValue)) {
 			return false;

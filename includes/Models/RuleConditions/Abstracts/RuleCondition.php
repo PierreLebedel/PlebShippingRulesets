@@ -23,7 +23,6 @@ use PlebWooCommerceShippingRulesets\Models\RuleConditions\RuleConditionCartItemB
 
 abstract class RuleCondition implements RuleConditionInterface
 {
-
 	private static function getClasses()
 	{
 		$classes = apply_filters('plebwcsr_rule_condition_all', [
@@ -101,7 +100,9 @@ abstract class RuleCondition implements RuleConditionInterface
 	public function getGroupName(): ?string
 	{
 		$group = $this->getGroup();
-		if(!$group) return null;
+		if(!$group) {
+		return null;
+		}
 		return $group->getName();
 	}
 
