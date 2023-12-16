@@ -111,7 +111,7 @@ class WordPressPluginPublisher
             "Author URI: ".$plugin->getPluginData('AuthorURI'),
             "Version: ".$plugin->getPluginData('Version'),
             "Last updated time: ".wp_date('Y-m-d'),
-            "Creation time: 2023-12-11",
+            "Creation time: 2023-12-16",
             "Contributors: pierre-lebedel",
             "Donate link: ",
             "Tags: woocommerce, shipping, rulesets, rates",
@@ -187,14 +187,14 @@ class WordPressPluginPublisher
         }
 
         $versionsChanges = [
-            // '1.1 - 2023-12-07' => [
+            // '1.1.0 - 2023-12-07' => [
                 // 'Added'    => [],
                 // 'Updated'  => [],
                 // 'Improved' => [],
                 // 'Changed'  => [],
                 // 'Fixed'    => [],
             // ],
-            '1.0 - 2023-12-06' => [
+            '1.0.0 - 2023-12-16' => [
                 'Added'    => [],
                 'Updated'  => [],
                 'Improved' => [],

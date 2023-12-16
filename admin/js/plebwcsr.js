@@ -316,4 +316,51 @@ jQuery(function ( $ ) {
     });
 
 
+
+    if( $('#plebwcsr_kodex_like_buttons').length ){
+	
+        var xhr = $.ajax({
+            url: 'https://kodex.pierrelebedel.fr/ws/standard_buttons/woocommerce-shipping-rulesets',
+            method: 'post',
+            data: {}, 
+            success: function(response){
+                var data = $.parseJSON(response);
+                //console.log(data);
+                $('#plebwcsr_kodex_like_buttons .kodex_like_button .counter').text(data.likes);
+                $('#plebwcsr_kodex_like_buttons .kodex_dislike_button .counter').text(data.dislikes);
+    
+                $('#plebwcsr_kodex_like_buttons .kodex_like_button').removeClass('button-primary');
+                if(data.like_active) $('#plebwcsr_kodex_like_buttons .kodex_like_button').addClass('button-primary');
+    
+                $('#plebwcsr_kodex_like_buttons .kodex_dislike_button').removeClass('button-primary');
+                if(data.dislike_active) $('#plebwcsr_kodex_like_buttons .kodex_dislike_button').addClass('button-primary');
+            }
+        });
+    
+    
+        $('#plebwcsr_kodex_like_buttons button').on('click', function(e){
+            e.preventDefault();
+            var button = $(this);
+            var btn_action = (button.is('.kodex_dislike_button')) ? 'dislike' : 'like';
+            var xhr = $.ajax({
+                url: 'https://kodex.pierrelebedel.fr/ws/standard_vote/woocommerce-shipping-rulesets/'+btn_action, 
+                method: 'post',
+                data: {}, 
+                success: function(response){
+                    var data = $.parseJSON(response);
+                    //console.log(data);
+                    $('#plebwcsr_kodex_like_buttons .kodex_like_button .counter').text(data.likes);
+                    $('#plebwcsr_kodex_like_buttons .kodex_dislike_button .counter').text(data.dislikes);
+    
+                    $('#plebwcsr_kodex_like_buttons .kodex_like_button').removeClass('button-primary');
+                    if(data.like_active) $('#plebwcsr_kodex_like_buttons .kodex_like_button').addClass('button-primary');
+    
+                    $('#plebwcsr_kodex_like_buttons .kodex_dislike_button').removeClass('button-primary');
+                    if(data.dislike_active) $('#plebwcsr_kodex_like_buttons .kodex_dislike_button').addClass('button-primary');
+                }
+            });
+        });
+    }
+
+
 });

@@ -53,4 +53,36 @@
     max-width:400px;
 }
 
+#plebwcsr_kodex_like_buttons{
+    text-align:center;
+    margin-bottom:1em;
+}
 
+#plebwcsr_kodex_like_buttons button{
+
+}
+
+#plebwcsr_kodex_like_buttons button .icon{
+    width:auto;
+    margin-right:4px;
+    vertical-align: text-bottom;
+    line-height:1.2;
+    color:silver;
+}
+
+#plebwcsr_kodex_like_buttons button .text{
+    font-weight:bold;
+    margin-right:4px;
+}
+
+#plebwcsr_kodex_like_buttons button .counter{
+   
+}
+
+#plebwcsr_kodex_like_buttons button.kodex_like_button.button-primary .icon{
+    color:aquamarine;
+}
+
+#plebwcsr_kodex_like_buttons button.kodex_dislike_button.button-primary .icon{
+    color:orange;
+}
