@@ -320,7 +320,7 @@ jQuery(function ( $ ) {
     if( $('#plebwcsr_kodex_like_buttons').length ){
 	
         var xhr = $.ajax({
-            url: 'https://kodex.pierrelebedel.fr/ws/standard_buttons/woocommerce-shipping-rulesets',
+            url: 'https://kodex.pierrelebedel.fr/ws/standard_buttons/plebwcsr',
             method: 'post',
             data: {}, 
             success: function(response){
@@ -343,7 +343,7 @@ jQuery(function ( $ ) {
             var button = $(this);
             var btn_action = (button.is('.kodex_dislike_button')) ? 'dislike' : 'like';
             var xhr = $.ajax({
-                url: 'https://kodex.pierrelebedel.fr/ws/standard_vote/woocommerce-shipping-rulesets/'+btn_action, 
+                url: 'https://kodex.pierrelebedel.fr/ws/standard_vote/plebwcsr/'+btn_action, 
                 method: 'post',
                 data: {}, 
                 success: function(response){

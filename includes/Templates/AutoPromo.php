@@ -9,7 +9,7 @@ $pluginInstance = \PlebWooCommerceShippingRulesets\WordPressPlugin::instance();
             <h2 class="hndle"><?php _e("Thank you tu use this plugin!", 'pleb-woocommerce-shipping-rulesets'); ?></h2>
         </div>
         <div class="inside" style="padding-bottom: 0;margin-bottom: 0;flex:auto;display:flex;flex-direction:column;justify-content:space-evenly;align-items:flex-start;">
-            <div class="w-100">
+            <div style="width:100%">
                 <p style="margin:0 0 1em;">
                     <?php _e("Like this plugin?", 'pleb-woocommerce-shipping-rulesets'); ?> <?php _e("Please leave a thumbs up ;)", 'pleb-woocommerce-shipping-rulesets'); ?>
                 </p>
@@ -27,7 +27,7 @@ $pluginInstance = \PlebWooCommerceShippingRulesets\WordPressPlugin::instance();
                 </div>
                 
             </div>
-            <div class="w-100">
+            <div style="width:100%">
                 <p style="margin:0 0 1em;">
                     <?php _e("Feel free to send your requests if you think certain essential rules are missing.", 'pleb-woocommerce-shipping-rulesets'); ?> 
                     <?php _e("I will work on these according on the time I have available.", 'pleb-woocommerce-shipping-rulesets'); ?>
@@ -46,7 +46,7 @@ $pluginInstance = \PlebWooCommerceShippingRulesets\WordPressPlugin::instance();
             <h2 class="hndle"><?php _e("Useful links", 'pleb-woocommerce-shipping-rulesets'); ?></h2>
         </div>
         <div class="inside" style="padding-bottom: 0;margin-bottom: 0;flex:auto;display:flex;flex-direction:column;justify-content:space-evenly;align-items:flex-start;">
-            <div class="w-100">
+            <div style="width:100%"">
                 <strong>
                     <?php _e("WordPress plugin", 'pleb-woocommerce-shipping-rulesets'); ?>
                 </strong>
@@ -56,7 +56,7 @@ $pluginInstance = \PlebWooCommerceShippingRulesets\WordPressPlugin::instance();
                     <li><a href="https://translate.wordpress.org/projects/wp-plugins/<?php echo $pluginInstance->slug; ?>/" target="_blank"><span class="dashicons dashicons-external"></span><?php _e("Translating", 'pleb-woocommerce-shipping-rulesets'); ?></a></li>
                 </ul>
             </div>
-            <div class="w-100">
+            <div style="width:100%">
                 <strong>
                     <?php _e("Github files", 'pleb-woocommerce-shipping-rulesets'); ?>
                 </strong>
