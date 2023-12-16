@@ -6,11 +6,12 @@ This WordPress plugin is under development. Please wait for version 1.0.0 to use
 
 ## Installation (dev)
 
-Install the plugin in your WordPress website
+Install the plugin in your WordPress website inside `pleb-shipping-rules` directory :
 
 ```shell
 git clone git@github.com:PierreLebedel/PlebShippingRulesets.git wp-content/plugins/pleb-shipping-rules/
 ```
+Or from the [WordPress plugin repository](https://wordpress.org/plugins/pleb-shipping-rulesets/). 
 
 ## Useful commands
 ```shell
